@@ -1,0 +1,1011 @@
+query,feature,endpoint,method,sheet,subFeature,markedCorrect,score
+"List all monitors in the account","Inventory","/app/api/account_settings","GET","My Account","Account Settings",true,37
+"List all monitors in the account","Inventory","/app/api/genai/module/monitorlist","GET","Zia Settings","AI Module – Monitor List",false,36
+"List all monitors in the account","Inventory","/app/api/resource_profile/associated_monitors","GET","Server Monitor","Resource Profile – Associated Monitors",false,36
+"List all monitors in the account","Inventory","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,36
+"List all monitors in the account","Inventory","/app/api/short/all/monitors","GET","Third-Party Integrations","Monitor Listing",false,36
+"Show me all monitor groups","Inventory","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",true,73
+"Show me all monitor groups","Inventory","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,66
+"Show me all monitor groups","Inventory","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,59
+"Show me all monitor groups","Inventory","/app/api/short/monitor_groups","GET","Inventory","Monitor Groups",false,58
+"How do I import monitors in bulk?","Inventory","/app/api/monitors/import","PUT","Inventory","Monitor Import",true,49
+"How do I import monitors in bulk?","Inventory","/app/api/monitors/import/continuous_import","GET","Inventory","Monitor Import",false,42
+"How do I import monitors in bulk?","Inventory","/app/api/monitors/import/status","GET","Inventory","Monitor Import",false,42
+"What API retrieves the license usage for the account?","Inventory","/app/api/license_usage","GET","Inventory","License Usage",true,75
+"What API retrieves the license usage for the account?","Inventory","https://www.site24x7.com/app/api/license_usage","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,58
+"What API retrieves the license usage for the account?","Inventory","/app/api/account_settings","GET","My Account","Account Settings",false,56
+"What API retrieves the license usage for the account?","Inventory","/app/api/account_settings","PUT","My Account","Account Settings",false,56
+"What API retrieves the license usage for the account?","Inventory","/app/api/account_settings","GET","Inventory","Account Settings",false,53
+"What API retrieves the license usage for the account?","Inventory","/app/api/account_settings","GET","User & Alert Management","Account Settings",false,49
+"How do I check monitor dependencies?","Inventory","/app/api/short/monitors_resource_supported","GET","Server Monitor","Monitor Resource Support",true,45
+"How do I check monitor dependencies?","Inventory","/app/api/monitors/details_page/base/{id}","GET","Automations","Monitor Details",false,44
+"How do I check monitor dependencies?","Inventory","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,44
+"How do I check monitor dependencies?","Inventory","/app/api/short/monitors_support/6001","GET","Automations","Monitor Support",false,43
+"How do I check monitor dependencies?","Inventory","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,37
+"How do I check monitor dependencies?","Inventory","/app/api/monitors/status/count","GET","Server Monitor","Monitor Status",false,37
+"List all credential profiles stored in the account","Inventory","/app/api/credential_profiles","GET","Third-Party Integrations","Credential Profiles",true,65
+"List all credential profiles stored in the account","Inventory","https://www.site24x7.com/app/api/credential_profiles","GET","Configuration Profiles","Credential Profile",false,63
+"List all credential profiles stored in the account","Inventory","/app/api/short/credential_list","GET","Inventory","Credential Box",false,59
+"List all credential profiles stored in the account","Inventory","/app/api/short/location_profiles","GET","Inventory","Location Profiles",false,46
+"List all credential profiles stored in the account","Inventory","https://www.site24x7.com/app/api/credential_profile","POST","Configuration Profiles","Credential Profile",false,43
+"Which API shows network discovery results?","Inventory","/app/api/network/discovery_rules","GET","Inventory","Network Discovery",true,71
+"Which API shows network discovery results?","Inventory","/app/api/network/pollers","GET","Inventory","Network Pollers",false,64
+"How do I get the list of network pollers?","Inventory","/app/api/network/pollers","GET","Inventory","Network Pollers",true,81
+"What field holds the AWS account ID for an integration?","Inventory","/app/api/aws/account_id/{aws_account_ref}","GET","Inventory","AWS Integration",true,101
+"What field holds the AWS account ID for an integration?","Inventory","/app/api/integration/event_bridge","POST","Third-Party Integrations","Amazon EventBridge Integration",false,89
+"What field holds the AWS account ID for an integration?","Inventory","/app/api/aws/add/event_bridge/{user_id}","GET","Third-Party Integrations","Amazon EventBridge Integration",false,80
+"What field holds the AWS account ID for an integration?","Inventory","/app/api/aws/external_id","GET","Inventory","AWS Integration",false,75
+"Show me all device templates available","Inventory","/app/api/short/device/templates","GET","Inventory","Device Templates",true,65
+"How do I retrieve threshold profiles?","Inventory","/app/api/threshold_profiles","GET","Inventory","Threshold Profiles",true,65
+"How do I retrieve threshold profiles?","Inventory","https://www.site24x7.com/app/api/threshold_profiles","POST","Configuration Profiles","Threshold and Availability",false,61
+"How do I retrieve threshold profiles?","Inventory","/app/api/short/threshold_profiles","GET","Inventory","Threshold Profiles",false,58
+"How do I retrieve threshold profiles?","Inventory","/app/api/short/threshold_profiles/{monitor_type}","GET","Inventory","Threshold Profiles",false,58
+"How do I retrieve threshold profiles?","Inventory","/app/api/short/threshold_profiles/SERVER","GET","Server Monitor","Threshold Profiles",false,58
+"How do I retrieve threshold profiles?","Inventory","https://www.site24x7.com/app/api/plugin/list_threshold_profiles/PLUGIN","GET","Configuration Profiles","Threshold and Availability",false,56
+"List APIs related to network polling schedules","Inventory","/app/api/short/network_schedules/{schedule_type}","GET","Inventory","Network Schedules",true,76
+"List APIs related to network polling schedules","Inventory","/app/api/network/pollers","GET","Inventory","Network Pollers",false,51
+"What endpoint returns dynamic filter definitions?","Inventory","/app/api/dynamic_monitors/grouping_filters/{monitor_type}/{filter_id}","POST","Inventory","Dynamic Filters",true,58
+"What endpoint returns dynamic filter definitions?","Inventory","/app/api/filters","GET","Inventory","Dynamic Filters",false,57
+"What endpoint returns dynamic filter definitions?","Inventory","/app/api/filters","POST","Inventory","Dynamic Filters",false,46
+"How do I check the status of a poller?","Inventory","/app/api/network/pollers","GET","Inventory","Network Pollers",true,52
+"How do I check the status of a poller?","Inventory","/sp/api/statuspages/15698000418173443/license/check_module_access","GET","Operations","Status Pages (StatusIQ)",false,48
+"How do I check the status of a poller?","Inventory","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,44
+"How do I check the status of a poller?","Inventory","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,40
+"How do I check the status of a poller?","Inventory","/app/api/monitors/status/count","GET","User & Alert Management","Monitor Status",false,36
+"How do I check the status of a poller?","Inventory","/app/api/short/current_status","GET","User & Alert Management","Monitor Status",false,36
+"Which API lists all server templates in Inventory?","Inventory","/app/api/short/server_templates","GET","Inventory","Server Templates",true,87
+"Which API lists all server templates in Inventory?","Inventory","/app/api/server_templates","GET","Server Monitor","Server Templates",false,86
+"Which API lists all server templates in Inventory?","Inventory","/app/api/short/device/templates","GET","Inventory","Device Templates",false,58
+"List all users in the account","User & Alert Management","/app/api/short/users_list","GET","User & Alert Management","User Management",true,53
+"List all users in the account","User & Alert Management","/app/api/account_settings","GET","Inventory","Account Settings",false,38
+"List all users in the account","User & Alert Management","/app/api/account_settings","GET","My Account","Account Settings",false,37
+"List all users in the account","User & Alert Management","/app/api/account_settings","PUT","My Account","Account Settings",false,37
+"How do I create a new user role?","User & Alert Management","/app/api/short/custom_roles","GET","User & Alert Management","Role Management",true,52
+"How do I create a new user role?","User & Alert Management","/app/api/short/users_list","GET","User & Alert Management","User Management",false,44
+"How do I create a new user role?","User & Alert Management","/app/api/short/user_groups","GET","User & Alert Management","User Groups",false,37
+"How do I create a new user role?","User & Alert Management","/app/api/users/{id}","DELETE","User & Alert Management","User Management",false,37
+"How do I create a new user role?","User & Alert Management","/app/api/client_data/user","GET","User & Alert Management","Client / Session Data",false,34
+"Show me all user groups","User & Alert Management","/app/api/short/user_groups","GET","User & Alert Management","User Groups",true,66
+"Show me all user groups","User & Alert Management","/app/api/short/users_list","GET","User & Alert Management","User Management",false,44
+"What API manages on-call schedules?","User & Alert Management","/app/api/on_call_schedules","GET","Inventory","On-Call Schedules",true,59
+"What API manages on-call schedules?","User & Alert Management","/app/api/short/on_call_schedules","GET","Inventory","On-Call Schedules",false,59
+"What API manages on-call schedules?","User & Alert Management","/app/api/on_call_schedules/{id}","PUT","User & Alert Management","On-Call Schedules",false,59
+"What API manages on-call schedules?","User & Alert Management","/app/api/short/network_schedules/{schedule_type}","GET","Inventory","Network Schedules",false,42
+"How do I update an alert category?","User & Alert Management","/app/api/alarms_category/{id}","PUT","User & Alert Management","Alert Categories",true,56
+"How do I update an alert category?","User & Alert Management","/app/api/alarms_category","GET","User & Alert Management","Alert Categories",false,45
+"How do I update an alert category?","User & Alert Management","/app/api/applog/alerts","GET","Operations","Alert Logs",false,44
+"List all attribute groups for monitors","User & Alert Management","/app/api/attribute_groups","GET","User & Alert Management","Attribute Groups",true,73
+"List all attribute groups for monitors","User & Alert Management","/app/api/attribute_groups/{id}","PUT","User & Alert Management","Attribute Groups",false,63
+"List all attribute groups for monitors","User & Alert Management","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,58
+"List all attribute groups for monitors","User & Alert Management","/app/api/short/attribute_groups","GET","User & Alert Management","Attribute Groups",false,58
+"List all attribute groups for monitors","User & Alert Management","/app/api/short/attribute_groups","GET","Third-Party Integrations","Attribute Groups",false,58
+"Which endpoint fetches attribute definitions and values?","User & Alert Management","/app/api/attribute_details","GET","User & Alert Management","Attribute Details",true,57
+"How do I view the change tracker log?","User & Alert Management","/app/api/applog/logtype_views","GET","Operations","Alert Logs",true,62
+"How do I view the change tracker log?","User & Alert Management","/app/api/tracker","PUT","Third-Party Integrations","Change Tracker",false,47
+"What field holds a user's role permissions?","User & Alert Management","/app/api/short/custom_roles","GET","User & Alert Management","Role Management",true,44
+"What field holds a user's role permissions?","User & Alert Management","/app/api/short/users_list","GET","User & Alert Management","User Management",false,44
+"What field holds a user's role permissions?","User & Alert Management","/app/api/short/user_groups","GET","User & Alert Management","User Groups",false,37
+"What field holds a user's role permissions?","User & Alert Management","/app/api/users/{id}","DELETE","User & Alert Management","User Management",false,37
+"What field holds a user's role permissions?","User & Alert Management","/app/api/client_data/user","GET","User & Alert Management","Client / Session Data",false,34
+"What field holds a user's role permissions?","User & Alert Management","/app/api/client_data/user","GET","Milestones","User Context",false,29
+"List APIs related to user group management","User & Alert Management","/app/api/short/user_groups","GET","User & Alert Management","User Groups",true,82
+"List APIs related to user group management","User & Alert Management","/app/api/short/users_list","GET","User & Alert Management","User Management",false,82
+"List APIs related to user group management","User & Alert Management","/app/api/attribute_groups","GET","User & Alert Management","Attribute Groups",false,62
+"List APIs related to user group management","User & Alert Management","/app/api/attribute_groups/{id}","PUT","User & Alert Management","Attribute Groups",false,58
+"List APIs related to user group management","User & Alert Management","/app/api/users/{id}","DELETE","User & Alert Management","User Management",false,56
+"How do I check which alert categories exist?","User & Alert Management","/app/api/applog/alerts","GET","Operations","Alert Logs",true,44
+"How do I check which alert categories exist?","User & Alert Management","/app/api/alarms_category/{id}","PUT","User & Alert Management","Alert Categories",false,43
+"How do I check which alert categories exist?","User & Alert Management","/app/api/alarms_category","GET","User & Alert Management","Alert Categories",false,42
+"What endpoint updates an existing attribute group?","User & Alert Management","/app/api/attribute_groups/{id}","PUT","User & Alert Management","Attribute Groups",true,82
+"What endpoint updates an existing attribute group?","User & Alert Management","/app/api/attribute_groups","GET","User & Alert Management","Attribute Groups",false,72
+"What endpoint updates an existing attribute group?","User & Alert Management","/app/api/short/attribute_groups","GET","User & Alert Management","Attribute Groups",false,65
+"What endpoint updates an existing attribute group?","User & Alert Management","/app/api/short/attribute_groups","GET","Third-Party Integrations","Attribute Groups",false,58
+"Show me all on-call schedules configured","User & Alert Management","/app/api/on_call_schedules","GET","Inventory","On-Call Schedules",true,53
+"Show me all on-call schedules configured","User & Alert Management","/app/api/short/on_call_schedules","GET","Inventory","On-Call Schedules",false,53
+"Show me all on-call schedules configured","User & Alert Management","/app/api/on_call_schedules/{id}","PUT","User & Alert Management","On-Call Schedules",false,53
+"Which API is used for role-based access control?","User & Alert Management","/sp/api/statuspages/15698000418173443/license/check_module_access","GET","Operations","Status Pages (StatusIQ)",true,38
+"Which API is used for role-based access control?","User & Alert Management","/app/api/integration/slack/15698000442055001","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,36
+"Which API is used for role-based access control?","User & Alert Management","/app/api/integration/thirdparty_status/28","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,36
+"Which API is used for role-based access control?","User & Alert Management","/app/api/integration/thirdparty_status/35","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,36
+"Which API is used for role-based access control?","User & Alert Management","/app/api/integration/thirdparty_status/36","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,36
+"Which API is used for role-based access control?","User & Alert Management","/app/api/location_template","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,36
+"How do I retrieve a lightweight list of attribute groups?","User & Alert Management","/app/api/attribute_groups","GET","User & Alert Management","Attribute Groups",true,80
+"How do I retrieve a lightweight list of attribute groups?","User & Alert Management","/app/api/short/attribute_groups","GET","User & Alert Management","Attribute Groups",false,65
+"How do I retrieve a lightweight list of attribute groups?","User & Alert Management","/app/api/attribute_groups/{id}","PUT","User & Alert Management","Attribute Groups",false,63
+"How do I retrieve a lightweight list of attribute groups?","User & Alert Management","/app/api/short/attribute_groups","GET","Third-Party Integrations","Attribute Groups",false,58
+"Which API creates a new Location Profile?","Configuration Profiles","https://www.site24x7.com/app/api/location_profiles","POST","Configuration Profiles","Location Profile",true,96
+"Which API creates a new Location Profile?","Configuration Profiles","/app/api/location_profiles","GET","Inventory","Location Profiles",false,93
+"Which API creates a new Location Profile?","Configuration Profiles","/app/api/location_profiles/{location_profile_id}","GET","Inventory","Location Profiles",false,79
+"Which API creates a new Location Profile?","Configuration Profiles","https://www.site24x7.com/app/api/location_profiles/{id}","DELETE","Configuration Profiles","Location Profile",false,79
+"Which API creates a new Location Profile?","Configuration Profiles","/app/api/short/location_profiles","GET","Inventory","Location Profiles",false,71
+"How do I set up a Threshold and Availability profile?","Configuration Profiles","https://www.site24x7.com/app/api/threshold_profiles","POST","Configuration Profiles","Threshold and Availability",true,77
+"How do I set up a Threshold and Availability profile?","Configuration Profiles","https://www.site24x7.com/app/api/threshold_profiles/{id}","PUT","Configuration Profiles","Threshold and Availability",false,77
+"How do I set up a Threshold and Availability profile?","Configuration Profiles","https://www.site24x7.com/app/api/threshold_profiles/{id}","GET","Configuration Profiles","Threshold and Availability",false,74
+"How do I set up a Threshold and Availability profile?","Configuration Profiles","/app/api/short/threshold_profiles","GET","Inventory","Threshold Profiles",false,69
+"How do I set up a Threshold and Availability profile?","Configuration Profiles","/app/api/short/threshold_profiles/{monitor_type}","GET","Inventory","Threshold Profiles",false,69
+"How do I set up a Threshold and Availability profile?","Configuration Profiles","/app/api/setting_profile/{id}","PUT","Server Monitor","Setting Profile – CRUD",false,69
+"What endpoint creates a Notification Profile?","Configuration Profiles","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",true,80
+"What endpoint creates a Notification Profile?","Configuration Profiles","https://www.site24x7.com/app/api/notification_profiles/{id}","PUT","Configuration Profiles","Notification Profile",false,76
+"What endpoint creates a Notification Profile?","Configuration Profiles","https://www.site24x7.com/app/api/notification_profiles/{id}","DELETE","Configuration Profiles","Notification Profile",false,66
+"What endpoint creates a Notification Profile?","Configuration Profiles","/app/api/short/notification_profiles","GET","Inventory","Notification Profiles",false,58
+"What endpoint creates a Notification Profile?","Configuration Profiles","/app/api/short/notification_profiles","GET","Server Monitor","Notification Profiles",false,58
+"List all Business Hours profiles","Configuration Profiles","https://www.site24x7.com/app/api/business_hours","GET","Configuration Profiles","Business Hours",true,80
+"List all Business Hours profiles","Configuration Profiles","https://www.site24x7.com/app/api/business_hours/{id}","PUT","Configuration Profiles","Business Hours",false,77
+"List all Business Hours profiles","Configuration Profiles","https://www.site24x7.com/app/api/business_hours/{id}","DELETE","Configuration Profiles","Business Hours",false,67
+"List all Business Hours profiles","Configuration Profiles","https://www.site24x7.com/app/api/short/apminsight/business_txn_config_profiles","GET","Configuration Profiles","APM Business Transaction Configuration",false,63
+"List all Business Hours profiles","Configuration Profiles","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,62
+"How do I create an Email Template?","Configuration Profiles","https://www.site24x7.com/app/api/email_templates","POST","Configuration Profiles","Email Templates",true,65
+"How do I create an Email Template?","Configuration Profiles","https://www.site24x7.com/app/api/email_templates/{id}","DELETE","Configuration Profiles","Email Templates",false,58
+"How do I create an Email Template?","Configuration Profiles","https://www.site24x7.com/app/api/email_templates/{id}","PUT","Configuration Profiles","Email Templates",false,58
+"Which API configures an OAuth Provider?","Configuration Profiles","https://www.site24x7.com/app/api/oauth2_providers","GET","Configuration Profiles","OAuth Providers",true,85
+"Which API configures an OAuth Provider?","Configuration Profiles","https://www.site24x7.com/app/api/oauth2_providers/{id}","DELETE","Configuration Profiles","OAuth Providers",false,71
+"Which API configures an OAuth Provider?","Configuration Profiles","/app/api/oauth2_providers","GET","Third-Party Integrations","OAuth2 Providers",false,71
+"Which API configures an OAuth Provider?","Configuration Profiles","/app/api/short/oauth2_providers","GET","Third-Party Integrations","OAuth2 Providers Short",false,71
+"How do I generate a Web Token?","Configuration Profiles","https://www.site24x7.com/app/api/test_jwt","POST","Configuration Profiles","Web Tokens",true,39
+"How do I generate a Web Token?","Configuration Profiles","https://www.site24x7.com/app/api/jwt/{id}","GET","Configuration Profiles","Web Tokens",false,34
+"How do I generate a Web Token?","Configuration Profiles","https://www.site24x7.com/app/api/preferences/table/8","GET","Configuration Profiles","Web Tokens",false,34
+"How do I generate a Web Token?","Configuration Profiles","https://www.site24x7.com/app/api/short/jwt","GET","Configuration Profiles","Web Tokens",false,34
+"How do I generate a Web Token?","Configuration Profiles","/app/api/webclient_language","PUT","My Account","Web Client Notification Settings",false,34
+"How do I generate a Web Token?","Configuration Profiles","/app/api/webclient_language","PUT","My Account","Web Client Notification Settings",false,34
+"What endpoint creates an APM Agent Configuration profile?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA","GET","Configuration Profiles","APM Agent Configuration",true,124
+"What endpoint creates an APM Agent Configuration profile?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/agent_config_profile","POST","Configuration Profiles","APM Agent Configuration",false,120
+"What endpoint creates an APM Agent Configuration profile?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/PYTHON","GET","Configuration Profiles","APM Agent Configuration",false,118
+"What endpoint creates an APM Agent Configuration profile?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/agent_config_profile/{id}","PUT","Configuration Profiles","APM Agent Configuration",false,114
+"What endpoint creates an APM Agent Configuration profile?","Configuration Profiles","https://www.site24x7.com/app/api/short/apminsight/agent_config_profiles","GET","Configuration Profiles","APM Agent Configuration",false,110
+"What endpoint creates an APM Agent Configuration profile?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/agent_config_profile/{id}","DELETE","Configuration Profiles","APM Agent Configuration",false,104
+"How do I set up APM Business Transaction Rules?","Configuration Profiles","https://www.site24x7.com/app/api/short/apminsight/business_txn_rules","GET","Configuration Profiles","APM Business Transaction Rules",true,104
+"How do I set up APM Business Transaction Rules?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/business_txn_rules","POST","Configuration Profiles","APM Business Transaction Rules",false,92
+"How do I set up APM Business Transaction Rules?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/business_txn_rules/{id}","DELETE","Configuration Profiles","APM Business Transaction Rules",false,92
+"How do I set up APM Business Transaction Rules?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/business_txn_rules/{id}","GET","Configuration Profiles","APM Business Transaction Rules",false,92
+"How do I set up APM Business Transaction Rules?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/business_txn_rules/{id}","PUT","Configuration Profiles","APM Business Transaction Rules",false,92
+"How do I set up APM Business Transaction Rules?","Configuration Profiles","https://www.site24x7.com/app/api/apminsight/business_txn_config_profile/{id}","PUT","Configuration Profiles","APM Business Transaction Configuration",false,82
+"Which API stores Credential Profiles?","Configuration Profiles","/app/api/credential_profiles","GET","Third-Party Integrations","Credential Profiles",true,71
+"Which API stores Credential Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/credential_profiles","GET","Configuration Profiles","Credential Profile",false,69
+"Which API stores Credential Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/credential_profile","POST","Configuration Profiles","Credential Profile",false,63
+"Which API stores Credential Profiles?","Configuration Profiles","/app/api/short/location_profiles","GET","Inventory","Location Profiles",false,54
+"Which API stores Credential Profiles?","Configuration Profiles","/app/api/short/location_profiles/{monitor_type}","GET","Inventory","Location Profiles",false,48
+"How do I configure a Metric Profile?","Configuration Profiles","https://www.site24x7.com/app/api/metric_profiles","POST","Configuration Profiles","Metric Profile",true,71
+"How do I configure a Metric Profile?","Configuration Profiles","https://www.site24x7.com/app/api/metric_profiles/{id}","PUT","Configuration Profiles","Metric Profile",false,71
+"How do I configure a Metric Profile?","Configuration Profiles","https://www.site24x7.com/app/api/metric_profiles/{id}","GET","Configuration Profiles","Metric Profile",false,66
+"How do I configure a Metric Profile?","Configuration Profiles","https://www.site24x7.com/app/api/short/metric_profiles","GET","Configuration Profiles","Metric Profile",false,66
+"How do I configure a Metric Profile?","Configuration Profiles","/app/api/short/metric_profiles","GET","Inventory","Metric Profiles",false,65
+"How do I configure a Metric Profile?","Configuration Profiles","/app/api/short/metric_profiles/{monitor_type}","GET","Inventory","Metric Profiles",false,58
+"What endpoint manages Mobile Application Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/mobilerbm/getAppBundleData","GET","Configuration Profiles","Mobile Application Profile",true,55
+"What endpoint manages Mobile Application Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/mobilerbm/delete_app/{id}","DELETE","Configuration Profiles","Mobile Application Profile",false,49
+"What endpoint manages Mobile Application Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/mobilerbm/update_app_version","PUT","Configuration Profiles","Mobile Application Profile",false,49
+"What endpoint manages Mobile Application Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/preferences/table/15","GET","Configuration Profiles","Mobile Application Profile",false,43
+"What endpoint manages Mobile Application Profiles?","Configuration Profiles","/app/api/applog/log_profiles","GET","Inventory","App Log Profiles",false,36
+"How do I enable Anomaly Settings?","Configuration Profiles","https://www.site24x7.com/app/api/anomaly_settings/{id}","PUT","Configuration Profiles","Anomaly Settings",true,70
+"How do I enable Anomaly Settings?","Configuration Profiles","https://www.site24x7.com/app/api/anomaly_settings","GET","Configuration Profiles","Anomaly Settings",false,65
+"Which API handles Auto Upgrade Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/upgrade_profiles/all","GET","Configuration Profiles","Auto Upgrade Profile",true,86
+"Which API handles Auto Upgrade Profiles?","Configuration Profiles","/app/api/upgrade_profiles/FULLSTACK_AGENT","GET","Server Monitor","Upgrade Profiles",false,71
+"Which API handles Auto Upgrade Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/short/server/upgrade_profile_types","GET","Configuration Profiles","Auto Upgrade Profile",false,68
+"Which API handles Auto Upgrade Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/upgrade_profile","POST","Configuration Profiles","Auto Upgrade Profile",false,68
+"Which API handles Auto Upgrade Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/upgrade_profile/{id}","DELETE","Configuration Profiles","Auto Upgrade Profile",false,68
+"Which API handles Auto Upgrade Profiles?","Configuration Profiles","https://www.site24x7.com/app/api/upgrade_profile/{id}","GET","Configuration Profiles","Auto Upgrade Profile",false,68
+"How do I create a Custom Report?","Configuration Profiles","/app/api/customize_report","DELETE","Report Settings","Customize Report",true,66
+"How do I create a Custom Report?","Configuration Profiles","/app/api/short/reports/custom_reports","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,64
+"How do I create a Custom Report?","Configuration Profiles","https://www.site24x7.com/app/api/reports/custom_reports/preview","POST","Configuration Profiles","Custom Report",false,63
+"How do I create a new IT Automation?","Automations","/app/api/current_status/type/SCHEDULE_IT_AUTOMATION","GET","Automations","IT Automation – CRUD",true,37
+"How do I create a new IT Automation?","Automations","/app/api/it_automation/1/{id}","GET","Automations","IT Automation – CRUD",false,37
+"How do I create a new IT Automation?","Automations","/app/api/it_automation/2/{id}","GET","Automations","IT Automation – CRUD",false,37
+"How do I create a new IT Automation?","Automations","/app/api/it_automation/{id}","DELETE","Automations","IT Automation – CRUD",false,37
+"How do I create a new IT Automation?","Automations","/app/api/it_automation/{id}","PUT","Automations","IT Automation – CRUD",false,37
+"How do I create a new IT Automation?","Automations","/app/api/it_automation_types","GET","Automations","IT Automation – CRUD",false,37
+"List all configured IT Automations","Automations","/app/api/it_automation/list","GET","Automations","IT Automation – List",true,45
+"List all configured IT Automations","Automations","/app/api/circuits/list","GET","Automations","Circuits Integration",false,35
+"What API retrieves IT Automation execution logs?","Automations","/app/api/it_automation/logs/{id}","GET","Automations","IT Automation – Logs",true,86
+"What API retrieves IT Automation execution logs?","Automations","/app/api/it_automation/1/{id}","GET","Automations","IT Automation – CRUD",false,57
+"What API retrieves IT Automation execution logs?","Automations","/app/api/it_automation/2/{id}","GET","Automations","IT Automation – CRUD",false,57
+"What API retrieves IT Automation execution logs?","Automations","/app/api/it_automation_types","GET","Automations","IT Automation – CRUD",false,57
+"What API retrieves IT Automation execution logs?","Automations","/app/api/it_automation/settings","GET","Automations","IT Automation – Settings",false,57
+"How do I check Circuits integration status?","Automations","/app/api/circuits/integration_status","GET","Automations","Circuits Integration",true,84
+"How do I check Circuits integration status?","Automations","/app/api/integration/thirdparty_status/28","GET","Third-Party Integrations","BYOK Integration",false,63
+"How do I check Circuits integration status?","Automations","/app/api/integration/thirdparty_status/35","GET","Third-Party Integrations","Zoho Key Service Integration",false,63
+"How do I check Circuits integration status?","Automations","/app/api/integration/thirdparty_status/36","GET","Third-Party Integrations","Azure OpenAI Integration",false,63
+"How do I check Circuits integration status?","Automations","/app/api/integration/thirdparty_status/41","GET","Third-Party Integrations","Azure Log Analytics Workspace Integration",false,63
+"How do I check Circuits integration status?","Automations","/app/api/integration/snow_cmdb_status","GET","Third-Party Integrations","ServiceNow CMDB Status",false,57
+"Which endpoint creates a new circuit monitor?","Automations","/app/api/circuits","POST","Automations","Circuits Integration",true,50
+"Which endpoint creates a new circuit monitor?","Automations","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,44
+"Which endpoint creates a new circuit monitor?","Automations","/app/api/monitors","POST","Inventory","Monitor Inventory",false,43
+"Which endpoint creates a new circuit monitor?","Automations","/app/api/monitors","POST","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,38
+"Which endpoint creates a new circuit monitor?","Automations","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,37
+"Which endpoint creates a new circuit monitor?","Automations","/app/api/short/monitors_resource_supported","GET","Server Monitor","Monitor Resource Support",false,37
+"What API connects Automations to Qntrl?","Automations","/qntrl/_web/v2/site24x7_41343479/client_configurations","GET","Automations","Qntrl Integration",true,38
+"What API connects Automations to Qntrl?","Automations","/app/api/client_data/demo","GET","Automations","Client / Session Data",false,30
+"What API connects Automations to Qntrl?","Automations","/app/api/monitors/details_page/base/{id}","GET","Automations","Monitor Details",false,29
+"What API connects Automations to Qntrl?","Automations","/app/api/client_data/user","GET","Automations","Client / Session Data",false,29
+"What API connects Automations to Qntrl?","Automations","https://www.site24x7.com/app/api/client_data/user","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,28
+"What API connects Automations to Qntrl?","Automations","/app/api/integration/zia_azure","POST","Third-Party Integrations","Azure OpenAI Integration",false,25
+"How do I list files available for automation scripts?","Automations","/app/api/it_automation/list","GET","Automations","IT Automation – List",true,66
+"How do I list files available for automation scripts?","Automations","/app/api/file_list","GET","Automations","File Management",false,55
+"How do I list files available for automation scripts?","Automations","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,48
+"How do I list files available for automation scripts?","Automations","https://www.site24x7.com/app/api/plugin/list_threshold_profiles/PLUGIN","GET","Configuration Profiles","Threshold and Availability",false,47
+"Which API retrieves the alarm report for a specific monitor?","Automations","/app/api/reports/alarm/{id}","GET","Automations","Alarm Reports",true,106
+"Which API retrieves the alarm report for a specific monitor?","Automations","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,71
+"Which API retrieves the alarm report for a specific monitor?","Automations","/app/api/monitor_groups","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,70
+"Which API retrieves the alarm report for a specific monitor?","Automations","/app/api/short/forecast/monitors","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,70
+"Which API retrieves the alarm report for a specific monitor?","Automations","/app/api/short/monitor_groups_list","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,70
+"What endpoint fetches outage reports?","Automations","/app/api/reports/outage/{id}","PUT","Automations","Outage Reports",true,65
+"What endpoint fetches outage reports?","Automations","/app/api/short/reports/custom_reports","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,43
+"What endpoint fetches outage reports?","Automations","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,43
+"What endpoint fetches outage reports?","Automations","/app/api/public_reports","GET","Share","Public Reports",false,43
+"What endpoint fetches outage reports?","Automations","/app/api/reports/custom_reports","GET","Share","Public Reports",false,43
+"How do I check SLO (Service Level Objective) settings?","Automations","/app/api/short/third_party_services","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,44
+"How do I check SLO (Service Level Objective) settings?","Automations","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,37
+"How do I check SLO (Service Level Objective) settings?","Automations","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,37
+"How do I check SLO (Service Level Objective) settings?","Automations","/app/api/sla_settings","GET","Report Settings","SLA Settings",false,37
+"How do I check SLO (Service Level Objective) settings?","Automations","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,37
+"How do I check SLO (Service Level Objective) settings?","Automations","/app/api/sla_settings/15698000493103037","DELETE","Report Settings","SLA Settings",false,37
+"List all maintenance windows configured","Automations","/app/api/maintenance","GET","Automations","Maintenance Windows",true,54
+"List all maintenance windows configured","Automations","/app/api/current_maintenance_list","GET","Operations","Scheduled Maintenance",false,48
+"List all maintenance windows configured","Automations","/app/api/it_automation/list","GET","Automations","IT Automation – List",false,36
+"Which API shows monitor status for an IT Automation?","Automations","/app/api/it_automation/monitor/status_details/{id}","GET","Automations","IT Automation – Monitor Status",true,108
+"Which API shows monitor status for an IT Automation?","Automations","/app/api/monitors/status/count","GET","Automations","Monitor Status",false,87
+"Which API shows monitor status for an IT Automation?","Automations","/app/api/monitors/status/count","GET","Server Monitor","Monitor Status",false,86
+"Which API shows monitor status for an IT Automation?","Automations","/app/api/short/current_status","GET","Automations","Monitor Status",false,82
+"Which API shows monitor status for an IT Automation?","Automations","/app/api/short/current_status","GET","Server Monitor","Monitor Status",false,81
+"Which API shows monitor status for an IT Automation?","Automations","/app/api/monitors/status/count","GET","User & Alert Management","Monitor Status",false,78
+"How do I retrieve location templates used by automations?","Automations","/app/api/location_template","GET","Automations","Location Template",true,59
+"How do I retrieve location templates used by automations?","Automations","/app/api/location_profiles","GET","Inventory","Location Profiles",false,40
+"How do I retrieve location templates used by automations?","Automations","/app/api/location_profiles/{location_profile_id}","GET","Inventory","Location Profiles",false,40
+"What endpoint lists favourite dashboards?","Automations","/app/api/short/dashboards/favourites","GET","Inventory","Dashboard",true,38
+"What endpoint lists favourite dashboards?","Automations","https://www.site24x7.com/app/api/short/dashboards/favourites","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,38
+"How do I tag a monitor used in an automation?","Automations","/app/api/it_automation/monitor/status_details/{id}","GET","Automations","IT Automation – Monitor Status",true,66
+"How do I tag a monitor used in an automation?","Automations","/app/api/tags/monitors","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,62
+"How do I tag a monitor used in an automation?","Automations","/app/api/monitors/details_page/base/{id}","GET","Automations","Monitor Details",false,60
+"How do I tag a monitor used in an automation?","Automations","/app/client/templates/monitors-form/add-schedule_it_automation.json","GET","Operations","Schedule IT Automation",false,55
+"How do I tag a monitor used in an automation?","Automations","/app/api/current_status/type/SCHEDULE_IT_AUTOMATION","GET","Automations","IT Automation – CRUD",false,53
+"How do I tag a monitor used in an automation?","Automations","/app/api/monitors","POST","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,53
+"Show me all Zia AI workflow APIs","Zia Settings","/app/api/genai/workflows","GET","Zia Settings","AI Workflow – CRUD",true,73
+"Show me all Zia AI workflow APIs","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",false,67
+"Show me all Zia AI workflow APIs","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",false,67
+"Show me all Zia AI workflow APIs","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,67
+"Show me all Zia AI workflow APIs","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",false,67
+"How do I get AI-generated recommendations?","Zia Settings","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,29
+"How do I get AI-generated recommendations?","Zia Settings","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,29
+"How do I get AI-generated recommendations?","Zia Settings","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,29
+"How do I get AI-generated recommendations?","Zia Settings","/app/api/dashboards/widgets/15698000407685854","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,29
+"How do I get AI-generated recommendations?","Zia Settings","/app/api/dashboards/widgets/15698000407685856","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,29
+"How do I get AI-generated recommendations?","Zia Settings","/app/api/dashboards/widgets/15698000407685858","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,29
+"What API lists AI data collections?","Zia Settings","/app/api/genai/collections","GET","Zia Settings","AI Collections",true,85
+"What API lists AI data collections?","Zia Settings","/app/api/maintenance","GET","Operations","Scheduled Maintenance",false,69
+"What API lists AI data collections?","Zia Settings","/app/api/maintenance","POST","Operations","Scheduled Maintenance",false,60
+"What API lists AI data collections?","Zia Settings","/app/api/maintenance/15698000489363071","PUT","Operations","Scheduled Maintenance",false,60
+"What API lists AI data collections?","Zia Settings","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,59
+"Which endpoint retrieves a specific AI workflow by name?","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",true,79
+"Which endpoint retrieves a specific AI workflow by name?","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",false,79
+"Which endpoint retrieves a specific AI workflow by name?","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,79
+"Which endpoint retrieves a specific AI workflow by name?","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",false,79
+"Which endpoint retrieves a specific AI workflow by name?","Zia Settings","/app/api/genai/workflow/server_assistant","GET","Zia Settings","AI Workflow – CRUD",false,79
+"Which endpoint retrieves a specific AI workflow by name?","Zia Settings","/app/api/genai/workflow/testagent","GET","Zia Settings","AI Workflow – CRUD",false,79
+"How do I fetch the list of monitors available to the AI module?","Zia Settings","/app/api/genai/module/monitorlist","GET","Zia Settings","AI Module – Monitor List",true,108
+"What API retrieves AI task definitions?","Zia Settings","/app/api/genai/tasks","GET","Zia Settings","AI Tasks",true,85
+"What API retrieves AI task definitions?","Zia Settings","/app/api/maintenance","GET","Automations","Maintenance Windows",false,56
+"How do I check the status of the alarms assistant AI workflow?","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",true,84
+"How do I check the status of the alarms assistant AI workflow?","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",false,71
+"How do I check the status of the alarms assistant AI workflow?","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,71
+"How do I check the status of the alarms assistant AI workflow?","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",false,71
+"How do I check the status of the alarms assistant AI workflow?","Zia Settings","/app/api/genai/workflow/server_assistant","GET","Zia Settings","AI Workflow – CRUD",false,71
+"How do I check the status of the alarms assistant AI workflow?","Zia Settings","/app/api/genai/workflow/website_assistant","GET","Zia Settings","AI Workflow – CRUD",false,71
+"Which endpoint configures the underlying AI/bot model?","Zia Settings","/app/api/bot/models","GET","Zia Settings","Bot / AI Models",true,29
+"Which endpoint configures the underlying AI/bot model?","Zia Settings","https://www.site24x7.com/app/api/bot/models","GET","Configuration Profiles","Unrelated (AI Assistant Widget)",false,19
+"How do I retrieve the Kubernetes AI assistant workflow?","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",true,78
+"How do I retrieve the Kubernetes AI assistant workflow?","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",false,78
+"How do I retrieve the Kubernetes AI assistant workflow?","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,78
+"How do I retrieve the Kubernetes AI assistant workflow?","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",false,78
+"How do I retrieve the Kubernetes AI assistant workflow?","Zia Settings","/app/api/genai/workflow/server_assistant","GET","Zia Settings","AI Workflow – CRUD",false,78
+"How do I retrieve the Kubernetes AI assistant workflow?","Zia Settings","/app/api/genai/workflow/website_assistant","GET","Zia Settings","AI Workflow – CRUD",false,78
+"What API powers the APM AI assistant?","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",true,68
+"What API powers the APM AI assistant?","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",false,55
+"What API powers the APM AI assistant?","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,55
+"What API powers the APM AI assistant?","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",false,55
+"What API powers the APM AI assistant?","Zia Settings","/app/api/genai/workflow/server_assistant","GET","Zia Settings","AI Workflow – CRUD",false,55
+"What API powers the APM AI assistant?","Zia Settings","/app/api/genai/workflow/website_assistant","GET","Zia Settings","AI Workflow – CRUD",false,55
+"How do I list curated AI monitor collections?","Zia Settings","/app/api/genai/module/monitorlist","GET","Zia Settings","AI Module – Monitor List",true,87
+"How do I list curated AI monitor collections?","Zia Settings","/app/api/genai/collections","GET","Server Monitor","AI / Collections",false,74
+"How do I list curated AI monitor collections?","Zia Settings","/app/api/genai/collections","GET","Zia Settings","AI Collections",false,65
+"How do I list curated AI monitor collections?","Zia Settings","/app/api/monitors/details_page/base/{id}","GET","Automations","Monitor Details",false,59
+"Which endpoint handles the problems assistant workflow?","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",true,55
+"Which endpoint handles the problems assistant workflow?","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",false,42
+"Which endpoint handles the problems assistant workflow?","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",false,42
+"Which endpoint handles the problems assistant workflow?","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,42
+"Which endpoint handles the problems assistant workflow?","Zia Settings","/app/api/genai/workflow/server_assistant","GET","Zia Settings","AI Workflow – CRUD",false,42
+"Which endpoint handles the problems assistant workflow?","Zia Settings","/app/api/genai/workflow/website_assistant","GET","Zia Settings","AI Workflow – CRUD",false,42
+"What field identifies a specific AI workflow?","Zia Settings","/app/api/genai/workflows","GET","Inventory","AI / Workflows",true,67
+"What field identifies a specific AI workflow?","Zia Settings","/app/api/genai/workflow/alarms_assistant","GET","Zia Settings","AI Workflow – CRUD",false,65
+"What field identifies a specific AI workflow?","Zia Settings","/app/api/genai/workflow/apm_assistant","GET","Zia Settings","AI Workflow – CRUD",false,65
+"What field identifies a specific AI workflow?","Zia Settings","/app/api/genai/workflow/kubernets_assistant","GET","Zia Settings","AI Workflow – CRUD",false,65
+"What field identifies a specific AI workflow?","Zia Settings","/app/api/genai/workflow/problems_assistant","GET","Zia Settings","AI Workflow – CRUD",false,65
+"What field identifies a specific AI workflow?","Zia Settings","/app/api/genai/workflow/server_assistant","GET","Zia Settings","AI Workflow – CRUD",false,65
+"How do I check AI recommendation status?","Zia Settings","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",true,70
+"How do I check AI recommendation status?","Zia Settings","/app/api/genai/recommendation","GET","Zia Settings","AI Recommendations",false,58
+"How do I check AI recommendation status?","Zia Settings","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,55
+"How do I check AI recommendation status?","Zia Settings","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,55
+"How do I check AI recommendation status?","Zia Settings","/app/api/it_automation/monitor/status_details/{id}","GET","Automations","IT Automation – Monitor Status",false,48
+"How do I check AI recommendation status?","Zia Settings","/app/api/maintenance/bulk_action/status","GET","Operations","Scheduled Maintenance",false,48
+"List all AI-related endpoints in Zia Settings","Zia Settings","/app/api/genai/module/monitorlist","GET","Zia Settings","AI Module – Monitor List",true,47
+"List all AI-related endpoints in Zia Settings","Zia Settings","/app/api/metrics/list/METRICS","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,44
+"List all AI-related endpoints in Zia Settings","Zia Settings","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,44
+"List all AI-related endpoints in Zia Settings","Zia Settings","/app/api/short/monitor_groups_list","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,44
+"List all AI-related endpoints in Zia Settings","Zia Settings","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,37
+"List all AI-related endpoints in Zia Settings","Zia Settings","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,37
+"List all server templates configured","Server Monitor","/app/api/server_templates","GET","Server Monitor","Server Templates",true,73
+"List all server templates configured","Server Monitor","/app/api/short/server_templates","GET","Inventory","Server Templates",false,69
+"How do I create a new Resource Profile?","Server Monitor","/app/api/resource_profile/{id}","GET","Server Monitor","Resource Profile – CRUD",true,65
+"How do I create a new Resource Profile?","Server Monitor","/app/api/resource_profile","GET","Server Monitor","Resource Profiles",false,65
+"How do I create a new Resource Profile?","Server Monitor","/app/api/short/resource_profile","GET","Inventory","Resource Profiles",false,58
+"How do I create a new Resource Profile?","Server Monitor","https://www.site24x7.com/app/api/metric_profiles","POST","Configuration Profiles","Metric Profile",false,58
+"How do I create a new Resource Profile?","Server Monitor","/app/api/resource_profile/associated_monitors","GET","Server Monitor","Resource Profile – Associated Monitors",false,58
+"How do I create a new Resource Profile?","Server Monitor","/app/api/monitors_with_resource_profile/{id}","GET","Server Monitor","Resource Profile – CRUD",false,58
+"Which monitors are associated with a given Resource Profile?","Server Monitor","/app/api/resource_profile/associated_monitors","GET","Server Monitor","Resource Profile – Associated Monitors",true,116
+"Which monitors are associated with a given Resource Profile?","Server Monitor","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,87
+"What API manages Server Monitor Setting Profiles?","Server Monitor","/app/api/setting_profile","GET","Server Monitor","Setting Profiles",true,89
+"What API manages Server Monitor Setting Profiles?","Server Monitor","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,88
+"What API manages Server Monitor Setting Profiles?","Server Monitor","/app/api/setting_profile/{id}","PUT","Server Monitor","Setting Profile – CRUD",false,76
+"What API manages Server Monitor Setting Profiles?","Server Monitor","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,75
+"What API manages Server Monitor Setting Profiles?","Server Monitor","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,75
+"What API manages Server Monitor Setting Profiles?","Server Monitor","/app/api/short/setting_profile","GET","Inventory","Setting Profiles",false,73
+"How do I check available agent upgrade versions?","Server Monitor","/app/api/short/server/agent_upgradable_versions","GET","Server Monitor","Agent Upgrade Versions",true,82
+"How do I check available agent upgrade versions?","Server Monitor","https://www.site24x7.com/app/api/short/server/agent_upgradable_versions","GET","Configuration Profiles","Auto Upgrade Profile",false,56
+"Which endpoint creates an Upgrade Profile for server agents?","Server Monitor","https://www.site24x7.com/app/api/short/server/upgrade_profile_types","GET","Configuration Profiles","Auto Upgrade Profile",true,79
+"Which endpoint creates an Upgrade Profile for server agents?","Server Monitor","/app/api/short/server/upgrade_profile_types","GET","Server Monitor","Upgrade Profile – CRUD",false,79
+"Which endpoint creates an Upgrade Profile for server agents?","Server Monitor","https://www.site24x7.com/app/api/upgrade_profile","POST","Configuration Profiles","Auto Upgrade Profile",false,78
+"Which endpoint creates an Upgrade Profile for server agents?","Server Monitor","/app/api/upgrade_profile/{id}","GET","Server Monitor","Upgrade Profile – CRUD",false,74
+"Which endpoint creates an Upgrade Profile for server agents?","Server Monitor","/app/api/upgrade_profiles/FULLSTACK_AGENT","GET","Server Monitor","Upgrade Profiles",false,74
+"Which endpoint creates an Upgrade Profile for server agents?","Server Monitor","/app/api/upgrade_profile/{id}","PUT","Server Monitor","Upgrade Profile – CRUD",false,72
+"What API retrieves APM Auto Profiler Rules?","Server Monitor","/app/api/apminsight/auto_profiler_rules/{id}","GET","Server Monitor","APM Auto Profiler Rules",true,112
+"What API retrieves APM Auto Profiler Rules?","Server Monitor","/app/api/short/apminsight/auto_profiler_rules","GET","Server Monitor","APM Auto Profiler Rules",false,111
+"What API retrieves APM Auto Profiler Rules?","Server Monitor","/app/api/apminsight/auto_profiler_rules/{id}/DISABLE","PUT","Server Monitor","APM Auto Profiler Rules",false,105
+"How do I disable a specific Auto Profiler Rule?","Server Monitor","/app/api/apminsight/auto_profiler_rules/{id}/DISABLE","PUT","Server Monitor","APM Auto Profiler Rules",true,88
+"How do I disable a specific Auto Profiler Rule?","Server Monitor","/app/api/apminsight/auto_profiler_rules/{id}","GET","Server Monitor","APM Auto Profiler Rules",false,82
+"How do I disable a specific Auto Profiler Rule?","Server Monitor","/app/api/short/apminsight/auto_profiler_rules","GET","Server Monitor","APM Auto Profiler Rules",false,82
+"List notification profiles used for server monitors","Server Monitor","/app/api/short/notification_profiles","GET","Server Monitor","Notification Profiles",true,74
+"List notification profiles used for server monitors","Server Monitor","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,70
+"List notification profiles used for server monitors","Server Monitor","/app/api/short/threshold_profiles/SERVER","GET","Server Monitor","Threshold Profiles",false,57
+"List notification profiles used for server monitors","Server Monitor","https://www.site24x7.com/app/api/notification_profiles","POST","Configuration Profiles","Notification Profile",false,55
+"List notification profiles used for server monitors","Server Monitor","https://www.site24x7.com/app/api/notification_profiles/{id}","PUT","Configuration Profiles","Notification Profile",false,55
+"What field holds the threshold values for a server profile?","Server Monitor","/app/api/short/threshold_profiles/SERVER","GET","Server Monitor","Threshold Profiles",true,86
+"What field holds the threshold values for a server profile?","Server Monitor","/app/api/short/threshold_profiles","GET","Inventory","Threshold Profiles",false,74
+"What field holds the threshold values for a server profile?","Server Monitor","/app/api/short/threshold_profiles/{monitor_type}","GET","Inventory","Threshold Profiles",false,74
+"What field holds the threshold values for a server profile?","Server Monitor","https://www.site24x7.com/app/api/threshold_profiles/{id}","GET","Configuration Profiles","Threshold and Availability",false,70
+"What field holds the threshold values for a server profile?","Server Monitor","https://www.site24x7.com/app/api/threshold_profiles","POST","Configuration Profiles","Threshold and Availability",false,66
+"What field holds the threshold values for a server profile?","Server Monitor","https://www.site24x7.com/app/api/threshold_profiles/{id}","PUT","Configuration Profiles","Threshold and Availability",false,66
+"How do I check which features are available for server monitoring?","Server Monitor","/app/api/short/server_features","GET","Server Monitor","Server Features",true,73
+"How do I check which features are available for server monitoring?","Server Monitor","/app/api/server_templates","GET","Server Monitor","Server Templates",false,51
+"Which API lists monitors using a specific server template?","Server Monitor","/app/api/server_templates","GET","Server Monitor","Server Templates",true,86
+"Which API lists monitors using a specific server template?","Server Monitor","/app/api/template_associated_monitors","GET","Server Monitor","Server Templates – Associated",false,86
+"Which API lists monitors using a specific server template?","Server Monitor","/app/api/short/server_templates","GET","Inventory","Server Templates",false,78
+"Which API lists monitors using a specific server template?","Server Monitor","/app/api/resource_profile/associated_monitors","GET","Server Monitor","Resource Profile – Associated Monitors",false,65
+"Which API lists monitors using a specific server template?","Server Monitor","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,65
+"How do I retrieve threshold profiles for Server Monitor?","Server Monitor","/app/api/short/threshold_profiles/SERVER","GET","Server Monitor","Threshold Profiles",true,88
+"How do I retrieve threshold profiles for Server Monitor?","Server Monitor","/app/api/short/threshold_profiles/{monitor_type}","GET","Inventory","Threshold Profiles",false,77
+"How do I retrieve threshold profiles for Server Monitor?","Server Monitor","/app/api/short/threshold_profiles","GET","Inventory","Threshold Profiles",false,70
+"How do I retrieve threshold profiles for Server Monitor?","Server Monitor","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,68
+"How do I retrieve threshold profiles for Server Monitor?","Server Monitor","/app/api/threshold_profiles","GET","Inventory","Threshold Profiles",false,65
+"How do I retrieve threshold profiles for Server Monitor?","Server Monitor","https://www.site24x7.com/app/api/monitor_thresholds","GET","Configuration Profiles","Threshold and Availability",false,63
+"What endpoint shows monitor resource support details?","Server Monitor","/app/api/short/monitors_resource_supported","GET","Server Monitor","Monitor Resource Support",true,102
+"How do I view monitor groups tied to server monitoring?","Server Monitor","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",true,82
+"How do I view monitor groups tied to server monitoring?","Server Monitor","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,75
+"How do I view monitor groups tied to server monitoring?","Server Monitor","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,59
+"How do I view monitor groups tied to server monitoring?","Server Monitor","/app/api/short/server_features","GET","Server Monitor","Server Features",false,59
+"How do I view monitor groups tied to server monitoring?","Server Monitor","/app/api/server_templates","GET","Server Monitor","Server Templates",false,59
+"How do I enable plugin auto-discovery?","Plugin Monitor","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",true,55
+"How do I enable plugin auto-discovery?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",false,37
+"How do I enable plugin auto-discovery?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,37
+"What API toggles the plugin auto-discovery setting?","Plugin Monitor","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",true,85
+"What API toggles the plugin auto-discovery setting?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,70
+"What API toggles the plugin auto-discovery setting?","Plugin Monitor","/app/api/short/plugins","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,63
+"What API toggles the plugin auto-discovery setting?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",false,56
+"List all plugin templates registered on the account","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,64
+"Which endpoint fetches a specific plugin template's details?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",true,80
+"Which endpoint fetches a specific plugin template's details?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,80
+"Which endpoint fetches a specific plugin template's details?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,59
+"Which endpoint fetches a specific plugin template's details?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Share","Share (Supporting lookup, used by multiple sub-features)",false,59
+"How do I check the current plugin configuration?","Plugin Monitor","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",true,51
+"How do I check the current plugin configuration?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",false,37
+"How do I check the current plugin configuration?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,37
+"How do I check the current plugin configuration?","Plugin Monitor","https://www.site24x7.com/app/api/plugin/list_threshold_profiles/PLUGIN","GET","Configuration Profiles","Threshold and Availability",false,35
+"What field shows the number of attributes a plugin template reports?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,70
+"What field shows the number of attributes a plugin template reports?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",false,66
+"What field shows the number of attributes a plugin template reports?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,66
+"How do I update the plugin monitor settings?","Plugin Monitor","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",true,65
+"How do I update the plugin monitor settings?","Plugin Monitor","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,56
+"How do I update the plugin monitor settings?","Plugin Monitor","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,56
+"How do I update the plugin monitor settings?","Plugin Monitor","/app/api/short/plugins","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,52
+"Which API retrieves the iNodeMon plugin template?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",true,85
+"Which API retrieves the iNodeMon plugin template?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,85
+"Which API retrieves the iNodeMon plugin template?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,64
+"Which API retrieves the iNodeMon plugin template?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Share","Share (Supporting lookup, used by multiple sub-features)",false,64
+"What endpoint is used to view a Redis plugin template?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",true,73
+"What endpoint is used to view a Redis plugin template?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,73
+"What endpoint is used to view a Redis plugin template?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,69
+"What endpoint is used to view a Redis plugin template?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Share","Share (Supporting lookup, used by multiple sub-features)",false,69
+"How do I list all registered plugin monitors?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,45
+"How do I list all registered plugin monitors?","Plugin Monitor","https://www.site24x7.com/app/api/plugin/list_threshold_profiles/PLUGIN","GET","Configuration Profiles","Threshold and Availability",false,39
+"How do I list all registered plugin monitors?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",false,37
+"How do I list all registered plugin monitors?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,37
+"How do I list all registered plugin monitors?","Plugin Monitor","/app/api/genai/module/monitorlist","GET","Zia Settings","AI Module – Monitor List",false,36
+"What method is used to enable auto-discovery for plugins?","Plugin Monitor","/app/api/short/plugins","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,36
+"Which API shows plugin template version numbers?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",true,85
+"Which API shows plugin template version numbers?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,85
+"Which API shows plugin template version numbers?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,72
+"Which API shows plugin template version numbers?","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Share","Share (Supporting lookup, used by multiple sub-features)",false,72
+"How do I check if a plugin template exists by ID?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",true,66
+"How do I check if a plugin template exists by ID?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,66
+"How do I check if a plugin template exists by ID?","Plugin Monitor","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,64
+"How do I check if a plugin template exists by ID?","Plugin Monitor","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,60
+"How do I check if a plugin template exists by ID?","Plugin Monitor","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,60
+"How do I check if a plugin template exists by ID?","Plugin Monitor","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,60
+"What endpoint manages plugin monitor configuration?","Plugin Monitor","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",true,67
+"What endpoint manages plugin monitor configuration?","Plugin Monitor","/app/api/plugin/template/275039000043639001","GET","Plugin Monitor","Plugin Template Config",false,53
+"What endpoint manages plugin monitor configuration?","Plugin Monitor","/app/api/plugin/template/275039000043641001","GET","Plugin Monitor","Plugin Template Config",false,53
+"What endpoint manages plugin monitor configuration?","Plugin Monitor","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,44
+"List APIs related to custom plugin scripts","Plugin Monitor","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,64
+"How do I create a scheduled maintenance window?","Operations","/app/api/maintenance","POST","Operations","Scheduled Maintenance",true,58
+"How do I create a scheduled maintenance window?","Operations","/app/api/maintenance/15698000489363071","PUT","Operations","Scheduled Maintenance",false,51
+"How do I create a scheduled maintenance window?","Operations","/app/api/current_maintenance_list","GET","Operations","Scheduled Maintenance",false,46
+"How do I create a scheduled maintenance window?","Operations","/app/api/maintenance/15698000489363071","DELETE","Operations","Scheduled Maintenance",false,46
+"List all currently active maintenance windows","Operations","/app/api/current_maintenance_list","GET","Operations","Scheduled Maintenance",true,48
+"List all currently active maintenance windows","Operations","/app/api/maintenance","GET","Automations","Maintenance Windows",false,47
+"List all currently active maintenance windows","Operations","/app/api/maintenance","GET","Operations","Scheduled Maintenance",false,36
+"List all currently active maintenance windows","Operations","/app/api/maintenance","POST","Operations","Scheduled Maintenance",false,34
+"List all currently active maintenance windows","Operations","/app/api/maintenance/15698000489363071","PUT","Operations","Scheduled Maintenance",false,34
+"Which API deletes a specific maintenance window?","Operations","/app/api/maintenance","GET","Automations","Maintenance Windows",true,66
+"Which API deletes a specific maintenance window?","Operations","/app/api/maintenance/15698000489363071","DELETE","Operations","Scheduled Maintenance",false,55
+"Which API deletes a specific maintenance window?","Operations","/app/api/maintenance/15698000489363071","PUT","Operations","Scheduled Maintenance",false,53
+"Which API deletes a specific maintenance window?","Operations","/app/api/current_maintenance_list","GET","Operations","Scheduled Maintenance",false,48
+"How do I share a maintenance schedule as an iCal link?","Operations","/app/api/maintenance/ical","PUT","Operations","Scheduled Maintenance",true,65
+"How do I share a maintenance schedule as an iCal link?","Operations","/app/api/maintenance","GET","Operations","Scheduled Maintenance",false,53
+"How do I share a maintenance schedule as an iCal link?","Operations","/app/api/maintenance","POST","Operations","Scheduled Maintenance",false,51
+"How do I share a maintenance schedule as an iCal link?","Operations","/app/api/maintenance/15698000489363071","PUT","Operations","Scheduled Maintenance",false,51
+"How do I share a maintenance schedule as an iCal link?","Operations","/app/api/current_maintenance_list","GET","Operations","Scheduled Maintenance",false,46
+"What endpoint retrieves the alert log search results?","Operations","/app/api/applog/search/21-06-2026%2003:02:43/22-06-2026%2003:02:42/1-100/desc","GET","Operations","Alert Logs",true,93
+"What endpoint retrieves the alert log search results?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:05/1-100/desc","GET","Operations","Alert Logs",false,93
+"What endpoint retrieves the alert log search results?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:14/1-100/desc","GET","Operations","Alert Logs",false,93
+"What endpoint retrieves the alert log search results?","Operations","/app/api/applog/saved_searches","GET","Operations","Alert Logs",false,86
+"What endpoint retrieves the alert log search results?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:23/1-100/desc","GET","Operations","Alert Logs",false,86
+"What endpoint retrieves the alert log search results?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:36/1-100/desc","GET","Operations","Alert Logs",false,86
+"How do I search alert logs by date range?","Operations","/app/api/applog/search/21-06-2026%2003:02:43/22-06-2026%2003:02:42/1-100/desc","GET","Operations","Alert Logs",true,75
+"How do I search alert logs by date range?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:05/1-100/desc","GET","Operations","Alert Logs",false,75
+"How do I search alert logs by date range?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:14/1-100/desc","GET","Operations","Alert Logs",false,75
+"How do I search alert logs by date range?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:23/1-100/desc","GET","Operations","Alert Logs",false,68
+"How do I search alert logs by date range?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:36/1-100/desc","GET","Operations","Alert Logs",false,68
+"How do I search alert logs by date range?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:42/1-100/desc","GET","Operations","Alert Logs",false,68
+"Which API fetches a log report for a specific monitor?","Operations","/app/api/reports/log_reports/15698000329374414","GET","Operations","Log Report",true,84
+"Which API fetches a log report for a specific monitor?","Operations","/app/api/reports/log_reports/15698000366175021","GET","Operations","Log Report",false,84
+"Which API fetches a log report for a specific monitor?","Operations","/app/api/reports/log_reports/get_dc_type_location_settings/15698000329374414","GET","Operations","Log Report",false,84
+"Which API fetches a log report for a specific monitor?","Operations","/app/api/reports/log_reports/get_dc_type_location_settings/15698000366175021","GET","Operations","Log Report",false,84
+"Which API fetches a log report for a specific monitor?","Operations","/app/api/applog/dele_hid_monitors","GET","Operations","Alert Logs",false,81
+"Which API fetches a log report for a specific monitor?","Operations","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,78
+"What field shows the data collection type for log reports?","Operations","/app/api/applog/logtype_resources/name","GET","Operations","Alert Logs",true,84
+"What field shows the data collection type for log reports?","Operations","/app/api/applog/logtype_views","GET","Operations","Alert Logs",false,84
+"What field shows the data collection type for log reports?","Operations","/app/api/reports/log_reports/get_dc_type_location_settings/15698000329374414","GET","Operations","Log Report",false,74
+"What field shows the data collection type for log reports?","Operations","/app/api/reports/log_reports/get_dc_type_location_settings/15698000366175021","GET","Operations","Log Report",false,74
+"What field shows the data collection type for log reports?","Operations","/app/api/applog/alerts","GET","Operations","Alert Logs",false,66
+"What field shows the data collection type for log reports?","Operations","/app/api/applog/search/21-06-2026%2003:02:43/22-06-2026%2003:02:42/1-100/desc","GET","Operations","Alert Logs",false,66
+"How do I schedule an IT Automation under Operations?","Operations","/app/client/templates/monitors-form/add-schedule_it_automation.json","GET","Operations","Schedule IT Automation",true,67
+"How do I schedule an IT Automation under Operations?","Operations","/app/api/short/it_automation","GET","Operations","Schedule IT Automation",false,55
+"How do I schedule an IT Automation under Operations?","Operations","/app/api/current_status/type/SCHEDULE_IT_AUTOMATION","GET","Automations","IT Automation – CRUD",false,50
+"How do I schedule an IT Automation under Operations?","Operations","/app/api/license_usage/SCHEDULE_IT_AUTOMATION","GET","Automations","IT Automation – CRUD",false,50
+"How do I schedule an IT Automation under Operations?","Operations","/app/api/short/on_call_schedules","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,44
+"List all status pages configured under StatusIQ","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",true,90
+"List all status pages configured under StatusIQ","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,90
+"List all status pages configured under StatusIQ","Operations","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,89
+"List all status pages configured under StatusIQ","Operations","/sp/api/short/statuspages","GET","Operations","Status Pages (StatusIQ)",false,82
+"List all status pages configured under StatusIQ","Operations","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,82
+"List all status pages configured under StatusIQ","Operations","/sp/api/statuspages/15698000418173443/incidents/active","POST","Operations","Status Pages (StatusIQ)",false,80
+"How do I create a new incident on a status page?","Operations","/sp/api/statuspages/15698000418173443/incidents/active","POST","Operations","Status Pages (StatusIQ)",true,94
+"How do I create a new incident on a status page?","Operations","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,88
+"How do I create a new incident on a status page?","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,80
+"How do I create a new incident on a status page?","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,80
+"How do I create a new incident on a status page?","Operations","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,80
+"Which API checks the license access for a status page module?","Operations","/sp/api/statuspages/15698000418173443/license/check_module_access","GET","Operations","Status Pages (StatusIQ)",true,134
+"Which API checks the license access for a status page module?","Operations","/sp/api/short/subscription/statuspages_license","GET","Operations","Status Pages (StatusIQ)",false,96
+"Which API checks the license access for a status page module?","Operations","/sp/api/short/statuspages","GET","Operations","Status Pages (StatusIQ)",false,91
+"Which API checks the license access for a status page module?","Operations","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,91
+"Which API checks the license access for a status page module?","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,91
+"Which API checks the license access for a status page module?","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,91
+"What endpoint retrieves metrics data for a status page component?","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",true,119
+"What endpoint retrieves metrics data for a status page component?","Operations","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,119
+"What endpoint retrieves metrics data for a status page component?","Operations","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,109
+"What endpoint retrieves metrics data for a status page component?","Operations","/sp/api/statuspages/15698000418173443/metrics/15698000441187245/data","GET","Operations","Status Pages (StatusIQ)",false,103
+"What endpoint retrieves metrics data for a status page component?","Operations","/sp/api/statuspages/15698000418173443/metrics/15698000441187249/data","GET","Operations","Status Pages (StatusIQ)",false,103
+"What endpoint retrieves metrics data for a status page component?","Operations","/sp/api/statuspages/15698000418173443/metrics/15698000486420001/data","GET","Operations","Status Pages (StatusIQ)",false,103
+"How do I view resolved incidents on a status page?","Operations","/sp/api/statuspages/15698000418173443/components/15698000425317040/incidents/resolved","GET","Operations","Status Pages (StatusIQ)",true,96
+"How do I view resolved incidents on a status page?","Operations","/sp/api/statuspages/15698000418173443/components/15698000447030031/incidents/resolved","GET","Operations","Status Pages (StatusIQ)",false,96
+"How do I view resolved incidents on a status page?","Operations","/sp/api/statuspages/15698000418173443/incidents/resolved","GET","Operations","Status Pages (StatusIQ)",false,96
+"How do I view resolved incidents on a status page?","Operations","/sp/api/statuspages/15698000418173443/incidents/active","POST","Operations","Status Pages (StatusIQ)",false,82
+"How do I view resolved incidents on a status page?","Operations","/sp/api/statuspages/15698000418173443/incidents/active","POST","Operations","Status Pages (StatusIQ)",false,82
+"How do I view resolved incidents on a status page?","Operations","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,80
+"What API lists saved search queries for alert logs?","Operations","/app/api/applog/saved_searches","GET","Operations","Alert Logs",true,98
+"What API lists saved search queries for alert logs?","Operations","/app/api/applog/recent_search_queries","GET","Operations","Alert Logs",false,91
+"What API lists saved search queries for alert logs?","Operations","/app/api/applog/search/21-06-2026%2003:02:43/22-06-2026%2003:02:42/1-100/desc","GET","Operations","Alert Logs",false,86
+"What API lists saved search queries for alert logs?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:05/1-100/desc","GET","Operations","Alert Logs",false,86
+"What API lists saved search queries for alert logs?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:14/1-100/desc","GET","Operations","Alert Logs",false,86
+"What API lists saved search queries for alert logs?","Operations","/app/api/applog/search/22-06-2026%2000:00:00/22-06-2026%2003:03:23/1-100/desc","GET","Operations","Alert Logs",false,79
+"How do I update my account settings?","My Account","/app/api/account_settings","PUT","My Account","Account Settings",true,73
+"Which API retrieves the current account-level settings?","My Account","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",true,56
+"Which API retrieves the current account-level settings?","My Account","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,56
+"Which API retrieves the current account-level settings?","My Account","/app/api/sla_settings","GET","Report Settings","SLA Settings",false,56
+"Which API retrieves the current account-level settings?","My Account","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,56
+"Which API retrieves the current account-level settings?","My Account","/app/api/sla_settings/15698000493103037","DELETE","Report Settings","SLA Settings",false,56
+"Which API retrieves the current account-level settings?","My Account","/app/api/sla_settings/15698000493103037","PUT","Report Settings","SLA Settings",false,56
+"How do I change my personal status message?","My Account","/app/api/status_message","PUT","My Account","Personal Settings",true,60
+"How do I change my personal status message?","My Account","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,52
+"How do I change my personal status message?","My Account","/app/api/monitors/status/count","GET","User & Alert Management","Monitor Status",false,44
+"How do I change my personal status message?","My Account","/app/api/short/current_status","GET","User & Alert Management","Monitor Status",false,44
+"How do I change my personal status message?","My Account","/app/api/monitors/status/count","GET","Automations","Monitor Status",false,44
+"What endpoint updates the web client language?","My Account","/app/api/webclient_language","PUT","My Account","Web Client Notification Settings",true,106
+"Which API fetches a specific user's profile details?","My Account","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",true,71
+"Which API fetches a specific user's profile details?","My Account","https://www.site24x7.com/app/api/credential_profile","POST","Configuration Profiles","Credential Profile",false,69
+"Which API fetches a specific user's profile details?","My Account","/app/api/client_data/user","GET","User & Alert Management","Client / Session Data",false,68
+"Which API fetches a specific user's profile details?","My Account","https://www.site24x7.com/app/api/account_settings","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,66
+"Which API fetches a specific user's profile details?","My Account","https://www.site24x7.com/app/api/client_data/user","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,66
+"Which API fetches a specific user's profile details?","My Account","https://www.site24x7.com/app/api/upgrade_profile/{id}","GET","Configuration Profiles","Auto Upgrade Profile",false,64
+"How do I change the report time zone in My Account?","My Account","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,60
+"How do I change the report time zone in My Account?","My Account","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,54
+"How do I change the report time zone in My Account?","My Account","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,54
+"How do I change the report time zone in My Account?","My Account","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,54
+"How do I change the report time zone in My Account?","My Account","https://www.site24x7.com/app/api/reports/custom_reports/preview","POST","Configuration Profiles","Custom Report",false,46
+"How do I change the report time zone in My Account?","My Account","https://www.site24x7.com/app/api/reports/custom_reports/preview","POST","Configuration Profiles","Custom Report",false,46
+"What field controls the snackbar notification count?","My Account","/app/api/account_settings","GET","Inventory","Account Settings",true,38
+"What field controls the snackbar notification count?","My Account","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,36
+"What field controls the snackbar notification count?","My Account","/app/api/short/notification_profiles","GET","Inventory","Notification Profiles",false,34
+"What field controls the snackbar notification count?","My Account","https://www.site24x7.com/app/api/notification_profiles","POST","Configuration Profiles","Notification Profile",false,34
+"Which API updates the default landing page after login?","My Account","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",true,71
+"Which API updates the default landing page after login?","My Account","/sp/api/short/statuspages","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API updates the default landing page after login?","My Account","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API updates the default landing page after login?","My Account","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API updates the default landing page after login?","My Account","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API updates the default landing page after login?","My Account","/app/api/integration/pager_duty","POST","Third-Party Integrations","PagerDuty Integration",false,54
+"How do I enable two-factor authentication for sensitive operations?","My Account","/app/api/dashboards/15698000407685846","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,25
+"How do I enable two-factor authentication for sensitive operations?","My Account","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,25
+"How do I enable two-factor authentication for sensitive operations?","My Account","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,25
+"How do I enable two-factor authentication for sensitive operations?","My Account","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,25
+"How do I enable two-factor authentication for sensitive operations?","My Account","/app/api/dashboards/widgets/15698000407685854","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,25
+"How do I enable two-factor authentication for sensitive operations?","My Account","/app/api/dashboards/widgets/15698000407685856","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,25
+"What endpoint changes the hour format for reports?","My Account","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,52
+"What endpoint changes the hour format for reports?","My Account","/app/api/public_reports","GET","Share","Public Reports",false,44
+"What endpoint changes the hour format for reports?","My Account","/app/api/short/business_hours","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,43
+"What endpoint changes the hour format for reports?","My Account","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,42
+"What endpoint changes the hour format for reports?","My Account","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,42
+"What endpoint changes the hour format for reports?","My Account","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,42
+"How do I update my notification preferences?","My Account","https://www.site24x7.com/app/api/notification_profiles/{id}","PUT","Configuration Profiles","Notification Profile",true,41
+"How do I update my notification preferences?","My Account","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,36
+"How do I update my notification preferences?","My Account","https://www.site24x7.com/app/api/preferences/table/3","GET","Configuration Profiles","Notification Profile",false,36
+"How do I update my notification preferences?","My Account","https://www.site24x7.com/app/api/notification_profiles","POST","Configuration Profiles","Notification Profile",false,34
+"How do I update my notification preferences?","My Account","/app/api/short/notification_profiles","GET","Inventory","Notification Profiles",false,29
+"How do I update my notification preferences?","My Account","/app/api/preferences/table/{table_id}","GET","Inventory","Table Preferences",false,29
+"Which API retrieves organization-level language settings?","My Account","/app/api/webclient_language","PUT","My Account","Web Client Notification Settings",true,60
+"Which API retrieves organization-level language settings?","My Account","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,56
+"Which API retrieves organization-level language settings?","My Account","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,56
+"Which API retrieves organization-level language settings?","My Account","/app/api/sla_settings","GET","Report Settings","SLA Settings",false,56
+"Which API retrieves organization-level language settings?","My Account","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,56
+"What field holds the user's allowed monitor groups?","My Account","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",true,73
+"What field holds the user's allowed monitor groups?","My Account","/app/api/short/user_groups","GET","User & Alert Management","User Groups",false,66
+"What field holds the user's allowed monitor groups?","My Account","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,66
+"What field holds the user's allowed monitor groups?","My Account","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,64
+"What field holds the user's allowed monitor groups?","My Account","/app/api/short/monitor_groups","GET","Inventory","Monitor Groups",false,63
+"How do I check which plan my account is subscribed to?","My Account","https://www.site24x7.com/app/api/account_settings","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",true,40
+"How do I check which plan my account is subscribed to?","My Account","/app/api/account_settings","GET","My Account","Account Settings",false,37
+"How do I check which plan my account is subscribed to?","My Account","/app/api/account_settings","PUT","My Account","Account Settings",false,37
+"How do I check which plan my account is subscribed to?","My Account","/app/api/account_settings","GET","Inventory","Account Settings",false,33
+"How do I check which plan my account is subscribed to?","My Account","/app/api/account_settings","GET","User & Alert Management","Account Settings",false,29
+"How do I check which plan my account is subscribed to?","My Account","/app/api/account_settings","GET","Automations","Account Settings",false,29
+"What endpoint updates account-level industry information?","My Account","https://www.site24x7.com/app/api/account_settings","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",true,15
+"What endpoint updates account-level industry information?","My Account","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,15
+"What endpoint updates account-level industry information?","My Account","https://www.site24x7.com/app/api/customize_report","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,14
+"What endpoint updates account-level industry information?","My Account","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",false,14
+"What endpoint updates account-level industry information?","My Account","/app/api/plugin_configurations","PUT","Plugin Monitor","Settings (Auto-Discovery Toggle)",false,14
+"What endpoint updates account-level industry information?","My Account","/app/api/maintenance/15698000489363071","PUT","Operations","Scheduled Maintenance",false,14
+"How do I create a new scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",true,83
+"How do I create a new scheduled report?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,80
+"How do I create a new scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,76
+"How do I create a new scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","DELETE","Report Settings","Scheduled Reports",false,66
+"How do I create a new scheduled report?","Report Settings","/app/api/scheduled_reports/activate/15698000342022005","PUT","Report Settings","Scheduled Reports",false,66
+"Which API activates a previously created scheduled report?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,99
+"Which API activates a previously created scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,95
+"Which API activates a previously created scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,95
+"Which API activates a previously created scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,95
+"Which API activates a previously created scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","DELETE","Report Settings","Scheduled Reports",false,85
+"Which API activates a previously created scheduled report?","Report Settings","/app/api/scheduled_reports/activate/15698000342022005","PUT","Report Settings","Scheduled Reports",false,85
+"What endpoint sends a scheduled report immediately?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,87
+"What endpoint sends a scheduled report immediately?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,83
+"What endpoint sends a scheduled report immediately?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,83
+"What endpoint sends a scheduled report immediately?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,83
+"What endpoint sends a scheduled report immediately?","Report Settings","/app/api/scheduled_reports/15698000342022005","DELETE","Report Settings","Scheduled Reports",false,73
+"What endpoint sends a scheduled report immediately?","Report Settings","/app/api/scheduled_reports/activate/15698000342022005","PUT","Report Settings","Scheduled Reports",false,73
+"How do I delete a scheduled report?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,80
+"How do I delete a scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,76
+"How do I delete a scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,76
+"How do I delete a scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,76
+"How do I delete a scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","DELETE","Report Settings","Scheduled Reports",false,73
+"How do I delete a scheduled report?","Report Settings","/app/api/scheduled_reports/activate/15698000342022005","PUT","Report Settings","Scheduled Reports",false,66
+"Which API customizes the report logo and branding?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,63
+"Which API customizes the report logo and branding?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,61
+"Which API customizes the report logo and branding?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,61
+"Which API customizes the report logo and branding?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,61
+"Which API customizes the report logo and branding?","Report Settings","/app/api/customize_report","DELETE","Report Settings","Customize Report",false,56
+"Which API customizes the report logo and branding?","Report Settings","/app/api/customize_report","GET","Report Settings","Customize Report",false,56
+"What field controls the decimal precision for availability percentage?","Report Settings","https://www.site24x7.com/app/api/monitor_thresholds","GET","Configuration Profiles","Threshold and Availability",true,24
+"What field controls the decimal precision for availability percentage?","Report Settings","https://www.site24x7.com/app/api/client_data/demo","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,23
+"What field controls the decimal precision for availability percentage?","Report Settings","https://www.site24x7.com/app/api/threshold_profiles/{id}","GET","Configuration Profiles","Threshold and Availability",false,18
+"What field controls the decimal precision for availability percentage?","Report Settings","https://www.site24x7.com/app/api/short/business_hours","GET","Configuration Profiles","Threshold and Availability",false,17
+"What field controls the decimal precision for availability percentage?","Report Settings","/app/api/short/is_poller_available","GET","Inventory","Poller Availability",false,16
+"What field controls the decimal precision for availability percentage?","Report Settings","/app/api/reports/alarm/{id}","GET","Automations","Alarm Reports",false,16
+"How do I create an SLA setting for a monitor?","Report Settings","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",true,85
+"How do I create an SLA setting for a monitor?","Report Settings","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,85
+"How do I create an SLA setting for a monitor?","Report Settings","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,84
+"How do I create an SLA setting for a monitor?","Report Settings","/app/api/sla_settings/15698000493103037","PUT","Report Settings","SLA Settings",false,77
+"How do I create an SLA setting for a monitor?","Report Settings","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,66
+"How do I create an SLA setting for a monitor?","Report Settings","/app/api/sla_settings","GET","Report Settings","SLA Settings",false,66
+"Which API retrieves SLA settings for a specific monitor?","Report Settings","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",true,104
+"Which API retrieves SLA settings for a specific monitor?","Report Settings","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,104
+"Which API retrieves SLA settings for a specific monitor?","Report Settings","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,96
+"Which API retrieves SLA settings for a specific monitor?","Report Settings","/app/api/sla_settings/15698000493103037","PUT","Report Settings","SLA Settings",false,96
+"Which API retrieves SLA settings for a specific monitor?","Report Settings","/app/api/sla_settings","GET","Report Settings","SLA Settings",false,85
+"Which API retrieves SLA settings for a specific monitor?","Report Settings","/app/api/sla_settings/15698000493103037","DELETE","Report Settings","SLA Settings",false,85
+"What endpoint deletes an existing SLA configuration?","Report Settings","/app/api/sla_settings/15698000493103037","DELETE","Report Settings","SLA Settings",true,43
+"What endpoint deletes an existing SLA configuration?","Report Settings","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,41
+"What endpoint deletes an existing SLA configuration?","Report Settings","/app/api/integration/slack/15698000442055001","GET","Report Settings","SLA Settings",false,36
+"What endpoint deletes an existing SLA configuration?","Report Settings","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,36
+"What endpoint deletes an existing SLA configuration?","Report Settings","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,36
+"How do I list business hours used in report scheduling?","Report Settings","/app/api/short/business_hours","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,80
+"How do I list business hours used in report scheduling?","Report Settings","https://www.site24x7.com/app/api/business_hours/{id}","PUT","Configuration Profiles","Business Hours",false,68
+"How do I list business hours used in report scheduling?","Report Settings","https://www.site24x7.com/app/api/business_hours","GET","Configuration Profiles","Business Hours",false,65
+"How do I list business hours used in report scheduling?","Report Settings","/app/api/metrics/list/METRICS","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,61
+"How do I list business hours used in report scheduling?","Report Settings","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,61
+"How do I list business hours used in report scheduling?","Report Settings","/app/api/short/monitor_groups_list","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,61
+"Which API retrieves custom report templates for a scheduled report?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",true,143
+"Which API retrieves custom report templates for a scheduled report?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,137
+"Which API retrieves custom report templates for a scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,137
+"Which API retrieves custom report templates for a scheduled report?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,137
+"Which API retrieves custom report templates for a scheduled report?","Report Settings","/app/api/short/reports/custom_reports","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,129
+"Which API retrieves custom report templates for a scheduled report?","Report Settings","/app/api/plugin/listCustomTemplates/PLUGIN","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,124
+"What field defines the SLA goal percentage?","Report Settings","/app/api/sla_settings","POST","Report Settings","SLA Settings",true,34
+"What field defines the SLA goal percentage?","Report Settings","/app/api/sla_settings/15698000493103037","PUT","Report Settings","SLA Settings",false,34
+"What field defines the SLA goal percentage?","Report Settings","/app/api/integration/slack/15698000442055001","GET","Report Settings","SLA Settings",false,29
+"What field defines the SLA goal percentage?","Report Settings","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,29
+"What field defines the SLA goal percentage?","Report Settings","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,29
+"How do I check which monitor groups are available for a report?","Report Settings","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",true,73
+"How do I check which monitor groups are available for a report?","Report Settings","/app/api/short/monitor_groups_list","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,70
+"How do I check which monitor groups are available for a report?","Report Settings","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,66
+"How do I check which monitor groups are available for a report?","Report Settings","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,66
+"Which API lists tags usable in report filters?","Report Settings","/app/api/short/tags","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,63
+"Which API lists tags usable in report filters?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,63
+"Which API lists tags usable in report filters?","Report Settings","/app/api/customize_report","PUT","Report Settings","Customize Report",false,62
+"Which API lists tags usable in report filters?","Report Settings","/app/api/customize_report","PUT","Report Settings","Customize Report",false,62
+"Which API lists tags usable in report filters?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,61
+"Which API lists tags usable in report filters?","Report Settings","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,61
+"What endpoint updates report customization settings like sender email?","Report Settings","/app/api/short/reports/custom_reports","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,69
+"What endpoint updates report customization settings like sender email?","Report Settings","/app/api/customize_report","PUT","Report Settings","Customize Report",false,66
+"What endpoint updates report customization settings like sender email?","Report Settings","/app/api/customize_report","PUT","Report Settings","Customize Report",false,66
+"What endpoint updates report customization settings like sender email?","Report Settings","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,65
+"What endpoint updates report customization settings like sender email?","Report Settings","/app/api/sla_settings/15698000493103037","PUT","Report Settings","SLA Settings",false,60
+"What endpoint updates report customization settings like sender email?","Report Settings","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,60
+"How do I create an Uptime Button?","Share","/app/api/uptime_buttons","POST","Share","Uptime Buttons",true,75
+"Which API lists existing Uptime Buttons?","Share","/app/api/uptime_buttons","POST","Share","Uptime Buttons",true,82
+"What endpoint creates a new Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685854","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,69
+"What endpoint creates a new Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685856","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,69
+"What endpoint creates a new Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685858","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,69
+"What endpoint creates a new Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685860","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,69
+"What endpoint creates a new Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685862","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,69
+"What endpoint creates a new Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685864","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,69
+"How do I delete a specific Operations Dashboard?","Share","/app/api/dashboards/15698000407685846","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,78
+"How do I delete a specific Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,71
+"How do I delete a specific Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,71
+"How do I delete a specific Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,71
+"How do I delete a specific Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685854","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,71
+"How do I delete a specific Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685856","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,71
+"Which API retrieves the list of public reports?","Share","/app/api/public_reports","GET","Share","Public Reports",true,84
+"Which API retrieves the list of public reports?","Share","/app/api/public_reports/15698000325373001","DELETE","Share","Public Reports",false,77
+"Which API retrieves the list of public reports?","Share","/app/api/public_reports/15698000325373001","PUT","Share","Public Reports",false,77
+"Which API retrieves the list of public reports?","Share","/app/api/reports/custom_reports","GET","Share","Public Reports",false,65
+"Which API retrieves the list of public reports?","Share","https://www.site24x7.com/app/api/public_reports","GET","Configuration Profiles","Custom Report",false,58
+"How do I publish a new Public Report?","Share","/app/api/public_reports","GET","Share","Public Reports",true,72
+"How do I publish a new Public Report?","Share","/app/api/public_reports/15698000325373001","PUT","Share","Public Reports",false,63
+"How do I publish a new Public Report?","Share","/app/api/public_reports/15698000325373001","DELETE","Share","Public Reports",false,58
+"How do I publish a new Public Report?","Share","https://www.site24x7.com/app/api/public_reports","GET","Configuration Profiles","Custom Report",false,55
+"How do I publish a new Public Report?","Share","/app/api/reports/custom_reports","GET","Share","Public Reports",false,53
+"What field controls which monitors are shown on an Uptime Button?","Share","/app/api/uptime_buttons","POST","Share","Uptime Buttons",true,68
+"Which API updates an existing Operations Dashboard?","Share","/app/api/dashboards/15698000407685846","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,80
+"Which API updates an existing Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,73
+"Which API updates an existing Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,73
+"Which API updates an existing Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,73
+"Which API updates an existing Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685854","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,73
+"Which API updates an existing Operations Dashboard?","Share","/app/api/dashboards/widgets/15698000407685856","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,73
+"How do I get the embed code for a shared dashboard?","Share","/app/api/dashboards/15698000407685846","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,68
+"How do I get the embed code for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,66
+"How do I get the embed code for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,66
+"How do I get the embed code for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,66
+"How do I get the embed code for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685854","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,66
+"How do I get the embed code for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685856","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,66
+"What endpoint deletes a Public Report?","Share","/app/api/public_reports","GET","Share","Public Reports",true,79
+"What endpoint deletes a Public Report?","Share","/app/api/public_reports/15698000325373001","DELETE","Share","Public Reports",false,72
+"What endpoint deletes a Public Report?","Share","/app/api/public_reports/15698000325373001","PUT","Share","Public Reports",false,70
+"What endpoint deletes a Public Report?","Share","/app/api/reports/custom_reports","GET","Share","Public Reports",false,60
+"Which API lists monitor groups available for sharing?","Share","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",true,86
+"Which API lists monitor groups available for sharing?","Share","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,79
+"Which API lists monitor groups available for sharing?","Share","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,79
+"Which API lists monitor groups available for sharing?","Share","/app/api/short/monitor_groups","GET","Inventory","Monitor Groups",false,71
+"How do I check which plugins are available when publishing a report?","Share","/app/api/short/plugins","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",true,44
+"How do I check which plugins are available when publishing a report?","Share","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,44
+"How do I check which plugins are available when publishing a report?","Share","/app/api/scheduled_reports/15698000342022005","PUT","Report Settings","Scheduled Reports",false,42
+"How do I check which plugins are available when publishing a report?","Share","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,42
+"How do I check which plugins are available when publishing a report?","Share","/app/api/send_scheduled_reports","POST","Report Settings","Scheduled Reports",false,42
+"How do I check which plugins are available when publishing a report?","Share","/app/api/customize_report","DELETE","Report Settings","Customize Report",false,37
+"What field holds the permalink for a shared dashboard?","Share","/app/api/dashboards/15698000407685846","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",true,44
+"What field holds the permalink for a shared dashboard?","Share","/app/api/dashboard_views","GET","Share","Operations Dashboard",false,44
+"What field holds the permalink for a shared dashboard?","Share","/app/api/short/dashboards/favourites","GET","Inventory","Dashboard",false,38
+"What field holds the permalink for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685848","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,37
+"What field holds the permalink for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685850","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,37
+"What field holds the permalink for a shared dashboard?","Share","/app/api/dashboards/widgets/15698000407685852","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,37
+"Which API retrieves custom reports available for public sharing?","Share","/app/api/public_reports","GET","Share","Public Reports",true,84
+"Which API retrieves custom reports available for public sharing?","Share","/app/api/reports/custom_reports","GET","Share","Public Reports",false,84
+"Which API retrieves custom reports available for public sharing?","Share","/app/api/public_reports/15698000325373001","DELETE","Share","Public Reports",false,77
+"Which API retrieves custom reports available for public sharing?","Share","/app/api/public_reports/15698000325373001","PUT","Share","Public Reports",false,77
+"Which API retrieves custom reports available for public sharing?","Share","/app/api/short/reports/custom_reports","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,67
+"How do I list business hours available when publishing a report?","Share","https://www.site24x7.com/app/api/business_hours/{id}","PUT","Configuration Profiles","Business Hours",true,68
+"How do I list business hours available when publishing a report?","Share","https://www.site24x7.com/app/api/business_hours","GET","Configuration Profiles","Business Hours",false,65
+"How do I list business hours available when publishing a report?","Share","/app/api/short/business_hours","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,63
+"How do I list business hours available when publishing a report?","Share","/app/api/scheduled_reports","GET","Report Settings","Scheduled Reports",false,60
+"How do I list business hours available when publishing a report?","Share","https://www.site24x7.com/app/api/business_hours","POST","Configuration Profiles","Business Hours",false,58
+"How do I create a new milestone?","Milestones","/app/api/milestone/default_marker","PUT","Milestones","Milestone Marker Settings",true,37
+"How do I create a new milestone?","Milestones","/app/api/monitor_groups?subgroup_required=true","GET","Milestones","Milestone Configuration",false,25
+"Which API updates the default milestone marker setting?","Milestones","/app/api/milestone/default_marker","PUT","Milestones","Milestone Marker Settings",true,120
+"What endpoint loads monitor groups for milestone association?","Milestones","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",true,73
+"What endpoint loads monitor groups for milestone association?","Milestones","/app/api/monitor_groups?subgroup_required=true","GET","Milestones","Milestone Configuration",false,70
+"What endpoint loads monitor groups for milestone association?","Milestones","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,66
+"What endpoint loads monitor groups for milestone association?","Milestones","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",false,59
+"How do I check which monitor a milestone is tied to?","Milestones","/app/api/short/monitors_resource_supported","GET","Server Monitor","Monitor Resource Support",true,45
+"How do I check which monitor a milestone is tied to?","Milestones","/app/api/monitors/details_page/base/{id}","GET","Automations","Monitor Details",false,44
+"How do I check which monitor a milestone is tied to?","Milestones","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,44
+"How do I check which monitor a milestone is tied to?","Milestones","/app/api/monitor_groups?subgroup_required=true","GET","Milestones","Milestone Configuration",false,44
+"How do I check which monitor a milestone is tied to?","Milestones","/app/api/short/monitors_support/6001","GET","Automations","Monitor Support",false,43
+"How do I check which monitor a milestone is tied to?","Milestones","/app/api/short/monitor_groups","GET","Server Monitor","Monitor Groups",false,37
+"What field controls milestone marker visibility?","Milestones","/app/api/milestone/default_marker","PUT","Milestones","Milestone Marker Settings",true,71
+"Which API fetches the current user's profile for the Milestones page?","Milestones","/app/api/client_data/user","GET","Milestones","User Context",true,85
+"Which API fetches the current user's profile for the Milestones page?","Milestones","https://www.site24x7.com/app/api/credential_profiles","GET","Configuration Profiles","Credential Profile",false,71
+"Which API fetches the current user's profile for the Milestones page?","Milestones","https://www.site24x7.com/app/api/notification_profiles","GET","Configuration Profiles","Notification Profile",false,71
+"Which API fetches the current user's profile for the Milestones page?","Milestones","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,70
+"How do I retrieve account-level configuration before viewing milestones?","Milestones","/app/api/client_data/account","GET","Milestones","Account Context",true,29
+"How do I retrieve account-level configuration before viewing milestones?","Milestones","/app/api/account_settings","GET","Milestones","Account Settings",false,29
+"How do I retrieve account-level configuration before viewing milestones?","Milestones","/app/api/monitor_groups?subgroup_required=true","GET","Milestones","Milestone Configuration",false,26
+"How do I retrieve account-level configuration before viewing milestones?","Milestones","https://www.site24x7.com/app/api/apminsight/agent_config_profile","POST","Configuration Profiles","APM Agent Configuration",false,25
+"How do I retrieve account-level configuration before viewing milestones?","Milestones","https://www.site24x7.com/app/api/apminsight/agent_config_profile/{id}","DELETE","Configuration Profiles","APM Agent Configuration",false,25
+"How do I retrieve account-level configuration before viewing milestones?","Milestones","https://www.site24x7.com/app/api/apminsight/agent_config_profile/{id}","GET","Configuration Profiles","APM Agent Configuration",false,25
+"What endpoint loads global settings required by the Milestones module?","Milestones","/app/api/client_data/globals","GET","Milestones","Bootstrap Data",true,55
+"What endpoint loads global settings required by the Milestones module?","Milestones","/app/api/account_settings","GET","Milestones","Account Settings",false,51
+"What endpoint loads global settings required by the Milestones module?","Milestones","/app/api/account_settings","GET","Downloads","Account Settings",false,51
+"What endpoint loads global settings required by the Milestones module?","Milestones","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",false,44
+"What endpoint loads global settings required by the Milestones module?","Milestones","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,44
+"Which API manages milestone marker behavior (Monitor/Group/Global)?","Milestones","/app/api/milestone/default_marker","PUT","Milestones","Milestone Marker Settings",true,98
+"How do I list milestones associated with a specific monitor group?","Milestones","/app/api/monitors/pollergroups","GET","Inventory","Poller Groups",true,87
+"How do I list milestones associated with a specific monitor group?","Milestones","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,80
+"How do I list milestones associated with a specific monitor group?","Milestones","/app/api/resource_profile/associated_monitors","GET","Server Monitor","Resource Profile – Associated Monitors",false,80
+"How do I list milestones associated with a specific monitor group?","Milestones","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,80
+"How do I list milestones associated with a specific monitor group?","Milestones","/app/api/monitor_groups","GET","Automations","Monitor Groups",false,72
+"How do I list milestones associated with a specific monitor group?","Milestones","/app/api/short/monitor_groups_list","GET","Report Settings","Report Settings (Supporting lookup, used by Scheduled Reports forms)",false,71
+"What field holds the milestone name?","Milestones","/app/api/milestone/default_marker","PUT","Milestones","Milestone Marker Settings",true,49
+"What field holds the milestone name?","Milestones","/app/api/applog/logtype_resources/name","GET","Operations","Alert Logs",false,34
+"Which API checks subscription details before rendering milestones?","Milestones","/app/api/client_data/account","GET","Milestones","Account Context",true,49
+"Which API checks subscription details before rendering milestones?","Milestones","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,45
+"Which API checks subscription details before rendering milestones?","Milestones","/app/api/dashboards/15698000407685846","GET","Operations","Operations (Dashboard widget rendering, unrelated to a specific sub-feature)",false,44
+"Which API checks subscription details before rendering milestones?","Milestones","/sp/api/short/subscription/statuspages_license","GET","Operations","Status Pages (StatusIQ)",false,38
+"Which API checks subscription details before rendering milestones?","Milestones","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,38
+"Which API checks subscription details before rendering milestones?","Milestones","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,38
+"How do I fetch demo mode flags for the Milestones page?","Milestones","/app/api/client_data/demo","GET","Milestones","Bootstrap Data",true,48
+"How do I fetch demo mode flags for the Milestones page?","Milestones","/sp/api/short/statuspages","GET","Operations","Status Pages (StatusIQ)",false,43
+"How do I fetch demo mode flags for the Milestones page?","Milestones","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,43
+"How do I fetch demo mode flags for the Milestones page?","Milestones","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,43
+"How do I fetch demo mode flags for the Milestones page?","Milestones","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,43
+"How do I fetch demo mode flags for the Milestones page?","Milestones","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,43
+"What endpoint is used to mark a new deployment milestone?","Milestones","/app/api/milestone/default_marker","PUT","Milestones","Milestone Marker Settings",true,71
+"Which API loads dashboard preferences for the Milestones view?","Milestones","/app/api/dashboard_views","GET","Share","Operations Dashboard",true,81
+"Which API loads dashboard preferences for the Milestones view?","Milestones","/app/api/short/dashboards/favourites","GET","Downloads","Dashboard Preferences",false,74
+"Which API loads dashboard preferences for the Milestones view?","Milestones","/app/api/short/dashboards/favourites","GET","Milestones","Dashboard Preferences",false,68
+"Which API loads dashboard preferences for the Milestones view?","Milestones","/app/api/dashboard_views/15698000033393001","DELETE","Share","Operations Dashboard",false,67
+"How do I set up PagerDuty alerts?","Third-Party Integrations","/app/api/short/sla_settings/monitors/2","GET","Report Settings","SLA Settings",true,37
+"How do I set up PagerDuty alerts?","Third-Party Integrations","/app/api/short/sla_settings/monitors/3","GET","Report Settings","SLA Settings",false,37
+"How do I set up PagerDuty alerts?","Third-Party Integrations","/app/api/sla_settings","GET","Report Settings","SLA Settings",false,37
+"How do I set up PagerDuty alerts?","Third-Party Integrations","/app/api/sla_settings","POST","Report Settings","SLA Settings",false,37
+"How do I set up PagerDuty alerts?","Third-Party Integrations","/app/api/sla_settings/15698000493103037","DELETE","Report Settings","SLA Settings",false,37
+"How do I set up PagerDuty alerts?","Third-Party Integrations","/app/api/sla_settings/15698000493103037","PUT","Report Settings","SLA Settings",false,37
+"Which API creates a Slack integration?","Third-Party Integrations","/app/api/integration/slack","POST","Third-Party Integrations","Slack Integration",true,86
+"Which API creates a Slack integration?","Third-Party Integrations","/app/api/integration/pager_duty","POST","Third-Party Integrations","PagerDuty Integration",false,62
+"Which API creates a Slack integration?","Third-Party Integrations","/app/api/integration/opsgenie","POST","Third-Party Integrations","Opsgenie Integration",false,62
+"Which API creates a Slack integration?","Third-Party Integrations","/app/api/integration/moogsoft","POST","Third-Party Integrations","Moogsoft Integration",false,62
+"Which API creates a Slack integration?","Third-Party Integrations","/app/api/integration/fresh_service","POST","Third-Party Integrations","Freshservice Integration",false,62
+"Which API creates a Slack integration?","Third-Party Integrations","/app/api/integration/zen_desk","POST","Third-Party Integrations","Zendesk Integration",false,62
+"How do I configure a webhook integration?","Third-Party Integrations","/app/api/integration/webhooks","POST","Third-Party Integrations","Webhook Integration",true,66
+"How do I configure a webhook integration?","Third-Party Integrations","/app/api/integration/slack","POST","Third-Party Integrations","Slack Integration",false,50
+"How do I configure a webhook integration?","Third-Party Integrations","/app/api/integration/discord","POST","Third-Party Integrations","Discord Integration",false,49
+"How do I configure a webhook integration?","Third-Party Integrations","/app/api/zanalytics/integration_info","GET","Third-Party Integrations","Zoho Analytics Integration",false,44
+"How do I configure a webhook integration?","Third-Party Integrations","/app/api/integration/appmanager","POST","Third-Party Integrations","Application Manager Integration",false,44
+"What endpoint creates a ServiceNow integration?","Third-Party Integrations","/app/api/integration/service_now","POST","Third-Party Integrations","ServiceNow Integration",true,61
+"What endpoint creates a ServiceNow integration?","Third-Party Integrations","/app/api/integration/webhooks","POST","Third-Party Integrations","Webhook Integration",false,51
+"What endpoint creates a ServiceNow integration?","Third-Party Integrations","/app/api/integration/sdp","POST","Third-Party Integrations","SDP On-Premise Integration",false,51
+"What endpoint creates a ServiceNow integration?","Third-Party Integrations","/app/api/integration/sdp","POST","Third-Party Integrations","SDP MSP Integration",false,51
+"What endpoint creates a ServiceNow integration?","Third-Party Integrations","/app/api/integration/zia_azure","POST","Third-Party Integrations","Azure OpenAI Integration",false,50
+"What endpoint creates a ServiceNow integration?","Third-Party Integrations","/app/api/integration/pager_duty","POST","Third-Party Integrations","PagerDuty Integration",false,44
+"Which API retrieves ServiceNow CMDB monitor type mappings?","Third-Party Integrations","/app/api/integration/cmdbMonitorTypes","GET","Third-Party Integrations","ServiceNow CMDB Config",true,104
+"Which API retrieves ServiceNow CMDB monitor type mappings?","Third-Party Integrations","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,72
+"How do I check the ServiceNow CMDB sync status?","Third-Party Integrations","/app/api/integration/snow_cmdb_status","GET","Third-Party Integrations","ServiceNow CMDB Status",true,89
+"What API integrates with Opsgenie?","Third-Party Integrations","/app/api/integration/opsgenie","POST","Third-Party Integrations","Opsgenie Integration",true,47
+"How do I connect Site24x7 to Microsoft Teams or Discord?","Third-Party Integrations","/app/api/integration/discord","POST","Third-Party Integrations","Discord Integration",true,36
+"How do I connect Site24x7 to Microsoft Teams or Discord?","Third-Party Integrations","/app/api/integration/connectwise","POST","Third-Party Integrations","ConnectWise Manage Integration",false,29
+"How do I connect Site24x7 to Microsoft Teams or Discord?","Third-Party Integrations","/sp/api/public/site24x7_perf_data/cR--BisT9ddaXXF3PzQ2JDsu5nPDyjqwPtrPU4-pB64f_aHC0juFXg6xidCsteOu","GET","Operations","Status Pages (StatusIQ)",false,26
+"How do I connect Site24x7 to Microsoft Teams or Discord?","Third-Party Integrations","/sp/api/public/site24x7_perf_data/cR--BisT9ddaXXF3PzQ2JDsu5nPDyjqwPtrPU4-pB650_WFJl3TOkWDRjoMpE0bN","GET","Operations","Status Pages (StatusIQ)",false,26
+"Which API sets up a Zoho Cliq integration?","Third-Party Integrations","/app/api/zcliq/org_details","GET","Third-Party Integrations","Zoho Cliq Integration",true,84
+"Which API sets up a Zoho Cliq integration?","Third-Party Integrations","/app/api/zcliq/users","GET","Third-Party Integrations","Zoho Cliq Integration",false,84
+"Which API sets up a Zoho Cliq integration?","Third-Party Integrations","/app/api/zcliq/channel","POST","Third-Party Integrations","Zoho Cliq Integration",false,84
+"Which API sets up a Zoho Cliq integration?","Third-Party Integrations","/app/api/short/zcliq/channels","GET","Third-Party Integrations","Zoho Cliq Integration",false,78
+"Which API sets up a Zoho Cliq integration?","Third-Party Integrations","/app/api/zanalytics/integration_info","GET","Third-Party Integrations","Zoho Analytics Integration",false,67
+"Which API sets up a Zoho Cliq integration?","Third-Party Integrations","/app/api/integration/zia_zks","POST","Third-Party Integrations","Zoho Key Service Integration",false,67
+"How do I configure Splunk On-Call as an integration?","Third-Party Integrations","/app/api/integration/victorops","POST","Third-Party Integrations","Splunk On-Call Integration",true,71
+"What endpoint lists all supported third-party integration providers?","Third-Party Integrations","/app/api/short/third_party_services","GET","Third-Party Integrations","Third-Party Integrations Listing",true,57
+"What endpoint lists all supported third-party integration providers?","Third-Party Integrations","/app/api/integration/webhooks","POST","Third-Party Integrations","Webhook Integration",false,53
+"What endpoint lists all supported third-party integration providers?","Third-Party Integrations","/app/api/integration/sdp","POST","Third-Party Integrations","SDP On-Premise Integration",false,53
+"What endpoint lists all supported third-party integration providers?","Third-Party Integrations","/app/api/integration/sdp","POST","Third-Party Integrations","SDP MSP Integration",false,53
+"What endpoint lists all supported third-party integration providers?","Third-Party Integrations","/app/api/integration/zia_byok/{id}","GET","Third-Party Integrations","BYOK Integration",false,53
+"What endpoint lists all supported third-party integration providers?","Third-Party Integrations","/app/api/oauth2_providers","GET","Third-Party Integrations","OAuth2 Providers",false,53
+"Which API connects to Amazon EventBridge?","Third-Party Integrations","/app/api/integration/event_bridge","POST","Third-Party Integrations","Amazon EventBridge Integration",true,47
+"Which API connects to Amazon EventBridge?","Third-Party Integrations","/app/api/aws/add/event_bridge/{user_id}","GET","Third-Party Integrations","Amazon EventBridge Integration",false,41
+"How do I set up an Azure OpenAI integration?","Third-Party Integrations","/app/api/integration/zia_azure","POST","Third-Party Integrations","Azure OpenAI Integration",true,83
+"How do I set up an Azure OpenAI integration?","Third-Party Integrations","/app/api/integration/thirdparty_status/36","GET","Third-Party Integrations","Azure OpenAI Integration",false,71
+"How do I set up an Azure OpenAI integration?","Third-Party Integrations","/app/api/integration/azure_workspace","POST","Third-Party Integrations","Azure Log Analytics Workspace Integration",false,66
+"How do I set up an Azure OpenAI integration?","Third-Party Integrations","/app/api/integration/thirdparty_status/41","GET","Third-Party Integrations","Azure Log Analytics Workspace Integration",false,54
+"What field maps ServiceNow CMDB attributes to Site24x7 fields?","Third-Party Integrations","/app/api/integration/cmdb_json_mapper","GET","Third-Party Integrations","ServiceNow CMDB Mapper",true,53
+"What field maps ServiceNow CMDB attributes to Site24x7 fields?","Third-Party Integrations","/app/api/integration/cmdbMonitorTypes","GET","Third-Party Integrations","ServiceNow CMDB Config",false,46
+"What field maps ServiceNow CMDB attributes to Site24x7 fields?","Third-Party Integrations","/app/api/integration/snow_cmdb_status","GET","Third-Party Integrations","ServiceNow CMDB Status",false,46
+"What field maps ServiceNow CMDB attributes to Site24x7 fields?","Third-Party Integrations","/app/api/integration/sdpod_cmdb_json_mapper","GET","Third-Party Integrations","SDP On-Demand CMDB Mapper",false,36
+"Which API configures a Jira Service Management integration?","Third-Party Integrations","/app/api/integration/jsmops","POST","Third-Party Integrations","Jira Service Management Integration",true,106
+"Which API configures a Jira Service Management integration?","Third-Party Integrations","/app/api/integration/fresh_service","POST","Third-Party Integrations","Freshservice Integration",false,84
+"Which API configures a Jira Service Management integration?","Third-Party Integrations","/app/api/integration/service_now","POST","Third-Party Integrations","ServiceNow Integration",false,79
+"Which API configures a Jira Service Management integration?","Third-Party Integrations","/app/api/integration/zia_zks","POST","Third-Party Integrations","Zoho Key Service Integration",false,72
+"Which API configures a Jira Service Management integration?","Third-Party Integrations","/app/api/integration/thirdparty_service/suspend/{id}","PUT","Third-Party Integrations","BYOK Integration",false,69
+"How do I add a tag to a monitor?","Tags","/app/client/templates/monitors-form/add-amazon.json","GET","Inventory","Monitor Inventory",true,56
+"How do I add a tag to a monitor?","Tags","/app/client/templates/monitors-form/add-arubacentral-switch.json","GET","Inventory","Monitor Inventory",false,56
+"How do I add a tag to a monitor?","Tags","/app/client/templates/monitors-form/add-dbricks_ws.json","GET","Inventory","Monitor Inventory",false,56
+"How do I add a tag to a monitor?","Tags","/app/client/templates/monitors-form/add-isp.json","GET","Inventory","Monitor Inventory",false,56
+"How do I add a tag to a monitor?","Tags","/app/client/templates/monitors-form/add-saas_application.json","GET","Inventory","Monitor Inventory",false,56
+"How do I add a tag to a monitor?","Tags","/app/client/templates/monitors-form/add-ssl_cert.json","GET","Inventory","Monitor Inventory",false,56
+"List all tags configured in the account","Tags","/app/api/tags","GET","Tags","Tag Listing",true,58
+"List all tags configured in the account","Tags","/app/api/short/tags_list","GET","Inventory","Tag Management",false,45
+"List all tags configured in the account","Tags","/app/api/client_data/account","GET","Tags","Account Context",false,44
+"List all tags configured in the account","Tags","/app/api/account_settings","GET","Tags","Account Settings",false,44
+"Which API creates a new tag?","Tags","/app/api/tags","POST","Tags","Tag Creation",true,69
+"What field holds the tag's color?","Tags","/app/api/tags","POST","Tags","Tag Creation",true,48
+"What field holds the tag's color?","Tags","/app/api/short/user_tags","GET","Inventory","Tag Management",false,46
+"What field holds the tag's color?","Tags","/app/api/short/tags","GET","Automations","Tag Management",false,37
+"What field holds the tag's color?","Tags","/app/api/short/tags","GET","Server Monitor","Tag Management",false,37
+"How do I check which monitors are associated with a specific tag?","Tags","/app/api/resource_profile/associated_monitors","GET","Server Monitor","Resource Profile – Associated Monitors",true,65
+"How do I check which monitors are associated with a specific tag?","Tags","/app/api/setting_profile/associated_monitors","GET","Server Monitor","Setting Profile – Associated Monitors",false,65
+"How do I check which monitors are associated with a specific tag?","Tags","/app/api/associated_tags","GET","Automations","Tag Management",false,55
+"How do I check which monitors are associated with a specific tag?","Tags","/app/api/template_associated_monitors","GET","Server Monitor","Server Templates – Associated",false,48
+"How do I check which monitors are associated with a specific tag?","Tags","/app/api/tags/monitors","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,45
+"What endpoint retrieves saved table preferences for the Tags view?","Tags","/app/api/preferences/table/14","GET","Tags","Table Preferences",true,87
+"What endpoint retrieves saved table preferences for the Tags view?","Tags","/app/api/preferences/table/27","GET","User & Alert Management","Table Preferences",false,86
+"What endpoint retrieves saved table preferences for the Tags view?","Tags","/app/api/preferences/table/{table_id}","GET","Inventory","Table Preferences",false,80
+"What endpoint retrieves saved table preferences for the Tags view?","Tags","/app/api/preferences/table/22","GET","User & Alert Management","Table Preferences",false,72
+"What endpoint retrieves saved table preferences for the Tags view?","Tags","/app/api/preferences/table/23","GET","User & Alert Management","Table Preferences",false,72
+"What endpoint retrieves saved table preferences for the Tags view?","Tags","/app/api/preferences/table/24","GET","User & Alert Management","Table Preferences",false,72
+"Which API logs a change-tracking event for tag actions?","Tags","/app/api/tracker","PUT","Tags","Tag Management",true,59
+"Which API logs a change-tracking event for tag actions?","Tags","/app/api/applog/short/logtag_rules/15698000407685844","GET","Operations","Alert Logs",false,55
+"Which API logs a change-tracking event for tag actions?","Tags","/app/api/tags","POST","Tags","Tag Creation",false,55
+"Which API logs a change-tracking event for tag actions?","Tags","/app/api/tags","GET","Tags","Tag Listing",false,50
+"Which API logs a change-tracking event for tag actions?","Tags","/app/api/integration/event_bridge","POST","Third-Party Integrations","Amazon EventBridge Integration",false,47
+"Which API logs a change-tracking event for tag actions?","Tags","/app/api/applog/logtype_resources/name","GET","Operations","Alert Logs",false,44
+"How do I delete an existing tag?","Tags","/app/api/tags","POST","Tags","Tag Creation",true,42
+"How do I delete an existing tag?","Tags","/app/api/short/tags","GET","Inventory","Tag Management",false,29
+"How do I delete an existing tag?","Tags","/app/api/short/tags_list","GET","Inventory","Tag Management",false,29
+"How do I delete an existing tag?","Tags","/app/api/short/user_tags","GET","Inventory","Tag Management",false,29
+"How do I delete an existing tag?","Tags","/app/api/reports/outage/{id}","PUT","Automations","Outage Reports",false,29
+"What field distinguishes a tag's name from its value?","Tags","/app/api/tags","POST","Tags","Tag Creation",true,48
+"What field distinguishes a tag's name from its value?","Tags","/app/api/short/user_tags","GET","Inventory","Tag Management",false,46
+"What field distinguishes a tag's name from its value?","Tags","/app/api/applog/logtype_resources/name","GET","Operations","Alert Logs",false,42
+"What field distinguishes a tag's name from its value?","Tags","/app/api/short/tags","GET","Automations","Tag Management",false,37
+"What field distinguishes a tag's name from its value?","Tags","/app/api/short/tags","GET","Server Monitor","Tag Management",false,37
+"Which API records when a tag is applied to a monitor?","Tags","/app/api/tags/monitors","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",true,64
+"Which API records when a tag is applied to a monitor?","Tags","/app/api/tags","POST","Tags","Tag Creation",false,62
+"Which API records when a tag is applied to a monitor?","Tags","/app/api/monitors/details_page/base/{id}","GET","Automations","Monitor Details",false,57
+"Which API records when a tag is applied to a monitor?","Tags","/app/api/monitor_groups","GET","Server Monitor","Monitor Groups",false,57
+"Which API records when a tag is applied to a monitor?","Tags","/app/api/network/pollers","GET","Inventory","Network Pollers",false,54
+"Which API records when a tag is applied to a monitor?","Tags","/app/api/short/tags","GET","Server Monitor","Tag Management",false,51
+"How do I list tags filtered by tag type?","Tags","/app/api/tags","GET","Tags","Tag Listing",true,88
+"How do I list tags filtered by tag type?","Tags","/app/api/short/user_tags","GET","Inventory","Tag Management",false,71
+"How do I list tags filtered by tag type?","Tags","/app/api/short/tags_list","GET","Inventory","Tag Management",false,67
+"How do I list tags filtered by tag type?","Tags","/app/api/short/tags","GET","Automations","Tag Management",false,63
+"How do I list tags filtered by tag type?","Tags","/app/api/short/tags","GET","Server Monitor","Tag Management",false,63
+"What endpoint loads account context before rendering the Tags page?","Tags","/app/api/client_data/account","GET","Tags","Account Context",true,62
+"What endpoint loads account context before rendering the Tags page?","Tags","/app/api/account_settings","GET","Tags","Account Settings",false,58
+"What endpoint loads account context before rendering the Tags page?","Tags","/app/api/account_settings","GET","Downloads","Account Settings",false,51
+"Which API checks session/user context for the Tags module?","Tags","/app/api/genai/module/monitorlist","GET","Zia Settings","AI Module – Monitor List",true,49
+"Which API checks session/user context for the Tags module?","Tags","/app/api/client_data/account","GET","Tags","Account Context",false,46
+"Which API checks session/user context for the Tags module?","Tags","/app/api/client_data/demo","GET","Tags","Bootstrap Data",false,42
+"Which API checks session/user context for the Tags module?","Tags","/app/api/tags","GET","Tags","Tag Listing",false,40
+"Which API checks session/user context for the Tags module?","Tags","/app/api/client_data/user","GET","Tags","User Context",false,39
+"Which API checks session/user context for the Tags module?","Tags","/app/api/short/tags","GET","Operations","Operations (Supporting lookup, used by multiple sub-features)",false,38
+"How do I retrieve the column order saved for the Tags table?","Tags","/app/api/preferences/table/14","GET","Tags","Table Preferences",true,65
+"How do I retrieve the column order saved for the Tags table?","Tags","/app/api/preferences/table/27","GET","User & Alert Management","Table Preferences",false,59
+"How do I retrieve the column order saved for the Tags table?","Tags","/app/api/preferences/table/{table_id}","GET","Inventory","Table Preferences",false,50
+"What status code do tag creation requests return in the demo account?","Tags","/app/api/tags","POST","Tags","Tag Creation",true,67
+"What status code do tag creation requests return in the demo account?","Tags","/app/api/short/current_status","GET","User & Alert Management","Monitor Status",false,59
+"What status code do tag creation requests return in the demo account?","Tags","/app/api/short/current_status","GET","Automations","Monitor Status",false,59
+"What status code do tag creation requests return in the demo account?","Tags","https://www.site24x7.com/app/api/short/current_status","GET","Configuration Profiles","General App Bootstrap (Not Section-Specific)",false,54
+"What status code do tag creation requests return in the demo account?","Tags","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,52
+"What status code do tag creation requests return in the demo account?","Tags","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,52
+"How do I download the Java APM agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",true,124
+"How do I download the Java APM agent?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",false,112
+"How do I download the Java APM agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,95
+"How do I download the Java APM agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,95
+"How do I download the Java APM agent?","Downloads","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA","GET","Configuration Profiles","APM Agent Configuration",false,84
+"How do I download the Java APM agent?","Downloads","/app/api/apminsight/download/DOTNET","POST","Downloads",".NET APM Agent Download",false,83
+"Which API records a .NET APM agent download event?","Downloads","/app/api/apminsight/download/DOTNET","POST","Downloads",".NET APM Agent Download",true,127
+"Which API records a .NET APM agent download event?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,112
+"Which API records a .NET APM agent download event?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",false,110
+"Which API records a .NET APM agent download event?","Downloads","/app/api/apminsight/download/RUBY","POST","Downloads","Ruby APM Agent Download",false,110
+"Which API records a .NET APM agent download event?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,95
+"Which API records a .NET APM agent download event?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,95
+"What endpoint downloads the Ruby APM monitoring agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",true,109
+"What endpoint downloads the Ruby APM monitoring agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,92
+"What endpoint downloads the Ruby APM monitoring agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,92
+"What endpoint downloads the Ruby APM monitoring agent?","Downloads","/app/api/apminsight/download/RUBY","POST","Downloads","Ruby APM Agent Download",false,84
+"How do I check how many times an agent has been downloaded?","Downloads","https://www.site24x7.com/app/api/apminsight/agent_config_profile/{id}","GET","Configuration Profiles","APM Agent Configuration",true,36
+"How do I check how many times an agent has been downloaded?","Downloads","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA","GET","Configuration Profiles","APM Agent Configuration",false,36
+"How do I check how many times an agent has been downloaded?","Downloads","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/PYTHON","GET","Configuration Profiles","APM Agent Configuration",false,36
+"How do I check how many times an agent has been downloaded?","Downloads","https://www.site24x7.com/app/api/short/apminsight/agent_config_profiles","GET","Configuration Profiles","APM Agent Configuration",false,36
+"How do I check how many times an agent has been downloaded?","Downloads","https://www.site24x7.com/app/api/apminsight/agent_config_profile","POST","Configuration Profiles","APM Agent Configuration",false,34
+"Which API initiates the Java APM agent download workflow?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",true,139
+"Which API initiates the Java APM agent download workflow?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,124
+"Which API initiates the Java APM agent download workflow?","Downloads","/app/api/apminsight/download/DOTNET","POST","Downloads",".NET APM Agent Download",false,110
+"Which API initiates the Java APM agent download workflow?","Downloads","/app/api/apminsight/download/RUBY","POST","Downloads","Ruby APM Agent Download",false,110
+"Which API initiates the Java APM agent download workflow?","Downloads","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA","GET","Configuration Profiles","APM Agent Configuration",false,97
+"Which API initiates the Java APM agent download workflow?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,95
+"What field tracks the download counter for an agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",true,66
+"What field tracks the download counter for an agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,66
+"What field tracks the download counter for an agent?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,66
+"What field tracks the download counter for an agent?","Downloads","/app/api/download_count","PUT","Downloads","Download Counter",false,55
+"What field tracks the download counter for an agent?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",false,54
+"What field tracks the download counter for an agent?","Downloads","/app/api/apminsight/download/DOTNET","POST","Downloads",".NET APM Agent Download",false,54
+"How do I get the direct download link for the .NET APM agent installer?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",true,120
+"How do I get the direct download link for the .NET APM agent installer?","Downloads","/app/api/apminsight/download/DOTNET","POST","Downloads",".NET APM Agent Download",false,100
+"How do I get the direct download link for the .NET APM agent installer?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,96
+"How do I get the direct download link for the .NET APM agent installer?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,96
+"How do I get the direct download link for the .NET APM agent installer?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",false,83
+"How do I get the direct download link for the .NET APM agent installer?","Downloads","/app/api/apminsight/download/RUBY","POST","Downloads","Ruby APM Agent Download",false,83
+"Which API fetches account context before showing downloads?","Downloads","/app/api/client_data/account","GET","Downloads","Account Context",true,68
+"Which API fetches account context before showing downloads?","Downloads","/app/api/account_settings","GET","My Account","Account Settings",false,63
+"Which API fetches account context before showing downloads?","Downloads","/app/api/account_settings","GET","Downloads","Account Settings",false,57
+"Which API fetches account context before showing downloads?","Downloads","/app/api/account_settings","PUT","My Account","Account Settings",false,56
+"What endpoint loads dashboard preferences for the Downloads page?","Downloads","/app/api/short/dashboards/favourites","GET","Downloads","Dashboard Preferences",true,83
+"What endpoint loads dashboard preferences for the Downloads page?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,54
+"What endpoint loads dashboard preferences for the Downloads page?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,54
+"What endpoint loads dashboard preferences for the Downloads page?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,54
+"How do I download the Ruby APM agent gem package?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",true,138
+"How do I download the Ruby APM agent gem package?","Downloads","/app/api/apminsight/download/RUBY","POST","Downloads","Ruby APM Agent Download",false,112
+"How do I download the Ruby APM agent gem package?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,102
+"How do I download the Ruby APM agent gem package?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,95
+"Which API checks user context before rendering the Downloads module?","Downloads","/app/api/client_data/user","GET","Downloads","User Context",true,68
+"Which API checks user context before rendering the Downloads module?","Downloads","/app/api/short/users_list","GET","User & Alert Management","User Management",false,57
+"What status code is returned when recording a Java agent download?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",true,95
+"What status code is returned when recording a Java agent download?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",false,83
+"What status code is returned when recording a Java agent download?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,66
+"What status code is returned when recording a Java agent download?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,66
+"What status code is returned when recording a Java agent download?","Downloads","https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA","GET","Configuration Profiles","APM Agent Configuration",false,63
+"How do I find the static download URL for the .NET agent MSI?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",true,121
+"How do I find the static download URL for the .NET agent MSI?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",false,85
+"How do I find the static download URL for the .NET agent MSI?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,85
+"Which API loads bootstrap/demo metadata for the Downloads page?","Downloads","/app/api/client_data/demo","GET","Downloads","Bootstrap Data",true,57
+"Which API loads bootstrap/demo metadata for the Downloads page?","Downloads","/sp/api/short/statuspages","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API loads bootstrap/demo metadata for the Downloads page?","Downloads","/sp/api/statuspages/15698000418173443","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API loads bootstrap/demo metadata for the Downloads page?","Downloads","/sp/api/statuspages/15698000418173443/components/summary_details/15698000425317040","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API loads bootstrap/demo metadata for the Downloads page?","Downloads","/sp/api/statuspages/15698000418173443/components/summary_details/15698000447030031","GET","Operations","Status Pages (StatusIQ)",false,55
+"Which API loads bootstrap/demo metadata for the Downloads page?","Downloads","/sp/api/statuspages/15698000418173443/summary_details","GET","Operations","Status Pages (StatusIQ)",false,55
+"What endpoint is used to track agent download counts account-wide?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip","GET","Downloads","Java APM Agent Download",true,66
+"What endpoint is used to track agent download counts account-wide?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi","GET","Downloads",".NET APM Agent Download",false,66
+"What endpoint is used to track agent download counts account-wide?","Downloads","https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem","GET","Downloads","Ruby APM Agent Download",false,66
+"What endpoint is used to track agent download counts account-wide?","Downloads","/app/api/apminsight/download/JAVA","POST","Downloads","Java APM Agent Download",false,54
+"What endpoint is used to track agent download counts account-wide?","Downloads","/app/api/apminsight/download/DOTNET","POST","Downloads",".NET APM Agent Download",false,54
+"What endpoint is used to track agent download counts account-wide?","Downloads","/app/api/apminsight/download/RUBY","POST","Downloads","Ruby APM Agent Download",false,54
