@@ -20,6 +20,72 @@ const clientJs = `
   var PAGE_SIZE = 20;
   var expandedCards = new Set();
   var lastResults = [];
+  var activeTab = 'results'; // 'results' | 'history' | 'dataset'
+
+  // ── PERSISTENT STORE ──
+  var STORAGE_KEY_DS = 's247_dataset';
+  var STORAGE_KEY_HX = 's247_history';
+
+  function loadStore(key) {
+    try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch(e){ return []; }
+  }
+  function saveStore(key, data) {
+    try { localStorage.setItem(key, JSON.stringify(data)); } catch(e){}
+  }
+
+  var dataset = loadStore(STORAGE_KEY_DS);   // [{id, query, api, markedCorrect, addedAt}]
+  var history  = loadStore(STORAGE_KEY_HX);  // [{query, topResult, resultCount, searchedAt}]
+
+  function updateBadges() {
+    var dsBadge = document.getElementById('datasetBadge');
+    var hxBadge = document.getElementById('historyBadge');
+    if (dsBadge) dsBadge.textContent = dataset.length;
+    if (hxBadge) hxBadge.textContent = history.length;
+  }
+
+  function recordHistory(q, results) {
+    if (!q) return;
+    var top = results.length ? results[0].api : null;
+    history.unshift({ query: q, topResult: top ? top.endpoint : '', resultCount: results.length, searchedAt: new Date().toISOString() });
+    if (history.length > 100) history = history.slice(0, 100);
+    saveStore(STORAGE_KEY_HX, history);
+    updateBadges();
+  }
+
+  function addToDataset(apiId, markedCorrect) {
+    var api = apis.find(function(a){ return a.id === apiId; });
+    if (!api) return;
+    var existing = dataset.findIndex(function(d){ return d.apiId === apiId && d.query === query; });
+    if (existing >= 0) {
+      if (markedCorrect) dataset[existing].markedCorrect = true;
+      showToast(markedCorrect ? 'Marked as correct!' : 'Already in dataset');
+    } else {
+      dataset.unshift({
+        id: Date.now(),
+        query: query,
+        apiId: apiId,
+        endpoint: api.endpoint,
+        method: api.method,
+        sheet: api.sheet,
+        subFeature: api.subFeature,
+        description: api.description,
+        markedCorrect: !!markedCorrect,
+        addedAt: new Date().toISOString()
+      });
+      showToast(markedCorrect ? '&#10003; Marked correct \u2014 saved to dataset' : '&#43; Added to dataset');
+    }
+    saveStore(STORAGE_KEY_DS, dataset);
+    updateBadges();
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    if (!t) return;
+    t.innerHTML = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+  }
 
   var STOPWORDS = new Set(['a','an','the','is','are','was','were','be','been','being',
     'have','has','had','do','does','did','will','would','could','should','may','might',
@@ -207,8 +273,8 @@ const clientJs = `
           '<div class="rc-desc">'+highlight(api.description, tokens)+'</div>' +
           '<div class="rc-meta">'+esc(api.subFeature)+'</div>' +
           '<div class="rc-actions">' +
-            '<button class="action-btn btn-correct" onclick="event.stopPropagation()">&#10003; Mark Correct</button>' +
-            '<button class="action-btn btn-dataset" onclick="event.stopPropagation()">&#43; Add to Dataset</button>' +
+            '<button class="action-btn btn-correct" data-apiid="'+api.id+'" onclick="event.stopPropagation();markCorrect('+api.id+')">&#10003; Mark Correct</button>' +
+            '<button class="action-btn btn-dataset" data-apiid="'+api.id+'" onclick="event.stopPropagation();addDataset('+api.id+')">&#43; Add to Dataset</button>' +
             '<a class="action-btn btn-try" href="https://www.site24x7.com'+esc(api.endpoint)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#9654; Try API</a>' +
           '</div>' +
         '</div>' +
@@ -300,6 +366,82 @@ const clientJs = `
     window.scrollTo({top:0,behavior:'smooth'});
   };
 
+  window.markCorrect = function(apiId) {
+    if (!query) { showToast('Type a query first to mark a correct answer'); return; }
+    addToDataset(apiId, true);
+  };
+
+  window.addDataset = function(apiId) {
+    if (!query) { showToast('Type a query first before adding to dataset'); return; }
+    addToDataset(apiId, false);
+  };
+
+  window.removeFromDataset = function(id) {
+    dataset = dataset.filter(function(d){ return d.id !== id; });
+    saveStore(STORAGE_KEY_DS, dataset);
+    updateBadges();
+    renderActiveTab();
+  };
+
+  window.clearHistory = function() {
+    if (!confirm('Clear all Q&A history?')) return;
+    history = [];
+    saveStore(STORAGE_KEY_HX, history);
+    updateBadges();
+    renderActiveTab();
+  };
+
+  window.clearDataset = function() {
+    if (!confirm('Clear entire dataset?')) return;
+    dataset = [];
+    saveStore(STORAGE_KEY_DS, dataset);
+    updateBadges();
+    renderActiveTab();
+  };
+
+  window.exportDataset = function(fmt) {
+    if (!dataset.length) { showToast('Dataset is empty'); return; }
+    var content, filename, mime;
+    if (fmt === 'csv') {
+      var rows = ['query,endpoint,method,sheet,subFeature,markedCorrect,addedAt'];
+      dataset.forEach(function(d) {
+        rows.push([
+          '"'+d.query.replace(/"/g,'""')+'"',
+          '"'+d.endpoint+'"',
+          d.method,
+          '"'+d.sheet+'"',
+          '"'+d.subFeature.replace(/"/g,'""')+'"',
+          d.markedCorrect ? 'true' : 'false',
+          d.addedAt
+        ].join(','));
+      });
+      content = rows.join('\n');
+      filename = 'site24x7_dataset.csv';
+      mime = 'text/csv';
+    } else {
+      content = JSON.stringify(dataset, null, 2);
+      filename = 'site24x7_dataset.json';
+      mime = 'application/json';
+    }
+    var blob = new Blob([content], {type: mime});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToast('Downloaded ' + filename);
+  };
+
+  window.exportHistory = function() {
+    if (!history.length) { showToast('History is empty'); return; }
+    var blob = new Blob([JSON.stringify(history, null, 2)], {type:'application/json'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'site24x7_history.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
   // Search
   var inp = document.getElementById('searchInput');
   var clrBtn = document.getElementById('clearBtn');
@@ -308,6 +450,10 @@ const clientJs = `
     query = inp.value.trim();
     currentPage = 1;
     clrBtn.style.visibility = query ? 'visible' : 'hidden';
+    activeTab = 'results';
+    setTabActive('results');
+    var results = getResults();
+    recordHistory(query, results);
     renderResults();
   }
 
@@ -321,17 +467,103 @@ const clientJs = `
     inp.value=''; query=''; clrBtn.style.visibility='hidden'; renderResults();
   });
 
-  // Tabs (Results / Q&A History / Dataset)
+  // ── TABS ──
+  function setTabActive(tab) {
+    activeTab = tab;
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.tab === tab); });
+  }
+
+  function renderDatasetTab() {
+    var pane = document.getElementById('resultsPane');
+    var countEl = document.getElementById('resultCount');
+    countEl.textContent = dataset.length + ' saved Q&A pair(s)';
+    if (!dataset.length) {
+      pane.innerHTML = '<div class="no-results"><div class="nr-icon">&#128193;</div><h3>Dataset is empty</h3>' +
+        '<p>Search for an API, then click <strong>Mark Correct</strong> or <strong>Add to Dataset</strong> on any result.</p></div>';
+      return;
+    }
+    var html = '<div class="ds-toolbar">' +
+      '<span class="ds-info">'+dataset.length+' pair(s) &bull; '+dataset.filter(function(d){return d.markedCorrect;}).length+' marked correct</span>' +
+      '<div class="ds-btns">' +
+        '<button class="ds-btn" onclick="exportDataset(\'json\')">&#8615; Export JSON</button>' +
+        '<button class="ds-btn" onclick="exportDataset(\'csv\')">&#8615; Export CSV</button>' +
+        '<button class="ds-btn ds-btn-danger" onclick="clearDataset()">&#128465; Clear All</button>' +
+      '</div></div>';
+    html += '<table class="ds-table"><thead><tr>' +
+      '<th>Query</th><th>Endpoint</th><th>Method</th><th>Module</th><th>Correct?</th><th>Added</th><th></th>' +
+    '</tr></thead><tbody>';
+    dataset.forEach(function(d) {
+      html += '<tr>' +
+        '<td class="ds-query">'+esc(d.query)+'</td>' +
+        '<td class="ds-ep"><code>'+esc(d.endpoint)+'</code></td>' +
+        '<td><span class="method-badge method-'+d.method.toLowerCase()+'">'+d.method+'</span></td>' +
+        '<td class="ds-sheet">'+esc(d.sheet)+'</td>' +
+        '<td class="ds-correct">'+(d.markedCorrect ? '<span class="correct-yes">&#10003; Yes</span>' : '<span class="correct-no">&#8212;</span>')+'</td>' +
+        '<td class="ds-date">'+new Date(d.addedAt).toLocaleDateString()+'</td>' +
+        '<td><button class="ds-remove" onclick="removeFromDataset('+d.id+')">&#215;</button></td>' +
+      '</tr>';
+    });
+    html += '</tbody></table>';
+    pane.innerHTML = html;
+  }
+
+  function renderHistoryTab() {
+    var pane = document.getElementById('resultsPane');
+    var countEl = document.getElementById('resultCount');
+    countEl.textContent = history.length + ' search(es) in history';
+    if (!history.length) {
+      pane.innerHTML = '<div class="no-results"><div class="nr-icon">&#128336;</div><h3>No search history yet</h3>' +
+        '<p>Your searches will appear here automatically.</p></div>';
+      return;
+    }
+    var html = '<div class="ds-toolbar">' +
+      '<span class="ds-info">'+history.length+' recent search(es)</span>' +
+      '<div class="ds-btns">' +
+        '<button class="ds-btn" onclick="exportHistory()">&#8615; Export JSON</button>' +
+        '<button class="ds-btn ds-btn-danger" onclick="clearHistory()">&#128465; Clear</button>' +
+      '</div></div>';
+    html += '<table class="ds-table"><thead><tr>' +
+      '<th>Query</th><th>Top Result</th><th>Results</th><th>When</th>' +
+    '</tr></thead><tbody>';
+    history.forEach(function(h) {
+      html += '<tr class="hx-row" onclick="replaySearch(\''+h.query.replace(/'/g,"\\'")+'\')">'+
+        '<td class="ds-query">'+esc(h.query)+'</td>' +
+        '<td class="ds-ep"><code>'+esc(h.topResult||'—')+'</code></td>' +
+        '<td>'+h.resultCount+'</td>' +
+        '<td class="ds-date">'+new Date(h.searchedAt).toLocaleString()+'</td>' +
+      '</tr>';
+    });
+    html += '</tbody></table>';
+    pane.innerHTML = html;
+  }
+
+  function renderActiveTab() {
+    if (activeTab === 'dataset') renderDatasetTab();
+    else if (activeTab === 'history') renderHistoryTab();
+    else renderResults();
+  }
+
+  window.replaySearch = function(q) {
+    document.getElementById('searchInput').value = q;
+    query = q;
+    currentPage = 1;
+    activeTab = 'results';
+    setTabActive('results');
+    document.getElementById('clearBtn').style.visibility = 'visible';
+    renderResults();
+  };
+
   document.querySelectorAll('.tab-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
+      setTabActive(btn.dataset.tab);
+      renderActiveTab();
     });
   });
 
   buildModuleChips();
   buildSidebar();
   renderResults();
+  updateBadges();
   document.getElementById('hTotalCount').textContent = apis.length + ' endpoints';
 })();
 `;
@@ -887,6 +1119,101 @@ const css = `
     .search-row { flex-wrap: wrap; }
     .search-type-select { display: none; }
   }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ── DATASET / HISTORY TABLES ── */
+  .ds-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ds-info { font-size: 12px; color: #6b7280; }
+  .ds-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ds-btn {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    color: #374151;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .ds-btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+  .ds-btn-danger { color: #b91c1c; border-color: #fca5a5; }
+  .ds-btn-danger:hover { background: #fee2e2; }
+
+  .ds-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .ds-table thead { background: #f9fafb; }
+  .ds-table th {
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .ds-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+  }
+  .ds-table tr:last-child td { border-bottom: none; }
+  .ds-table tbody tr:hover { background: #f9fafb; }
+  .hx-row { cursor: pointer; }
+  .hx-row:hover { background: #eff6ff !important; }
+  .ds-query { font-weight: 500; color: #111827; max-width: 160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .ds-ep code { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size:11px; color:#1d4ed8; word-break:break-all; }
+  .ds-sheet { color: #6b7280; white-space: nowrap; }
+  .ds-date { color: #9ca3af; white-space: nowrap; }
+  .ds-correct { text-align: center; }
+  .correct-yes { color: #15803d; font-weight: 600; }
+  .correct-no  { color: #d1d5db; }
+  .ds-remove {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    transition: color 0.12s, background 0.12s;
+  }
+  .ds-remove:hover { color: #b91c1c; background: #fee2e2; }
 `;
 
 const html = `<!DOCTYPE html>
@@ -923,9 +1250,9 @@ const html = `<!DOCTYPE html>
     <button id="searchBtn">&#128269; Search</button>
   </div>
   <div class="tabs-row">
-    <button class="tab-btn active">Results</button>
-    <button class="tab-btn">Q&amp;A History</button>
-    <button class="tab-btn">Dataset <span class="tab-badge">0</span></button>
+    <button class="tab-btn active" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="history">Q&amp;A History <span class="tab-badge" id="historyBadge">0</span></button>
+    <button class="tab-btn" data-tab="dataset">Dataset <span class="tab-badge" id="datasetBadge">0</span></button>
   </div>
 </div>
 
@@ -962,6 +1289,9 @@ const html = `<!DOCTYPE html>
   </main>
 
 </div>
+
+<!-- Toast -->
+<div id="toast"></div>
 
 <script>
 ${clientJs}
