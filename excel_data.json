@@ -1,0 +1,617 @@
+{
+  "Inventory": {
+    "rowCount": 93,
+    "columns": [
+      "Inventory",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Inventory": "Inventory Analysis covers the discovery and inventory side of Site24x7 -- monitor inventory and import, monitor dependency mapping, network discovery and polling configuration, location/metric/server profiles, credential storage, alert rules, and license usage. Note: every response body captured in the source data for this sheet was sanitized during an earlier merge step (response bodies show only a removal note rather than real content); endpoint paths, methods, and status codes are real, but response content should be treated as not captured for this sheet specifically.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Inventory": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Inventory": "AI / Workflows",
+        "__EMPTY": "/app/api/genai/workflows",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200 OK",
+        "__EMPTY_3": "Lists all configured AI/Zia workflow definitions.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\r\n  \"safe_note\": \"response body removed from sanitized merged HAR\",\r\n  \"summary\": \"JSON object with keys: code, message, data. data is a list with 9 item(s); sample data fields: name, id; contains error/message information\"\r\n}"
+      }
+    ]
+  },
+  "User & Alert Management": {
+    "rowCount": 39,
+    "columns": [
+      "User & Alert Management",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "User & Alert Management": "User & Alert Management covers user accounts, roles and permissions, user groups, on-call schedules, alert categories, attribute groups/details used for alert filtering, and the change tracker that logs configuration changes across the account.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "User & Alert Management": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "User & Alert Management": "AI / Workflows",
+        "__EMPTY": "/app/api/genai/workflows",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200 OK",
+        "__EMPTY_3": "Lists all configured AI/Zia workflow definitions.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\r\n  \"code\": 0,\r\n  \"message\": \"success\",\r\n  \"data\": [\r\n    {\r\n      \"name\": \"test management\",\r\n      \"id\": \"15698000492698001\"\r\n    },\r\n    {\r\n      \"name\": \"Testagent\",\r\n      \"id\": \"testagent\"\r\n    },\r\n    {\r\n      \"module\": \"0\",\r\n      \"name\": \"Alarms Assistant\",\r\n      \"description\": \"Will analyse alarms monitors\",\r\n      \"is_global\": true,\r\n      \"id\": \"alarms_assistant\",\r\n      \"monitor_type\": \"alarm\"\r\n    },\r\n    {\r\n      \"module\": \"2\",\r\n      \"name\": \"APM Assistant\",\r\n      \"description\": \"Will analyse apm monitor\",\r\n      \"is_global\": true,\r\n      \"id\": \"apm_assistant\",\r\n      \"monitor_type\": \"APM-Insight-Application\"\r\n    },\r\n    {\r\n      \"module\": \"12\",\r\n      \"name\": \"Kubernetes Assistant\",\r\n      \"descriptio\r\n..."
+      }
+    ]
+  },
+  "Configuration Profiles": {
+    "rowCount": 132,
+    "columns": [
+      "Configuration Profiles",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Configuration Profiles": "Configuration Profiles consolidates the 16 underlying configuration sections explored earlier in this project: Location Profile, Threshold and Availability, Notification Profile, Business Hours, Email Templates, OAuth Providers, Web Tokens, APM Agent Configuration, APM Business Transaction Configuration, APM Business Transaction Rules, Credential Profile, Metric Profile, Mobile Application Profile, Anomaly Settings, Auto Upgrade Profile, and Custom Report. Each row's Sub-Feature column names which of these 16 sections it belongs to. Rows tagged 'General App Bootstrap' or 'Unrelated' are app-wide startup calls or incidental traffic not specific to any one of the 16 sections.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Configuration Profiles": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Configuration Profiles": "APM Agent Configuration",
+        "__EMPTY": "https://www.site24x7.com/app/api/apminsight/agent_config_profile",
+        "__EMPTY_1": "POST",
+        "__EMPTY_2": "401",
+        "__EMPTY_3": "Attempts to create a new APM Agent Configuration profile. Payload includes a profile_name, the target agent_type (PYTHON in this capture), an is_default flag, and a large 'agent_config' object containing dozens of APM agent tuning parameters (SQL trace parametrization, transaction trace thresholds/enablement, exception/error ignore lists, background vs. web transaction tracking toggles, header/parameter redaction lists, etc.).",
+        "__EMPTY_4": "{\r\n  \"profile_name\": \"sample\",\r\n  \"agent_type\": \"PYTHON\",\r\n  \"is_default\": false,\r\n  \"agent_config\": {\r\n    \"transaction.trace.sql.parametrize\": true,\r\n    \"down.alert.enabled\": true,\r\n    \"suppress.instance.alerts\": true,\r\n    \"cloud.instance.cleanup.threshold\": 7,\r\n    \"transaction.trace.threshold\": 2,\r\n    \"show.instance.port.number\": true,\r\n    \"transaction.trace.enabled\": true,\r\n    \"autoupgrade.enabled\": false,\r\n    \"transaction.trace.sql.stacktrace.threshold\": \"5\",\r\n    \"transaction.tracking.request.interval\": 1,\r\n    \"sql.capture.enabled\": true,\r\n    \"apdex.threshold\": 0.5,\r\n    \"transaction.grouping\": \"\",\r\n    \"transaction.skip.patterns\": \"\",\r\n    \"bgtransaction.trace.threshold\": \"5\",\r\n    \"webtransaction.record.cputime.enabled\": true,\r\n    \"bgtransaction.tracking.enabled\": false,\r\n    \"transaction.grouping.by.position\": \"\",\r\n    \"transaction.keyword.skip.grouping\": \"\",\r\n    \"webtransaction.trace.input.params.record\": false,\r\n    \"bgtransaction.record.memory.allocation.enabled\": false,\r\n    \"bgtransaction.trace.enabled\": true,\r\n    \"exceptions.ignore\": \"\",\r\n    \"webtransaction.record.memory.allocation.enabled\": true,\r\n    \"bgtransaction.trace.external.components.count.threshold\": \"50\",\r\n    \"webtransaction.trace.request.headers.ignore\": \"X-Site24x7-Id, X-SITE24X7-RUM-APPKEY, X-SITE24X7-RUM-TRACEID, Site24x7SyntheticKey\",\r\n    \"transaction.skip.listening\": \"*.css, *.js, *.gif, *.jpg, *.jpeg, *.bmp, *.png, *.ico\",\r\n    \"webtransaction.trace.input.params.ignore\": \"password, authKey\",\r\n    \"http.errors.ignore\": \"\",\r\n    \"capture.http.network.bytes\": true,\r\n    \"bgtransaction.tracking.request.interval\": \"1\",\r\n    \"capture.all.traces\": true,\r\n    \"http.errors.track\": \"\",\r\n    \"bgtransaction.record.cputime.enabled\": false,\r\n    \"transaction.prefix.grouping\": \"\"\r\n  }\r\n}",
+        "__EMPTY_5": "{\r\n  \"error_code\": 1010,\r\n  \"message\": \"Access Denied. <a class=\\\"txt-white underline\\\" href=\\\"/signup.html?pack=44&l=en\\\">Sign Up</a> for Site24x7 to access this feature.\"\r\n}"
+      }
+    ]
+  },
+  "Automations": {
+    "rowCount": 49,
+    "columns": [
+      "Automations",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Automations": "Automations covers Site24x7's IT Automation feature -- creating, listing, scheduling, and viewing logs for automated remediation actions -- alongside AI/Zia workflow definitions, APM Insight checks, dashboards, outage and alarm reporting, and third-party integrations (Cliq, Circuits, Qntrl) that automations can trigger into.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Automations": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Automations": "AI / Workflows",
+        "__EMPTY": "/app/api/genai/workflows",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200 OK",
+        "__EMPTY_3": "Lists all configured AI/Zia workflow definitions.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\r\n  \"code\": 0,\r\n  \"message\": \"success\",\r\n  \"data\": [\r\n    {\r\n      \"name\": \"test management\",\r\n      \"id\": \"15698000492698001\"\r\n    },\r\n    {\r\n      \"name\": \"Testagent\",\r\n      \"id\": \"testagent\"\r\n    },\r\n    {\r\n      \"module\": \"0\",\r\n      \"name\": \"Alarms Assistant\",\r\n      \"description\": \"Will analyse alarms monitors\",\r\n      \"is_global\": true,\r\n      \"id\": \"alarms_assistant\",\r\n      \"monitor_type\": \"alarm\"\r\n    },\r\n    {\r\n      \"module\": \"2\",\r\n      \"name\": \"APM Assistant\",\r\n      \"description\": \"Will analyse apm monitor\",\r\n      \"is_global\": true,\r\n      \"id\": \"apm_assistant\",\r\n      \"monitor_type\": \"APM-Insight-Application\"\r\n    },\r\n    {\r\n      \"module\": \"12\",\r\n      \"name\": \"Kubernetes Assistant\",\r\n      \"descriptio\r\n..."
+      }
+    ]
+  },
+  "Zia Settings": {
+    "rowCount": 20,
+    "columns": [
+      "Zia Settings",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Zia Settings": "Zia Settings covers Site24x7's AI layer (branded Zia): AI-generated recommendations, AI task management, AI workflow CRUD operations, AI-curated monitor collections, and the underlying bot/AI model configuration.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Zia Settings": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Zia Settings": "AI Collections",
+        "__EMPTY": "/app/api/genai/collections",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200 OK",
+        "__EMPTY_3": "Lists AI data collections available for Zia workflow processing.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\r\n  \"code\": 0,\r\n  \"message\": \"success\",\r\n  \"data\": []\r\n}"
+      }
+    ]
+  },
+  "Server Monitor": {
+    "rowCount": 50,
+    "columns": [
+      "Server Monitor",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Server Monitor": "Server Monitor covers server-specific monitoring configuration: server templates and their associated monitors, resource profiles and setting profiles (CRUD and their monitor associations), threshold profiles, upgrade profiles for monitoring agents, APM auto-profiler rules, and server-specific features and notification profiles.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Server Monitor": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Server Monitor": "AI / Collections",
+        "__EMPTY": "/app/api/genai/collections",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200 OK",
+        "__EMPTY_3": "Lists AI data collections available for Zia workflow processing.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\r\n  \"code\": 0,\r\n  \"message\": \"success\",\r\n  \"data\": []\r\n}"
+      }
+    ]
+  },
+  "Plugin Monitor": {
+    "rowCount": 26,
+    "columns": [
+      "Plugin Monitor",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Plugin Monitor": "Plugin Monitor lets Site24x7 collect custom metrics from scripts (plugins) running on a server, rather than relying only on built-in monitor types. It has two sub-features: 'Settings' is a single account-wide toggle controlling whether plugins are auto-discovered and added when found on a server. 'Plugin Template Config' is a list of registered plugin templates (e.g. iNodeMon.py, mysql_monitoring.py, Redis.py), each showing a version number and how many distinct metrics (attributes) that template reports. Clicking a template row does not open any further detail in the UI, so this list view is the complete picture for that sub-feature.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Plugin Monitor": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Plugin Monitor": "Plugin Template Config",
+        "__EMPTY": "/app/api/plugin/template/275039000043639001",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "401",
+        "__EMPTY_3": "Fetches data for: Plugin Template Config (endpoint: /app/api/plugin/template/275039000043639001)",
+        "__EMPTY_4": "(no request body)",
+        "__EMPTY_5": "{\"error_code\":1100,\"message\":\"You are not authorized to perform this operation.\"}"
+      }
+    ]
+  },
+  "Operations": {
+    "rowCount": 132,
+    "columns": [
+      "Operations",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Operations": "Operations groups five distinct features used for day-to-day monitoring operations rather than initial setup. 'Scheduled Maintenance' lets you define planned downtime windows (once/daily/weekly/monthly/yearly) for specific monitors so expected work doesn't trigger false alerts. 'Status Pages' is StatusIQ, a separate customer-facing app for publishing public incident/status pages. 'Schedule IT Automation' runs an automated remediation script on a recurring schedule, independent of any maintenance window. 'Log Report' pulls a historical event log for a single monitor over a chosen date range (Site24x7's internal API name for this is 'log_reports'). 'Alert Logs' is an account-wide, filterable audit log of every alert ever sent across all monitors and channels (Site24x7's internal API name for this is 'applog', short for Application Log). A number of rows below are tagged as supporting lookups or dashboard-widget rendering -- these are real API calls but feed multiple sub-features or general UI widgets rather than belonging to one specific feature.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Operations": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Operations": "Alert Logs",
+        "__EMPTY": "/app/api/applog/alerts",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200",
+        "__EMPTY_3": "Fetches data for: Alert Logs (endpoint: /app/api/applog/alerts)",
+        "__EMPTY_4": "(no request body)",
+        "__EMPTY_5": "{\"code\":0,\"message\":\"success\",\"data\":[{\"monitor_id\":\"15698000234418059\",\"on_call_schedule_id\":\"15698000003805001\",\"check_frequency\":5,\"query\":\"logtype=\\\"Windows Event Logs\\\" and type = \\\"Directory Service\\\" and Level = \\\"Error\\\"\",\"threshold_profile_id\":\"15698000164678014\",\"display_name\":\"2535975\",\"attribute_config\":{\"updated_time\":\"1760332888233\",\"condition\":\">\",\"threshold\":\"1\",\"attribute_value\":\"0\",\"type\":\"0\",\"alert_thresholds\":[{\"severity\":\"2\",\"comparison\":\">\",\"threshold_value\":\"1\",\"action_ids\":[],\"strategy\":\"1\",\"polls_check\":\"1\"}],\"last_polled_time\":\"1782122040000\",\"alert_type\":\"1\",\"status\":\"1\"},\"alert_frequency\":5,\"system_generated\":false,\"perform_automation\":true,\"alert_id\":\"15698000388434001\",\"group_ids\":[\"15698000369230023\"],\"logtype_id\":\"15698000090259001\",\"notification_profile_id\":\"15698000213878011\"},{\"alerted_time\":\"1754982557285\",\"monitor_id\":\"15698000369865015\",\"on_call_schedule_id\":\"15698000003805001\",\"check_frequency\":5,\"query\":\"logtype=\\\"APM Exceptions & Errors\\\" and exceptionname=\\\"403\\\"\",\"threshold_profile_id\":\"15698000164678014\",\"alert_link_params\":{\"from_date\":\"12-08-2025 00:00:00\",\"to_date\":\"12-08-2025 00:04:59\",\"query\":\"logtype=\\\"APM Exceptions & Errors\\\" and exceptionname=\\\"403\\\"\"},\"display_name\":\"403\",\"attribute_config\":{\"updated_time\":\"1752141824652\",\"condition\":\">\",\"field\":\"\",\"threshold\":\"50\",\"attribute_value\":\"0\",\"type\":\"0\",\"alert_thresholds\":[{\"severity\":\"2\",\"comparison\":\">\",\"threshold_value\":\"50\",\"action_ids\":[],\"strategy\":\"1\",\"polls_check\":\"1\"}],\"last_polled_time\":\"1782122040000\",\"alert_type\":\"1\",\"status\":\"1\"},\"alert_frequency\":5,\"system_generated\":false,\"perform_automation\":true,\"alert_id\":\"15698000410717005\",\"group_ids\":[\"15698000369230023\"],\"logtype_id\":\"15698000147501001\",\"notification_profile_id\":\"15698000288377017\"},{\"monitor_id\":\"15698000386277063\",\"on_call_schedule_id\":\"15698000003805001\",\"check_frequency\":1440,\"query\":\"logtype=\\\"HAProxy Logs\\\"\",\"threshold_profile_id\":\"15698000164678014\",\"display_name\":\"500 Errors Trend\",\"attribute_config\":{\"updated_time\":\"1753931208959\",\"condition\":\"Increases by\",\"field\":\"\",\"threshold\":\"250\",\"attribute_value\":\"0\",\"type\":\"0\",\"alert_thresholds\":[{\"severity\":\"2\",\"comparison\":\"Increases by\",\"threshold_value\":\"250\",\"action_ids\":[],\"strategy\":\"1\",\"polls_check\":\"1\"}],\"last_polled_time\":\"1782121680000\",\"learning_days\":\"1\",\"alert_type\":\"0\",\"status\":\"1\"},\"alert_frequency\":1440,\"system_generated\":true,\"perform_automation\":true,\"alert_id\":\"15698000386277053\",\"group_ids\":[\"15698000003805001\"],\"cur_moving_avg\":\"0\",\"logtype_id\":\"15698000175920001\",\"notification_profile_id\":\"15698000328985005\"},{\"observation_time\":\"Jun 23, 2026 03:02:31\",\"monitor_id\":\"15698000378367361\",\"on_call_schedule_id\":\"15698000003805001\",\"check_frequency\":1440,\"query\":\"logtype=\\\"IIS Logs\\\" and statuscode=500 groupby stemuri\",\"threshold_profile_id\":\"15698000164678014\",\"display_name\":\"500 Errors Trend\",\"attribute_config\":{\"condition\":\"Increases by\",\"field\":\"\",\"threshold\":\"100\",\"attribute_value\":\"0\",\"type\":\"0\",\"alert_th...[truncated, 135047 chars total]"
+      }
+    ]
+  },
+  "My Account": {
+    "rowCount": 27,
+    "columns": [
+      "My Account",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "My Account": "My Account configures the logged-in user's environment and the organization's account-wide settings -- this is administrative configuration, not monitoring configuration. 'Personal Settings' covers the user's own profile and status message; most identity actions (password, email, MFA) route to a separate Zoho Accounts service rather than Site24x7's own API. 'Web Client Notification Settings' controls in-app UI preferences such as the snackbar/toast notification language and behavior. 'Account Settings' covers org-wide settings such as industry, country, account-level language, time zone and hour format for reports, and the default landing page shown after login.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "My Account": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "My Account": "Account Settings",
+        "__EMPTY": "/app/api/account_settings",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200",
+        "__EMPTY_3": "Fetches data for: Account Settings (endpoint: /app/api/account_settings)",
+        "__EMPTY_4": "(no request body)",
+        "__EMPTY_5": "{\"code\":0,\"message\":\"success\",\"data\":{\"zd_security\":\"https://admin.zoho.com/sredirect?zaaid=695331022&action=security&servicename=ZohoDirectory\",\"org_info\":{\"org_admin\":\"demo@zylker.com\",\"org_id\":\"41343476\",\"org_name\":\"Site24x7 Demo\"},\"personal_info\":{\"email_id\":\"demo@zylker.com\",\"selection_type\":0,\"statusiq_role_id\":21,\"user_id\":\"15698000148122031\",\"role_id\":1,\"user_name\":\"Demo\",\"alertTypes\":[1],\"cloudspend_role_id\":12,\"alerting_period\":{\"start_time\":\"00:00\",\"end_time\":\"23:59\"},\"org_role\":1,\"zuid\":\"703108839\"},\"zd_users\":\"https://admin.zoho.com/sredirect?zaaid=695331022&action=users&servicename=ZohoDirectory\",\"zd_org\":\"https://admin.zoho.com/sredirect?zaaid=695331022&action=org&servicename=ZohoDirectory\",\"mail_admin_cpanel\":\"mailadmin.zoho.com\",\"account_info\":{\"cloudspend_subscription_url\":\"https://store.zoho.com/html/store/index.html#subscription?serviceId=710000&customId=ef9bec79eb9d7739caef61f6e0a28dfa\",\"payload_encryption\":false,\"landing_page\":0,\"industry\":1,\"account_contact_id\":\"demo@zylker.com\",\"time_zone\":\"PST8PDT\",\"plan_name\":\"Enterprise Plan\",\"hour_format\":\"h\",\"language_code\":\"en\",\"country_code\":\"IN\",\"cloudspend_plan_name\":\"Evaluation Plan\",\"statusiq_plan_name\":\"BLUE Plan\",\"landing_page_supported\":true,\"zcloud_supported\":false,\"plan_id\":502,\"ws_plan_name\":\"Paid Plan\"},\"subproducts_info\":{\"active_sub_products\":[2,1,3],\"is_signals_active\":true}}}"
+      }
+    ]
+  },
+  "Report Settings": {
+    "rowCount": 53,
+    "columns": [
+      "Report Settings",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Report Settings": "Report Settings has three sub-features. 'Scheduled Reports' lets you set up a report to be generated and delivered automatically on a schedule; the UI actually exposes two materially different creation forms depending on report type (Custom Dashboard-based reports vs. monitor-based reports like Availability Summary Report), so expect different payload shapes depending on which type of report is being created. 'Customize Report' is a single, account-wide set of branding and formatting defaults (logo, colors, company name, decimal precision, percentiles) applied to all generated reports. 'SLA Settings' defines measurable uptime/performance commitments (Availability SLA, Composite SLA, Response Time SLA) tracked over time, separate from simple alerting. Several rows below are tagged as supporting lookups -- these populate dropdown choices (business hours, monitor groups, tags, plugins) inside the Scheduled Reports forms rather than being a feature in their own right.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Report Settings": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Report Settings": "Customize Report",
+        "__EMPTY": "/app/api/customize_report",
+        "__EMPTY_1": "DELETE",
+        "__EMPTY_2": "401",
+        "__EMPTY_3": "Deletes data for: Customize Report (endpoint: /app/api/customize_report)",
+        "__EMPTY_4": "(no request body)",
+        "__EMPTY_5": "{\"error_code\":1010,\"message\":\"Access Denied. <a class=\\\"txt-white underline\\\" href=\\\"/signup.html?pack=44&l=en\\\">Sign Up</a> for Site24x7 to access this feature.\"}\r\n"
+      }
+    ]
+  },
+  "Share": {
+    "rowCount": 44,
+    "columns": [
+      "Share",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Share": "Share covers three features for exposing monitoring data outside of Site24x7's own interface. 'Uptime Buttons' generates a small embeddable badge showing a monitor's uptime percentage, meant to be placed on an external website. 'Operations Dashboard' creates a shareable/embeddable multi-monitor dashboard (Site24x7's internal API name for this is 'dashboard_views'), intended for things like a NOC wall display; viewing an existing one shows a permalink and embed code separate from the create form. 'Public Reports' publishes a single specific report (Summary, Availability, Performance, Top N, etc.) as a public link/embed without granting the viewer any login access, and likewise has a separate permalink/embed view distinct from the publish form. Several rows below are tagged as supporting lookups -- these populate dropdown choices used by more than one of the three features above.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Share": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Share": "Operations Dashboard",
+        "__EMPTY": "/app/api/dashboard_views",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200",
+        "__EMPTY_3": "Fetches data for: Operations Dashboard (endpoint: /app/api/dashboard_views)",
+        "__EMPTY_4": "(no request body)",
+        "__EMPTY_5": "{\"code\":0,\"message\":\"success\",\"data\":[{\"selection_type\":0,\"embed_code\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtFzZLhn6sXrF2iVqzz3DwIKAxD3blcVr9nvWzg25sdFDfHfdKpb4rDMCI5SslYazQfJ%0AK4A9q4jYxXoiIFDuVU4z\",\"dashboard_viewid\":\"15698000033393001\",\"visited_user\":true,\"layout_type\":1,\"social_status\":true,\"display_name\":\"All_MonitorGroupCheck_OP\",\"permalink\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtFzZLhn6sXrF2iVqzz3DwIKAxD3blcVr9nvWzg25sdFDfHfdKpb4rDMCI5SslYazQfJ%0AK4A9q4jYxXoiIFDuVU4z\"},{\"selection_type\":0,\"embed_code\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtErUVC1Ug0sCaLMm%2BWN%2FL%2Be%2B6q%2FbuqPu%2BRABgPRktHPQk7%2FplQr7em06HBlm17NBizZ%0AfOkUTnIqMIi%2Fvla54gGk\",\"dashboard_viewid\":\"15698000079156112\",\"layout_type\":0,\"social_status\":true,\"display_name\":\"Dashboard-12\",\"permalink\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtErUVC1Ug0sCaLMm%2BWN%2FL%2Be%2B6q%2FbuqPu%2BRABgPRktHPQk7%2FplQr7em06HBlm17NBizZ%0AfOkUTnIqMIi%2Fvla54gGk\"},{\"selection_type\":0,\"embed_code\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtEUpxhc9%2FVnAnrvH1sw0owvdG9tQarx4KvvWzg25sdFDfHfdKpb4rDMCI5SslYazQfJ%0AK4A9q4jYxXoiIFDuVU4z\",\"dashboard_viewid\":\"15698000004319366\",\"layout_type\":0,\"social_status\":false,\"display_name\":\"DASHBOARD_VIEW_LAYOUT_2\",\"permalink\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtEUpxhc9%2FVnAnrvH1sw0owvdG9tQarx4KvvWzg25sdFDfHfdKpb4rDMCI5SslYazQfJ%0AK4A9q4jYxXoiIFDuVU4z\"},{\"selection_type\":0,\"embed_code\":\"https://www.site24x7.com/dv.do?id=sqydpBPkkVa1QBeVrVyjCZ1rge4ZO7G4wY8jcj4MStL2LpXZ7RxSGFgzYR91zgP5PUW6vTsWDMFAg9WM-rrnCGr5qLQ_hFmATK4TTDSzhj4%3D\",\"dashboard_viewid\":\"15698000374398003\",\"visited_user\":true,\"layout_type\":1,\"social_status\":true,\"display_name\":\"Demo do7498t79847\",\"permalink\":\"https://www.site24x7.com/dv.do?id=sqydpBPkkVa1QBeVrVyjCZ1rge4ZO7G4wY8jcj4MStL2LpXZ7RxSGFgzYR91zgP5PUW6vTsWDMFAg9WM-rrnCGr5qLQ_hFmATK4TTDSzhj4%3D\"},{\"selection_type\":0,\"embed_code\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtH02uqv9%2FpZLorNXphXQi4uS7EFKgeLGLvvWzg25sdFDfHfdKpb4rDMCI5SslYazQfJ%0AK4A9q4jYxXoiIFDuVU4z\",\"dashboard_viewid\":\"15698000032480001\",\"layout_type\":0,\"social_status\":true,\"display_name\":\"GBG Demo\",\"permalink\":\"https://www.site24x7.com/dv.do?id=8rdhfrcwvtH02uqv9%2FpZLorNXphXQi4uS7EFKgeLGLvvWzg25sdFDfHfdKpb4rDMCI5SslYazQfJ%0AK4A9q4jYxXoiIFDuVU4z\"},{\"selection_type\":0,\"embed_code\":\"https://www.site24x7.com/dv.do?id=GtpJrFt8fN7eA9dVbwn3zpCkakRWQsj2ok7YL_pTLrn2LpXZ7RxSGFgzYR91zgP5PUW6vTsWDMFAg9WM-rrnCGr5qLQ_hFmATK4TTDSzhj4%3D\",\"dashboard_viewid\":\"15698000377652035\",\"layout_type\":0,\"social_status\":true,\"display_name\":\"hi\",\"permalink\":\"https://www.site24x7.com/dv.do?id=GtpJrFt8fN7eA9dVbwn3zpCkakRWQsj2ok7YL_pTLrn2LpXZ7RxSGFgzYR91zgP5PUW6vTsWDMFAg9WM-rrnCGr5qLQ_hFmATK4TTDSzhj4%3D\"},{\"selection_type\":2,\"embed_code\":\"https://www.site24x7.com/dv.do?id=cE85LRH1DruQDv_w9TqZVwVL9ePytKoyMqEf7WbB_PL2LpXZ7RxSGFgzYR91zgP5PUW6vTsWDMFAg9WM-rrnCGr5qLQ_hFmATK4TTDSzhj4%3D\",\"dashboard_viewid\":\"15698000492910002\",\"layout_type\":0,\"social_status\":true,\"display_name\":\"Jishnu\"...[truncated, 79310 chars total]"
+      }
+    ]
+  },
+  "Milestones": {
+    "rowCount": 13,
+    "columns": [
+      "Milestones",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Milestones": "The Milestones module allows users to create timeline markers associated with monitoring events. These markers help correlate infrastructure, application, or operational changes with monitoring data and incidents.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Milestones": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Milestones": "Milestone Marker Settings",
+        "__EMPTY": "/app/api/milestone/default_marker",
+        "__EMPTY_1": "PUT",
+        "__EMPTY_2": "400 Bad Request",
+        "__EMPTY_3": "Manages default marker display and milestone marker behavior. Attempts to update the default milestone marker configuration (e.g. marker name, color, or display settings). Returns 400 in demo environment.",
+        "__EMPTY_4": "{\"marker_name\": \"{masked}\", \"color\": \"{masked}\"}",
+        "__EMPTY_5": "{\"error_code\": 1010, \"message\": \"Access Denied.\"}"
+      }
+    ]
+  },
+  "Third-Party Integrations": {
+    "rowCount": 68,
+    "columns": [
+      "Third-Party Integrations",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Third-Party Integrations": "Third-Party Integrations allows Site24x7 to connect with external tools across incident management, collaboration, workflow automation, analytics, AI, application management, and security categories. Each integration type has a dedicated API endpoint for configuration, creation, update, and deletion.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Third-Party Integrations": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Third-Party Integrations": "Webhook Integration",
+        "__EMPTY": "/app/api/integration/webhooks",
+        "__EMPTY_1": "POST",
+        "__EMPTY_2": "401 Unauthorized",
+        "__EMPTY_3": "Creates or updates a Webhook integration configuration that sends monitor alerts to external HTTP endpoints. Called multiple times in session for different webhook configurations.",
+        "__EMPTY_4": "{\"hook_url\": \"{masked}\", \"send_incident_parameters\": true, \"user_agent\": \"Site24x7\", \"monitors\": [], \"tags\": [], \"selection_type\": 0}",
+        "__EMPTY_5": "{\"error_code\": 1010, \"message\": \"Access Denied.\"}"
+      }
+    ]
+  },
+  "Tags": {
+    "rowCount": 14,
+    "columns": [
+      "Tags",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Tags": "The Tags module allows users to organize and classify monitors using custom labels. Tags help simplify filtering, reporting, grouping, and monitor management across the Site24x7 platform.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Tags": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Tags": "Tag Listing",
+        "__EMPTY": "/app/api/tags",
+        "__EMPTY_1": "GET",
+        "__EMPTY_2": "200 OK",
+        "__EMPTY_3": "Retrieves the full list of configured tags in the account, including tag name, color, and type.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\"code\": 0, \"message\": \"success\", \"data\": [{\"color\": \"#999\", \"name\": \"prod-server\", \"id\": \"{id}\", \"type\": 0}, {\"color\": \"#f00\", \"name\": \"critical\", \"id\": \"{id}\", \"type\": 1}]}"
+      }
+    ]
+  },
+  "Downloads": {
+    "rowCount": 18,
+    "columns": [
+      "Downloads",
+      "__EMPTY",
+      "__EMPTY_1",
+      "__EMPTY_2",
+      "__EMPTY_3",
+      "__EMPTY_4",
+      "__EMPTY_5"
+    ],
+    "sample": [
+      {
+        "Downloads": "The Downloads module provides monitoring agents, installers, and supporting resources required to integrate monitors into the Site24x7 platform. Users can download APM agents (Java, .NET, Ruby, PHP, Python, Node.js), device agents, and mobile apps, with each download triggering an activity counter.",
+        "__EMPTY": "",
+        "__EMPTY_1": "",
+        "__EMPTY_2": "",
+        "__EMPTY_3": "",
+        "__EMPTY_4": "",
+        "__EMPTY_5": ""
+      },
+      {
+        "Downloads": "Sub-Feature",
+        "__EMPTY": "Endpoint Path",
+        "__EMPTY_1": "HTTP Method",
+        "__EMPTY_2": "Status Code",
+        "__EMPTY_3": "What It's For (Sub-Feature)",
+        "__EMPTY_4": "Example Request Payload",
+        "__EMPTY_5": "Example Response"
+      },
+      {
+        "Downloads": "Java APM Agent Download",
+        "__EMPTY": "/app/api/apminsight/download/JAVA",
+        "__EMPTY_1": "POST",
+        "__EMPTY_2": "401 Unauthorized",
+        "__EMPTY_3": "Records the Java APM agent download event and initiates the agent download workflow. Returns 401 in demo environment.",
+        "__EMPTY_4": "No payload",
+        "__EMPTY_5": "{\"error_code\": 1010, \"message\": \"Access Denied.\"}"
+      }
+    ]
+  }
+}
