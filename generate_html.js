@@ -34,21 +34,21 @@ const clientJs = `
   }
 
   var dataset = loadStore(STORAGE_KEY_DS);   // [{id, query, api, markedCorrect, addedAt}]
-  var history  = loadStore(STORAGE_KEY_HX);  // [{query, topResult, resultCount, searchedAt}]
+  var searchHistory = loadStore(STORAGE_KEY_HX);  // [{query, topResult, resultCount, searchedAt}]
 
   function updateBadges() {
     var dsBadge = document.getElementById('datasetBadge');
     var hxBadge = document.getElementById('historyBadge');
     if (dsBadge) dsBadge.textContent = dataset.length;
-    if (hxBadge) hxBadge.textContent = history.length;
+    if (hxBadge) hxBadge.textContent = searchHistory.length;
   }
 
   function recordHistory(q, results) {
     if (!q) return;
     var top = results.length ? results[0].api : null;
-    history.unshift({ query: q, topResult: top ? top.endpoint : '', resultCount: results.length, searchedAt: new Date().toISOString() });
-    if (history.length > 100) history = history.slice(0, 100);
-    saveStore(STORAGE_KEY_HX, history);
+    searchHistory.unshift({ query: q, topResult: top ? top.endpoint : '', resultCount: results.length, searchedAt: new Date().toISOString() });
+    if (searchHistory.length > 100) searchHistory = searchHistory.slice(0, 100);
+    saveStore(STORAGE_KEY_HX, searchHistory);
     updateBadges();
   }
 
@@ -316,7 +316,7 @@ const clientJs = `
       // Module overview cards
       html = '<div class="module-grid">';
       sheets.forEach(function(sheet) {
-        html += '<div class="module-card" onclick="setSheet(\\''+sheet.replace(/'/g,"\\\\'")+'\\')">' +
+        html += '<div class="module-card" onclick="setSheet(this.dataset.s)" data-s="'+esc(sheet)+'">' +
           '<div class="mc-top"><span class="mc-name">'+esc(sheet)+'</span><span class="mc-count">'+(sheetCounts[sheet]||0)+'</span></div>' +
           '<p class="mc-desc">'+esc((sheetDesc[sheet]||'').substring(0,140))+'</p>' +
         '</div>';
@@ -385,8 +385,8 @@ const clientJs = `
 
   window.clearHistory = function() {
     if (!confirm('Clear all Q&A history?')) return;
-    history = [];
-    saveStore(STORAGE_KEY_HX, history);
+    searchHistory = [];
+    saveStore(STORAGE_KEY_HX, searchHistory);
     updateBadges();
     renderActiveTab();
   };
@@ -415,7 +415,7 @@ const clientJs = `
           d.addedAt
         ].join(','));
       });
-      content = rows.join('\n');
+      content = rows.join(String.fromCharCode(10));
       filename = 'site24x7_dataset.csv';
       mime = 'text/csv';
     } else {
@@ -433,8 +433,8 @@ const clientJs = `
   };
 
   window.exportHistory = function() {
-    if (!history.length) { showToast('History is empty'); return; }
-    var blob = new Blob([JSON.stringify(history, null, 2)], {type:'application/json'});
+    if (!searchHistory.length) { showToast('History is empty'); return; }
+    var blob = new Blob([JSON.stringify(searchHistory, null, 2)], {type:'application/json'});
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = 'site24x7_history.json';
@@ -453,6 +453,7 @@ const clientJs = `
     activeTab = 'results';
     setTabActive('results');
     var results = getResults();
+    lastResults = results;
     recordHistory(query, results);
     renderResults();
   }
@@ -485,8 +486,8 @@ const clientJs = `
     var html = '<div class="ds-toolbar">' +
       '<span class="ds-info">'+dataset.length+' pair(s) &bull; '+dataset.filter(function(d){return d.markedCorrect;}).length+' marked correct</span>' +
       '<div class="ds-btns">' +
-        '<button class="ds-btn" onclick="exportDataset(\'json\')">&#8615; Export JSON</button>' +
-        '<button class="ds-btn" onclick="exportDataset(\'csv\')">&#8615; Export CSV</button>' +
+        '<button class="ds-btn" onclick="exportDataset(&quot;json&quot;)">&#8615; Export JSON</button>' +
+        '<button class="ds-btn" onclick="exportDataset(&quot;csv&quot;)">&#8615; Export CSV</button>' +
         '<button class="ds-btn ds-btn-danger" onclick="clearDataset()">&#128465; Clear All</button>' +
       '</div></div>';
     html += '<table class="ds-table"><thead><tr>' +
@@ -510,14 +511,14 @@ const clientJs = `
   function renderHistoryTab() {
     var pane = document.getElementById('resultsPane');
     var countEl = document.getElementById('resultCount');
-    countEl.textContent = history.length + ' search(es) in history';
-    if (!history.length) {
+    countEl.textContent = searchHistory.length + ' search(es) in history';
+    if (!searchHistory.length) {
       pane.innerHTML = '<div class="no-results"><div class="nr-icon">&#128336;</div><h3>No search history yet</h3>' +
         '<p>Your searches will appear here automatically.</p></div>';
       return;
     }
     var html = '<div class="ds-toolbar">' +
-      '<span class="ds-info">'+history.length+' recent search(es)</span>' +
+      '<span class="ds-info">'+searchHistory.length+' recent search(es)</span>' +
       '<div class="ds-btns">' +
         '<button class="ds-btn" onclick="exportHistory()">&#8615; Export JSON</button>' +
         '<button class="ds-btn ds-btn-danger" onclick="clearHistory()">&#128465; Clear</button>' +
@@ -525,10 +526,10 @@ const clientJs = `
     html += '<table class="ds-table"><thead><tr>' +
       '<th>Query</th><th>Top Result</th><th>Results</th><th>When</th>' +
     '</tr></thead><tbody>';
-    history.forEach(function(h) {
-      html += '<tr class="hx-row" onclick="replaySearch(\''+h.query.replace(/'/g,"\\'")+'\')">'+
+    searchHistory.forEach(function(h) {
+      html += '<tr class="hx-row" onclick="replaySearch(this.dataset.q)" data-q="'+esc(h.query)+'">' +
         '<td class="ds-query">'+esc(h.query)+'</td>' +
-        '<td class="ds-ep"><code>'+esc(h.topResult||'—')+'</code></td>' +
+        '<td class="ds-ep"><code>'+esc(h.topResult||'\u2014')+'</code></td>' +
         '<td>'+h.resultCount+'</td>' +
         '<td class="ds-date">'+new Date(h.searchedAt).toLocaleString()+'</td>' +
       '</tr>';
