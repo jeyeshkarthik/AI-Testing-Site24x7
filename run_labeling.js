@@ -3,7 +3,7 @@ const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('site24x7_compact.json', 'utf8'));
 const apis = data.apis;
 
-// ── Same stopwords as browser ──
+// ── Stopwords ──
 const STOPWORDS = new Set(['a','an','the','is','are','was','were','be','been','being',
   'have','has','had','do','does','did','will','would','could','should','may','might',
   'shall','can','need','to','in','on','at','by','for','with','about','against',
@@ -14,11 +14,24 @@ const STOPWORDS = new Set(['a','an','the','is','are','was','were','be','been','b
   'because','as','until','while','of','and','or','that','this','these','those',
   'it','its','what','which','who','whom','me','my','i','give','tell','please','you']);
 
+// Additional words that are too generic to be useful for endpoint matching
+const GENERIC = new Set(['list','show','retrieve','check','view','fetch','create',
+  'delete','update','configure','set','enable','disable','manage','find','get',
+  'available','existing','specific','currently','previously','account','new',
+  'related','holds','field','endpoint','api','use','used','using','returns','return',
+  'status','result','results','report','reports','log','logs','data','info',
+  'configure','configuration','settings','setting']);
+
 function tokenize(text) {
   return text.toLowerCase()
     .replace(/[^a-z0-9_\/\-\.]/g,' ')
     .split(/\s+/)
     .filter(t => t.length > 1 && !STOPWORDS.has(t));
+}
+
+// Extract subject terms — what the question is actually ABOUT
+function subjectTerms(question) {
+  return tokenize(question).filter(t => t.length > 2 && !GENERIC.has(t));
 }
 
 function scoreResult(api, tokens) {
@@ -40,14 +53,40 @@ function scoreResult(api, tokens) {
   return s;
 }
 
-function search(query) {
-  const tokens = tokenize(query);
+// Semantic relevance: how well does this endpoint match the question's subject?
+function semanticRelevance(api, subjects) {
+  if (!subjects.length) return 0;
+  const ep = api.endpoint.toLowerCase();
+  const sf = api.subFeature.toLowerCase();
+  const desc = api.description.toLowerCase();
+  let score = 0;
+  subjects.forEach(s => {
+    if (ep.includes(s)) score += 6;   // endpoint path is strongest signal
+    if (sf.includes(s)) score += 4;   // sub-feature name
+    if (desc.includes(s)) score += 2; // description
+  });
+  return score;
+}
+
+function search(question) {
+  const tokens = tokenize(question);
+  const subjects = subjectTerms(question);
   if (!tokens.length) return [];
+
   return apis
-    .map(api => ({ api, score: scoreResult(api, tokens) }))
-    .filter(r => r.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 6);
+    .map(api => ({
+      api,
+      rawScore: scoreResult(api, tokens),
+      semScore: semanticRelevance(api, subjects)
+    }))
+    .filter(r => r.rawScore > 0)
+    .sort((a, b) => {
+      // Primary sort: semantic relevance (subject terms in endpoint/subFeature)
+      // Secondary sort: raw keyword score
+      const semDiff = b.semScore - a.semScore;
+      if (Math.abs(semDiff) > 3) return semDiff; // clear semantic winner
+      return b.rawScore - a.rawScore;             // otherwise use raw score
+    });
 }
 
 // ── All 225 questions ──
@@ -309,35 +348,52 @@ const questions = {
   ],
 };
 
-// ── Run all questions and produce clean document ──
+// ── Generate the guide ──
 let doc = '# Site24x7 — Labeling Reference\n\n';
-doc += 'For each question: Mark Correct on the ✅ path. Add to Dataset for every 📁 path.\n\n---\n\n';
+doc += 'For each question: in the browser, type the question exactly, then:\n';
+doc += '- Click **Mark Correct** on the ✅ result\n';
+doc += '- Click **Add to Dataset** on every 📁 result\n';
+doc += '- If marked ⚠️, verify manually in the browser before deciding\n\n---\n\n';
+
+let flagged = [];
 
 Object.entries(questions).forEach(([feature, qs]) => {
   doc += `## ${feature}\n\n`;
 
   qs.forEach((q, idx) => {
     const results = search(q);
-    const maxScore = results.length ? results[0].score : 0;
+    const maxScore = results.length ? results[0].rawScore : 0;
 
     doc += `### Q${idx + 1}. ${q}\n\n`;
 
-    if (!results.length || maxScore < 8) {
-      doc += `> ⚠️ No results — skip or note as failure.\n\n---\n\n`;
+    if (!results.length || maxScore < 6) {
+      doc += `> ⚠️ No results found — skip this question.\n\n---\n\n`;
+      flagged.push({ q, feature, reason: 'no results' });
       return;
     }
 
     const top = results[0];
-    doc += `✅ **Mark Correct:** \`${top.api.method} ${top.api.endpoint}\`\n\n`;
+    const lowConf = top.semScore < 4 && maxScore < 25;
 
-    const datasetCandidates = results.slice(1).filter(r =>
-      r.score >= maxScore * 0.65 && r.score > 8 && r.api.endpoint !== top.api.endpoint
+    doc += `✅ **Mark Correct:** \`${top.api.method} ${top.api.endpoint}\`\n`;
+    doc += `> ${top.api.subFeature} — *"${top.api.description.substring(0, 120)}${top.api.description.length > 120 ? '...' : ''}"*\n\n`;
+
+    if (lowConf) {
+      doc += `> ⚠️ Low confidence — verify this in the browser before clicking.\n\n`;
+      flagged.push({ q, feature, reason: 'low confidence', ep: top.api.endpoint });
+    }
+
+    // Dataset candidates: high semantic OR raw score, different endpoint, not obviously wrong
+    const datasetCandidates = results.slice(1, 8).filter(r =>
+      r.api.endpoint !== top.api.endpoint &&
+      (r.rawScore >= maxScore * 0.6 || r.semScore >= top.semScore * 0.7) &&
+      r.rawScore > 5
     );
 
     if (datasetCandidates.length) {
       doc += `📁 **Add to Dataset:**\n`;
-      datasetCandidates.forEach(r => {
-        doc += `- \`${r.api.method} ${r.api.endpoint}\`\n`;
+      datasetCandidates.slice(0, 4).forEach(r => {
+        doc += `- \`${r.api.method} ${r.api.endpoint}\`  —  ${r.api.subFeature}\n`;
       });
       doc += '\n';
     }
@@ -346,6 +402,17 @@ Object.entries(questions).forEach(([feature, qs]) => {
   });
 });
 
-fs.writeFileSync('labeling_guide.md', doc, 'utf8');
-console.log('labeling_guide.md written —', questions ? Object.values(questions).flat().length : 0, 'questions');
+// Flagged summary at end
+if (flagged.length) {
+  doc += `## ⚠️ Flagged Questions (${flagged.length})\n\n`;
+  doc += 'These need manual verification in the browser:\n\n';
+  flagged.forEach((f, i) => {
+    doc += `${i + 1}. **[${f.feature}]** ${f.q}`;
+    if (f.ep) doc += ` → *top result was \`${f.ep}\`*`;
+    doc += '\n';
+  });
+}
 
+fs.writeFileSync('labeling_guide.md', doc, 'utf8');
+console.log(`Done! Flagged: ${flagged.length} / 225`);
+console.log('labeling_guide.md written.');
