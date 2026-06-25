@@ -1,4 +1,12 @@
 {
+  "name": "site24x7-api-search",
+  "version": "0.1.0",
+  "description": "AI-powered search and testing tool for Site24x7 Admin APIs",
+  "scripts": {
+    "build": "node generate_html.js",
+    "serve": "npx serve . --listen 3333 --no-clipboard",
+    "start": "npm run build && npm run serve"
+  },
   "dependencies": {
     "xlsx": "^0.18.5"
   }
