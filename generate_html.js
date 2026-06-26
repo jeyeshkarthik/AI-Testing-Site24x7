@@ -3,9 +3,13 @@ const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('site24x7_compact.json', 'utf8'));
 const dataJson = JSON.stringify(data);
 
+let tfidfJson = "null";
+try { tfidfJson = fs.readFileSync('tfidf_index.json', 'utf8'); } catch(e){}
+
 const clientJs = `
 (function() {
   var DB = ${dataJson};
+  var TFIDF_DB = ${tfidfJson};
   var sheets = DB.sheets;
   var sheetDesc = DB.sheetDescriptions;
   var apis = DB.apis;
@@ -102,14 +106,52 @@ const clientJs = `
   }
 
   function tokenize(text) {
-    return text.toLowerCase()
-      .replace(/[^a-z0-9_\\/\\-\\.]/g,' ')
+    if (!text) return [];
+    return String(text).toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim()
       .split(/\\s+/)
       .filter(function(t){ return t.length > 1 && !STOPWORDS.has(t); });
   }
 
+  if (TFIDF_DB) {
+    apis.forEach(function(api) {
+      var allText = [
+        api.endpoint, api.subFeature, api.sheet, api.description, api.summaryText, api.searchText,
+        (api.responseFields||[]).join(' '), (api.requestFields||[]).join(' ')
+      ].join(' ');
+      api._tokens = tokenize(allText);
+    });
+  }
+
   function scoreResult(api, tokens) {
+    if (!tokens || !tokens.length) return 0;
+    var searchType = document.getElementById('searchType');
+    var isSemantic = searchType && searchType.value === 'semantic';
+
     var s = 0;
+    var q = tokens.join(' ');
+
+    if (TFIDF_DB && isSemantic && api._tokens) {
+      var k1 = 1.5;
+      var b = 0.75;
+      var dl = api._tokens.length;
+      var avgdl = TFIDF_DB.avgdl || 74;
+
+      tokens.forEach(function(tok) {
+        var tf = 0;
+        for (var i=0; i<api._tokens.length; i++) {
+          if (api._tokens[i] === tok || api._tokens[i].indexOf(tok) === 0) tf++; 
+        }
+        if (tf > 0) {
+          var idf = TFIDF_DB.idf[tok] || Math.log(TFIDF_DB.N);
+          var bm25 = idf * ((tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (dl / avgdl))));
+          s += (bm25 * 5); // Scale up BM25 score
+        }
+      });
+      if (api.endpoint.toLowerCase().indexOf(q) >= 0) s += 40;
+    }
+
     tokens.forEach(function(tok) {
       if (api.endpoint.toLowerCase().indexOf(tok) >= 0) s += 12;
       if (api.subFeature.toLowerCase().indexOf(tok) >= 0) s += 10;
@@ -120,7 +162,6 @@ const clientJs = `
       if (api.summaryText && api.summaryText.toLowerCase().indexOf(tok)>=0) s += 4;
       if (api.searchText && api.searchText.indexOf(tok)>=0) s += 1;
     });
-    var q = tokens.join(' ');
     if (api.subFeature.toLowerCase().indexOf(q)>=0) s += 20;
     if (api.description.toLowerCase().indexOf(q)>=0) s += 15;
     if (api.endpoint.toLowerCase().indexOf(q)>=0) s += 18;
@@ -268,7 +309,6 @@ const clientJs = `
             '<span class="rc-endpoint">'+highlight(api.endpoint, tokens)+'</span>' +
             '<span class="rc-client-tag">Client</span>' +
             '<span class="rc-module-tag">'+esc(api.sheet.toUpperCase().replace(/ /g,'_'))+'</span>' +
-            (pct > 0 ? '<div class="rc-score"><span class="score-pct">'+pct+'%</span><div class="score-track"><div class="score-fill" style="width:'+pct+'%"></div></div></div>' : '') +
           '</div>' +
           '<div class="rc-desc">'+highlight(api.description, tokens)+'</div>' +
           '<div class="rc-meta">'+esc(api.subFeature)+'</div>' +
@@ -1757,9 +1797,9 @@ const html = `<!DOCTYPE html>
       <input type="text" id="searchInput" placeholder="list the monitor groups" autocomplete="off" spellcheck="false" />
       <button id="clearBtn" title="Clear">&#10005;</button>
     </div>
-    <select class="search-type-select">
-      <option>Keyword search (no AI)</option>
-      <option>Semantic search</option>
+    <select id="searchType" class="search-type-select" onchange="doSearch()">
+      <option value="keyword">Keyword search (no AI)</option>
+      <option value="semantic">Semantic Search (TF-IDF)</option>
     </select>
     <button id="searchBtn">&#128269; Search</button>
   </div>

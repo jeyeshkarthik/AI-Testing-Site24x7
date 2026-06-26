@@ -10,6 +10,7 @@
     "dev": "npm run build && start cmd /k \"node proxy.js\" && npm run serve"
   },
   "dependencies": {
+    "jsdom": "^29.1.1",
     "xlsx": "^0.18.5"
   }
 }
