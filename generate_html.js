@@ -445,7 +445,7 @@ const clientJs = `
     if (hasBody) {
       html += '<div class="try-input-group">';
       html += '<label>Request Body (JSON)</label>';
-      html += '<textarea id="body-' + apiId + '" rows="4" placeholder="{\n  // Enter JSON payload here\n}"></textarea>';
+      html += '<textarea id="body-' + apiId + '" rows="4" placeholder="{\\n  // Enter JSON payload here\\n}"></textarea>';
       html += '</div>';
     }
 
