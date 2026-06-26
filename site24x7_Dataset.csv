@@ -1,0 +1,181 @@
+query,endpoint,method,sheet,subFeature,markedCorrect,addedAt
+How do I view the full list of scheduled reports?,/app/api/scheduled_reports,GET,Report Settings,Scheduled Reports,True,2026-06-26T04:48:09.547Z
+Which API retrieves custom report templates for a scheduled report?,/app/api/short/reports/custom_reports,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-06-26T04:46:27.979Z
+How do I list business hours used in report scheduling?,/app/api/short/business_hours,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-06-26T04:46:05.436Z
+What endpoint deletes an existing SLA configuration?,/app/api/sla_settings/15698000493103037,DELETE,Report Settings,SLA Settings,True,2026-06-26T04:45:47.836Z
+Which API retrieves SLA settings for a specific monitor?,/app/api/short/sla_settings/monitors/3,GET,Report Settings,SLA Settings,False,2026-06-26T04:45:07.763Z
+Which API retrieves SLA settings for a specific monitor?,/app/api/short/sla_settings/monitors/2,GET,Report Settings,SLA Settings,True,2026-06-26T04:44:57.516Z
+How do I create an SLA setting for a monitor?,/app/api/sla_settings,POST,Report Settings,SLA Settings,True,2026-06-26T04:44:32.020Z
+Which API customizes the report logo and branding?,/app/api/customize_report,PUT,Report Settings,Customize Report,False,2026-06-26T04:44:11.451Z
+Which API customizes the report logo and branding?,/app/api/customize_report,PUT,Report Settings,Customize Report,True,2026-06-26T04:44:10.428Z
+How do I delete a scheduled report?,/app/api/scheduled_reports/15698000342022005,DELETE,Report Settings,Scheduled Reports,True,2026-06-26T04:43:42.516Z
+What endpoint sends a scheduled report immediately?,/app/api/send_scheduled_reports,POST,Report Settings,Scheduled Reports,False,2026-06-26T04:43:25.588Z
+What endpoint sends a scheduled report immediately?,/app/api/send_scheduled_reports,POST,Report Settings,Scheduled Reports,True,2026-06-26T04:43:24.668Z
+Which API activates a previously created scheduled report?,/app/api/scheduled_reports/activate/15698000342022005,PUT,Report Settings,Scheduled Reports,True,2026-06-26T04:42:54.452Z
+How do I look up a specific user account's profile?,/app/api/users/15698000148122031,GET,My Account,Personal Settings,True,2026-06-26T04:42:01.547Z
+What endpoint updates account-level settings like industry or country?,/app/api/account_settings,PUT,My Account,Account Settings,True,2026-06-26T04:41:37.948Z
+How do I check which plan my account is subscribed to?,/app/api/account_settings,GET,My Account,Account Settings,True,2026-06-26T04:41:17.292Z
+Which API retrieves organization-level account configuration?,/app/api/account_settings,GET,My Account,Account Settings,True,2026-06-26T04:40:59.508Z
+How do I update my notification language preference?,/app/api/webclient_language,PUT,My Account,Web Client Notification Settings,False,2026-06-26T04:40:34.964Z
+How do I update my notification language preference?,/app/api/webclient_language,PUT,My Account,Web Client Notification Settings,True,2026-06-26T04:40:33.716Z
+Which API fetches a specific user's profile details?,/app/api/users/15698000148122031,GET,My Account,Personal Settings,True,2026-06-26T04:39:50.252Z
+What endpoint updates the web client language?,/app/api/webclient_language,PUT,My Account,Web Client Notification Settings,False,2026-06-26T04:39:22.564Z
+What endpoint updates the web client language?,/app/api/webclient_language,PUT,My Account,Web Client Notification Settings,True,2026-06-26T04:39:21.636Z
+How do I change my personal status message?,/app/api/status_message,PUT,My Account,Personal Settings,False,2026-06-26T04:39:03.166Z
+How do I change my personal status message?,/app/api/status_message,PUT,My Account,Personal Settings,True,2026-06-26T04:39:02.101Z
+Which API retrieves the current account-level settings?,/app/api/account_settings,GET,My Account,Account Settings,True,2026-06-26T04:38:37.444Z
+How do I update my account settings?,/app/api/account_settings,PUT,My Account,Account Settings,True,2026-06-26T04:38:20.588Z
+How do I view resolved incidents on a status page?,/sp/api/statuspages/15698000418173443/incidents/resolved,GET,Operations,Status Pages (StatusIQ),True,2026-06-26T04:36:14.837Z
+How do I create a new incident on a status page?,/sp/api/statuspages/15698000418173443/incidents/active,POST,Operations,Status Pages (StatusIQ),False,2026-06-26T04:35:31.917Z
+How do I create a new incident on a status page?,/sp/api/statuspages/15698000418173443/incidents/active,POST,Operations,Status Pages (StatusIQ),True,2026-06-26T04:35:30.909Z
+List all status pages configured under StatusIQ,/sp/api/short/statuspages,GET,Operations,Status Pages (StatusIQ),True,2026-06-26T04:34:23.589Z
+How do I schedule an IT Automation under Operations?,/app/api/short/it_automation,GET,Operations,Schedule IT Automation,True,2026-06-26T04:33:52.037Z
+Which API fetches a log report for a specific monitor?,/app/api/reports/log_reports/15698000366175021,GET,Operations,Log Report,False,2026-06-26T04:33:22.109Z
+Which API fetches a log report for a specific monitor?,/app/api/reports/log_reports/15698000329374414,GET,Operations,Log Report,True,2026-06-26T04:33:17.685Z
+How do I search alert logs by date range?,/app/api/applog/search/21-06-2026%2003:02:43/22-06-2026%2003:02:42/1-100/desc,GET,Operations,Alert Logs,True,2026-06-26T04:32:26.485Z
+How do I share a maintenance schedule as an iCal link?,/app/api/maintenance/ical,PUT,Operations,Scheduled Maintenance,False,2026-06-26T04:31:52.565Z
+How do I share a maintenance schedule as an iCal link?,/app/api/maintenance/ical,PUT,Operations,Scheduled Maintenance,True,2026-06-26T04:31:51.389Z
+Which API deletes a specific maintenance window?,/app/api/maintenance/15698000489363071,DELETE,Operations,Scheduled Maintenance,True,2026-06-26T04:31:17.982Z
+List all currently active maintenance windows,/app/api/maintenance,GET,Operations,Scheduled Maintenance,False,2026-06-26T04:30:59.886Z
+List all currently active maintenance windows,/app/api/current_maintenance_list,GET,Operations,Scheduled Maintenance,True,2026-06-26T04:30:57.381Z
+How do I create a scheduled maintenance window?,/app/api/maintenance,POST,Operations,Scheduled Maintenance,True,2026-06-26T04:30:25.859Z
+How do I read a specific plugin template's configuration?,/app/api/plugin/template/275039000043639001,GET,Plugin Monitor,Plugin Template Config,True,2026-06-26T04:18:43.144Z
+What endpoint shows the current state of plugin auto-discovery?,/app/api/plugin_configurations,GET,Plugin Monitor,Settings (Auto-Discovery Toggle),True,2026-06-26T04:18:15.544Z
+Which API retrieves a registered plugin template by ID?,/app/api/plugin/template/275039000043641001,GET,Plugin Monitor,Plugin Template Config,True,2026-06-26T04:17:55.168Z
+How do I toggle whether plugins are auto-discovered on a server?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),False,2026-06-26T04:17:29.152Z
+How do I toggle whether plugins are auto-discovered on a server?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),True,2026-06-26T04:17:28.024Z
+What endpoint manages plugin monitor configuration?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),False,2026-06-26T04:17:04.888Z
+What endpoint manages plugin monitor configuration?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),False,2026-06-26T04:17:04.048Z
+What endpoint manages plugin monitor configuration?,/app/api/plugin_configurations,GET,Plugin Monitor,Settings (Auto-Discovery Toggle),True,2026-06-26T04:16:54.408Z
+How do I check if a plugin template exists by a specific ID?,/app/api/plugin/template/275039000043639001,GET,Plugin Monitor,Plugin Template Config,True,2026-06-26T04:16:28.112Z
+What method is used to enable auto-discovery for plugins?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),False,2026-06-26T04:16:03.568Z
+What method is used to enable auto-discovery for plugins?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),True,2026-06-26T04:16:01.088Z
+Which endpoint fetches a specific plugin template's details?,/app/api/plugin/template/275039000043641001,GET,Plugin Monitor,Plugin Template Config,False,2026-06-26T04:15:24.472Z
+Which endpoint fetches a specific plugin template's details?,/app/api/plugin/template/275039000043639001,GET,Plugin Monitor,Plugin Template Config,True,2026-06-26T04:15:18.144Z
+How do I check the current plugin configuration?,/app/api/plugin_configurations,GET,Plugin Monitor,Settings (Auto-Discovery Toggle),True,2026-06-26T04:14:47.049Z
+How do I enable plugin auto-discovery?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),False,2026-06-26T04:14:05.785Z
+How do I enable plugin auto-discovery?,/app/api/plugin_configurations,PUT,Plugin Monitor,Settings (Auto-Discovery Toggle),True,2026-06-26T04:14:03.960Z
+Which API lists monitors using a specific server template?,/app/api/template_associated_monitors,GET,Server Monitor,Server Templates – Associated,True,2026-06-26T04:11:08.801Z
+How do I check which features are available for server monitoring?,/app/api/short/server_features,GET,Server Monitor,Server Features,True,2026-06-26T04:10:52.809Z
+List notification profiles used for server monitors,/app/api/short/notification_profiles,GET,Server Monitor,Notification Profiles,True,2026-06-26T04:10:37.385Z
+How do I disable a specific Auto Profiler Rule?,/app/api/apminsight/auto_profiler_rules/{id}/DISABLE,PUT,Server Monitor,APM Auto Profiler Rules,True,2026-06-26T04:10:20.698Z
+What API retrieves a specific APM Auto Profiler Rule?,/app/api/apminsight/auto_profiler_rules/{id},GET,Server Monitor,APM Auto Profiler Rules,True,2026-06-26T04:09:58.345Z
+How do I delete an Upgrade Profile for server agents?,/app/api/upgrade_profile/{id},DELETE,Server Monitor,Upgrade Profile – CRUD,True,2026-06-26T04:09:16.538Z
+How do I check available agent upgrade versions?,/app/api/short/server/agent_upgradable_versions,GET,Server Monitor,Agent Upgrade Versions,True,2026-06-26T04:09:01.938Z
+How do I update an existing Server Monitor Setting Profile?,/app/api/setting_profile/{id},PUT,Server Monitor,Setting Profile – CRUD,True,2026-06-26T04:08:43.906Z
+Which monitors are associated with a given Resource Profile?,/app/api/resource_profile/associated_monitors,GET,Server Monitor,Resource Profile – Associated Monitors,True,2026-06-26T04:08:26.921Z
+List all server templates configured,/app/api/server_templates,GET,Server Monitor,Server Templates,True,2026-06-26T04:08:06.290Z
+How do I delete a specific AI workflow?,/app/api/genai/workflow/testagent,DELETE,Zia Settings,AI Workflow – CRUD,False,2026-06-26T04:04:39.107Z
+How do I delete a specific AI workflow?,/app/api/genai/workflow/{id},DELETE,Zia Settings,AI Workflow – CRUD,True,2026-06-26T04:04:33.794Z
+What API powers the APM AI assistant?,/app/api/genai/workflow/apm_assistant,GET,Zia Settings,AI Workflow – CRUD,True,2026-06-26T04:04:00.586Z
+How do I retrieve the Kubernetes AI assistant workflow?,/app/api/genai/workflow/kubernets_assistant,GET,Zia Settings,AI Workflow – CRUD,True,2026-06-26T04:03:36.755Z
+Which endpoint retrieves the underlying AI/bot model list?,/app/api/bot/models,GET,Zia Settings,Bot / AI Models,True,2026-06-26T04:03:13.394Z
+How do I check the status of the alarms assistant AI workflow?,/app/api/genai/workflow/alarms_assistant,GET,Zia Settings,AI Workflow – CRUD,True,2026-06-26T04:02:56.404Z
+What API retrieves AI task definitions?,/app/api/genai/tasks,GET,Zia Settings,AI Tasks,True,2026-06-26T04:02:28.706Z
+How do I fetch the list of monitors available to the AI module?,/app/api/genai/module/monitorlist,GET,Zia Settings,AI Module – Monitor List,True,2026-06-26T04:02:04.659Z
+What API lists AI data collections?,/app/api/genai/collections,GET,Zia Settings,AI Collections,True,2026-06-26T04:00:56.347Z
+How do I get AI-generated recommendations?,/app/api/genai/recommendation,GET,Zia Settings,AI Recommendations,True,2026-06-26T04:00:39.739Z
+Show me all Zia AI workflow APIs,/app/api/genai/workflows,GET,Zia Settings,AI Workflow – CRUD,True,2026-06-26T04:00:19.723Z
+How do I check which tags are associated with a monitor used in an automation?,/app/api/associated_tags,GET,Automations,Tag Management,True,2026-06-26T03:58:54.043Z
+How do I retrieve location templates used by automations?,/app/api/location_template,GET,Automations,Location Template,True,2026-06-26T03:58:06.908Z
+Which API shows monitor status for an IT Automation?,/app/api/it_automation/monitor/status_details/{id},GET,Automations,IT Automation – Monitor Status,True,2026-06-26T03:57:46.379Z
+How do I check SLO (Service Level Objective) settings for a monitor?,/app/api/slo/get_monitor_associated_slo/{id},GET,Automations,SLO,True,2026-06-26T03:57:30.148Z
+Which API retrieves the alarm report for a specific monitor?,/app/api/reports/alarm/{id},GET,Automations,Alarm Reports,True,2026-06-26T03:57:10.172Z
+How do I list files available for automation scripts?,/app/api/file_list,GET,Automations,File Management,True,2026-06-26T03:56:52.828Z
+Which endpoint creates a new circuit monitor?,/app/api/circuits,POST,Automations,Circuits Integration,True,2026-06-26T03:56:30.019Z
+How do I check Circuits integration status?,/app/api/circuits/integration_status,GET,Automations,Circuits Integration,True,2026-06-26T03:56:13.859Z
+What API retrieves IT Automation execution logs?,/app/api/it_automation/logs/{id},GET,Automations,IT Automation – Logs,True,2026-06-26T03:55:57.612Z
+List all configured IT Automations,/app/api/current_status/type/SCHEDULE_IT_AUTOMATION,GET,Automations,IT Automation – CRUD,False,2026-06-26T03:55:25.379Z
+List all configured IT Automations,/app/api/it_automation/list,GET,Automations,IT Automation – List,True,2026-06-26T03:54:59.428Z
+How do I create a Custom Report?,https://www.site24x7.com/app/api/reports/custom_reports/preview,POST,Configuration Profiles,Custom Report,False,2026-06-26T03:54:14.140Z
+Which API stores Credential Profiles?,https://www.site24x7.com/app/api/credential_profiles,GET,Configuration Profiles,Credential Profile,False,2026-06-26T03:53:21.461Z
+Which API stores Credential Profiles?,https://www.site24x7.com/app/api/credential_profile,POST,Configuration Profiles,Credential Profile,True,2026-06-26T03:53:05.932Z
+How do I set up APM Business Transaction Rules?,https://www.site24x7.com/app/api/apminsight/business_txn_rules,POST,Configuration Profiles,APM Business Transaction Rules,True,2026-06-26T03:52:43.948Z
+What endpoint creates an APM Agent Configuration profile?,https://www.site24x7.com/app/api/apminsight/agent_config_profile,POST,Configuration Profiles,APM Agent Configuration,True,2026-06-26T03:52:23.006Z
+How do I generate a Web Token?,https://www.site24x7.com/app/api/short/jwt,GET,Configuration Profiles,Web Tokens,False,2026-06-26T03:49:20.445Z
+How do I generate a Web Token?,https://www.site24x7.com/app/api/test_jwt,POST,Configuration Profiles,Web Tokens,False,2026-06-26T03:49:11.580Z
+How do I create an Email Template?,https://www.site24x7.com/app/api/email_templates,POST,Configuration Profiles,Email Templates,True,2026-06-26T03:48:23.813Z
+List all Business Hours profiles,https://www.site24x7.com/app/api/business_hours,GET,Configuration Profiles,Business Hours,True,2026-06-26T03:48:03.189Z
+What endpoint creates a Notification Profile?,https://www.site24x7.com/app/api/notification_profiles,GET,Configuration Profiles,Notification Profile,True,2026-06-26T03:47:43.301Z
+How do I set up a Threshold Profile for a URL monitor?,https://www.site24x7.com/app/api/threshold_profiles,POST,Configuration Profiles,Threshold and Availability,True,2026-06-26T03:47:18.733Z
+Which API creates a new Location Profile?,https://www.site24x7.com/app/api/location_profiles,POST,Configuration Profiles,Location Profile,True,2026-06-26T03:46:29.222Z
+Which API lists custom user roles defined in the account?,/app/api/short/custom_roles,GET,User & Alert Management,Role Management,True,2026-06-26T03:45:44.109Z
+Show me all on-call schedules configured,/app/api/on_call_schedules,GET,User & Alert Management,On-Call Schedules,True,2026-06-26T03:45:20.325Z
+What endpoint updates an existing attribute group?,/app/api/attribute_groups/{id},PUT,User & Alert Management,Attribute Groups,True,2026-06-26T03:45:04.534Z
+How do I check which alert categories exist?,/app/api/alarms_category,GET,User & Alert Management,Alert Categories,True,2026-06-26T03:44:38.517Z
+Which endpoint fetches attribute definitions and values?,/app/api/attribute_details,GET,User & Alert Management,Attribute Details,True,2026-06-26T03:43:56.277Z
+List all attribute groups for monitors,/app/api/short/attribute_groups,GET,User & Alert Management,Attribute Groups,False,2026-06-26T03:43:32.477Z
+List all attribute groups for monitors,/app/api/attribute_groups,GET,User & Alert Management,Attribute Groups,True,2026-06-26T03:43:24.806Z
+How do I update an alert category?,/app/api/alarms_category/{id},PUT,User & Alert Management,Alert Categories,True,2026-06-26T03:43:08.629Z
+What API manages on-call schedules?,/app/api/on_call_schedules/{id},PUT,User & Alert Management,On-Call Schedules,False,2026-06-26T03:42:46.638Z
+What API manages on-call schedules?,/app/api/on_call_schedules,GET,User & Alert Management,On-Call Schedules,True,2026-06-26T03:42:44.822Z
+Show me all user groups,/app/api/short/user_groups,GET,User & Alert Management,User Groups,True,2026-06-26T03:42:17.038Z
+List all users in the account,/app/api/short/users_list,GET,User & Alert Management,User Management,True,2026-06-26T03:41:33.758Z
+Which API lists all server templates in Inventory?,/app/api/short/server_templates,GET,Inventory,Server Templates,True,2026-06-26T03:40:01.966Z
+How do I check the status of a poller?,/app/api/short/is_poller_available,GET,Inventory,Poller Availability,True,2026-06-26T03:39:40.582Z
+How do I retrieve threshold profiles?,/app/api/short/threshold_profiles/{monitor_type},GET,Inventory,Threshold Profiles,False,2026-06-26T03:39:18.255Z
+How do I retrieve threshold profiles?,/app/api/short/threshold_profiles,GET,Inventory,Threshold Profiles,False,2026-06-26T03:39:13.078Z
+How do I retrieve threshold profiles?,/app/api/threshold_profiles,GET,Inventory,Threshold Profiles,True,2026-06-26T03:39:10.527Z
+Show me all device templates available,/app/api/short/device/categories,GET,Inventory,Device Templates,False,2026-06-26T03:38:46.598Z
+Show me all device templates available,/app/api/short/device/templates,GET,Inventory,Device Templates,True,2026-06-26T03:38:42.958Z
+How do I get the list of network pollers?,/app/api/network/pollers,GET,Inventory,Network Pollers,True,2026-06-26T03:38:19.462Z
+List all credential profiles stored in the account,/app/api/short/credentialbox/{credential_type},GET,Inventory,Credential Box,False,2026-06-26T03:38:02.623Z
+List all credential profiles stored in the account,/app/api/short/credential_list,GET,Inventory,Credential Box,True,2026-06-26T03:37:58.679Z
+How do I check monitor dependencies?,/app/api/dependency/{monitor_id},GET,Inventory,Monitor Dependency,True,2026-06-26T03:37:31.135Z
+What API retrieves the license usage for the account?,/app/api/license_usage,GET,Inventory,License Usage,True,2026-06-26T03:35:30.487Z
+How do I import monitors in bulk?,/app/api/monitors/import/status,GET,Inventory,Monitor Import,False,2026-06-26T03:35:07.471Z
+How do I import monitors in bulk?,/app/api/monitors/import,PUT,Inventory,Monitor Import,True,2026-06-26T03:35:03.432Z
+Show me all monitor groups,/app/api/short/monitor_groups,GET,Inventory,Monitor Groups,False,2026-06-26T03:33:41.183Z
+Show me all monitor groups,/app/api/monitor_groups,GET,Inventory,Monitor Groups,True,2026-06-26T03:33:39.755Z
+Which API resolves IP geolocation data needed by the Milestones page?,/tools/api/iplocation,GET,Milestones,IP Geolocation,True,2026-06-26T04:55:26.184Z
+How do I retrieve account-level configuration before viewing milestones?,/app/api/account_settings,GET,Milestones,Account Settings,True,2026-06-26T04:54:52.009Z
+Which API fetches the current user's profile for the Milestones page?,/app/api/client_data/user,GET,Milestones,User Context,True,2026-06-26T04:54:08.258Z
+What endpoint loads global settings required by the Milestones module?,/app/api/client_data/globals,GET,Milestones,Bootstrap Data,True,2026-06-26T04:53:33.631Z
+Which API loads dashboard preferences for the Milestones view?,/app/api/short/dashboards/favourites,GET,Milestones,Dashboard Preferences,True,2026-06-26T04:52:57.966Z
+How do I fetch demo mode flags for the Milestones page?,/app/api/client_data/demo,GET,Milestones,Bootstrap Data,True,2026-06-26T04:52:14.784Z
+Which API checks subscription details before rendering milestones?,/app/api/client_data/account,GET,Milestones,Account Context,True,2026-06-26T04:51:25.676Z
+What field controls milestone marker visibility (Monitor/Group/Global)?,/app/api/milestone/default_marker,PUT,Milestones,Milestone Marker Settings,True,2026-06-26T04:50:57.784Z
+What endpoint loads monitor groups for milestone association?,/app/api/monitor_groups?subgroup_required=true,GET,Milestones,Milestone Configuration,True,2026-06-26T04:50:23.888Z
+Which API updates the default milestone marker setting?,/app/api/milestone/default_marker,PUT,Milestones,Milestone Marker Settings,True,2026-06-26T04:49:32.315Z
+How do I update a previously published Public Report?,/app/api/public_reports/15698000325373001,PUT,Share,Public Reports,True,2026-06-26T04:48:40.803Z
+Which API retrieves custom reports available for public sharing?,/app/api/reports/custom_reports,GET,Share,Public Reports,False,2026-06-26T04:48:15.960Z
+Which API retrieves custom reports available for public sharing?,/app/api/public_reports,GET,Share,Public Reports,True,2026-06-26T04:48:14.291Z
+What endpoint deletes a Public Report?,/app/api/public_reports/15698000325373001,DELETE,Share,Public Reports,True,2026-06-26T04:47:37.328Z
+Which API updates an existing Operations Dashboard?,/app/api/dashboard_views/15698000033393001,PUT,Share,Operations Dashboard,True,2026-06-26T04:46:29.172Z
+How do I publish a new Public Report?,/app/api/public_reports,POST,Share,Public Reports,True,2026-06-26T04:45:47.059Z
+Which API retrieves the list of public reports?,/app/api/public_reports,GET,Share,Public Reports,True,2026-06-26T04:44:53.715Z
+How do I delete a specific Operations Dashboard?,/app/api/dashboard_views/15698000033393001,DELETE,Share,Operations Dashboard,True,2026-06-26T04:44:18.488Z
+What endpoint creates a new Operations Dashboard?,/app/api/dashboard_views,POST,Share,Operations Dashboard,True,2026-06-26T04:42:35.612Z
+What endpoint creates a new Operations Dashboard?,/app/api/dashboard_views,POST,Share,Operations Dashboard,True,2026-06-26T04:42:29.913Z
+How do I create an Uptime Button?,/app/api/uptime_buttons,POST,Share,Uptime Buttons,True,2026-06-26T04:41:46.944Z
+Which API lists existing Uptime Buttons?,/app/api/uptime_buttons,GET,Share,Uptime Buttons,True,2026-06-26T04:40:42.584Z
+Which API resolves IP geolocation info on the Downloads page?,/tools/api/iplocation,GET,Downloads,IP Geolocation,True,2026-06-26T05:04:49.352Z
+How do I retrieve account context before showing the Downloads page?,/app/api/client_data/account,GET,Downloads,Account Context,True,2026-06-26T05:04:32.065Z
+Which API loads dashboard preferences for the Downloads page?,/app/api/short/dashboards/favourites,GET,Downloads,Dashboard Preferences,True,2026-06-26T05:04:13.037Z
+How do I check how many times an agent has been downloaded?,/app/api/download_count,PUT,Downloads,Download Counter,True,2026-06-26T05:03:51.034Z
+Which API records a Ruby APM agent download event?,/app/api/apminsight/download/RUBY,POST,Downloads,Ruby APM Agent Download,True,2026-06-26T05:03:30.636Z
+How do I download the Ruby APM agent gem package?,https://staticdownloads.site24x7.com/apminsight/agents/site24x7_apminsight.gem,GET,Downloads,Ruby APM Agent Download,True,2026-06-26T05:03:01.746Z
+Which API records a .NET APM agent download event?,/app/api/apminsight/download/DOTNET,POST,Downloads,.NET APM Agent Download,True,2026-06-26T05:02:19.527Z
+What endpoint downloads the .NET APM monitoring agent installer?,https://staticdownloads.site24x7.com/apminsight/agents/apminsight-dotnetagent.msi,GET,Downloads,.NET APM Agent Download,True,2026-06-26T05:01:50.143Z
+Which API records a Java APM agent download event?,/app/api/apminsight/download/JAVA,POST,Downloads,Java APM Agent Download,True,2026-06-26T05:01:24.247Z
+How do I download the Java APM agent installer file?,https://staticdownloads.site24x7.com/apminsight/agents/apminsight-javaagent.zip,GET,Downloads,Java APM Agent Download,True,2026-06-26T05:00:56.696Z
+How do I resolve IP geolocation info on the Tags page?,/tools/api/iplocation,GET,Tags,IP Geolocation,True,2026-06-26T04:59:53.698Z
+Which API loads bootstrap/demo metadata needed by the Tags page?,/app/api/client_data/demo,GET,Tags,Bootstrap Data,True,2026-06-26T04:59:37.002Z
+How do I retrieve account-level settings required for the Tags page?,/app/api/account_settings,GET,Tags,Account Settings,True,2026-06-26T04:59:20.120Z
+Which API checks user/session context for the Tags module?,/app/api/client_data/user,GET,Tags,User Context,True,2026-06-26T04:58:38.226Z
+How do I retrieve account context before rendering the Tags page?,/app/api/client_data/account,GET,Tags,Account Context,True,2026-06-26T04:58:08.601Z
+What status code do tag creation requests return in the demo account?,/app/api/tags,POST,Tags,Tag Creation,True,2026-06-26T04:57:11.566Z
+Which API records a change-tracking event for tag management actions?,/app/api/tracker,PUT,Tags,Tag Management,True,2026-06-26T04:56:49.988Z
+What endpoint retrieves saved table preferences for the Tags view?,/app/api/preferences/table/14,GET,Tags,Table Preferences,True,2026-06-26T04:56:24.625Z
+Which API creates a new tag?,/app/api/tags,POST,Tags,Tag Creation,True,2026-06-26T04:56:05.204Z
+List all tags configured in the account,/app/api/tags,GET,Tags,Tag Listing,True,2026-06-26T04:55:24.597Z
+What endpoint lists all supported third-party integration providers?,/app/api/short/third_party_services,GET,Third-Party Integrations,Third-Party Integrations Listing,True,2026-06-26T04:54:15.144Z
+How do I configure Splunk On-Call as an integration?,/app/api/integration/victorops,POST,Third-Party Integrations,Splunk On-Call Integration,True,2026-06-26T04:53:25.154Z
+How do I connect Site24x7 to Discord?,/app/api/integration/discord,POST,Third-Party Integrations,Discord Integration,True,2026-06-26T04:53:06.833Z
+What API integrates with Opsgenie?,/app/api/integration/opsgenie,POST,Third-Party Integrations,Opsgenie Integration,True,2026-06-26T04:52:51.117Z
+How do I check the ServiceNow CMDB sync status?,/app/api/integration/snow_cmdb_status,GET,Third-Party Integrations,ServiceNow CMDB Status,True,2026-06-26T04:52:35.822Z
+Which API retrieves ServiceNow CMDB monitor type mappings?,/app/api/integration/cmdbMonitorTypes,GET,Third-Party Integrations,ServiceNow CMDB Config,True,2026-06-26T04:52:17.042Z
+What endpoint creates a ServiceNow integration?,/app/api/integration/service_now,POST,Third-Party Integrations,ServiceNow Integration,True,2026-06-26T04:51:44.335Z
+How do I configure a webhook integration?,/app/api/integration/webhooks,POST,Third-Party Integrations,Webhook Integration,True,2026-06-26T04:50:04.527Z
+Which API creates a Slack integration?,/app/api/integration/slack,POST,Third-Party Integrations,Slack Integration,True,2026-06-26T04:49:45.886Z
+How do I set up PagerDuty alerts?,/app/api/integration/pager_duty,POST,Third-Party Integrations,PagerDuty Integration,True,2026-06-26T04:49:23.667Z
