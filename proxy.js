@@ -20,6 +20,7 @@ const ALLOWED_HOSTS = ['www.site24x7.com', 'staticdownloads.site24x7.com', 'tool
 const ALLOWED_ORIGIN = 'http://localhost:3333';
 
 let storedCookie = '';
+let storedAuthToken = '';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -75,12 +76,20 @@ const server = http.createServer(async (req, res) => {
     const body = await readBody(req);
     try {
       const data = JSON.parse(body);
-      if (data.cookie) {
+      let updated = false;
+      if (data.cookie !== undefined) {
         storedCookie = data.cookie.trim();
-        console.log('[proxy] Cookie updated ✓');
-        return json(res, 200, { ok: true, message: 'Cookie saved successfully.' });
+        updated = true;
       }
-      return json(res, 400, { ok: false, message: 'No "cookie" field found in request body.' });
+      if (data.authToken !== undefined) {
+        storedAuthToken = data.authToken.trim();
+        updated = true;
+      }
+      if (updated) {
+        console.log(`[proxy] Settings updated ✓ (Cookie: ${!!storedCookie}, AuthToken: ${!!storedAuthToken})`);
+        return json(res, 200, { ok: true, message: 'Settings saved successfully.' });
+      }
+      return json(res, 400, { ok: false, message: 'No "cookie" or "authToken" field found in request body.' });
     } catch {
       return json(res, 400, { ok: false, message: 'Invalid JSON body.' });
     }
@@ -88,7 +97,7 @@ const server = http.createServer(async (req, res) => {
 
   // ── GET /status ─────────────────────────────────────────────────────────────
   if (path === '/status' && req.method === 'GET') {
-    return json(res, 200, { ok: true, hasCookie: !!storedCookie, port: PORT });
+    return json(res, 200, { ok: true, hasCookie: !!storedCookie, hasAuthToken: !!storedAuthToken, port: PORT });
   }
 
   // ── /proxy?url=<target> ─────────────────────────────────────────────────────
@@ -151,6 +160,8 @@ const server = http.createServer(async (req, res) => {
         'sec-ch-ua-platform':  '"Windows"',
         'Connection':          'keep-alive',
         ...(csrfToken ? { 'CT_CSRF_TOKEN': csrfToken } : {}),
+        ...(storedAuthToken ? { 'Authorization': storedAuthToken } : {}),
+        'time-zone':           'PST8PDT'
       },
     };
 

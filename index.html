@@ -904,17 +904,22 @@
         <li>Open <strong>site24x7.com/app/demo</strong> in Chrome</li>
         <li>Press <strong>F12</strong> &rarr; Network tab &rarr; filter by Fetch/XHR</li>
         <li>Click any <code>/app/api/</code> request &rarr; Headers &rarr; copy the <strong>Cookie:</strong> value</li>
-        <li>Paste it below and click Save</li>
       </ol>
     </div>
     <textarea id="cookieInput" placeholder="zaaid=...; JSESSIONID=...; CT_CSRF_TOKEN=..."></textarea>
+
+    <div class="sm-section-title" style="margin-top:20px;">OAuth Token (Required for some APIs)</div>
+    <p class="sm-desc">
+      From the same request headers, copy the <strong>Authorization</strong> value.
+    </p>
+    <textarea id="authTokenInput" placeholder="Zoho-oauthtoken 1000.b2a5fbfa0d2ed..."></textarea>
 
     <div class="sm-footer">
       <div class="sm-proxy-status">
         <div class="sm-proxy-dot" id="smProxyDot"></div>
         <span id="smProxyLabel">Checking proxy…</span>
       </div>
-      <button class="sm-save-btn" id="saveCookieBtn" onclick="saveCookie()">Save Cookie</button>
+      <button class="sm-save-btn" id="saveCookieBtn" onclick="saveCookie()">Save Settings</button>
     </div>
   </div>
 </div>
@@ -1433,19 +1438,20 @@
   };
   window.saveCookie = function() {
     var cookieVal = (document.getElementById('cookieInput') || {}).value || '';
-    if (!cookieVal.trim()) { showToast('Please paste a cookie string first'); return; }
+    var authVal = (document.getElementById('authTokenInput') || {}).value || '';
+    if (!cookieVal.trim() && !authVal.trim()) { showToast('Please paste a cookie or auth token string first'); return; }
     var btn = document.getElementById('saveCookieBtn');
     if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
     fetch(PROXY_URL + '/settings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cookie: cookieVal.trim() })
+      body: JSON.stringify({ cookie: cookieVal.trim(), authToken: authVal.trim() })
     })
     .then(function(r){ return r.json(); })
     .then(function(d){
-      if (btn) { btn.textContent = 'Save Cookie'; btn.disabled = false; }
+      if (btn) { btn.textContent = 'Save Settings'; btn.disabled = false; }
       if (d.ok) {
-        showToast('&#10003; Cookie saved — proxy is ready!');
+        showToast('&#10003; Settings saved — proxy is ready!');
         checkProxyStatus();
         closeSettings();
       } else {
@@ -1453,7 +1459,7 @@
       }
     })
     .catch(function(){
-      if (btn) { btn.textContent = 'Save Cookie'; btn.disabled = false; }
+      if (btn) { btn.textContent = 'Save Settings'; btn.disabled = false; }
       showToast('Could not reach proxy. Is it running?');
     });
   };
