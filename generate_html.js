@@ -275,9 +275,10 @@ const clientJs = `
           '<div class="rc-actions">' +
             '<button class="action-btn btn-correct" data-apiid="'+api.id+'" onclick="event.stopPropagation();markCorrect('+api.id+')">&#10003; Mark Correct</button>' +
             '<button class="action-btn btn-dataset" data-apiid="'+api.id+'" onclick="event.stopPropagation();addDataset('+api.id+')">&#43; Add to Dataset</button>' +
-            '<a class="action-btn btn-try" href="https://www.site24x7.com'+esc(api.endpoint)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#9654; Try API</a>' +
+            '<button class="action-btn btn-try" data-apiid="'+api.id+'" onclick="event.stopPropagation();tryApi('+api.id+')">&#9654; Try API</button>' +
           '</div>' +
         '</div>' +
+        '<div class="rc-try-panel" id="try-panel-'+api.id+'" style="display:none"></div>' +
         (resF.length || reqF.length || api.summaryText ? 
         '<div class="rc-detail" style="display:'+(isExp?'block':'none')+'">' +
           (resF.length ? '<div class="detail-section-label">RESPONSE FIELDS</div>' +
@@ -375,6 +376,121 @@ const clientJs = `
     if (!query) { showToast('Type a query first before adding to dataset'); return; }
     addToDataset(apiId, false);
   };
+
+  // ── PROXY / TRY API ──
+  var PROXY_URL = 'http://localhost:3334';
+  var proxyConnected = false;
+
+  function checkProxyStatus() {
+    fetch(PROXY_URL + '/status', { signal: AbortSignal.timeout(1500) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        proxyConnected = d.ok;
+        var dot = document.getElementById('proxyDot');
+        var lbl = document.getElementById('proxyLabel');
+        if (dot) dot.style.background = proxyConnected ? '#16a34a' : '#ef4444';
+        if (lbl) lbl.textContent = proxyConnected ? (d.hasCookie ? 'Proxy: Ready' : 'Proxy: No Cookie') : 'Proxy: Off';
+        if (proxyConnected && !d.hasCookie) { if (dot) dot.style.background = '#f59e0b'; }
+      })
+      .catch(function(){
+        proxyConnected = false;
+        var dot = document.getElementById('proxyDot');
+        var lbl = document.getElementById('proxyLabel');
+        if (dot) dot.style.background = '#ef4444';
+        if (lbl) lbl.textContent = 'Proxy: Off';
+      });
+  }
+
+  window.tryApi = function(apiId) {
+    var api = apis.find(function(a){ return a.id === apiId; });
+    if (!api) return;
+    var panel = document.getElementById('try-panel-' + apiId);
+    if (!panel) return;
+
+    // Toggle off if already showing
+    if (panel.style.display !== 'none') { panel.style.display = 'none'; return; }
+
+    if (!proxyConnected) {
+      panel.style.display = 'block';
+      panel.innerHTML = '<div class="try-error">&#9888; Proxy not running. Start it with <code>npm run proxy</code> then refresh.</div>';
+      return;
+    }
+
+    var rawEp = api.endpoint;
+    // Build full URL: if relative, prepend site24x7 base
+    var fullUrl = /^https?:\/\//i.test(rawEp) ? rawEp : 'https://www.site24x7.com' + rawEp;
+    var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
+
+    panel.style.display = 'block';
+    panel.innerHTML = '<div class="try-loading">&#9654; Calling ' + esc(api.method) + ' ' + esc(rawEp) + '…</div>';
+
+    fetch(proxyTarget, { method: api.method })
+      .then(function(r) {
+        var status = r.status;
+        return r.text().then(function(body) { return { status: status, body: body }; });
+      })
+      .then(function(result) {
+        var pretty = result.body;
+        try { pretty = JSON.stringify(JSON.parse(result.body), null, 2); } catch(e){}
+        var statusCls = result.status < 300 ? 'try-status-ok' : result.status < 500 ? 'try-status-warn' : 'try-status-err';
+        panel.innerHTML =
+          '<div class="try-resp-header">' +
+            '<span class="try-method-badge method-' + api.method.toLowerCase() + '">' + api.method + '</span>' +
+            '<code class="try-ep">' + esc(rawEp) + '</code>' +
+            '<span class="try-status ' + statusCls + '">' + result.status + '</span>' +
+            '<button class="try-close" onclick="document.getElementById(\"try-panel-' + apiId + '\").style.display=\"none\"" title="Close">&#10005;</button>' +
+          '</div>' +
+          '<pre class="try-body">' + esc(pretty) + '</pre>';
+      })
+      .catch(function(err) {
+        panel.innerHTML = '<div class="try-error">&#9888; Request failed: ' + esc(err.message) + '</div>';
+      });
+  };
+
+  // ── SETTINGS MODAL ──
+  window.openSettings = function() {
+    var m = document.getElementById('settingsModal');
+    if (m) m.style.display = 'flex';
+    checkProxyStatus();
+  };
+  window.closeSettings = function() {
+    var m = document.getElementById('settingsModal');
+    if (m) m.style.display = 'none';
+  };
+  window.saveCookie = function() {
+    var cookieVal = (document.getElementById('cookieInput') || {}).value || '';
+    if (!cookieVal.trim()) { showToast('Please paste a cookie string first'); return; }
+    var btn = document.getElementById('saveCookieBtn');
+    if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
+    fetch(PROXY_URL + '/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cookie: cookieVal.trim() })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (btn) { btn.textContent = 'Save Cookie'; btn.disabled = false; }
+      if (d.ok) {
+        showToast('&#10003; Cookie saved — proxy is ready!');
+        checkProxyStatus();
+        closeSettings();
+      } else {
+        showToast('Error: ' + d.message);
+      }
+    })
+    .catch(function(){
+      if (btn) { btn.textContent = 'Save Cookie'; btn.disabled = false; }
+      showToast('Could not reach proxy. Is it running?');
+    });
+  };
+
+  document.getElementById('settingsModal').addEventListener('click', function(e){
+    if (e.target === this) closeSettings();
+  });
+
+  // Check proxy status on load and every 15s
+  checkProxyStatus();
+  setInterval(checkProxyStatus, 15000);
 
   window.removeFromDataset = function(id) {
     dataset = dataset.filter(function(d){ return d.id !== id; });
@@ -631,6 +747,225 @@ const css = `
   }
   .settings-btn:hover { background: #e5e7eb; }
   .settings-icon { font-size: 13px; }
+
+  /* Proxy indicator */
+  .proxy-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #6b7280;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 3px 10px;
+  }
+  .proxy-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #ef4444;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+
+  /* Try API panel */
+  .rc-try-panel {
+    border-top: 1px solid #e5e7eb;
+    background: #0f172a;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    animation: fadeIn 0.15s ease;
+  }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .try-resp-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+    flex-wrap: wrap;
+  }
+  .try-ep {
+    font-family: 'SF Mono','Fira Code','Consolas',monospace;
+    font-size: 11px;
+    color: #94a3b8;
+    flex: 1;
+    word-break: break-all;
+  }
+  .try-status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .try-status-ok   { background: #14532d; color: #4ade80; }
+  .try-status-warn { background: #713f12; color: #fbbf24; }
+  .try-status-err  { background: #7f1d1d; color: #f87171; }
+  .try-method-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .try-close {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: auto;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+  .try-close:hover { color: #f87171; background: #1e293b; }
+  .try-body {
+    color: #e2e8f0;
+    font-family: 'SF Mono','Fira Code','Consolas',monospace;
+    font-size: 11px;
+    line-height: 1.55;
+    padding: 12px 16px;
+    overflow-x: auto;
+    max-height: 320px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .try-loading, .try-error {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-family: 'SF Mono','Fira Code','Consolas',monospace;
+  }
+  .try-loading { color: #94a3b8; }
+  .try-error   { color: #f87171; }
+  .try-error code { background: #1e293b; padding: 1px 5px; border-radius: 3px; }
+
+  /* Settings Modal */
+  .settings-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .settings-modal {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    width: 520px;
+    max-width: 95vw;
+    padding: 28px;
+    animation: fadeIn 0.18s ease;
+  }
+  .sm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .sm-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .sm-close {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 2px;
+    border-radius: 4px;
+  }
+  .sm-close:hover { color: #374151; background: #f3f4f6; }
+  .sm-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+  .sm-desc {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .sm-desc code {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: 'SF Mono','Fira Code','Consolas',monospace;
+    font-size: 11px;
+    color: #1d4ed8;
+  }
+  .sm-steps {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .sm-steps ol { padding-left: 16px; }
+  #cookieInput {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: 'SF Mono','Fira Code','Consolas',monospace;
+    color: #111827;
+    padding: 9px 12px;
+    resize: vertical;
+    min-height: 70px;
+    outline: none;
+    background: #fafafa;
+    transition: border-color 0.15s;
+  }
+  #cookieInput:focus { border-color: #1d4ed8; background: #fff; }
+  .sm-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sm-proxy-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .sm-proxy-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    transition: background 0.3s;
+  }
+  .sm-save-btn {
+    background: #1d4ed8;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 8px 22px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .sm-save-btn:hover { background: #1e40af; }
+  .sm-save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
   /* ── SEARCH SECTION ── */
   .search-section {
@@ -1233,9 +1568,45 @@ const html = `<!DOCTYPE html>
   <span class="nav-title">Test with AI</span>
   <div class="nav-right">
     <span class="nav-stat">&#128202; <strong id="hTotalCount">720 endpoints</strong></span>
-    <button class="settings-btn"><span class="settings-icon">&#9881;</span> Settings</button>
+    <div class="proxy-indicator" title="Local proxy status">
+      <div class="proxy-dot" id="proxyDot"></div>
+      <span id="proxyLabel">Proxy: Off</span>
+    </div>
+    <button class="settings-btn" onclick="openSettings()"><span class="settings-icon">&#9881;</span> Settings</button>
   </div>
 </nav>
+
+<!-- Settings Modal -->
+<div class="settings-modal-overlay" id="settingsModal">
+  <div class="settings-modal">
+    <div class="sm-header">
+      <span class="sm-title">&#9881; Settings — Live API Testing</span>
+      <button class="sm-close" onclick="closeSettings()" title="Close">&#10005;</button>
+    </div>
+
+    <div class="sm-section-title">Session Cookie</div>
+    <p class="sm-desc">
+      Paste your Site24x7 session cookie below. This is sent to the local proxy server (<code>localhost:3334</code>) and never leaves your machine.
+    </p>
+    <div class="sm-steps">
+      <ol>
+        <li>Open <strong>site24x7.com/app/demo</strong> in Chrome</li>
+        <li>Press <strong>F12</strong> &rarr; Network tab &rarr; filter by Fetch/XHR</li>
+        <li>Click any <code>/app/api/</code> request &rarr; Headers &rarr; copy the <strong>Cookie:</strong> value</li>
+        <li>Paste it below and click Save</li>
+      </ol>
+    </div>
+    <textarea id="cookieInput" placeholder="zaaid=...; JSESSIONID=...; CT_CSRF_TOKEN=..."></textarea>
+
+    <div class="sm-footer">
+      <div class="sm-proxy-status">
+        <div class="sm-proxy-dot" id="smProxyDot"></div>
+        <span id="smProxyLabel">Checking proxy…</span>
+      </div>
+      <button class="sm-save-btn" id="saveCookieBtn" onclick="saveCookie()">Save Cookie</button>
+    </div>
+  </div>
+</div>
 
 <!-- Search Section -->
 <div class="search-section">
