@@ -559,19 +559,20 @@ const clientJs = `
           '<pre class="try-body">' + esc(pretty) + '</pre>';
       })
       .catch(function(err) {
-        panel.innerHTML = '<div class="try-error">&#9888; Request failed: ' + esc(err.message) + '</div>';
+      panel.innerHTML = '<div class="try-error">&#9888; Request failed: ' + esc(err.message) + '</div>';
       });
   };
 
   // ── SETTINGS MODAL ──
   window.openSettings = function() {
-    var m = document.getElementById('settingsModal');
-    if (m) m.style.display = 'flex';
-    checkProxyStatus();
+    var c = localStorage.getItem('s247_cookie') || '';
+    var a = localStorage.getItem('s247_auth') || '';
+    document.getElementById('cookieInput').value = c;
+    document.getElementById('authTokenInput').value = a;
+    document.getElementById('settingsModal').style.display = 'flex';
   };
   window.closeSettings = function() {
-    var m = document.getElementById('settingsModal');
-    if (m) m.style.display = 'none';
+    document.getElementById('settingsModal').style.display = 'none';
   };
   window.saveCookie = function() {
     var cookieVal = (document.getElementById('cookieInput') || {}).value || '';
