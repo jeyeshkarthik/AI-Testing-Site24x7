@@ -117,11 +117,13 @@ const server = http.createServer(async (req, res) => {
       path:     parsedTarget.path,
       method:   req.method,
       headers: {
-        'Cookie':     storedCookie,
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36',
-        'Accept':     'application/json, text/plain, */*',
-        'Referer':    'https://www.site24x7.com/app/demo',
-        'Origin':     'https://www.site24x7.com',
+        'Cookie':            storedCookie,
+        'User-Agent':        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36',
+        'Accept':            'application/json, text/plain, */*',
+        'Accept-Language':   'en-US,en;q=0.9',
+        'Referer':           'https://www.site24x7.com/app/demo',
+        'Origin':            'https://www.site24x7.com',
+        'X-Requested-With':  'XMLHttpRequest',
       },
     };
 
