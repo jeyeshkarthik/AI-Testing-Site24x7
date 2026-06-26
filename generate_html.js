@@ -418,7 +418,7 @@ const clientJs = `
 
     var rawEp = api.endpoint;
     // Build full URL: if relative, prepend site24x7 base
-    var fullUrl = /^https?:\/\//i.test(rawEp) ? rawEp : 'https://www.site24x7.com' + rawEp;
+    var fullUrl = (rawEp.startsWith('http://') || rawEp.startsWith('https://')) ? rawEp : 'https://www.site24x7.com' + rawEp;
     var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
 
     panel.style.display = 'block';

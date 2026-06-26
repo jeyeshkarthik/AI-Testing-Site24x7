@@ -13,7 +13,6 @@
 
 const http  = require('http');
 const https = require('https');
-const url   = require('url');
 
 const PORT          = 3334;
 const DEFAULT_HOST  = 'www.site24x7.com';
@@ -62,8 +61,14 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  const parsedUrl = url.parse(req.url, true);
-  const path      = parsedUrl.pathname;
+  // Parse request URL using WHATWG URL API
+  let reqUrl;
+  try {
+    reqUrl = new URL(req.url, 'http://localhost');
+  } catch(e) {
+    return json(res, 400, { error: 'Bad request URL' });
+  }
+  const path = reqUrl.pathname;
 
   // ── POST /settings ──────────────────────────────────────────────────────────
   if (path === '/settings' && req.method === 'POST') {
@@ -88,7 +93,7 @@ const server = http.createServer(async (req, res) => {
 
   // ── /proxy?url=<target> ─────────────────────────────────────────────────────
   if (path === '/proxy') {
-    const rawTarget = parsedUrl.query.url;
+    const rawTarget = reqUrl.searchParams.get('url');
 
     if (!rawTarget) {
       return json(res, 400, { error: 'Missing ?url= query parameter.' });
@@ -101,56 +106,91 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    const targetUrl  = resolveTarget(decodeURIComponent(rawTarget));
-    const parsedTarget = url.parse(targetUrl);
+    let targetUrl;
+    try {
+      targetUrl = resolveTarget(rawTarget);
+      new URL(targetUrl); // validate
+    } catch(e) {
+      return json(res, 400, { error: 'Invalid target URL: ' + rawTarget });
+    }
+
+    const parsedTarget = new URL(targetUrl);
     const hostname   = parsedTarget.hostname;
 
     if (!ALLOWED_HOSTS.includes(hostname)) {
       return json(res, 403, { error: `Host "${hostname}" is not allowed.` });
     }
 
-    const reqBody = await readBody(req);
+    // Extract CSRF token from cookie to send as header (Zoho requirement)
+    let csrfToken = '';
+    const csrfMatch = storedCookie.match(/CT_CSRF_TOKEN=([^;]+)/);
+    if (csrfMatch) csrfToken = csrfMatch[1].trim();
+
+    const fullPath = parsedTarget.pathname + (parsedTarget.search || '');
+    console.log(`[proxy] ${req.method} ${parsedTarget.hostname}${fullPath}`);
 
     const options = {
       hostname: hostname,
       port:     443,
-      path:     parsedTarget.path,
+      path:     fullPath,
       method:   req.method,
       headers: {
-        'Cookie':            storedCookie,
-        'User-Agent':        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36',
-        'Accept':            'application/json, text/plain, */*',
-        'Accept-Language':   'en-US,en;q=0.9',
-        'Referer':           'https://www.site24x7.com/app/demo',
-        'Origin':            'https://www.site24x7.com',
-        'X-Requested-With':  'XMLHttpRequest',
+        'Cookie':              storedCookie,
+        'User-Agent':          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept':              'application/json, text/plain, */*',
+        'Accept-Language':     'en-US,en;q=0.9',
+        'Accept-Encoding':     'identity',
+        'Referer':             'https://www.site24x7.com/app/demo',
+        'Origin':              'https://www.site24x7.com',
+        'X-Requested-With':    'XMLHttpRequest',
+        'Sec-Fetch-Dest':      'empty',
+        'Sec-Fetch-Mode':      'cors',
+        'Sec-Fetch-Site':      'same-origin',
+        'sec-ch-ua':           '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+        'sec-ch-ua-mobile':    '?0',
+        'sec-ch-ua-platform':  '"Windows"',
+        'Connection':          'keep-alive',
+        ...(csrfToken ? { 'CT_CSRF_TOKEN': csrfToken } : {}),
       },
     };
+
+    const reqBody = await readBody(req);
 
     if (reqBody && (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH')) {
       options.headers['Content-Type']   = req.headers['content-type'] || 'application/json';
       options.headers['Content-Length'] = Buffer.byteLength(reqBody);
     }
 
-    console.log(`[proxy] ${req.method} ${targetUrl}`);
-
-    const proxyReq = https.request(options, (proxyRes) => {
-      const status      = proxyRes.statusCode;
-      const contentType = proxyRes.headers['content-type'] || 'application/json';
-
-      res.writeHead(status, {
-        'Content-Type': contentType,
+    // Follow redirects up to 5 hops
+    function doRequest(opts, body, hops, finalRes) {
+      if (hops > 5) return json(finalRes, 502, { error: 'Too many redirects' });
+      const r = https.request(opts, (proxyRes) => {
+        const status = proxyRes.statusCode;
+        if ((status === 301 || status === 302 || status === 303 || status === 307 || status === 308) && proxyRes.headers.location) {
+          const loc = proxyRes.headers.location;
+          console.log(`[proxy] Redirect ${status} → ${loc}`);
+          const nextUrl  = new URL(loc, `https://${opts.hostname}`);
+          const nextOpts = Object.assign({}, opts, {
+            hostname: nextUrl.hostname,
+            path:     nextUrl.pathname + (nextUrl.search || ''),
+            method:   (status === 303) ? 'GET' : opts.method,
+          });
+          proxyRes.resume(); // drain
+          return doRequest(nextOpts, (status === 303 ? '' : body), hops + 1, finalRes);
+        }
+        const ct = proxyRes.headers['content-type'] || 'application/json';
+        finalRes.writeHead(status, { 'Content-Type': ct });
+        proxyRes.pipe(finalRes);
       });
-      proxyRes.pipe(res);
-    });
+      r.on('error', (e) => {
+        console.error('[proxy] Request error:', e.message);
+        json(finalRes, 502, { error: 'Proxy request failed: ' + e.message });
+      });
+      if (body) r.write(body);
+      r.end();
+    }
 
-    proxyReq.on('error', (e) => {
-      console.error('[proxy] Request error:', e.message);
-      json(res, 502, { error: 'Proxy request failed: ' + e.message });
-    });
-
-    if (reqBody) proxyReq.write(reqBody);
-    proxyReq.end();
+    doRequest(options, reqBody, 0, res);
     return;
   }
 
