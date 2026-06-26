@@ -162,6 +162,67 @@
   .try-error   { color: #f87171; }
   .try-error code { background: #1e293b; padding: 1px 5px; border-radius: 3px; }
 
+  /* Try API Input Form */
+  .try-input-form {
+    padding: 16px;
+    background: #0f172a;
+    border-radius: 6px;
+    margin: 10px;
+    border: 1px solid #1e293b;
+  }
+  .try-input-title {
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .try-input-group {
+    margin-bottom: 12px;
+  }
+  .try-input-group label {
+    display: block;
+    color: #94a3b8;
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  .try-input-group label code {
+    color: #38bdf8;
+    background: rgba(56,189,248,0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  .try-input-group input, .try-input-group textarea {
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    transition: border-color 0.15s;
+    box-sizing: border-box;
+  }
+  .try-input-group input:focus, .try-input-group textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  .try-input-form .action-btn {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 4px;
+  }
+  .try-input-form .action-btn:hover { background: #1d4ed8; }
+
   /* Settings Modal */
   .settings-modal-overlay {
     display: none;
@@ -1386,7 +1447,6 @@
     var panel = document.getElementById('try-panel-' + apiId);
     if (!panel) return;
 
-    // Toggle off if already showing
     if (panel.style.display !== 'none') { panel.style.display = 'none'; return; }
 
     if (!proxyConnected) {
@@ -1396,14 +1456,92 @@
     }
 
     var rawEp = api.endpoint;
-    // Build full URL: if relative, prepend site24x7 base
-    var fullUrl = (rawEp.startsWith('http://') || rawEp.startsWith('https://')) ? rawEp : 'https://www.site24x7.com' + rawEp;
-    var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
+    var method = api.method.toUpperCase();
+    var hasBody = (method === 'POST' || method === 'PUT' || method === 'PATCH');
+    var pathParams = [];
+    var paramRegex = /{([^}]+)}/g;
+    var match;
+    while ((match = paramRegex.exec(rawEp)) !== null) {
+      pathParams.push(match[1]);
+    }
 
     panel.style.display = 'block';
-    panel.innerHTML = '<div class="try-loading">&#9654; Calling ' + esc(api.method) + ' ' + esc(rawEp) + '…</div>';
 
-    fetch(proxyTarget, { method: api.method })
+    var html = '<div class="try-input-form">';
+    html += '<div class="try-input-title">Configure Request</div>';
+    
+    pathParams.forEach(function(param) {
+      html += '<div class="try-input-group">';
+      html += '<label>URL Param: <code>' + esc(param) + '</code></label>';
+      html += '<input type="text" id="param-' + apiId + '-' + param + '" placeholder="Enter value for ' + esc(param) + '" />';
+      html += '</div>';
+    });
+
+    html += '<div class="try-input-group">';
+    html += '<label>Query String (Optional)</label>';
+    html += '<input type="text" id="query-' + apiId + '" placeholder="?period=1&status=up" />';
+    html += '</div>';
+
+    if (hasBody) {
+      html += '<div class="try-input-group">';
+      html += '<label>Request Body (JSON)</label>';
+      html += '<textarea id="body-' + apiId + '" rows="4" placeholder="{
+  // Enter JSON payload here
+}"></textarea>';
+      html += '</div>';
+    }
+
+    html += '<button class="action-btn" onclick="executeApi(' + apiId + ')">&#9654; Execute Request</button>';
+    html += '</div>';
+    panel.innerHTML = html;
+  };
+
+  window.executeApi = function(apiId) {
+    var api = apis.find(function(a){ return a.id === apiId; });
+    var panel = document.getElementById('try-panel-' + apiId);
+    var rawEp = api.endpoint;
+    var method = api.method.toUpperCase();
+    var hasBody = (method === 'POST' || method === 'PUT' || method === 'PATCH');
+    
+    // Replace parameters
+    var finalEp = rawEp;
+    var paramRegex = /{([^}]+)}/g;
+    var match;
+    while ((match = paramRegex.exec(rawEp)) !== null) {
+      var param = match[1];
+      var input = document.getElementById('param-' + apiId + '-' + param);
+      if (input && input.value) {
+        finalEp = finalEp.replace('{' + param + '}', input.value.trim());
+      }
+    }
+
+    var queryInput = document.getElementById('query-' + apiId);
+    if (queryInput && queryInput.value.trim()) {
+      var qs = queryInput.value.trim();
+      if (!qs.startsWith('?')) qs = '?' + qs;
+      finalEp += qs;
+    }
+
+    var bodyData = null;
+    if (hasBody) {
+      var bodyInput = document.getElementById('body-' + apiId);
+      if (bodyInput && bodyInput.value.trim()) {
+        bodyData = bodyInput.value.trim();
+      }
+    }
+
+    var fullUrl = (finalEp.startsWith('http://') || finalEp.startsWith('https://')) ? finalEp : 'https://www.site24x7.com' + finalEp;
+    var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
+
+    panel.innerHTML = '<div class="try-loading">&#9654; Calling ' + esc(api.method) + ' ' + esc(finalEp) + '…</div>';
+
+    var fetchOpts = { method: api.method };
+    if (bodyData) {
+      fetchOpts.body = bodyData;
+      fetchOpts.headers = { 'Content-Type': 'application/json' };
+    }
+
+    fetch(proxyTarget, fetchOpts)
       .then(function(r) {
         var status = r.status;
         return r.text().then(function(body) { return { status: status, body: body }; });
@@ -1415,9 +1553,9 @@
         panel.innerHTML =
           '<div class="try-resp-header">' +
             '<span class="try-method-badge method-' + api.method.toLowerCase() + '">' + api.method + '</span>' +
-            '<code class="try-ep">' + esc(rawEp) + '</code>' +
+            '<code class="try-ep">' + esc(finalEp) + '</code>' +
             '<span class="try-status ' + statusCls + '">' + result.status + '</span>' +
-            '<button class="try-close" onclick="document.getElementById("try-panel-' + apiId + '").style.display="none"" title="Close">&#10005;</button>' +
+            '<button class="try-close" onclick="document.getElementById(\'try-panel-' + apiId + '\').style.display=\'none\'" title="Close">&#10005;</button>' +
           '</div>' +
           '<pre class="try-body">' + esc(pretty) + '</pre>';
       })
