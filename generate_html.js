@@ -309,6 +309,7 @@ const clientJs = `
             '<span class="rc-endpoint">'+highlight(api.endpoint, tokens)+'</span>' +
             '<span class="rc-client-tag">Client</span>' +
             '<span class="rc-module-tag">'+esc(api.sheet.toUpperCase().replace(/ /g,'_'))+'</span>' +
+            (score > 0 ? '<span style="margin-left:auto; font-size:11px; color:#9ca3af; font-family:monospace;">Score: '+Math.round(score)+'</span>' : '') +
           '</div>' +
           '<div class="rc-desc">'+highlight(api.description, tokens)+'</div>' +
           '<div class="rc-meta">'+esc(api.subFeature)+'</div>' +
@@ -785,6 +786,24 @@ const clientJs = `
     document.getElementById('clearBtn').style.visibility = 'visible';
     renderResults();
   };
+
+  document.getElementById('searchInput').addEventListener('input', function(e) {
+    query = e.target.value;
+    currentPage = 1;
+    doSearch();
+  });
+
+  var searchTypeSelect = document.getElementById('searchType');
+  if (searchTypeSelect) {
+    searchTypeSelect.addEventListener('change', function(e) {
+      currentPage = 1;
+      doSearch();
+    });
+  }
+
+  document.getElementById('clearBtn').addEventListener('click', function(){
+    inp.value=''; query=''; clrBtn.style.visibility='hidden'; renderResults();
+  });
 
   document.querySelectorAll('.tab-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -1797,7 +1816,7 @@ const html = `<!DOCTYPE html>
       <input type="text" id="searchInput" placeholder="list the monitor groups" autocomplete="off" spellcheck="false" />
       <button id="clearBtn" title="Clear">&#10005;</button>
     </div>
-    <select id="searchType" class="search-type-select" onchange="doSearch()">
+    <select id="searchType" class="search-type-select">
       <option value="keyword">Keyword search (no AI)</option>
       <option value="semantic">Semantic Search (TF-IDF)</option>
     </select>
