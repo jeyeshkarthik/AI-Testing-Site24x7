@@ -783,9 +783,57 @@ const clientJs = `
     pane.innerHTML = html;
   }
 
+  var aiChatHistory = [{ role: 'ai', text: 'Hi! I am your AI Agent. What would you like to automate or query today?' }];
+
+  function renderAITab() {
+    var pane = document.getElementById('resultsPane');
+    var countEl = document.getElementById('resultCount');
+    countEl.innerHTML = '<span style="color:#1d4ed8; font-weight:600;">✨ AI Agent Active</span>';
+    
+    var html = '<div class="ai-chat-container">';
+    html += '<div class="ai-chat-messages" id="aiChatMessages">';
+    aiChatHistory.forEach(function(msg) {
+      html += '<div class="chat-msg chat-' + msg.role + '">' +
+                '<div class="chat-bubble">' + esc(msg.text) + '</div>' +
+              '</div>';
+    });
+    html += '</div>';
+    
+    html += '<div class="ai-chat-input-area">' +
+              '<input type="text" id="aiChatInput" placeholder="e.g. Change the threshold profile of all my Windows servers" />' +
+              '<button class="ai-chat-btn" onclick="sendAiMessage()">Send</button>' +
+            '</div>';
+    html += '</div>';
+    pane.innerHTML = html;
+    
+    var msgsEl = document.getElementById('aiChatMessages');
+    if (msgsEl) msgsEl.scrollTop = msgsEl.scrollHeight;
+
+    var inputEl = document.getElementById('aiChatInput');
+    if (inputEl) {
+      inputEl.focus();
+      inputEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') sendAiMessage();
+      });
+    }
+  }
+
+  window.sendAiMessage = function() {
+    var inputEl = document.getElementById('aiChatInput');
+    if (!inputEl) return;
+    var txt = inputEl.value.trim();
+    if (!txt) return;
+    
+    aiChatHistory.push({ role: 'user', text: txt });
+    aiChatHistory.push({ role: 'ai', text: 'Thinking... (LLM integration coming in Step 3)' });
+    
+    renderAITab();
+  };
+
   function renderActiveTab() {
     if (activeTab === 'dataset') renderDatasetTab();
     else if (activeTab === 'history') renderHistoryTab();
+    else if (activeTab === 'ai') renderAITab();
     else renderResults();
   }
 
@@ -1758,6 +1806,21 @@ const css = `
     transition: color 0.12s, background 0.12s;
   }
   .ds-remove:hover { color: #b91c1c; background: #fee2e2; }
+
+  /* ── AI CHAT ── */
+  .ai-chat-container { display: flex; flex-direction: column; height: calc(100vh - 160px); background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+  .ai-chat-messages { flex: 1; padding: 16px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 12px; }
+  .chat-msg { display: flex; }
+  .chat-user { justify-content: flex-end; }
+  .chat-ai { justify-content: flex-start; }
+  .chat-bubble { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.5; word-wrap: break-word; }
+  .chat-user .chat-bubble { background: #2563eb; color: #fff; border-bottom-right-radius: 2px; }
+  .chat-ai .chat-bubble { background: #fff; color: #1e293b; border: 1px solid #e2e8f0; border-bottom-left-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+  .ai-chat-input-area { display: flex; padding: 12px 16px; background: #fff; border-top: 1px solid #e2e8f0; gap: 10px; }
+  #aiChatInput { flex: 1; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 24px; outline: none; font-size: 13px; transition: all 0.2s; font-family: inherit; }
+  #aiChatInput:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+  .ai-chat-btn { background: #2563eb; color: #fff; border: none; border-radius: 24px; padding: 0 20px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-size: 13px; }
+  .ai-chat-btn:hover { background: #1d4ed8; }
 `;
 
 const html = `<!DOCTYPE html>
@@ -1846,6 +1909,7 @@ const html = `<!DOCTYPE html>
   </div>
   <div class="tabs-row">
     <button class="tab-btn active" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="ai" style="color: #1d4ed8; font-weight: 600;">✨ AI Agent</button>
     <button class="tab-btn" data-tab="history">Q&amp;A History <span class="tab-badge" id="historyBadge">0</span></button>
     <button class="tab-btn" data-tab="dataset">Dataset <span class="tab-badge" id="datasetBadge">0</span></button>
   </div>
