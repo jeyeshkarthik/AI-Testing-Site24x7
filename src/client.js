@@ -852,10 +852,12 @@ window.aiExtractorLoading = false;
     var html = '<div class="ai-chat-container">';
     html += '<div class="ai-chat-messages" id="aiChatMessages">';
     aiChatHistory.forEach(function(msg) {
-      var contentHtml = msg.role === 'ai' ? (msg.isHtml ? msg.text : parseMD(msg.text)) : esc(msg.text);
-      html += '<div class="chat-msg chat-' + msg.role + '">' +
-                '<div class="chat-bubble">' + contentHtml + '</div>' +
-              '</div>';
+      if (msg.role === 'user') {
+        html += '<div class="chat-msg chat-user"><div class="chat-bubble">' + esc(msg.text) + '</div></div>';
+      } else {
+        var contentHtml = msg.isHtml ? msg.text : (window.marked ? marked.parse(msg.text) : esc(msg.text).replace(/\n/g,'<br>'));
+        html += '<div class="chat-msg chat-ai"><div class="chat-bubble markdown-body">' + contentHtml + '</div></div>';
+      }
     });
     html += '</div>';
     
@@ -1169,6 +1171,19 @@ window.aiExtractorLoading = false;
       renderActiveTab();
     });
   });
+
+  if (document.getElementById('themeToggleBtn')) {
+    var themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', function() {
+      var isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('site24x7_theme', isDark ? 'dark' : 'light');
+      themeBtn.innerHTML = '<span class="settings-icon">' + (isDark ? '&#9789;' : '&#9728;') + '</span>';
+    });
+    if (localStorage.getItem('site24x7_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeBtn.innerHTML = '<span class="settings-icon">&#9789;</span>';
+    }
+  }
 
   buildModuleChips();
   buildSidebar();

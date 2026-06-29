@@ -6,6 +6,7 @@
   <title>Test with AI — Site24x7 API Search</title>
   <meta name="description" content="Search and explore all Site24x7 Admin APIs across 15 feature modules. Find endpoints, data fields, and payloads instantly." />
   <style>${css}</style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
@@ -13,6 +14,9 @@
 <nav class="top-nav">
   <span class="nav-title">Test with AI</span>
   <div class="nav-right">
+    <button id="themeToggleBtn" class="settings-btn" title="Toggle Dark Mode">
+      <span class="settings-icon">&#9728;</span>
+    </button>
     <span class="nav-stat">&#128202; <strong id="hTotalCount">720 endpoints</strong></span>
     <div class="proxy-indicator" title="Local proxy status">
       <div class="proxy-dot" id="proxyDot"></div>
@@ -134,7 +138,4 @@
 ${clientJs}
 </script>
 </body>
-</html>`;
-
-fs.writeFileSync('index.html', html, 'utf8');
-console.log('index.html generated. Size:', Math.round(fs.statSync('index.html').size / 1024), 'KB');
+</html>
