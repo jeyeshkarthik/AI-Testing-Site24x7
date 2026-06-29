@@ -297,7 +297,7 @@
     margin-bottom: 14px;
   }
   .sm-steps ol { padding-left: 16px; }
-  #cookieInput {
+  #cookieInput, #authTokenInput, #geminiKeyInput {
     width: 100%;
     border: 1px solid #d1d5db;
     border-radius: 6px;
@@ -311,7 +311,7 @@
     background: #fafafa;
     transition: border-color 0.15s;
   }
-  #cookieInput:focus { border-color: #1d4ed8; background: #fff; }
+  #cookieInput:focus, #authTokenInput:focus, #geminiKeyInput:focus { border-color: #1d4ed8; background: #fff; }
   .sm-footer {
     display: flex;
     align-items: center;
@@ -975,6 +975,16 @@
     </p>
     <textarea id="authTokenInput" placeholder="Zoho-oauthtoken 1000.b2a5fbfa0d2ed..."></textarea>
 
+    <div class="sm-section-title" style="margin-top:20px;">AI Agent Configuration</div>
+    <p class="sm-desc">Select your LLM provider and paste your API key to enable the AI Agent.</p>
+    <div style="margin-bottom:10px;">
+      <select id="llmProviderSelect" style="width:100%; border:1px solid #d1d5db; border-radius:6px; padding:8px 10px; font-family:inherit; font-size:12px; outline:none; background:#fafafa;">
+        <option value="gemini">Google Gemini (Gemini 1.5 Pro/Flash)</option>
+        <option value="openai">OpenAI (GPT-4o)</option>
+      </select>
+    </div>
+    <textarea id="geminiKeyInput" placeholder="Paste your API key here..." style="min-height: 40px;"></textarea>
+
     <div class="sm-footer">
       <div class="sm-proxy-status">
         <div class="sm-proxy-dot" id="smProxyDot"></div>
@@ -1604,8 +1614,12 @@
   window.openSettings = function() {
     var c = localStorage.getItem('s247_cookie') || '';
     var a = localStorage.getItem('s247_auth') || '';
+    var g = localStorage.getItem('s247_gemini_key') || '';
+    var p = localStorage.getItem('s247_llm_provider') || 'gemini';
     document.getElementById('cookieInput').value = c;
     document.getElementById('authTokenInput').value = a;
+    if (document.getElementById('geminiKeyInput')) document.getElementById('geminiKeyInput').value = g;
+    if (document.getElementById('llmProviderSelect')) document.getElementById('llmProviderSelect').value = p;
     document.getElementById('settingsModal').style.display = 'flex';
   };
   window.closeSettings = function() {
@@ -1614,7 +1628,14 @@
   window.saveCookie = function() {
     var cookieVal = (document.getElementById('cookieInput') || {}).value || '';
     var authVal = (document.getElementById('authTokenInput') || {}).value || '';
-    if (!cookieVal.trim() && !authVal.trim()) { showToast('Please paste a cookie or auth token string first'); return; }
+    var geminiVal = (document.getElementById('geminiKeyInput') || {}).value || '';
+    var providerVal = (document.getElementById('llmProviderSelect') || {}).value || 'gemini';
+    
+    if (document.getElementById('geminiKeyInput')) {
+      localStorage.setItem('s247_gemini_key', geminiVal.trim());
+      localStorage.setItem('s247_llm_provider', providerVal);
+    }
+    if (!cookieVal.trim() && !authVal.trim() && !geminiVal.trim()) { showToast('Please paste a cookie, auth token, or API key first'); return; }
     var btn = document.getElementById('saveCookieBtn');
     if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
     fetch(PROXY_URL + '/settings', {
