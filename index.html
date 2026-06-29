@@ -1980,7 +1980,11 @@
             cardHtml += '<pre style="padding:12px 14px; margin:0; background:#1e293b; color:#e2e8f0; font-family:monospace; font-size:11px; overflow-x:auto;">' + esc(payloadStr) + '</pre>';
             cardHtml += '<div style="padding:12px 14px; font-size:12px; color:#475569; line-height:1.5;">' + esc(j.explanation) + '</div>';
             
-            var btnClick = "executeAiAction('" + esc(j.method).replace(/'/g, "\\'") + "', '" + esc(j.endpoint).replace(/'/g, "\\'") + "', " + esc(JSON.stringify(payloadStr)).replace(/'/g, "\\'") + ")";
+            window.aiExecActions = window.aiExecActions || [];
+            var actionId = window.aiExecActions.length;
+            window.aiExecActions.push({ method: j.method, endpoint: j.endpoint, payload: payloadStr, index: loadingIndex });
+            
+            var btnClick = "executeAiAction(" + actionId + ")";
             cardHtml += '<div style="padding:10px 14px; border-top:1px solid #e2e8f0; background:#f8fafc;">';
             cardHtml += '<button class="ai-chat-btn" onclick="' + btnClick + '">Execute Request &#9654;</button>';
             cardHtml += '</div>';
@@ -2002,13 +2006,22 @@
     renderAITab();
   };
 
-  window.executeAiAction = function(method, endpoint, payloadStr) {
-    var loadingIndex = aiChatHistory.length;
+  window.executeAiAction = function(actionId) {
+    var action = window.aiExecActions[actionId];
+    if (!action) return;
+    
+    var method = action.method;
+    var endpoint = action.endpoint;
+    var payloadStr = action.payload;
+    var loadingIndex = action.index;
+    
     var fullUrl = (endpoint.startsWith('http://') || endpoint.startsWith('https://')) ? endpoint : 'https://www.site24x7.com' + endpoint;
     var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
 
-    aiChatHistory.push({ role: 'ai', text: '<div class="try-loading" style="padding:16px; background:#fff; border:1px solid #e5e7eb; border-radius:8px;">&#9203; Executing ' + esc(method) + ' ' + esc(endpoint) + '…</div>', isHtml: true });
-    renderAITab();
+    var resultDiv = document.getElementById('ai-exec-result-' + loadingIndex);
+    if (resultDiv) {
+      resultDiv.innerHTML = '<div class="try-loading" style="padding:16px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin-top:8px;">&#9203; Executing ' + esc(method) + ' ' + esc(endpoint) + '…</div>';
+    }
     
     var fetchOpts = { method: method.toUpperCase() };
     if (fetchOpts.method !== 'GET' && payloadStr && payloadStr.trim() !== '' && payloadStr.trim() !== '{}') {
@@ -2025,7 +2038,7 @@
         var pretty = result.body;
         try { pretty = JSON.stringify(JSON.parse(result.body), null, 2); } catch(e){}
         var statusCls = result.status < 300 ? 'try-status-ok' : result.status < 500 ? 'try-status-warn' : 'try-status-err';
-        var html = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; margin-top:8px;">' +
+        var html = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; margin-top:8px; background:#0f172a;">' +
             '<div class="try-resp-header">' +
               '<span class="try-method-badge method-' + fetchOpts.method.toLowerCase() + '">' + esc(fetchOpts.method) + '</span>' +
               '<code class="try-ep">' + esc(endpoint) + '</code>' +
@@ -2033,12 +2046,10 @@
             '</div>' +
             '<pre class="try-body">' + esc(pretty) + '</pre>' +
           '</div>';
-        aiChatHistory[loadingIndex] = { role: 'ai', text: html, isHtml: true };
-        renderAITab();
+        if (resultDiv) resultDiv.innerHTML = html;
       })
       .catch(function(err) {
-        aiChatHistory[loadingIndex] = { role: 'ai', text: '<div class="try-error">&#9888; Proxy Request failed: ' + esc(err.message) + '</div>', isHtml: true };
-        renderAITab();
+        if (resultDiv) resultDiv.innerHTML = '<div class="try-error" style="margin-top:8px;">&#9888; Proxy Request failed: ' + esc(err.message) + '</div>';
       });
   };
 
