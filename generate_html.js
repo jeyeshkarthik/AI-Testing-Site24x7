@@ -793,8 +793,9 @@ const clientJs = `
     var html = '<div class="ai-chat-container">';
     html += '<div class="ai-chat-messages" id="aiChatMessages">';
     aiChatHistory.forEach(function(msg) {
+      var contentHtml = msg.role === 'ai' ? (msg.isHtml ? msg.text : parseMD(msg.text)) : esc(msg.text);
       html += '<div class="chat-msg chat-' + msg.role + '">' +
-                '<div class="chat-bubble">' + esc(msg.text) + '</div>' +
+                '<div class="chat-bubble">' + contentHtml + '</div>' +
               '</div>';
     });
     html += '</div>';
@@ -818,16 +819,164 @@ const clientJs = `
     }
   }
 
-  window.sendAiMessage = function() {
+  function parseMD(md) {
+    if (!md) return '';
+    var html = esc(md);
+    var b3 = String.fromCharCode(96, 96, 96);
+    var b1 = String.fromCharCode(96);
+    html = html.replace(new RegExp(b3 + '[a-z]*\\\\n([\\\\s\\\\S]*?)' + b3, 'gi'), function(m, code) {
+      return '<pre style="background:#1e293b; color:#e2e8f0; padding:10px; border-radius:6px; overflow-x:auto; margin:8px 0; font-family:monospace; font-size:11px; text-align:left;">' + code + '</pre>';
+    });
+    html = html.replace(new RegExp(b1 + '([^' + b1 + ']+)' + b1, 'g'), '<code style="background:#e2e8f0; color:#b91c1c; padding:2px 4px; border-radius:3px; font-family:monospace;">$1</code>');
+    html = html.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
+    html = html.replace(/\\n/g, '<br/>');
+    return html;
+  }
+
+  window.sendAiMessage = async function() {
     var inputEl = document.getElementById('aiChatInput');
     if (!inputEl) return;
     var txt = inputEl.value.trim();
     if (!txt) return;
     
+    var geminiKey = localStorage.getItem('s247_gemini_key') || '';
+    if (!geminiKey) {
+      showToast('Please configure your Gemini API Key in Settings first.');
+      openSettings();
+      return;
+    }
+    
     aiChatHistory.push({ role: 'user', text: txt });
-    aiChatHistory.push({ role: 'ai', text: 'Thinking... (LLM integration coming in Step 3)' });
+    var loadingIndex = aiChatHistory.length;
+    aiChatHistory.push({ role: 'ai', text: 'Thinking...' });
+    
+    inputEl.value = '';
+    renderAITab();
+
+    try {
+      var tokens = tokenize(txt);
+      var allApisScored = apis.map(function(api){ return {api:api, score:scoreResult(api,tokens)}; })
+        .filter(function(r){ return r.score > 0; })
+        .sort(function(a,b){ return b.score - a.score; })
+        .slice(0, 5);
+        
+      var contextStr = allApisScored.map(function(r, idx) {
+        var a = r.api;
+        return "API " + (idx+1) + ":\\n" +
+               "Name/Desc: " + a.subFeature + " - " + a.description + "\\n" +
+               "Endpoint: " + a.method + " " + a.endpoint + "\\n" +
+               "Request Fields: " + (a.requestFields ? a.requestFields.join(', ') : 'None');
+      }).join("\\n\\n");
+
+      var systemPrompt = "You are an AI Agent for Site24x7 APIs. The user wants to perform an action.\\n" +
+        "Here are the top relevant Site24x7 API endpoints from our database for their request:\\n\\n" +
+        contextStr + "\\n\\n" +
+        "Instructions:\\n" +
+        "1. Identify the single correct API to use.\\n" +
+        "2. Generate the JSON payload required.\\n" +
+        "3. You MUST output ONLY a raw JSON object (do not use markdown or backticks) matching this schema:\\n" +
+        "{ \\"method\\": \\"GET\\", \\"endpoint\\": \\"/app/api/..\\", \\"payload\\": {}, \\"explanation\\": \\"Why this API.\\" }\\n" +
+        "If none match, return { \\"error\\": \\"No relevant API found.\\" }";
+
+      var body = {
+        contents: [
+          { parts: [{ text: systemPrompt + "\\n\\nUser Request: " + txt }] }
+        ]
+      };
+
+      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + geminiKey, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      
+      var data = await res.json();
+      
+      if (data.error) {
+        aiChatHistory[loadingIndex].text = "Error from Gemini: " + data.error.message;
+      } else if (data.candidates && data.candidates[0].content) {
+        var reply = data.candidates[0].content.parts[0].text.trim();
+        var b3 = String.fromCharCode(96,96,96);
+        if (reply.startsWith(b3 + 'json')) reply = reply.substring(7);
+        if (reply.startsWith(b3)) reply = reply.substring(3);
+        if (reply.endsWith(b3)) reply = reply.substring(0, reply.length - 3);
+        
+        try {
+          var j = JSON.parse(reply);
+          if (j.error) {
+            aiChatHistory[loadingIndex].text = j.error;
+          } else {
+            var payloadStr = typeof j.payload === 'string' ? j.payload : JSON.stringify(j.payload, null, 2);
+            var mCls = j.method ? j.method.toLowerCase() : 'other';
+            
+            var cardHtml = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; margin-top:8px; font-family:-apple-system,sans-serif;">';
+            cardHtml += '<div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f8fafc; border-bottom:1px solid #e2e8f0;">';
+            cardHtml += '<span class="try-method-badge method-' + mCls + '">' + esc(j.method) + '</span>';
+            cardHtml += '<code style="font-family:monospace; font-size:12px; color:#1e293b; font-weight:600;">' + esc(j.endpoint) + '</code>';
+            cardHtml += '</div>';
+            cardHtml += '<pre style="padding:12px 14px; margin:0; background:#1e293b; color:#e2e8f0; font-family:monospace; font-size:11px; overflow-x:auto;">' + esc(payloadStr) + '</pre>';
+            cardHtml += '<div style="padding:12px 14px; font-size:12px; color:#475569; line-height:1.5;">' + esc(j.explanation) + '</div>';
+            
+            var btnClick = "executeAiAction('" + esc(j.method).replace(/'/g, "\\\\'") + "', '" + esc(j.endpoint).replace(/'/g, "\\\\'") + "', " + esc(JSON.stringify(payloadStr)).replace(/'/g, "\\\\'") + ")";
+            cardHtml += '<div style="padding:10px 14px; border-top:1px solid #e2e8f0; background:#f8fafc;">';
+            cardHtml += '<button class="ai-chat-btn" onclick="' + btnClick + '">Execute Request &#9654;</button>';
+            cardHtml += '</div>';
+            cardHtml += '</div>';
+            cardHtml += '<div id="ai-exec-result-' + loadingIndex + '"></div>';
+            
+            aiChatHistory[loadingIndex] = { role: 'ai', text: cardHtml, isHtml: true };
+          }
+        } catch(err) {
+          aiChatHistory[loadingIndex].text = "Parse error: " + err.message + "\\n\\nRaw Output:\\n" + reply;
+        }
+      } else {
+        aiChatHistory[loadingIndex].text = "Error: Unexpected response format from Gemini.";
+      }
+    } catch (e) {
+      aiChatHistory[loadingIndex].text = "Network Error: " + e.message;
+    }
     
     renderAITab();
+  };
+
+  window.executeAiAction = function(method, endpoint, payloadStr) {
+    var loadingIndex = aiChatHistory.length;
+    var fullUrl = (endpoint.startsWith('http://') || endpoint.startsWith('https://')) ? endpoint : 'https://www.site24x7.com' + endpoint;
+    var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
+
+    aiChatHistory.push({ role: 'ai', text: '<div class="try-loading" style="padding:16px; background:#fff; border:1px solid #e5e7eb; border-radius:8px;">&#9203; Executing ' + esc(method) + ' ' + esc(endpoint) + '…</div>', isHtml: true });
+    renderAITab();
+    
+    var fetchOpts = { method: method.toUpperCase() };
+    if (fetchOpts.method !== 'GET' && payloadStr && payloadStr.trim() !== '' && payloadStr.trim() !== '{}') {
+      fetchOpts.body = payloadStr;
+      fetchOpts.headers = { 'Content-Type': 'application/json' };
+    }
+
+    fetch(proxyTarget, fetchOpts)
+      .then(function(r) {
+        var status = r.status;
+        return r.text().then(function(body) { return { status: status, body: body }; });
+      })
+      .then(function(result) {
+        var pretty = result.body;
+        try { pretty = JSON.stringify(JSON.parse(result.body), null, 2); } catch(e){}
+        var statusCls = result.status < 300 ? 'try-status-ok' : result.status < 500 ? 'try-status-warn' : 'try-status-err';
+        var html = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; margin-top:8px;">' +
+            '<div class="try-resp-header">' +
+              '<span class="try-method-badge method-' + fetchOpts.method.toLowerCase() + '">' + esc(fetchOpts.method) + '</span>' +
+              '<code class="try-ep">' + esc(endpoint) + '</code>' +
+              '<span class="try-status ' + statusCls + '">' + result.status + '</span>' +
+            '</div>' +
+            '<pre class="try-body">' + esc(pretty) + '</pre>' +
+          '</div>';
+        aiChatHistory[loadingIndex] = { role: 'ai', text: html, isHtml: true };
+        renderAITab();
+      })
+      .catch(function(err) {
+        aiChatHistory[loadingIndex] = { role: 'ai', text: '<div class="try-error">&#9888; Proxy Request failed: ' + esc(err.message) + '</div>', isHtml: true };
+        renderAITab();
+      });
   };
 
   function renderActiveTab() {
