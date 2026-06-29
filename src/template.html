@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test with AI — Site24x7 API Search</title>
+  <meta name="description" content="Search and explore all Site24x7 Admin APIs across 15 feature modules. Find endpoints, data fields, and payloads instantly." />
+  <style>${css}</style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <span class="nav-title">Test with AI</span>
+  <div class="nav-right">
+    <span class="nav-stat">&#128202; <strong id="hTotalCount">720 endpoints</strong></span>
+    <div class="proxy-indicator" title="Local proxy status">
+      <div class="proxy-dot" id="proxyDot"></div>
+      <span id="proxyLabel">Proxy: Off</span>
+    </div>
+    <button class="settings-btn" onclick="openSettings()"><span class="settings-icon">&#9881;</span> Settings</button>
+  </div>
+</nav>
+
+<!-- Settings Modal -->
+<div class="settings-modal-overlay" id="settingsModal">
+  <div class="settings-modal">
+    <div class="sm-header">
+      <span class="sm-title">&#9881; Settings — Live API Testing</span>
+      <button class="sm-close" onclick="closeSettings()" title="Close">&#10005;</button>
+    </div>
+
+    <div class="sm-section-title">Session Cookie</div>
+    <p class="sm-desc">
+      Paste your Site24x7 session cookie below. This is sent to the local proxy server (<code>localhost:3334</code>) and never leaves your machine.
+    </p>
+    <div class="sm-steps">
+      <ol>
+        <li>Open <strong>site24x7.com/app/demo</strong> in Chrome</li>
+        <li>Press <strong>F12</strong> &rarr; Network tab &rarr; filter by Fetch/XHR</li>
+        <li>Click any <code>/app/api/</code> request &rarr; Headers &rarr; copy the <strong>Cookie:</strong> value</li>
+      </ol>
+    </div>
+    <textarea id="cookieInput" placeholder="zaaid=...; JSESSIONID=...; CT_CSRF_TOKEN=..."></textarea>
+
+    <div class="sm-section-title" style="margin-top:20px;">OAuth Token (Required for some APIs)</div>
+    <p class="sm-desc">
+      From the same request headers, copy the <strong>Authorization</strong> value.
+    </p>
+    <textarea id="authTokenInput" placeholder="Zoho-oauthtoken 1000.b2a5fbfa0d2ed..."></textarea>
+
+    <div class="sm-section-title" style="margin-top:20px;">AI Agent Configuration</div>
+    <p class="sm-desc">Select your LLM provider and paste your API key to enable the AI Agent.</p>
+    <div style="margin-bottom:10px;">
+      <select id="llmProviderSelect" style="width:100%; border:1px solid #d1d5db; border-radius:6px; padding:8px 10px; font-family:inherit; font-size:12px; outline:none; background:#fafafa;">
+        <option value="gemini">Google Gemini</option>
+        <option value="openai">OpenAI</option>
+      </select>
+    </div>
+    <div style="margin-bottom:10px;">
+      <input type="text" id="geminiModelInput" placeholder="Model Name (e.g. gemini-2.5-flash, gemini-1.5-pro)" style="width:100%; border:1px solid #d1d5db; border-radius:6px; padding:8px 10px; font-family:inherit; font-size:12px; outline:none; background:#fafafa;" />
+    </div>
+    <textarea id="geminiKeyInput" placeholder="Paste your API key here..." style="min-height: 40px;"></textarea>
+
+    <div class="sm-footer">
+      <div class="sm-proxy-status">
+        <div class="sm-proxy-dot" id="smProxyDot"></div>
+        <span id="smProxyLabel">Checking proxy…</span>
+      </div>
+      <button class="sm-save-btn" id="saveCookieBtn" onclick="saveCookie()">Save Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- Search Section -->
+<div class="search-section">
+  <div class="search-row">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="list the monitor groups" autocomplete="off" spellcheck="false" />
+      <button id="clearBtn" title="Clear">&#10005;</button>
+    </div>
+    <select id="searchType" class="search-type-select">
+      <option value="keyword">Keyword search (no AI)</option>
+      <option value="semantic">Semantic Search (TF-IDF)</option>
+    </select>
+    <button id="searchBtn">&#128269; Search</button>
+  </div>
+  <div class="tabs-row">
+    <button class="tab-btn active" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="ai" style="color: #1d4ed8; font-weight: 600;">✨ AI Agent</button>
+    <button class="tab-btn" data-tab="history">Q&amp;A History <span class="tab-badge" id="historyBadge">0</span></button>
+    <button class="tab-btn" data-tab="dataset">Dataset <span class="tab-badge" id="datasetBadge">0</span></button>
+  </div>
+</div>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-section-title">Feature Modules</div>
+    <div id="sidebarSheets"></div>
+
+    <div class="sidebar-divider"></div>
+    <div class="method-filters-label">HTTP Method</div>
+    <div id="methodFilters">
+      <button class="method-filter-btn active" data-method="GET">GET</button>
+      <button class="method-filter-btn active" data-method="POST">POST</button>
+      <button class="method-filter-btn active" data-method="PUT">PUT</button>
+      <button class="method-filter-btn active" data-method="DELETE">DELETE</button>
+      <button class="method-filter-btn active" data-method="PATCH">PATCH</button>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="method-filters-label">Module Filter</div>
+    <div class="module-chips-bar"><div id="moduleChips"></div></div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-area">
+    <div class="result-meta-bar">
+      <span id="resultCount">Loading…</span>
+    </div>
+    <div id="resultsPane">
+      <div class="no-results"><div class="nr-icon">&#9889;</div><h3>Loading…</h3></div>
+    </div>
+  </main>
+
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+${clientJs}
+</script>
+</body>
+</html>`;
+
+fs.writeFileSync('index.html', html, 'utf8');
+console.log('index.html generated. Size:', Math.round(fs.statSync('index.html').size / 1024), 'KB');

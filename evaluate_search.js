@@ -64,8 +64,8 @@ function semanticScore(api, tokens) {
 const csv = fs.readFileSync('site24x7_Dataset.csv', 'utf8');
 const lines = csv.split('\n');
 let totalQueries = 0;
-let keywordStats = { p1: 0, p3: 0, p5: 0 };
 let semanticStats = { p1: 0, p3: 0, p5: 0 };
+let failedQueries = [];
 
 for (let i = 1; i < lines.length; i++) {
   if (lines[i].trim() === '') continue;
@@ -113,16 +113,30 @@ for (let i = 1; i < lines.length; i++) {
   let sRank = sResults.findIndex(r => r.id === correctApi.id);
   if (sRank === 0) semanticStats.p1++;
   if (sRank >= 0 && sRank < 3) semanticStats.p3++;
-  if (sRank >= 0 && sRank < 5) semanticStats.p5++;
+  if (sRank >= 0 && sRank < 5) {
+    semanticStats.p5++;
+  } else {
+    failedQueries.push(query);
+  }
 }
 
-console.log(`Evaluated ${totalQueries} labeled queries from Dataset.`);
-console.log('\n--- Keyword Search (Baseline) ---');
-console.log(`Precision@1: ${((keywordStats.p1/totalQueries)*100).toFixed(1)}%`);
-console.log(`Precision@3: ${((keywordStats.p3/totalQueries)*100).toFixed(1)}%`);
-console.log(`Precision@5: ${((keywordStats.p5/totalQueries)*100).toFixed(1)}%`);
+let report = '\\nEvaluation Results\\n';
+report += '──────────────────\\n';
+report += \`Total queries:     \${lines.length - 2}\\n\`; // approximate total based on csv rows
+report += \`Marked correct:    \${totalQueries}\\n\`;
+report += 'Search Quality:\\n';
+report += \`  Precision@1:     \${Math.round((semanticStats.p1/totalQueries)*100)}%  (\${semanticStats.p1}/\${totalQueries} correct APIs ranked #1)\\n\`;
+report += \`  Precision@3:     \${Math.round((semanticStats.p3/totalQueries)*100)}%  (\${semanticStats.p3}/\${totalQueries} correct APIs in top 3)\\n\`;
+report += \`  Precision@5:     \${Math.round((semanticStats.p5/totalQueries)*100)}%  (\${semanticStats.p5}/\${totalQueries} correct APIs in top 5)\\n\`;
 
-console.log('\n--- Semantic Search (BM25) ---');
-console.log(`Precision@1: ${((semanticStats.p1/totalQueries)*100).toFixed(1)}%`);
-console.log(`Precision@3: ${((semanticStats.p3/totalQueries)*100).toFixed(1)}%`);
-console.log(`Precision@5: ${((semanticStats.p5/totalQueries)*100).toFixed(1)}%`);
+if (failedQueries.length > 0) {
+  report += 'Failed queries (correct API not in top 5):\\n';
+  failedQueries.forEach(q => report += \`  - "\${q}"\\n\`);
+}
+
+console.log(report);
+console.log('\\nRun this after every change to search/AI to track whether things are improving.');
+
+// Store the results to a file
+fs.writeFileSync('evaluation_results.txt', report, 'utf8');
+console.log('Saved results to evaluation_results.txt');
