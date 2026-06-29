@@ -1944,11 +1944,11 @@
         "Here are the top relevant Site24x7 API endpoints from our database for their request:\n\n" +
         contextStr + "\n\n" +
         "Instructions:\n" +
-        "1. Identify the correct API to use based on the context OR the previous conversation.\n" +
-        "2. Generate the JSON payload required.\n" +
+        "1. Identify the correct API(s) to use based on the context OR the previous conversation.\n" +
+        "2. Generate the JSON payloads required for all necessary actions.\n" +
         "3. You MUST output ONLY a raw JSON object (do not use markdown or backticks) matching this schema:\n" +
-        "{ \"method\": \"GET\", \"endpoint\": \"/app/api/..\", \"payload\": {}, \"explanation\": \"Why this API.\" }\n" +
-        "If the user is asking to modify or update the previous payload, simply output the updated JSON object for the same endpoint.\n" +
+        "{ \"explanation\": \"Overall explanation\", \"actions\": [ { \"method\": \"GET\", \"endpoint\": \"/app/api/..\", \"payload\": {}, \"explanation\": \"Why this step.\" } ] }\n" +
+        "If the user is asking to modify or update the previous payload, simply output the updated JSON object in the actions array.\n" +
         "If the user is just making conversation (e.g. 'hello', 'thanks'), return: { \"reply\": \"Your conversational response here\" }\n" +
         "If they are asking for an API that doesn't exist and there is no previous context, return: { \"error\": \"No relevant API found.\" }";
 
@@ -2005,29 +2005,46 @@
           } else if (j.reply) {
             aiChatHistory[loadingIndex] = { role: 'ai', text: j.reply, rawText: reply };
           } else {
-            var payloadStr = typeof j.payload === 'string' ? j.payload : JSON.stringify(j.payload, null, 2);
-            var mCls = j.method ? j.method.toLowerCase() : 'other';
+            var actions = j.actions || [];
+            if (!j.actions && j.method) actions = [j]; // Fallback for single action
             
-            var cardHtml = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; margin-top:8px; font-family:-apple-system,sans-serif;">';
-            cardHtml += '<div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f8fafc; border-bottom:1px solid #e2e8f0;">';
-            cardHtml += '<span class="try-method-badge method-' + mCls + '">' + esc(j.method) + '</span>';
-            cardHtml += '<code style="font-family:monospace; font-size:12px; color:#1e293b; font-weight:600;">' + esc(j.endpoint) + '</code>';
-            cardHtml += '</div>';
-            cardHtml += '<pre style="padding:12px 14px; margin:0; background:#1e293b; color:#e2e8f0; font-family:monospace; font-size:11px; overflow-x:auto;">' + esc(payloadStr) + '</pre>';
-            cardHtml += '<div style="padding:12px 14px; font-size:12px; color:#475569; line-height:1.5;">' + esc(j.explanation) + '</div>';
-            
-            window.aiExecActions = window.aiExecActions || [];
-            var actionId = window.aiExecActions.length;
-            window.aiExecActions.push({ method: j.method, endpoint: j.endpoint, payload: payloadStr, index: loadingIndex });
-            
-            var btnClick = "executeAiAction(" + actionId + ")";
-            cardHtml += '<div style="padding:10px 14px; border-top:1px solid #e2e8f0; background:#f8fafc;">';
-            cardHtml += '<button class="ai-chat-btn" onclick="' + btnClick + '">Execute Request &#9654;</button>';
-            cardHtml += '</div>';
-            cardHtml += '</div>';
-            cardHtml += '<div id="ai-exec-result-' + loadingIndex + '"></div>';
-            
-            aiChatHistory[loadingIndex] = { role: 'ai', text: cardHtml, isHtml: true, rawText: reply };
+            if (actions.length === 0) {
+              aiChatHistory[loadingIndex] = { role: 'ai', text: "No actions generated.", rawText: reply };
+            } else {
+              var cardHtml = '<div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">';
+              if (j.explanation) {
+                cardHtml += '<div style="font-size:13px; color:#334155; margin-bottom:4px;">' + esc(j.explanation) + '</div>';
+              }
+              
+              actions.forEach(function(act) {
+                var payloadStr = typeof act.payload === 'string' ? act.payload : JSON.stringify(act.payload, null, 2);
+                var mCls = act.method ? act.method.toLowerCase() : 'other';
+                
+                var actHtml = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; font-family:-apple-system,sans-serif;">';
+                actHtml += '<div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f8fafc; border-bottom:1px solid #e2e8f0;">';
+                actHtml += '<span class="try-method-badge method-' + mCls + '">' + esc(act.method) + '</span>';
+                actHtml += '<code style="font-family:monospace; font-size:12px; color:#1e293b; font-weight:600;">' + esc(act.endpoint) + '</code>';
+                actHtml += '</div>';
+                actHtml += '<pre style="padding:12px 14px; margin:0; background:#1e293b; color:#e2e8f0; font-family:monospace; font-size:11px; overflow-x:auto;">' + esc(payloadStr) + '</pre>';
+                actHtml += '<div style="padding:12px 14px; font-size:12px; color:#475569; line-height:1.5;">' + esc(act.explanation) + '</div>';
+                
+                window.aiExecActions = window.aiExecActions || [];
+                var actionId = window.aiExecActions.length;
+                window.aiExecActions.push({ method: act.method, endpoint: act.endpoint, payload: payloadStr, index: loadingIndex });
+                
+                var btnClick = "executeAiAction(" + actionId + ")";
+                actHtml += '<div style="padding:10px 14px; border-top:1px solid #e2e8f0; background:#f8fafc;">';
+                actHtml += '<button class="ai-chat-btn" onclick="' + btnClick + '">Execute Request &#9654;</button>';
+                actHtml += '</div>';
+                actHtml += '<div id="ai-exec-result-' + actionId + '"></div>';
+                actHtml += '</div>';
+                
+                cardHtml += actHtml;
+              });
+              
+              cardHtml += '</div>';
+              aiChatHistory[loadingIndex] = { role: 'ai', text: cardHtml, isHtml: true, rawText: reply };
+            }
           }
         } catch(err) {
           aiChatHistory[loadingIndex] = { role: 'ai', text: "Parse error: " + err.message + "\n\nRaw Output:\n" + reply, rawText: reply };
@@ -2054,7 +2071,7 @@
     var fullUrl = (endpoint.startsWith('http://') || endpoint.startsWith('https://')) ? endpoint : 'https://www.site24x7.com' + endpoint;
     var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
 
-    var resultDiv = document.getElementById('ai-exec-result-' + loadingIndex);
+    var resultDiv = document.getElementById('ai-exec-result-' + actionId);
     if (resultDiv) {
       resultDiv.innerHTML = '<div class="try-loading" style="padding:16px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin-top:8px;">&#9203; Executing ' + esc(method) + ' ' + esc(endpoint) + '…</div>';
     }
