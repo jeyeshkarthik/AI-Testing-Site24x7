@@ -1,3 +1,7 @@
+
+window.aiExtractor = null;
+window.aiExtractorLoading = false;
+
 (function() {
   var DB = window.__SITE24X7_DB__;
   var TFIDF_DB = window.__SITE24X7_TFIDF__;
@@ -237,13 +241,75 @@
     renderResults();
   });
 
-  function getResults() {
+  async function getResults() {
     var filtered = apis.filter(function(api) {
       if (!activeMethods.has(api.method)) return false;
       if (activeSheet !== 'ALL' && api.sheet !== activeSheet) return false;
       return true;
     });
     if (!query) return filtered.map(function(api){ return {api:api, score:0}; });
+
+    var type = document.getElementById('searchType').value;
+    if (type === 'semantic') {
+      if (!window.aiExtractor) {
+        if (!window.aiExtractorLoading) {
+           window.aiExtractorLoading = true;
+           var rc = document.getElementById('resultCount');
+           if (rc) rc.innerHTML = '<i>Loading AI Search Model (happens once)...</i>';
+           
+           import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js')
+             .then(function(transformers) {
+               transformers.env.allowLocalModels = false;
+               return transformers.pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
+                 progress_callback: function(x) {
+                   var rcc = document.getElementById('resultCount');
+                   if (x.status !== 'ready' && rcc) rcc.innerHTML = '<i>Downloading AI Model: ' + Math.round(x.progress||0) + '%</i>';
+                 }
+               });
+             })
+             .then(function(extractor) {
+               window.aiExtractor = extractor;
+               window.aiExtractorLoading = false;
+               renderResults();
+             }).catch(function(e) {
+               var rce = document.getElementById('resultCount');
+               if (rce) rce.innerHTML = '<i>Error loading model: ' + e.message + '</i>';
+               window.aiExtractorLoading = false;
+             });
+        }
+        return filtered.map(function(api){ return {api:api, score:0}; });
+      }
+      
+      var out = await window.aiExtractor(query, { pooling: 'mean', normalize: true });
+      var qv = Array.from(out.data);
+      var vdb = window.__SITE24X7_VECTOR_DB__ || {};
+      
+      var tokens = tokenize(query);
+
+      return filtered.map(function(api) {
+        var apiVec = vdb[api.id];
+        var score = 0;
+        if (apiVec) {
+          for (var i = 0; i < 384; i++) score += qv[i] * apiVec[i];
+        }
+        
+        // Hybrid Intent Boosting: Semantic models often cluster verbs poorly. 
+        // We add an absolute boost to the correct HTTP method based on conversational verbs.
+        var qLower = query.toLowerCase();
+        if ((qLower.indexOf('create')>-1 || qLower.indexOf('add')>-1 || qLower.indexOf('new')>-1 || qLower.indexOf('set up')>-1) && api.method === 'POST') score += 0.20;
+        if ((qLower.indexOf('update')>-1 || qLower.indexOf('modify')>-1 || qLower.indexOf('change')>-1) && api.method === 'PUT') score += 0.20;
+        if ((qLower.indexOf('delete')>-1 || qLower.indexOf('remove')>-1) && api.method === 'DELETE') score += 0.20;
+        if ((qLower.indexOf('get')>-1 || qLower.indexOf('list')>-1 || qLower.indexOf('show')>-1) && api.method === 'GET') score += 0.20;
+
+        // True Hybrid: Incorporate BM25 score to ground the vector search in exact keywords
+        var bm25 = scoreResult(api, tokens);
+        score += (bm25 * 0.003);
+
+        return { api: api, score: score };
+      }).filter(function(r){ return r.score > 0.25; })
+        .sort(function(a,b){ return b.score - a.score; });
+    }
+
     var tokens = tokenize(query);
     if (!tokens.length) return filtered.map(function(api){ return {api:api, score:0}; });
     return filtered.map(function(api){ return {api:api, score:scoreResult(api,tokens)}; })
@@ -300,7 +366,7 @@
             '<span class="rc-endpoint">'+highlight(api.endpoint, tokens)+'</span>' +
             '<span class="rc-client-tag">Client</span>' +
             '<span class="rc-module-tag">'+esc(api.sheet.toUpperCase().replace(/ /g,'_'))+'</span>' +
-            (score > 0 ? '<span style="margin-left:auto; font-size:11px; color:#9ca3af; font-family:monospace;">Score: '+Math.round(score)+'</span>' : '') +
+            (score > 0 ? '<span style="margin-left:auto; font-size:11px; color:#9ca3af; font-family:monospace;">' + (score <= 1.05 ? Math.round(score * 100) + '% Match' : 'Score: ' + Math.round(score)) + '</span>' : '') +
           '</div>' +
           '<div class="rc-desc">'+highlight(api.description, tokens)+'</div>' +
           '<div class="rc-meta">'+esc(api.subFeature)+'</div>' +
@@ -326,8 +392,8 @@
     }).join('');
   }
 
-  function renderResults() {
-    var results = getResults();
+  async function renderResults() {
+    var results = await getResults();
     lastResults = results;
     var total = results.length;
     var maxScore = results.length ? results[0].score : 1;
@@ -337,12 +403,15 @@
 
     // Update result count line
     var countEl = document.getElementById('resultCount');
-    if (!query && activeSheet === 'ALL') {
-      countEl.textContent = total + ' endpoint(s) — browse all modules';
-    } else if (query) {
-      countEl.textContent = total + ' result(s) — keyword search';
-    } else {
-      countEl.textContent = total + ' endpoint(s) in ' + activeSheet;
+    if (!window.aiExtractorLoading) {
+      var stype = document.getElementById('searchType').value;
+      if (!query && activeSheet === 'ALL') {
+        countEl.textContent = total + ' endpoint(s) — browse all modules';
+      } else if (query) {
+        countEl.textContent = total + ' result(s) — ' + (stype === 'semantic' ? 'semantic search' : 'keyword search');
+      } else {
+        countEl.textContent = total + ' endpoint(s) in ' + activeSheet;
+      }
     }
 
     if (!query && activeSheet === 'ALL') {
@@ -683,30 +752,25 @@
   };
 
   // Search
-  var inp = document.getElementById('searchInput');
-  var clrBtn = document.getElementById('clearBtn');
-
-  function doSearch() {
-    query = inp.value.trim();
+  window.search = async function() {
+    query = document.getElementById('searchInput').value.trim();
     currentPage = 1;
-    clrBtn.style.visibility = query ? 'visible' : 'hidden';
-    activeTab = 'results';
-    setTabActive('results');
-    var results = getResults();
-    lastResults = results;
+    document.getElementById('clearBtn').style.visibility = query ? 'visible' : 'hidden';
+    await renderResults();
+    var results = lastResults;
     recordHistory(query, results);
-    renderResults();
-  }
+  };
 
-  document.getElementById('searchBtn').addEventListener('click', doSearch);
-  inp.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
-  inp.addEventListener('input', function(){
-    clrBtn.style.visibility = inp.value ? 'visible' : 'hidden';
-    if (!inp.value.trim()) { query=''; renderResults(); }
+  document.getElementById('searchBtn').addEventListener('click', search);
+  document.getElementById('searchInput').addEventListener('keyup', function(e) { if(e.key==='Enter') search(); });
+  document.getElementById('searchInput').addEventListener('input', function(){
+    if (!document.getElementById('searchInput').value.trim()) { query=''; renderResults(); }
+    document.getElementById('clearBtn').style.visibility = document.getElementById('searchInput').value ? 'visible' : 'hidden';
   });
-  clrBtn.addEventListener('click', function(){
-    inp.value=''; query=''; clrBtn.style.visibility='hidden'; renderResults();
+  document.getElementById('clearBtn').addEventListener('click', function(){
+    document.getElementById('searchInput').value=''; query=''; document.getElementById('clearBtn').style.visibility='hidden'; renderResults();
   });
+  document.getElementById('searchType').addEventListener('change', function() { currentPage=1; renderResults(); });
 
   // ── TABS ──
   function setTabActive(tab) {
@@ -1097,23 +1161,7 @@
     renderResults();
   };
 
-  document.getElementById('searchInput').addEventListener('input', function(e) {
-    query = e.target.value;
-    currentPage = 1;
-    doSearch();
-  });
 
-  var searchTypeSelect = document.getElementById('searchType');
-  if (searchTypeSelect) {
-    searchTypeSelect.addEventListener('change', function(e) {
-      currentPage = 1;
-      doSearch();
-    });
-  }
-
-  document.getElementById('clearBtn').addEventListener('click', function(){
-    inp.value=''; query=''; clrBtn.style.visibility='hidden'; renderResults();
-  });
 
   document.querySelectorAll('.tab-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
