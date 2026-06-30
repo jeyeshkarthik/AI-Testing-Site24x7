@@ -64,6 +64,7 @@ function semanticScore(api, tokens) {
 const csv = fs.readFileSync('site24x7_Dataset.csv', 'utf8');
 const lines = csv.split('\n');
 let totalQueries = 0;
+let keywordStats = { p1: 0, p3: 0, p5: 0 };
 let semanticStats = { p1: 0, p3: 0, p5: 0 };
 let failedQueries = [];
 
@@ -120,18 +121,18 @@ for (let i = 1; i < lines.length; i++) {
   }
 }
 
-let report = '\\nEvaluation Results\\n';
-report += '──────────────────\\n';
-report += \`Total queries:     \${lines.length - 2}\\n\`; // approximate total based on csv rows
-report += \`Marked correct:    \${totalQueries}\\n\`;
-report += 'Search Quality:\\n';
-report += \`  Precision@1:     \${Math.round((semanticStats.p1/totalQueries)*100)}%  (\${semanticStats.p1}/\${totalQueries} correct APIs ranked #1)\\n\`;
-report += \`  Precision@3:     \${Math.round((semanticStats.p3/totalQueries)*100)}%  (\${semanticStats.p3}/\${totalQueries} correct APIs in top 3)\\n\`;
-report += \`  Precision@5:     \${Math.round((semanticStats.p5/totalQueries)*100)}%  (\${semanticStats.p5}/\${totalQueries} correct APIs in top 5)\\n\`;
+let report = '\nEvaluation Results\n';
+report += '──────────────────\n';
+report += `Total queries:     ${lines.length - 2}\n`; // approximate total based on csv rows
+report += `Marked correct:    ${totalQueries}\n`;
+report += 'Search Quality:\n';
+report += `  Precision@1:     ${Math.round((semanticStats.p1/totalQueries)*100)}%  (${semanticStats.p1}/${totalQueries} correct APIs ranked #1)\n`;
+report += `  Precision@3:     ${Math.round((semanticStats.p3/totalQueries)*100)}%  (${semanticStats.p3}/${totalQueries} correct APIs in top 3)\n`;
+report += `  Precision@5:     ${Math.round((semanticStats.p5/totalQueries)*100)}%  (${semanticStats.p5}/${totalQueries} correct APIs in top 5)\n`;
 
 if (failedQueries.length > 0) {
-  report += 'Failed queries (correct API not in top 5):\\n';
-  failedQueries.forEach(q => report += \`  - "\${q}"\\n\`);
+  report += 'Failed queries (correct API not in top 5):\n';
+  failedQueries.forEach(q => report += `  - "${q}"\n`);
 }
 
 console.log(report);

@@ -1,0 +1,45 @@
+
+Evaluation Results
+──────────────────
+Total queries:     180
+Marked correct:    180
+Search Quality:
+  Precision@1:     53%  (95/180 correct APIs ranked #1)
+  Precision@3:     74%  (133/180 correct APIs in top 3)
+  Precision@5:     81%  (145/180 correct APIs in top 5)
+Failed queries (correct API not in top 5):
+  - "Which API customizes the report logo and branding?"
+  - "Which API customizes the report logo and branding?"
+  - "Which API activates a previously created scheduled report?"
+  - "How do I look up a specific user account's profile?"
+  - "How do I check which plan my account is subscribed to?"
+  - "Which API retrieves organization-level account configuration?"
+  - "Which API fetches a specific user's profile details?"
+  - "How do I toggle whether plugins are auto-discovered on a server?"
+  - "How do I toggle whether plugins are auto-discovered on a server?"
+  - "How do I check the current plugin configuration?"
+  - "How do I retrieve location templates used by automations?"
+  - "List all configured IT Automations"
+  - "How do I create a Custom Report?"
+  - "How do I set up a Threshold Profile for a URL monitor?"
+  - "How do I check the status of a poller?"
+  - "How do I retrieve threshold profiles?"
+  - "How do I retrieve threshold profiles?"
+  - "List all credential profiles stored in the account"
+  - "How do I check monitor dependencies?"
+  - "Which API resolves IP geolocation data needed by the Milestones page?"
+  - "How do I retrieve account-level configuration before viewing milestones?"
+  - "Which API fetches the current user's profile for the Milestones page?"
+  - "What endpoint loads global settings required by the Milestones module?"
+  - "Which API loads dashboard preferences for the Milestones view?"
+  - "How do I fetch demo mode flags for the Milestones page?"
+  - "Which API checks subscription details before rendering milestones?"
+  - "How do I delete a specific Operations Dashboard?"
+  - "Which API resolves IP geolocation info on the Downloads page?"
+  - "How do I retrieve account context before showing the Downloads page?"
+  - "Which API loads dashboard preferences for the Downloads page?"
+  - "How do I check how many times an agent has been downloaded?"
+  - "Which API loads bootstrap/demo metadata needed by the Tags page?"
+  - "How do I retrieve account-level settings required for the Tags page?"
+  - "Which API checks user/session context for the Tags module?"
+  - "How do I retrieve account context before rendering the Tags page?"

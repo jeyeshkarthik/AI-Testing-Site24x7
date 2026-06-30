@@ -938,7 +938,7 @@ window.aiExtractorLoading = false;
 
   async function callLLM(contents) {
     var geminiKey = localStorage.getItem('s247_gemini_key') || '';
-    if (!geminiKey) throw new Error("No AI API key configured. Please set it in Settings.");
+    if (!geminiKey) throw new Error("NO_API_KEY");
     var activeModel = localStorage.getItem('s247_gemini_model') || 'gemini-2.5-flash';
     
     var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + activeModel + ":generateContent?key=" + geminiKey, {
@@ -946,6 +946,15 @@ window.aiExtractorLoading = false;
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ contents: contents })
     });
+    
+    if (!res.ok) {
+      var text = await res.text();
+      if (res.status === 429) throw new Error("Rate limit exceeded. Please wait a moment and try again.");
+      if (res.status === 400) throw new Error("Bad Request. The API key might be invalid or the prompt was rejected.");
+      if (res.status === 401 || res.status === 403) throw new Error("API Key is invalid or expired.");
+      throw new Error("HTTP " + res.status + ": " + text);
+    }
+    
     return await res.json();
   }
 
@@ -1086,7 +1095,16 @@ window.aiExtractorLoading = false;
           aiChatHistory[loadingIndex] = { role: 'ai', text: "Parse error: " + err.message + "\n\nRaw Output:\n" + reply, rawText: reply };
       }
     } catch (e) {
-      aiChatHistory[loadingIndex] = { role: 'ai', text: "Network Error: " + e.message, rawText: "Error" };
+      if (e.message === "NO_API_KEY") {
+        aiChatHistory[loadingIndex] = { 
+          role: 'ai', 
+          text: "<strong>Hold up!</strong> I need an AI API key to function.<br><br><button class='ai-chat-btn' style='background:#f59e0b;color:#fff;border:none;' onclick='openSettings()'>&#9881; Open Settings</button>", 
+          isHtml: true, 
+          rawText: "Error" 
+        };
+      } else {
+        aiChatHistory[loadingIndex] = { role: 'ai', text: "&#10071; **API Error:** " + e.message, rawText: "Error" };
+      }
     }
     
     renderAITab();
@@ -1173,7 +1191,16 @@ window.aiExtractorLoading = false;
         aiChatHistory[summaryIndex] = { role: 'ai', text: "Could not analyze response.", rawText: "Error" };
       }
     } catch (e) {
-      aiChatHistory[summaryIndex] = { role: 'ai', text: "Analysis Network Error: " + e.message, rawText: "Error" };
+      if (e.message === "NO_API_KEY") {
+        aiChatHistory[summaryIndex] = { 
+          role: 'ai', 
+          text: "<em>(Summary skipped - No AI API key configured)</em>", 
+          isHtml: true, 
+          rawText: "Error" 
+        };
+      } else {
+        aiChatHistory[summaryIndex] = { role: 'ai', text: "&#10071; **Analysis Error:** " + e.message, rawText: "Error" };
+      }
     }
     
     renderAITab();
