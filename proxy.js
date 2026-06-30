@@ -14,10 +14,10 @@
 const http  = require('http');
 const https = require('https');
 
-const PORT          = 3334;
+const PORT          = process.env.PROXY_PORT || 3334;
 const DEFAULT_HOST  = 'www.site24x7.com';
 const ALLOWED_HOSTS = ['www.site24x7.com', 'staticdownloads.site24x7.com', 'tools.site24x7.com'];
-const ALLOWED_ORIGIN = 'http://localhost:3333';
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'http://localhost:3333';
 
 let storedCookie = '';
 let storedAuthToken = '';

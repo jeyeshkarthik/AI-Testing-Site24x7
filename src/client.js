@@ -2,9 +2,27 @@
 window.aiExtractor = null;
 window.aiExtractorLoading = false;
 
-(function() {
-  var DB = window.__SITE24X7_DB__;
-  var TFIDF_DB = window.__SITE24X7_TFIDF__;
+(async function() {
+  document.getElementById('resultCount').textContent = 'Loading APIs...';
+  
+  var DB = null;
+  var TFIDF_DB = null;
+  
+  try {
+    var resDB = await fetch('site24x7_compact.json');
+    if (!resDB.ok) throw new Error('Failed to load API data');
+    DB = await resDB.json();
+    
+    var resTfIdf = await fetch('tfidf_index.json');
+    if (resTfIdf.ok) TFIDF_DB = await resTfIdf.json();
+    
+    var resVector = await fetch('site24x7_vector.json');
+    if (resVector.ok) window.__SITE24X7_VECTOR_DB__ = await resVector.json();
+  } catch (err) {
+    document.getElementById('resultsPane').innerHTML = '<div style="padding:20px;color:#ef4444;">Error loading datasets: ' + err.message + '</div>';
+    return;
+  }
+
   var sheets = DB.sheets;
   var sheetDesc = DB.sheetDescriptions;
   var apis = DB.apis;
@@ -479,7 +497,7 @@ window.aiExtractorLoading = false;
   };
 
   // ── PROXY / TRY API ──
-  var PROXY_URL = 'http://localhost:3334';
+  var PROXY_URL = localStorage.getItem('s247_proxy_url') || (window.location.protocol + '//' + window.location.hostname + ':3334');
   var proxyConnected = false;
 
   function checkProxyStatus() {
@@ -630,11 +648,13 @@ window.aiExtractorLoading = false;
     var g = localStorage.getItem('s247_gemini_key') || '';
     var p = localStorage.getItem('s247_llm_provider') || 'gemini';
     var m = localStorage.getItem('s247_gemini_model') || 'gemini-2.0-flash';
+    var pu = localStorage.getItem('s247_proxy_url') || PROXY_URL;
     document.getElementById('cookieInput').value = c;
     document.getElementById('authTokenInput').value = a;
     if (document.getElementById('geminiKeyInput')) document.getElementById('geminiKeyInput').value = g;
     if (document.getElementById('llmProviderSelect')) document.getElementById('llmProviderSelect').value = p;
     if (document.getElementById('geminiModelInput')) document.getElementById('geminiModelInput').value = m;
+    if (document.getElementById('proxyUrlInput')) document.getElementById('proxyUrlInput').value = pu;
     document.getElementById('settingsModal').style.display = 'flex';
   };
   window.closeSettings = function() {
@@ -646,13 +666,18 @@ window.aiExtractorLoading = false;
     var geminiVal = (document.getElementById('geminiKeyInput') || {}).value || '';
     var providerVal = (document.getElementById('llmProviderSelect') || {}).value || 'gemini';
     var modelVal = (document.getElementById('geminiModelInput') || {}).value || 'gemini-2.0-flash';
+    var proxyUrlVal = (document.getElementById('proxyUrlInput') || {}).value || '';
     
     if (document.getElementById('geminiKeyInput')) {
       localStorage.setItem('s247_gemini_key', geminiVal.trim());
       localStorage.setItem('s247_llm_provider', providerVal);
       localStorage.setItem('s247_gemini_model', modelVal.trim() || 'gemini-2.0-flash');
     }
-    if (!cookieVal.trim() && !authVal.trim() && !geminiVal.trim()) { showToast('Please paste a cookie, auth token, or API key first'); return; }
+    if (proxyUrlVal) {
+      localStorage.setItem('s247_proxy_url', proxyUrlVal.trim());
+      PROXY_URL = proxyUrlVal.trim();
+    }
+    if (!cookieVal.trim() && !authVal.trim() && !geminiVal.trim() && !proxyUrlVal.trim()) { showToast('Please configure settings first'); return; }
     var btn = document.getElementById('saveCookieBtn');
     if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
     fetch(PROXY_URL + '/settings', {
@@ -762,10 +787,23 @@ window.aiExtractorLoading = false;
   };
 
   document.getElementById('searchBtn').addEventListener('click', search);
-  document.getElementById('searchInput').addEventListener('keyup', function(e) { if(e.key==='Enter') search(); });
+  var searchTimeout;
   document.getElementById('searchInput').addEventListener('input', function(){
-    if (!document.getElementById('searchInput').value.trim()) { query=''; renderResults(); }
-    document.getElementById('clearBtn').style.visibility = document.getElementById('searchInput').value ? 'visible' : 'hidden';
+    var val = document.getElementById('searchInput').value;
+    document.getElementById('clearBtn').style.visibility = val ? 'visible' : 'hidden';
+    if (!val.trim()) { query = ''; renderResults(); return; }
+    
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function() {
+      if (val.trim() !== query) search();
+    }, 250);
+  });
+  
+  document.getElementById('searchInput').addEventListener('keyup', function(e) { 
+    if(e.key === 'Enter') {
+      clearTimeout(searchTimeout);
+      if (document.getElementById('searchInput').value.trim() !== query) search();
+    }
   });
   document.getElementById('clearBtn').addEventListener('click', function(){
     document.getElementById('searchInput').value=''; query=''; document.getElementById('clearBtn').style.visibility='hidden'; renderResults();
@@ -842,9 +880,13 @@ window.aiExtractorLoading = false;
     pane.innerHTML = html;
   }
 
-  var aiChatHistory = [{ role: 'ai', text: 'Hi! I am your AI Agent. What would you like to automate or query today?' }];
+  var aiChatHistory = loadStore('s247_aichat_history');
+  if (aiChatHistory.length === 0) {
+    aiChatHistory = [{ role: 'ai', text: 'Hi! I am your AI Agent. What would you like to automate or query today?' }];
+  }
 
   function renderAITab() {
+    saveStore('s247_aichat_history', aiChatHistory);
     var pane = document.getElementById('resultsPane');
     var countEl = document.getElementById('resultCount');
     countEl.innerHTML = '<span style="color:#1d4ed8; font-weight:600;">✨ AI Agent Active</span>';
@@ -892,6 +934,19 @@ window.aiExtractorLoading = false;
     html = html.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
     html = html.replace(/\n/g, '<br/>');
     return html;
+  }
+
+  async function callLLM(contents) {
+    var geminiKey = localStorage.getItem('s247_gemini_key') || '';
+    if (!geminiKey) throw new Error("No AI API key configured. Please set it in Settings.");
+    var activeModel = localStorage.getItem('s247_gemini_model') || 'gemini-2.5-flash';
+    
+    var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + activeModel + ":generateContent?key=" + geminiKey, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: contents })
+    });
+    return await res.json();
   }
 
   window.sendAiMessage = async function() {
@@ -967,16 +1022,8 @@ window.aiExtractorLoading = false;
         parts: [{ text: systemPrompt + "\n\nUser Request: " + txt }]
       });
 
-      var body = { contents: contents };
-
-      var activeModel = localStorage.getItem('s247_gemini_model') || 'gemini-2.5-flash';
-      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + activeModel + ":generateContent?key=" + geminiKey, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-      
-      var data = await res.json();
+      try {
+        var data = await callLLM(contents);
       
       if (data.error) {
         aiChatHistory[loadingIndex].text = "Error from Gemini: " + data.error.message;
@@ -1037,9 +1084,6 @@ window.aiExtractorLoading = false;
           }
         } catch(err) {
           aiChatHistory[loadingIndex] = { role: 'ai', text: "Parse error: " + err.message + "\n\nRaw Output:\n" + reply, rawText: reply };
-        }
-      } else {
-        aiChatHistory[loadingIndex] = { role: 'ai', text: "Error: Unexpected response format from Gemini.", rawText: "Error" };
       }
     } catch (e) {
       aiChatHistory[loadingIndex] = { role: 'ai', text: "Network Error: " + e.message, rawText: "Error" };
@@ -1116,20 +1160,9 @@ window.aiExtractorLoading = false;
         "2. If it succeeded, extract and mention 1 or 2 key pieces of data (like the created ID, name, or count).\n" +
         "3. Do NOT output raw JSON or code blocks. Just output a friendly text message to the user.";
 
-      var body = {
-        contents: [
-          { role: 'user', parts: [{ text: systemPrompt }] }
-        ]
-      };
-
-      var activeModel = localStorage.getItem('s247_gemini_model') || 'gemini-2.5-flash';
-      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + activeModel + ":generateContent?key=" + geminiKey, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-      
-      var data = await res.json();
+      var data = await callLLM([
+        { role: 'user', parts: [{ text: systemPrompt }] }
+      ]);
       
       if (data.error) {
         aiChatHistory[summaryIndex] = { role: 'ai', text: "Analysis error: " + data.error.message, rawText: data.error.message };

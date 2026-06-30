@@ -19,9 +19,6 @@ console.log('Building index.html...');
 let html = template.replace('${css}', css);
 
 const jsInjection = `
-  window.__SITE24X7_DB__ = ${dataJson};
-  window.__SITE24X7_TFIDF__ = ${tfidfJson};
-  window.__SITE24X7_VECTOR_DB__ = ${vectorJson};
   ${clientJs}
 `;
 html = html.replace('${clientJs}', jsInjection);
