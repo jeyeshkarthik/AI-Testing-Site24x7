@@ -1,6 +1,5 @@
 
-window.aiExtractor = null;
-window.aiExtractorLoading = false;
+
 
 (async function() {
   document.getElementById('resultCount').textContent = 'Loading APIs...';
@@ -16,11 +15,49 @@ window.aiExtractorLoading = false;
     var resTfIdf = await fetch('tfidf_index.json');
     if (resTfIdf.ok) TFIDF_DB = await resTfIdf.json();
     
-    var resVector = await fetch('site24x7_vector.json');
-    if (resVector.ok) window.__SITE24X7_VECTOR_DB__ = await resVector.json();
+    // Vector DB is now loaded directly by the Web Worker
   } catch (err) {
     document.getElementById('resultsPane').innerHTML = '<div style="padding:20px;color:#ef4444;">Error loading datasets: ' + err.message + '</div>';
     return;
+  }
+  
+  var aiWorker = new Worker('src/worker.js', { type: 'module' });
+  var aiWorkerReady = false;
+  var aiWorkerCallbacks = {};
+  var aiWorkerMsgId = 0;
+  
+  aiWorker.postMessage({ type: 'init', dbUrl: window.location.origin + window.location.pathname.replace('index.html', '') + 'site24x7_vector.json' });
+  
+  aiWorker.onmessage = function(e) {
+    if (e.data.type === 'status') {
+      var rc = document.getElementById('resultCount');
+      if (rc && !aiWorkerReady) rc.innerHTML = '<i>' + e.data.message + '</i>';
+    } else if (e.data.type === 'ready') {
+      aiWorkerReady = true;
+      renderResults();
+    } else if (e.data.type === 'error') {
+      var rc = document.getElementById('resultCount');
+      if (rc) rc.innerHTML = '<i style="color:#ef4444;">Worker Error: ' + e.data.error + '</i>';
+    } else if (e.data.type === 'search_result') {
+      var cb = aiWorkerCallbacks[e.data.id];
+      if (cb) {
+        cb(e.data.results);
+        delete aiWorkerCallbacks[e.data.id];
+      }
+    }
+  };
+  
+  aiWorker.onerror = function(err) {
+    var rc = document.getElementById('resultCount');
+    if (rc) rc.innerHTML = '<i style="color:#ef4444;">Worker Load Error: ' + err.message + '</i>';
+  };
+  
+  function searchWorker(query) {
+    return new Promise(function(resolve) {
+      var id = ++aiWorkerMsgId;
+      aiWorkerCallbacks[id] = resolve;
+      aiWorker.postMessage({ type: 'search', id: id, query: query });
+    });
   }
 
   var sheets = DB.sheets;
@@ -269,47 +306,18 @@ window.aiExtractorLoading = false;
 
     var type = document.getElementById('searchType').value;
     if (type === 'semantic') {
-      if (!window.aiExtractor) {
-        if (!window.aiExtractorLoading) {
-           window.aiExtractorLoading = true;
-           var rc = document.getElementById('resultCount');
-           if (rc) rc.innerHTML = '<i>Loading AI Search Model (happens once)...</i>';
-           
-           import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js')
-             .then(function(transformers) {
-               transformers.env.allowLocalModels = false;
-               return transformers.pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
-                 progress_callback: function(x) {
-                   var rcc = document.getElementById('resultCount');
-                   if (x.status !== 'ready' && rcc) rcc.innerHTML = '<i>Downloading AI Model: ' + Math.round(x.progress||0) + '%</i>';
-                 }
-               });
-             })
-             .then(function(extractor) {
-               window.aiExtractor = extractor;
-               window.aiExtractorLoading = false;
-               renderResults();
-             }).catch(function(e) {
-               var rce = document.getElementById('resultCount');
-               if (rce) rce.innerHTML = '<i>Error loading model: ' + e.message + '</i>';
-               window.aiExtractorLoading = false;
-             });
-        }
+      if (!aiWorkerReady) {
         return filtered.map(function(api){ return {api:api, score:0}; });
       }
       
-      var out = await window.aiExtractor(query, { pooling: 'mean', normalize: true });
-      var qv = Array.from(out.data);
-      var vdb = window.__SITE24X7_VECTOR_DB__ || {};
+      var workerRes = await searchWorker(query);
+      var scoreMap = {};
+      workerRes.forEach(function(r) { scoreMap[r.id] = r.score; });
       
       var tokens = tokenize(query);
 
       return filtered.map(function(api) {
-        var apiVec = vdb[api.id];
-        var score = 0;
-        if (apiVec) {
-          for (var i = 0; i < 384; i++) score += qv[i] * apiVec[i];
-        }
+        var score = scoreMap[api.id] || 0;
         
         // Hybrid Intent Boosting: Semantic models often cluster verbs poorly. 
         // We add an absolute boost to the correct HTTP method based on conversational verbs.
@@ -356,6 +364,73 @@ window.aiExtractorLoading = false;
   function methodColor(m) {
     var map = {GET:'method-get',POST:'method-post',PUT:'method-put',DELETE:'method-delete',PATCH:'method-patch'};
     return map[m] || 'method-other';
+  }
+
+  window.switchSnippet = function(btn, apiId, type, e) {
+    e.stopPropagation();
+    var parent = btn.parentElement;
+    Array.from(parent.children).forEach(function(c) { 
+      c.classList.remove('active');
+      c.style.background = '#f8fafc';
+    });
+    btn.classList.add('active');
+    btn.style.background = '#fff';
+    
+    var api = apis.find(function(a) { return a.id === apiId; });
+    var box = document.getElementById('snippet-box-' + apiId);
+    if (box && api) {
+      box.textContent = generateSnippet(api, type);
+    }
+  };
+
+  function generateSnippet(api, type) {
+    var url = "https://www.site24x7.com/api" + api.endpoint;
+    var method = api.method.toUpperCase();
+    var hasBody = (method === 'POST' || method === 'PUT' || method === 'PATCH') && api.requestFields && api.requestFields.length;
+    var bodyObj = {};
+    if (hasBody) {
+      api.requestFields.forEach(function(f) { bodyObj[f] = "<value>"; });
+    }
+    
+    if (type === 'curl') {
+      var s = "curl -X " + method + " " + url + " \\\n";
+      s += "  -H \"Accept: application/json; version=2.0\" \\\n";
+      s += "  -H \"Authorization: Zoho-oauthtoken <YOUR_ACCESS_TOKEN>\"";
+      if (hasBody) {
+        s += " \\\n  -H \"Content-Type: application/json;charset=UTF-8\" \\\n";
+        s += "  -d '" + JSON.stringify(bodyObj, null, 2) + "'";
+      }
+      return s;
+    } else if (type === 'node') {
+      var s = "const fetch = require('node-fetch');\n\n";
+      if (hasBody) {
+        s += "const payload = " + JSON.stringify(bodyObj, null, 2) + ";\n\n";
+      }
+      s += "fetch('" + url + "', {\n";
+      s += "  method: '" + method + "',\n";
+      s += "  headers: {\n";
+      s += "    'Accept': 'application/json; version=2.0',\n";
+      s += "    'Authorization': 'Zoho-oauthtoken <YOUR_ACCESS_TOKEN>'" + (hasBody ? ",\n    'Content-Type': 'application/json;charset=UTF-8'" : "") + "\n";
+      s += "  }" + (hasBody ? ",\n  body: JSON.stringify(payload)" : "") + "\n";
+      s += "})\n.then(res => res.json())\n.then(json => console.log(json))\n.catch(err => console.error(err));";
+      return s;
+    } else if (type === 'python') {
+      var s = "import requests\n\n";
+      s += "url = '" + url + "'\n";
+      s += "headers = {\n";
+      s += "    'Accept': 'application/json; version=2.0',\n";
+      s += "    'Authorization': 'Zoho-oauthtoken <YOUR_ACCESS_TOKEN>'\n";
+      s += "}\n";
+      if (hasBody) {
+        s += "\npayload = " + JSON.stringify(bodyObj, null, 4).replace(/true/g, 'True').replace(/false/g, 'False') + "\n\n";
+        s += "response = requests." + method.toLowerCase() + "(url, headers=headers, json=payload)\n";
+      } else {
+        s += "\nresponse = requests." + method.toLowerCase() + "(url, headers=headers)\n";
+      }
+      s += "print(response.json())";
+      return s;
+    }
+    return '';
   }
 
   function renderCardsHtml(pageResults, tokens, maxScore) {
@@ -405,6 +480,13 @@ window.aiExtractorLoading = false;
           (reqF.length ? '<div class="detail-section-label" style="margin-top:12px">REQUEST FIELDS</div>' +
           '<div class="req-fields">'+reqF.map(function(f){ return '<span class="req-pill">'+esc(f)+'</span>'; }).join('')+'</div>' : '') +
           (api.summaryText ? '<div class="summary-box">'+esc(api.summaryText)+'</div>' : '') +
+          '<div class="detail-section-label" style="margin-top:16px;">CODE SNIPPETS</div>' +
+          '<div class="snippet-tabs" style="display:flex;gap:4px;margin-bottom:8px;">' +
+          '<button class="snippet-tab-btn active" style="padding:4px 12px;font-size:11px;border-radius:4px;border:1px solid #cbd5e1;background:#fff;cursor:pointer;" onclick="switchSnippet(this, '+api.id+', \'curl\', event)">cURL</button>' +
+          '<button class="snippet-tab-btn" style="padding:4px 12px;font-size:11px;border-radius:4px;border:1px solid #cbd5e1;background:#f8fafc;cursor:pointer;" onclick="switchSnippet(this, '+api.id+', \'node\', event)">Node.js</button>' +
+          '<button class="snippet-tab-btn" style="padding:4px 12px;font-size:11px;border-radius:4px;border:1px solid #cbd5e1;background:#f8fafc;cursor:pointer;" onclick="switchSnippet(this, '+api.id+', \'python\', event)">Python</button>' +
+          '</div>' +
+          '<pre class="snippet-box" id="snippet-box-'+api.id+'" style="background:#1e293b;color:#e2e8f0;padding:12px;border-radius:6px;font-family:monospace;font-size:11px;overflow-x:auto;">' + esc(generateSnippet(api, 'curl')) + '</pre>' +
         '</div>' : '') +
       '</div>';
     }).join('');
@@ -1031,8 +1113,7 @@ window.aiExtractorLoading = false;
         parts: [{ text: systemPrompt + "\n\nUser Request: " + txt }]
       });
 
-      try {
-        var data = await callLLM(contents);
+      var data = await callLLM(contents);
       
       if (data.error) {
         aiChatHistory[loadingIndex].text = "Error from Gemini: " + data.error.message;
@@ -1093,6 +1174,7 @@ window.aiExtractorLoading = false;
           }
         } catch(err) {
           aiChatHistory[loadingIndex] = { role: 'ai', text: "Parse error: " + err.message + "\n\nRaw Output:\n" + reply, rawText: reply };
+        }
       }
     } catch (e) {
       if (e.message === "NO_API_KEY") {
