@@ -1831,11 +1831,12 @@
         try { pretty = JSON.stringify(JSON.parse(result.body), null, 2); } catch(e){}
         var statusCls = result.status < 300 ? 'try-status-ok' : result.status < 500 ? 'try-status-warn' : 'try-status-err';
         panel.innerHTML =
-          '<div class="try-resp-header">' +
+          '<div class="try-resp-header" style="display:flex; align-items:center;">' +
             '<span class="try-method-badge method-' + api.method.toLowerCase() + '">' + api.method + '</span>' +
             '<code class="try-ep">' + esc(finalEp) + '</code>' +
             '<span class="try-status ' + statusCls + '">' + result.status + '</span>' +
-            '<button class="try-close" onclick="document.getElementById(\'try-panel-' + apiId + '\').style.display=\'none\'" title="Close">&#10005;</button>' +
+            '<button class="copy-json-btn" onclick="navigator.clipboard.writeText(decodeURIComponent(\'' + encodeURIComponent(pretty) + '\')); this.innerHTML=\'&#10004; Copied!\'; setTimeout(()=>this.innerHTML=\'&#128203; Copy JSON\', 2000)" style="margin-left:auto; background:#3b82f6; color:#fff; border:none; border-radius:4px; padding:4px 10px; font-size:11px; font-weight:600; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.1);">&#128203; Copy JSON</button>' +
+            '<button class="try-close" onclick="document.getElementById(\'try-panel-' + apiId + '\').style.display=\'none\'" title="Close" style="margin-left:8px;">&#10005;</button>' +
           '</div>' +
           '<pre class="try-body">' + esc(pretty) + '</pre>';
       })
@@ -2346,10 +2347,11 @@
         try { pretty = JSON.stringify(JSON.parse(result.body), null, 2); } catch(e){}
         var statusCls = result.status < 300 ? 'try-status-ok' : result.status < 500 ? 'try-status-warn' : 'try-status-err';
         var html = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; margin-top:8px; background:#0f172a;">' +
-            '<div class="try-resp-header">' +
+            '<div class="try-resp-header" style="display:flex; align-items:center;">' +
               '<span class="try-method-badge method-' + fetchOpts.method.toLowerCase() + '">' + esc(fetchOpts.method) + '</span>' +
               '<code class="try-ep">' + esc(endpoint) + '</code>' +
               '<span class="try-status ' + statusCls + '">' + result.status + '</span>' +
+              '<button class="copy-json-btn" onclick="navigator.clipboard.writeText(decodeURIComponent(\'' + encodeURIComponent(pretty) + '\')); this.innerHTML=\'&#10004; Copied!\'; setTimeout(()=>this.innerHTML=\'&#128203; Copy JSON\', 2000)" style="margin-left:auto; background:#3b82f6; color:#fff; border:none; border-radius:4px; padding:4px 10px; font-size:11px; font-weight:600; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.1);">&#128203; Copy JSON</button>' +
             '</div>' +
             '<pre class="try-body">' + esc(pretty) + '</pre>' +
           '</div>';
