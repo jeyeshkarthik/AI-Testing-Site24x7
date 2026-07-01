@@ -107,9 +107,16 @@
 <!-- Search Section -->
 <div class="search-section">
   <div class="search-row">
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="list the monitor groups" autocomplete="off" spellcheck="false" />
-      <button id="clearBtn" title="Clear">&#10005;</button>
+    <div class="search-box-wrapper">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="list the monitor groups (Press Cmd/Ctrl + K)" autocomplete="off" spellcheck="false" />
+        <button id="clearBtn" title="Clear">&#10005;</button>
+      </div>
+      <!-- Recent Searches Dropdown -->
+      <div id="recentSearchesDropdown" class="recent-searches-dropdown" style="display: none;">
+        <div class="rs-header">Recent Searches</div>
+        <ul id="recentSearchesList" class="rs-list"></ul>
+      </div>
     </div>
     <select id="searchType" class="search-type-select">
       <option value="keyword">Keyword search (no AI)</option>
@@ -117,6 +124,15 @@
     </select>
     <button id="searchBtn">&#128269; Search</button>
   </div>
+  
+  <!-- Suggested Queries -->
+  <div class="suggested-queries">
+    <span class="sq-label">Suggested:</span>
+    <button class="sq-pill" onclick="runSuggestedQuery('Find all monitors')">Find all monitors</button>
+    <button class="sq-pill" onclick="runSuggestedQuery('How to delete an SLA')">How to delete an SLA</button>
+    <button class="sq-pill" onclick="runSuggestedQuery('List alert reports')">List alert reports</button>
+  </div>
+
   <div class="tabs-row">
     <button class="tab-btn active" data-tab="results">Results</button>
     <button class="tab-btn" data-tab="ai" style="color: #1d4ed8; font-weight: 600;">✨ AI Agent</button>

@@ -457,6 +457,7 @@
           '<div class="rc-top">' +
             '<span class="method-badge '+methodColor(api.method)+'">'+api.method+'</span>' +
             '<span class="rc-endpoint">'+highlight(api.endpoint, tokens)+'</span>' +
+            '<button class="copy-endpoint-btn" onclick="event.stopPropagation(); navigator.clipboard.writeText(\''+esc(api.endpoint)+'\'); this.innerHTML=\'&#10004;\'; setTimeout(()=>this.innerHTML=\'&#128203;\', 2000)" title="Copy Endpoint">&#128203;</button>' +
             '<span class="rc-client-tag">Client</span>' +
             '<span class="rc-module-tag">'+esc(api.sheet.toUpperCase().replace(/ /g,'_'))+'</span>' +
             (score > 0 ? '<span style="margin-left:auto; font-size:11px; color:#9ca3af; font-family:monospace;">' + (score <= 1.05 ? Math.round(score * 100) + '% Match' : 'Score: ' + Math.round(score)) + '</span>' : '') +
@@ -859,9 +860,65 @@
     URL.revokeObjectURL(a.href);
   };
 
+  // ── RECENT SEARCHES & SHORTCUTS ──
+  function loadRecentSearches() {
+    try { return JSON.parse(localStorage.getItem('site24x7_recent_searches')) || []; }
+    catch(e) { return []; }
+  }
+  function saveRecentSearch(q) {
+    if (!q) return;
+    var recent = loadRecentSearches();
+    recent = recent.filter(function(item) { return item.toLowerCase() !== q.toLowerCase(); });
+    recent.unshift(q);
+    if (recent.length > 5) recent.pop();
+    localStorage.setItem('site24x7_recent_searches', JSON.stringify(recent));
+    renderRecentSearches();
+  }
+  function renderRecentSearches() {
+    var list = document.getElementById('recentSearchesList');
+    var dropdown = document.getElementById('recentSearchesDropdown');
+    if (!list || !dropdown) return;
+    var recent = loadRecentSearches();
+    if (recent.length === 0) { dropdown.style.display = 'none'; return; }
+    list.innerHTML = '';
+    recent.forEach(function(item) {
+      var li = document.createElement('li');
+      li.className = 'rs-item';
+      li.textContent = item;
+      li.onmousedown = function(e) { e.preventDefault(); window.runSuggestedQuery(item); };
+      list.appendChild(li);
+    });
+  }
+
+  var searchInputEl = document.getElementById('searchInput');
+  if (searchInputEl) {
+    searchInputEl.addEventListener('focus', function() {
+      if (loadRecentSearches().length > 0) document.getElementById('recentSearchesDropdown').style.display = 'block';
+    });
+    searchInputEl.addEventListener('blur', function() {
+      document.getElementById('recentSearchesDropdown').style.display = 'none';
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (searchInputEl) { searchInputEl.focus(); searchInputEl.select(); }
+    }
+  });
+
+  window.runSuggestedQuery = function(q) {
+    if (searchInputEl) {
+      searchInputEl.value = q;
+      document.getElementById('recentSearchesDropdown').style.display = 'none';
+      if (typeof window.search === 'function') window.search();
+    }
+  };
+
   // Search
   window.search = async function() {
     query = document.getElementById('searchInput').value.trim();
+    if (query) saveRecentSearch(query);
     currentPage = 1;
     document.getElementById('clearBtn').style.visibility = query ? 'visible' : 'hidden';
     await renderResults();
