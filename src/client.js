@@ -968,13 +968,23 @@
     aiChatHistory = [{ role: 'ai', text: 'Hi! I am your AI Agent. What would you like to automate or query today?' }];
   }
 
+  window.clearAiChat = function() {
+    if (!confirm('Clear AI Chat history?')) return;
+    aiChatHistory = [{ role: 'ai', text: 'Hi! I am your AI Agent. What would you like to automate or query today?' }];
+    saveStore('s247_aichat_history', aiChatHistory);
+    renderAITab();
+  };
+
   function renderAITab() {
     saveStore('s247_aichat_history', aiChatHistory);
     var pane = document.getElementById('resultsPane');
     var countEl = document.getElementById('resultCount');
     countEl.innerHTML = '<span style="color:#1d4ed8; font-weight:600;">✨ AI Agent Active</span>';
     
-    var html = '<div class="ai-chat-container">';
+    var html = '<div class="ds-toolbar" style="margin-bottom:16px; border:none; padding:0; display:flex; justify-content:flex-end;">' +
+                 '<button class="action-btn" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; padding:6px 14px; font-size:12px; border-radius:6px;" onclick="clearAiChat()">&#128465; Clear Chat</button>' +
+               '</div>';
+    html += '<div class="ai-chat-container">';
     html += '<div class="ai-chat-messages" id="aiChatMessages">';
     aiChatHistory.forEach(function(msg) {
       if (msg.role === 'user') {
