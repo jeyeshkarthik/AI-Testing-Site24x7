@@ -1314,10 +1314,29 @@
             '<pre class="try-body">' + esc(pretty) + '</pre>' +
           '</div>';
         if (resultDiv) resultDiv.innerHTML = html;
+        var wrapperId = 'ai-exec-wrapper-' + actionId;
+        if (aiChatHistory[loadingIndex] && aiChatHistory[loadingIndex].text) {
+           if (aiChatHistory[loadingIndex].text.indexOf('id="' + wrapperId + '"') !== -1) {
+               var regex = new RegExp('<div id="' + wrapperId + '">[\\s\\S]*?</div><!--end-' + wrapperId + '-->');
+               aiChatHistory[loadingIndex].text = aiChatHistory[loadingIndex].text.replace(regex, '<div id="' + wrapperId + '">' + html.replace(/\\$/g, '$$$$') + '</div><!--end-' + wrapperId + '-->');
+           } else {
+               aiChatHistory[loadingIndex].text += '<div id="' + wrapperId + '">' + html + '</div><!--end-' + wrapperId + '-->';
+           }
+        }
         summarizeExecution(actionId, result.body, result.status);
       })
       .catch(function(err) {
-        if (resultDiv) resultDiv.innerHTML = '<div class="try-error" style="margin-top:8px;">&#9888; Proxy Request failed: ' + esc(err.message) + '</div>';
+        var errHtml = '<div class="try-error" style="margin-top:8px;">&#9888; Proxy Request failed: ' + esc(err.message) + '</div>';
+        if (resultDiv) resultDiv.innerHTML = errHtml;
+        var wrapperId = 'ai-exec-wrapper-' + actionId;
+        if (aiChatHistory[loadingIndex] && aiChatHistory[loadingIndex].text) {
+           if (aiChatHistory[loadingIndex].text.indexOf('id="' + wrapperId + '"') !== -1) {
+               var regex = new RegExp('<div id="' + wrapperId + '">[\\s\\S]*?</div><!--end-' + wrapperId + '-->');
+               aiChatHistory[loadingIndex].text = aiChatHistory[loadingIndex].text.replace(regex, '<div id="' + wrapperId + '">' + errHtml.replace(/\\$/g, '$$$$') + '</div><!--end-' + wrapperId + '-->');
+           } else {
+               aiChatHistory[loadingIndex].text += '<div id="' + wrapperId + '">' + errHtml + '</div><!--end-' + wrapperId + '-->';
+           }
+        }
       });
   };
 
