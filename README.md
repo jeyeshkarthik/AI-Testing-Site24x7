@@ -164,10 +164,10 @@ This builds `index.html` from the source data and serves it at **http://localhos
 **Technologies Used:** Google Gemini LLM API, Node.js, LocalStorage, Vanilla CSS.
 
 **Implementation Steps:**
-1. **Visual & Branding Enhancements:** Integrated a dynamic Zoho logo splash screen on initial page load and reorganized the top navigation bar for a more professional, balanced layout.
+1. **Visual & Branding Enhancements:** Integrated a dynamic Zoho logo splash screen on initial page load and reorganized the top navigation bar for a more professional, balanced layout. The main Site24x7 logo was also converted into a clickable hyperlink directing to the Site24x7 Admin API demo website.
 2. **UX Upgrades (Shortcuts & History):** Added global keyboard shortcuts (`Cmd/Ctrl + K`) to instantly focus the search input. Upgraded the "Recent Searches" functionality to utilize a sleek dropdown menu that saves queries to `LocalStorage`, completely with a manual delete ('x') function.
 3. **Suggested Queries & Endpoints:** Built "Quick Start" pill buttons beneath the search bar to instantly trigger popular queries, and injected "Copy to Clipboard" buttons beside every API endpoint in the result cards for rapid developer adoption.
-4. **Search Debounce Fix:** Removed the aggressive search-as-you-type `input` listener to ensure only complete, intentional queries are logged to the user's search history.
+4. **Search & Execution Fixes:** Removed the aggressive search-as-you-type `input` listener to ensure only complete, intentional queries are logged to the user's search history. Additionally, upgraded the AI Agent's execution logic to permanently embed the raw JSON HTTP response block (complete with copy capability) directly into the chat history for seamless debugging.
 5. **Synthetic Data Tooling:** Developed `generate_synthetic_dataset.js` to autonomously parse all 720 endpoints and invoke the Gemini LLM to generate thousands of realistic semantic question variants. The script incorporates robust rate-limiting and quota-error handling.
 
 ---
