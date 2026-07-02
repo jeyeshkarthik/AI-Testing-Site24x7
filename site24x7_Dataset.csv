@@ -179,3 +179,24 @@ What endpoint creates a ServiceNow integration?,/app/api/integration/service_now
 How do I configure a webhook integration?,/app/api/integration/webhooks,POST,Third-Party Integrations,Webhook Integration,True,2026-06-26T04:50:04.527Z
 Which API creates a Slack integration?,/app/api/integration/slack,POST,Third-Party Integrations,Slack Integration,True,2026-06-26T04:49:45.886Z
 How do I set up PagerDuty alerts?,/app/api/integration/pager_duty,POST,Third-Party Integrations,PagerDuty Integration,True,2026-06-26T04:49:23.667Z
+
+How do I retrieve app bootstrap startup data in Site24x7?,/app/api/preferences/table/58,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:51:18.228Z
+fetch general app shell info report settings,/app/api/preferences/table/58,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:51:18.228Z
+GET request for /app/api/preferences/table/58,/app/api/preferences/table/58,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:51:18.228Z
+where to find global startup config for reports?,/app/api/preferences/table/58,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:51:18.228Z
+How can I list all AI collections for Zia workflows?,/app/api/genai/collections,GET,Zia Settings,AI Collections,True,2026-07-02T05:51:23.320Z
+show me Zia AI data collections,/app/api/genai/collections,GET,Zia Settings,AI Collections,True,2026-07-02T05:51:23.320Z
+fetch available AI collections with GET /app/api/genai/collections,/app/api/genai/collections,GET,Zia Settings,AI Collections,True,2026-07-02T05:51:23.320Z
+What AI collections are there in Zia Settings?,/app/api/genai/collections,GET,Zia Settings,AI Collections,True,2026-07-02T05:51:23.320Z
+How do I retrieve browser configuration options for a specific profile in Site24x7?,/app/api/browser_options/{browser_profile_id}/{application_type},GET,Inventory,Browser Options,True,2026-07-02T05:51:28.604Z
+get browser options for monitor type,/app/api/browser_options/{browser_profile_id}/{application_type},GET,Inventory,Browser Options,True,2026-07-02T05:51:28.604Z
+Fetch browser options using GET for browser_profile_id and application_type,/app/api/browser_options/{browser_profile_id}/{application_type},GET,Inventory,Browser Options,True,2026-07-02T05:51:28.604Z
+browser config settings for inventory module,/app/api/browser_options/{browser_profile_id}/{application_type},GET,Inventory,Browser Options,True,2026-07-02T05:51:28.604Z
+How do I get the JSON form template for adding an ISP monitor?,/app/client/templates/monitors-form/add-isp.json,GET,Inventory,Monitor Inventory,True,2026-07-02T05:51:33.811Z
+fetch add-isp monitor form template,/app/client/templates/monitors-form/add-isp.json,GET,Inventory,Monitor Inventory,True,2026-07-02T05:51:33.811Z
+Show me the endpoint to load monitor inventory template for ISP,/app/client/templates/monitors-form/add-isp.json,GET,Inventory,Monitor Inventory,True,2026-07-02T05:51:33.811Z
+GET request to /app/client/templates/monitors-form/add-isp.json,/app/client/templates/monitors-form/add-isp.json,GET,Inventory,Monitor Inventory,True,2026-07-02T05:51:33.811Z
+How can I retrieve the number of monitors by their status in Site24x7?,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
+monitor status count api call,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
+GET monitor operational status breakdown,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
+Show me how many monitors are up or down right now,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
