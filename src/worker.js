@@ -37,10 +37,19 @@ self.onmessage = async (e) => {
       const queryVector = Array.from(out.data);
       
       const results = [];
-      for (const [apiId, apiVector] of Object.entries(vectorDB)) {
-        if (!apiVector) continue;
-        const score = cos_sim(queryVector, apiVector);
-        results.push({ id: parseInt(apiId), score: score });
+      for (const [apiId, apiVectors] of Object.entries(vectorDB)) {
+        if (!apiVectors || apiVectors.length === 0) continue;
+        let maxScore = -1;
+        // Check if apiVectors is an array of vectors (array of arrays) or just one vector (array of numbers)
+        if (Array.isArray(apiVectors[0])) {
+          for (const vec of apiVectors) {
+            const score = cos_sim(queryVector, vec);
+            if (score > maxScore) maxScore = score;
+          }
+        } else {
+          maxScore = cos_sim(queryVector, apiVectors);
+        }
+        results.push({ id: parseInt(apiId), score: maxScore });
       }
       
       results.sort((a,b) => b.score - a.score);

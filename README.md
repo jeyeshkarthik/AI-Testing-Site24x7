@@ -169,8 +169,30 @@ This builds `index.html` from the source data and serves it at **http://localhos
 3. **Suggested Queries & Endpoints:** Built "Quick Start" pill buttons beneath the search bar to instantly trigger popular queries, and injected "Copy to Clipboard" buttons beside every API endpoint in the result cards for rapid developer adoption.
 4. **Search & Execution Fixes:** Removed the aggressive search-as-you-type `input` listener to ensure only complete, intentional queries are logged to the user's search history. Additionally, upgraded the AI Agent's execution logic to permanently embed the raw JSON HTTP response block (complete with copy capability) directly into the chat history for seamless debugging.
 5. **Synthetic Data Tooling:** Developed `generate_synthetic_dataset.js` to autonomously parse all 720 endpoints and invoke the Gemini LLM to generate thousands of realistic semantic question variants. The script incorporates robust rate-limiting and quota-error handling.
+---
+
+### Phase 11: Enterprise Security & Data Pipeline Scaling
+**Goal:** Migrate the semantic data generation pipeline from Gemini to Azure OpenAI, eradicate accidental credential leaks, and execute the massive 3,000+ query generation.
+
+**Technologies Used:** Azure OpenAI, Git History Rewriting, Node.js.
+
+**Implementation Steps:**
+1. **Azure Migration:** Re-routed the `generate_synthetic_dataset.js` script to connect to a custom LiteLLM proxy pointing to an Azure OpenAI deployment (`gpt-4.1`), using Bearer token authentication instead of Gemini API keys.
+2. **Security Lockdown:** Identified and erased a credential leak (exposed `.env` and `index.html` keys). Rolled back the local Git history, updated `.gitignore`, and force-pushed a sanitized commit to permanently scrub the repository history. Authored strict agent security protocols in `.agents/AGENTS.md`.
+3. **UI Sanitization:** Removed all manual API Key and Provider inputs from the application's Settings UI, offloading credential injection entirely to the backend `generate_html.js` build step.
+4. **Massive Dataset Generation:** Executed the data pipeline across all 720 endpoints in the background, autonomously generating 3,100 high-quality synthetic queries to massively expand the semantic search dictionary.
 
 ---
+
+### Phase 12: Advanced Vector Re-Indexing & Complete Integration
+**Goal:** Ingest the massive synthetic dataset into the true AI Semantic Search engine, unlocking near-perfect precision by comparing user queries against thousands of mathematically embedded variations.
+
+**Technologies Used:** `@xenova/transformers`, Web Workers API, Cosine Similarity.
+
+**Implementation Steps:**
+1. **Multi-Vector Embedding:** Upgraded `build_embeddings.js` to parse the 3,100-query `site24x7_Dataset.csv` dataset. The HuggingFace transformer model translated every single synthetic query into a 384-dimensional mathematical vector, saving an array of vectors for every API into a massively upgraded `site24x7_vector.json` database.
+2. **Multi-Dimensional Worker Scoring:** Rewrote the background `worker.js` thread. The Web Worker now iterates over arrays of vectors for each API, calculating the Cosine Similarity for every semantic variation and returning the mathematical `max()` score for true state-of-the-art precision.
+3. **Final UI Cleanup:** Removed deprecated "Recent Searches" history logic from the UI based on user feedback, finalizing the pristine Search & Test experience.
 
 ## Data Source
 All API data was extracted from `site24x7_Admin_API.xlsx`, originally recorded from the [Site24x7 Demo Environment](https://www.site24x7.com/app/demo).
