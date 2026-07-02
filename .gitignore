@@ -12,3 +12,7 @@ _test_js.js
 # OS files
 .DS_Store
 Thumbs.db
+
+# Secrets and build artifacts
+.env
+index.html

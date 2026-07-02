@@ -3,9 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const PROVIDER = process.env.LLM_PROVIDER || 'azure';
-const AZURE_API_KEY = process.env.AZURE_API_KEY;
-const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT;
+const PROVIDER = process.env.LLM_PROVIDER || 'openai';
+const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
 const DATA_FILE = path.join(__dirname, 'site24x7_api_data.json');
 const CSV_FILE = path.join(__dirname, 'site24x7_Dataset.csv');
@@ -18,26 +19,29 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
  * Switch between providers easily here
  */
 async function callLLM(prompt) {
-  if (PROVIDER === 'azure') {
-    return await callAzureOpenAI(prompt);
+  if (PROVIDER === 'openai') {
+    return await callOpenAI(prompt);
   } else {
     throw new Error(`Unknown provider: ${PROVIDER}`);
   }
 }
 
 /**
- * Azure OpenAI Implementation
+ * OpenAI Implementation
  */
-async function callAzureOpenAI(prompt) {
-  if (!AZURE_API_KEY || !AZURE_ENDPOINT) throw new Error("Azure credentials not set in .env");
+async function callOpenAI(prompt) {
+  if (!OPENAI_API_KEY || !OPENAI_BASE_URL) throw new Error("OpenAI credentials not set in .env");
   
-  const response = await fetch(AZURE_ENDPOINT, {
+  const url = OPENAI_BASE_URL.endsWith('/') ? OPENAI_BASE_URL + 'chat/completions' : OPENAI_BASE_URL + '/chat/completions';
+
+  const response = await fetch(url, {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'api-key': AZURE_API_KEY
+      'Authorization': 'Bearer ' + OPENAI_API_KEY
     },
     body: JSON.stringify({
+      model: OPENAI_MODEL,
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.7
     })
@@ -45,12 +49,12 @@ async function callAzureOpenAI(prompt) {
   
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Azure API Error (${response.status}): ${errText}`);
+    throw new Error(`OpenAI API Error (${response.status}): ${errText}`);
   }
   
   const data = await response.json();
   const text = data.choices?.[0]?.message?.content;
-  if (!text) throw new Error("Unexpected Azure response structure.");
+  if (!text) throw new Error("Unexpected OpenAI response structure.");
   return text;
 }
 

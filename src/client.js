@@ -1096,17 +1096,20 @@
   }
 
   async function callLLM(messages) {
-    var azureKey = window.__AZURE_API_KEY__;
-    var azureEndpoint = window.__AZURE_ENDPOINT__;
-    if (!azureKey || !azureEndpoint) throw new Error("NO_API_KEY");
+    var apiKey = window.__OPENAI_API_KEY__;
+    var baseUrl = window.__OPENAI_BASE_URL__;
+    var model = window.__OPENAI_MODEL__;
+    if (!apiKey || !baseUrl) throw new Error("NO_API_KEY");
     
-    var res = await fetch(azureEndpoint, {
+    var url = baseUrl.endsWith('/') ? baseUrl + 'chat/completions' : baseUrl + '/chat/completions';
+    
+    var res = await fetch(url, {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        "api-key": azureKey 
+        "Authorization": "Bearer " + apiKey 
       },
-      body: JSON.stringify({ messages: messages })
+      body: JSON.stringify({ model: model, messages: messages, temperature: 0.7 })
     });
     
     if (!res.ok) {
@@ -1126,7 +1129,7 @@
     var txt = inputEl.value.trim();
     if (!txt) return;
     
-    if (!window.__AZURE_API_KEY__) {
+    if (!window.__OPENAI_API_KEY__) {
       showToast('API Key not configured in build.');
       return;
     }
@@ -1185,7 +1188,7 @@
       var data = await callLLM(messages);
       
       if (data.error && data.error.message) {
-        aiChatHistory[loadingIndex].text = "Error from Azure AI: " + data.error.message;
+        aiChatHistory[loadingIndex].text = "Error from AI: " + data.error.message;
       } else if (data.choices && data.choices[0].message) {
         var reply = data.choices[0].message.content.trim();
         var b3 = String.fromCharCode(96,96,96);
@@ -1333,7 +1336,7 @@
     var action = window.aiExecActions[actionId];
     if (!action) return;
     
-    if (!window.__AZURE_API_KEY__) return;
+    if (!window.__OPENAI_API_KEY__) return;
 
     var summaryIndex = aiChatHistory.length;
     aiChatHistory.push({ role: 'ai', text: 'Analyzing response...' });

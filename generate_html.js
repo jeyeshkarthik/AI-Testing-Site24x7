@@ -17,12 +17,14 @@ const template = fs.readFileSync('./src/template.html', 'utf8');
 console.log('Building index.html...');
 let html = template;
 
-const azureKey = process.env.AZURE_API_KEY || '';
-const azureEndpoint = process.env.AZURE_ENDPOINT || '';
+const openaiKey = process.env.OPENAI_API_KEY || '';
+const openaiBase = process.env.OPENAI_BASE_URL || '';
+const openaiModel = process.env.OPENAI_MODEL || '';
 
 const scriptInjection = `<script>
-  window.__AZURE_API_KEY__ = "${azureKey}";
-  window.__AZURE_ENDPOINT__ = "${azureEndpoint}";
+  window.__OPENAI_API_KEY__ = "${openaiKey}";
+  window.__OPENAI_BASE_URL__ = "${openaiBase}";
+  window.__OPENAI_MODEL__ = "${openaiModel}";
 </script>`;
 
 if (html.includes('</head>')) {
