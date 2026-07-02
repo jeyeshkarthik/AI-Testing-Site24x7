@@ -28,16 +28,21 @@ This builds `index.html` from the source data and serves it at **http://localhos
 
 ```
 ├── site24x7_Admin_API.xlsx           ← Source of truth: 15 sheets, 720 API endpoints
-├── generate_html.js                  ← Builds the single-file index.html application
+├── site24x7_compact.json             ← Minified JSON database of all endpoints
+├── site24x7_Dataset.csv              ← 3,100+ synthetically generated semantic queries
+├── site24x7_vector.json              ← 384-dimensional HuggingFace vector database
+├── generate_html.js                  ← Builds the frontend application
 ├── proxy.js                          ← Secure local CORS proxy for live API testing
 ├── build_embeddings.js               ← Generates vector embeddings for semantic search
-├── generate_synthetic_dataset.js     ← Autonomous Gemini LLM data generator
+├── generate_synthetic_dataset.js     ← Autonomous Azure OpenAI data generator
+├── evaluate_vectors.js               ← Mathematical evaluation script for search precision
+├── Project_Report.md                 ← The complete 12-phase development lifecycle journal
 ├── src/
 │   ├── template.html                 ← Application HTML structure
 │   ├── styles.css                    ← Application CSS styles
 │   ├── client.js                     ← Core application logic & UI handlers
 │   └── worker.js                     ← Web worker for background AI vector math
-└── index.html                        ← The generated single-file search app
+└── index.html                        ← The generated frontend search app
 ```
 
 ## 📈 Architecture Overview
