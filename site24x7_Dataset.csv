@@ -200,3 +200,71 @@ How can I retrieve the number of monitors by their status in Site24x7?,/app/api/
 monitor status count api call,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
 GET monitor operational status breakdown,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
 Show me how many monitors are up or down right now,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:51:38.914Z
+How can I retrieve a summary of notification profiles in Site24x7 server monitor?,/app/api/short/notification_profiles,GET,Server Monitor,Notification Profiles,True,2026-07-02T05:53:42.542Z
+fetch notification_profiles GET endpoint,/app/api/short/notification_profiles,GET,Server Monitor,Notification Profiles,True,2026-07-02T05:53:42.542Z
+show me notification profiles quick list,/app/api/short/notification_profiles,GET,Server Monitor,Notification Profiles,True,2026-07-02T05:53:42.542Z
+list notification profiles for server monitoring module,/app/api/short/notification_profiles,GET,Server Monitor,Notification Profiles,True,2026-07-02T05:53:42.542Z
+How do I retrieve third party integrations for notification profiles in Site24x7?,https://www.site24x7.com/app/api/short/third_party_services,GET,Configuration Profiles,Notification Profile,True,2026-07-02T05:53:47.995Z
+get list of connected services for alerts,https://www.site24x7.com/app/api/short/third_party_services,GET,Configuration Profiles,Notification Profile,True,2026-07-02T05:53:47.995Z
+Show me all third-party services linked to notification profiles (GET method),https://www.site24x7.com/app/api/short/third_party_services,GET,Configuration Profiles,Notification Profile,True,2026-07-02T05:53:47.995Z
+fetch lightweight third party services for notif setup,https://www.site24x7.com/app/api/short/third_party_services,GET,Configuration Profiles,Notification Profile,True,2026-07-02T05:53:47.995Z
+How do I retrieve my report customization settings in Site24x7 Automations?,/app/api/customize_report,GET,Automations,Report Customization,True,2026-07-02T05:53:53.210Z
+fetch customize_report preferences GET,/app/api/customize_report,GET,Automations,Report Customization,True,2026-07-02T05:53:53.210Z
+where can I see report options for my account?,/app/api/customize_report,GET,Automations,Report Customization,True,2026-07-02T05:53:53.210Z
+get report customization stuff for current user,/app/api/customize_report,GET,Automations,Report Customization,True,2026-07-02T05:53:53.210Z
+How can I retrieve resolved incidents for a specific component in Site24x7 StatusIQ?,/sp/api/statuspages/15698000418173443/components/15698000425317040/incidents/resolved,GET,Operations,Status Pages (StatusIQ),True,2026-07-02T05:53:58.350Z
+get resolved incidents for component status page,/sp/api/statuspages/15698000418173443/components/15698000425317040/incidents/resolved,GET,Operations,Status Pages (StatusIQ),True,2026-07-02T05:53:58.350Z
+Fetch resolved incidents using GET for StatusIQ status page component,/sp/api/statuspages/15698000418173443/components/15698000425317040/incidents/resolved,GET,Operations,Status Pages (StatusIQ),True,2026-07-02T05:53:58.350Z
+Where do I see all resolved issues for my StatusIQ component?,/sp/api/statuspages/15698000418173443/components/15698000425317040/incidents/resolved,GET,Operations,Status Pages (StatusIQ),True,2026-07-02T05:53:58.350Z
+How can I retrieve my favourite dashboards within the Milestones module?,/app/api/short/dashboards/favourites,GET,Milestones,Dashboard Preferences,True,2026-07-02T05:54:03.202Z
+show fav dashboards milestones,/app/api/short/dashboards/favourites,GET,Milestones,Dashboard Preferences,True,2026-07-02T05:54:03.202Z
+GET list of dashboard favourites for current user,/app/api/short/dashboards/favourites,GET,Milestones,Dashboard Preferences,True,2026-07-02T05:54:03.202Z
+fetch my favorite dashboards on milestones page,/app/api/short/dashboards/favourites,GET,Milestones,Dashboard Preferences,True,2026-07-02T05:54:03.202Z
+How do I update a scheduled report in Site24x7?,/app/api/scheduled_reports/15698000342022005,PUT,Report Settings,Scheduled Reports,True,2026-07-02T05:54:39.535Z
+change scheduled report settings for a dashboard,/app/api/scheduled_reports/15698000342022005,PUT,Report Settings,Scheduled Reports,True,2026-07-02T05:54:39.535Z
+PUT scheduled_reports update display_name and report_frequency,/app/api/scheduled_reports/15698000342022005,PUT,Report Settings,Scheduled Reports,True,2026-07-02T05:54:39.535Z
+edit scheduled report timezone and user_groups,/app/api/scheduled_reports/15698000342022005,PUT,Report Settings,Scheduled Reports,True,2026-07-02T05:54:39.535Z
+How do I fetch user groups for scheduled report forms in Site24x7?,/app/api/short/user_groups,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:54:44.773Z
+get user_groups lookup for report settings,/app/api/short/user_groups,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:54:44.773Z
+Show me the GET endpoint for Report Settings supporting lookup,/app/api/short/user_groups,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:54:44.773Z
+Can I pull user group data for Scheduled Reports?,/app/api/short/user_groups,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:54:44.773Z
+How do I retrieve account client data for app-wide settings?,/app/api/client_data/account,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:54:50.171Z
+get account bootstrap info,/app/api/client_data/account,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:54:50.171Z
+fetch client_data/account using GET method,/app/api/client_data/account,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:54:50.171Z
+What's the endpoint for app startup shell data in Site24x7?,/app/api/client_data/account,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:54:50.171Z
+How can I retrieve the number of monitors in each status using Site24x7?,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:54:55.301Z
+get monitor status count,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:54:55.301Z
+Show me grouped monitor counts by operational status,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:54:55.301Z
+Fetch monitor status breakdown with GET /app/api/monitors/status/count,/app/api/monitors/status/count,GET,User & Alert Management,Monitor Status,True,2026-07-02T05:54:55.301Z
+How do I fetch app bootstrap data using Site24x7 API?,/app/api/cliq_chatlet,GET,Share,General App Bootstrap,True,2026-07-02T05:55:00.602Z
+get cliq_chatlet startup info,/app/api/cliq_chatlet,GET,Share,General App Bootstrap,True,2026-07-02T05:55:00.602Z
+Retrieve general app shell data via GET /app/api/cliq_chatlet,/app/api/cliq_chatlet,GET,Share,General App Bootstrap,True,2026-07-02T05:55:00.602Z
+"Bootstrapping app-wide info, where's the endpoint?",/app/api/cliq_chatlet,GET,Share,General App Bootstrap,True,2026-07-02T05:55:00.602Z
+How do I delete table preferences for a user in Site24x7?,/app/api/preferences/table/27,DELETE,User & Alert Management,Table Preferences,True,2026-07-02T05:55:05.857Z
+remove my table view settings,/app/api/preferences/table/27,DELETE,User & Alert Management,Table Preferences,True,2026-07-02T05:55:05.857Z
+DELETE request for /app/api/preferences/table/27,/app/api/preferences/table/27,DELETE,User & Alert Management,Table Preferences,True,2026-07-02T05:55:05.857Z
+Can I clear custom table preferences in User & Alert Management?,/app/api/preferences/table/27,DELETE,User & Alert Management,Table Preferences,True,2026-07-02T05:55:05.857Z
+How do I fetch the default JAVA APM agent configuration profile in Site24x7?,https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA,GET,Configuration Profiles,APM Agent Configuration,True,2026-07-02T05:55:11.416Z
+get default agent config for java apm,https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA,GET,Configuration Profiles,APM Agent Configuration,True,2026-07-02T05:55:11.416Z
+Show Site24x7 built-in config template for JAVA APM agent,https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA,GET,Configuration Profiles,APM Agent Configuration,True,2026-07-02T05:55:11.416Z
+Retrieve JAVA agent configuration profile using GET method,https://www.site24x7.com/app/api/apminsight/default_agent_config_profile/JAVA,GET,Configuration Profiles,APM Agent Configuration,True,2026-07-02T05:55:11.416Z
+How do I fetch custom plugin templates for scheduled reports in Site24x7?,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:55:16.686Z
+"listCustomTemplates for plugins, what info does it give?",/app/api/plugin/listCustomTemplates/PLUGIN,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:55:16.686Z
+GET request to /app/api/plugin/listCustomTemplates/PLUGIN for Report Settings,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:55:16.686Z
+Show me plugin report settings lookup data,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Report Settings,"Report Settings (Supporting lookup, used by Scheduled Reports forms)",True,2026-07-02T05:55:16.686Z
+How can I set the default table preferences for my app on startup?,/app/api/preferences/table,POST,Share,General App Bootstrap,True,2026-07-02T05:55:21.807Z
+post table prefs site24x7,/app/api/preferences/table,POST,Share,General App Bootstrap,True,2026-07-02T05:55:21.807Z
+Configure app-wide table settings using POST /app/api/preferences/table,/app/api/preferences/table,POST,Share,General App Bootstrap,True,2026-07-02T05:55:21.807Z
+create bootstrap table config for all users,/app/api/preferences/table,POST,Share,General App Bootstrap,True,2026-07-02T05:55:21.807Z
+How can I retrieve the top_message bootstrap data for my app?,/app/api/top_message,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:55:26.998Z
+yo what's the endpoint for app startup info?,/app/api/top_message,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:55:26.998Z
+GET app/api/top_message for shell report settings,/app/api/top_message,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:55:26.998Z
+Fetch general app bootstrap settings using API,/app/api/top_message,GET,Report Settings,General App Bootstrap,True,2026-07-02T05:55:26.998Z
+How do I retrieve the current user's profile and preferences for downloads?,/app/api/client_data/user,GET,Downloads,User Context,True,2026-07-02T05:55:32.297Z
+get user context for downloads page,/app/api/client_data/user,GET,Downloads,User Context,True,2026-07-02T05:55:32.297Z
+Fetch user data using GET /app/api/client_data/user,/app/api/client_data/user,GET,Downloads,User Context,True,2026-07-02T05:55:32.297Z
+Show me my feature flags for the downloads module,/app/api/client_data/user,GET,Downloads,User Context,True,2026-07-02T05:55:32.297Z
+How do I retrieve operations supporting lookup data from Site24x7?,/app/api/integration/thirdparty_status/28,GET,Operations,"Operations (Supporting lookup, used by multiple sub-features)",True,2026-07-02T05:55:37.441Z
+get thirdparty_status for operations module,/app/api/integration/thirdparty_status/28,GET,Operations,"Operations (Supporting lookup, used by multiple sub-features)",True,2026-07-02T05:55:37.441Z
+Fetch Operations lookup info via GET /app/api/integration/thirdparty_status/28,/app/api/integration/thirdparty_status/28,GET,Operations,"Operations (Supporting lookup, used by multiple sub-features)",True,2026-07-02T05:55:37.441Z
+Where can I check the operations supporting lookup status?,/app/api/integration/thirdparty_status/28,GET,Operations,"Operations (Supporting lookup, used by multiple sub-features)",True,2026-07-02T05:55:37.441Z

@@ -906,14 +906,6 @@
   }
 
   var searchInputEl = document.getElementById('searchInput');
-  if (searchInputEl) {
-    searchInputEl.addEventListener('focus', function() {
-      if (loadRecentSearches().length > 0) document.getElementById('recentSearchesDropdown').style.display = 'block';
-    });
-    searchInputEl.addEventListener('blur', function() {
-      document.getElementById('recentSearchesDropdown').style.display = 'none';
-    });
-  }
 
   document.addEventListener('keydown', function(e) {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -925,7 +917,6 @@
   window.runSuggestedQuery = function(q) {
     if (searchInputEl) {
       searchInputEl.value = q;
-      document.getElementById('recentSearchesDropdown').style.display = 'none';
       if (typeof window.search === 'function') window.search();
     }
   };
@@ -933,7 +924,6 @@
   // Search
   window.search = async function() {
     query = document.getElementById('searchInput').value.trim();
-    if (query) saveRecentSearch(query);
     currentPage = 1;
     document.getElementById('clearBtn').style.visibility = query ? 'visible' : 'hidden';
     await renderResults();
