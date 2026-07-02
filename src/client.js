@@ -1201,27 +1201,27 @@
             } else {
               var cardHtml = '<div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">';
               if (j.explanation) {
-                cardHtml += '<div style="font-size:13px; color:#334155; margin-bottom:4px;">' + esc(j.explanation) + '</div>';
+                cardHtml += '<div class="ai-card-main-desc">' + esc(j.explanation) + '</div>';
               }
               
               actions.forEach(function(act) {
                 var payloadStr = typeof act.payload === 'string' ? act.payload : JSON.stringify(act.payload, null, 2);
                 var mCls = act.method ? act.method.toLowerCase() : 'other';
                 
-                var actHtml = '<div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; font-family:-apple-system,sans-serif;">';
-                actHtml += '<div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f8fafc; border-bottom:1px solid #e2e8f0;">';
+                var actHtml = '<div class="ai-act-card">';
+                actHtml += '<div class="ai-act-header">';
                 actHtml += '<span class="try-method-badge method-' + mCls + '">' + esc(act.method) + '</span>';
-                actHtml += '<code style="font-family:monospace; font-size:12px; color:#1e293b; font-weight:600;">' + esc(act.endpoint) + '</code>';
+                actHtml += '<code class="ai-act-ep">' + esc(act.endpoint) + '</code>';
                 actHtml += '</div>';
-                actHtml += '<pre style="padding:12px 14px; margin:0; background:#1e293b; color:#e2e8f0; font-family:monospace; font-size:11px; overflow-x:auto;">' + esc(payloadStr) + '</pre>';
-                actHtml += '<div style="padding:12px 14px; font-size:12px; color:#475569; line-height:1.5;">' + esc(act.explanation) + '</div>';
+                actHtml += '<pre class="ai-act-payload">' + esc(payloadStr) + '</pre>';
+                actHtml += '<div class="ai-act-desc">' + esc(act.explanation) + '</div>';
                 
                 window.aiExecActions = window.aiExecActions || [];
                 var actionId = window.aiExecActions.length;
                 window.aiExecActions.push({ method: act.method, endpoint: act.endpoint, payload: payloadStr, index: loadingIndex });
                 
                 var btnClick = "executeAiAction(" + actionId + ")";
-                actHtml += '<div style="padding:10px 14px; border-top:1px solid #e2e8f0; background:#f8fafc;">';
+                actHtml += '<div class="ai-act-footer">';
                 actHtml += '<button class="ai-chat-btn" onclick="' + btnClick + '">Execute Request &#9654;</button>';
                 actHtml += '</div>';
                 actHtml += '<div id="ai-exec-result-' + actionId + '"></div>';
@@ -1260,6 +1260,20 @@
     
     var method = action.method;
     var endpoint = action.endpoint;
+    
+    var matches = endpoint.match(/\{[^}]+\}|\<[^>]+\>/g);
+    if (matches) {
+      for (var i = 0; i < matches.length; i++) {
+        var placeholder = matches[i];
+        var val = prompt("Please provide a value for " + placeholder + " in the URL:");
+        if (val === null) return;
+        if (val.trim() === "") {
+          alert("A value is required for " + placeholder);
+          return;
+        }
+        endpoint = endpoint.replace(placeholder, encodeURIComponent(val.trim()));
+      }
+    }
     var payloadStr = action.payload;
     var loadingIndex = action.index;
     
