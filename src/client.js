@@ -747,21 +747,13 @@
   window.saveCookie = function() {
     var cookieVal = (document.getElementById('cookieInput') || {}).value || '';
     var authVal = (document.getElementById('authTokenInput') || {}).value || '';
-    var geminiVal = (document.getElementById('geminiKeyInput') || {}).value || '';
-    var providerVal = (document.getElementById('llmProviderSelect') || {}).value || 'gemini';
-    var modelVal = (document.getElementById('geminiModelInput') || {}).value || 'gemini-2.0-flash';
     var proxyUrlVal = (document.getElementById('proxyUrlInput') || {}).value || '';
     
-    if (document.getElementById('geminiKeyInput')) {
-      localStorage.setItem('s247_gemini_key', geminiVal.trim());
-      localStorage.setItem('s247_llm_provider', providerVal);
-      localStorage.setItem('s247_gemini_model', modelVal.trim() || 'gemini-2.0-flash');
-    }
     if (proxyUrlVal) {
       localStorage.setItem('s247_proxy_url', proxyUrlVal.trim());
       PROXY_URL = proxyUrlVal.trim();
     }
-    if (!cookieVal.trim() && !authVal.trim() && !geminiVal.trim() && !proxyUrlVal.trim()) { showToast('Please configure settings first'); return; }
+    if (!cookieVal.trim() && !authVal.trim() && !proxyUrlVal.trim()) { showToast('Please configure settings first'); return; }
     var btn = document.getElementById('saveCookieBtn');
     if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
     fetch(PROXY_URL + '/settings', {
@@ -786,8 +778,13 @@
     });
   };
 
-  document.getElementById('settingsModal').addEventListener('click', function(e){
-    if (e.target === this) closeSettings();
+  var isMouseDownOnOverlay = false;
+  document.getElementById('settingsModal').addEventListener('mousedown', function(e){
+    isMouseDownOnOverlay = (e.target === this);
+  });
+  document.getElementById('settingsModal').addEventListener('mouseup', function(e){
+    if (isMouseDownOnOverlay && e.target === this) closeSettings();
+    isMouseDownOnOverlay = false;
   });
 
   // Check proxy status on load and every 15s
@@ -1098,15 +1095,18 @@
     return html;
   }
 
-  async function callLLM(contents) {
-    var geminiKey = localStorage.getItem('s247_gemini_key') || '';
-    if (!geminiKey) throw new Error("NO_API_KEY");
-    var activeModel = localStorage.getItem('s247_gemini_model') || 'gemini-2.5-flash';
+  async function callLLM(messages) {
+    var azureKey = window.__AZURE_API_KEY__;
+    var azureEndpoint = window.__AZURE_ENDPOINT__;
+    if (!azureKey || !azureEndpoint) throw new Error("NO_API_KEY");
     
-    var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + activeModel + ":generateContent?key=" + geminiKey, {
+    var res = await fetch(azureEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: contents })
+      headers: { 
+        "Content-Type": "application/json",
+        "api-key": azureKey 
+      },
+      body: JSON.stringify({ messages: messages })
     });
     
     if (!res.ok) {
@@ -1126,10 +1126,8 @@
     var txt = inputEl.value.trim();
     if (!txt) return;
     
-    var geminiKey = localStorage.getItem('s247_gemini_key') || '';
-    if (!geminiKey) {
-      showToast('Please configure your Gemini API Key in Settings first.');
-      openSettings();
+    if (!window.__AZURE_API_KEY__) {
+      showToast('API Key not configured in build.');
       return;
     }
     
@@ -1167,38 +1165,29 @@
         "If the user is just making conversation (e.g. 'hello', 'thanks'), return: { \"reply\": \"Your conversational response here\" }\n" +
         "If they are asking for an API that doesn't exist and there is no previous context, return: { \"error\": \"No relevant API found.\" }";
 
-      var contents = [];
+      var messages = [
+        { role: 'system', content: systemPrompt }
+      ];
       aiChatHistory.forEach(function(msg, idx) {
         if (idx === 0) return; // Skip intro message
         if (idx >= loadingIndex - 1) return; // Skip the current user prompt and 'Thinking...' message
         
-        var role = msg.role === 'ai' ? 'model' : 'user';
+        var role = msg.role === 'ai' ? 'assistant' : 'user';
         var textContent = msg.rawText || msg.text;
-        
-        // Merge consecutive messages of the same role (Gemini requires alternating roles)
-        if (contents.length > 0 && contents[contents.length - 1].role === role) {
-          contents[contents.length - 1].parts[0].text += "\n" + textContent;
-        } else {
-          contents.push({ role: role, parts: [{ text: textContent }] });
-        }
+        messages.push({ role: role, content: textContent });
       });
       
-      // Ensure the very first message is from 'user' (Gemini requirement)
-      if (contents.length > 0 && contents[0].role === 'model') {
-        contents.unshift({ role: 'user', parts: [{ text: "Start of conversation." }] });
-      }
-
-      contents.push({
+      messages.push({
         role: 'user',
-        parts: [{ text: systemPrompt + "\n\nUser Request: " + txt }]
+        content: txt
       });
 
-      var data = await callLLM(contents);
+      var data = await callLLM(messages);
       
-      if (data.error) {
-        aiChatHistory[loadingIndex].text = "Error from Gemini: " + data.error.message;
-      } else if (data.candidates && data.candidates[0].content) {
-        var reply = data.candidates[0].content.parts[0].text.trim();
+      if (data.error && data.error.message) {
+        aiChatHistory[loadingIndex].text = "Error from Azure AI: " + data.error.message;
+      } else if (data.choices && data.choices[0].message) {
+        var reply = data.choices[0].message.content.trim();
         var b3 = String.fromCharCode(96,96,96);
         if (reply.startsWith(b3 + 'json')) reply = reply.substring(7);
         if (reply.startsWith(b3)) reply = reply.substring(3);
@@ -1344,8 +1333,7 @@
     var action = window.aiExecActions[actionId];
     if (!action) return;
     
-    var geminiKey = localStorage.getItem('s247_gemini_key') || '';
-    if (!geminiKey) return;
+    if (!window.__AZURE_API_KEY__) return;
 
     var summaryIndex = aiChatHistory.length;
     aiChatHistory.push({ role: 'ai', text: 'Analyzing response...' });
@@ -1361,13 +1349,13 @@
         "3. Do NOT output raw JSON or code blocks. Just output a friendly text message to the user.";
 
       var data = await callLLM([
-        { role: 'user', parts: [{ text: systemPrompt }] }
+        { role: 'user', content: systemPrompt }
       ]);
       
-      if (data.error) {
+      if (data.error && data.error.message) {
         aiChatHistory[summaryIndex] = { role: 'ai', text: "Analysis error: " + data.error.message, rawText: data.error.message };
-      } else if (data.candidates && data.candidates[0].content) {
-        var reply = data.candidates[0].content.parts[0].text.trim();
+      } else if (data.choices && data.choices[0].message) {
+        var reply = data.choices[0].message.content.trim();
         aiChatHistory[summaryIndex] = { role: 'ai', text: "&#128161; **Summary:** " + reply, rawText: reply };
       } else {
         aiChatHistory[summaryIndex] = { role: 'ai', text: "Could not analyze response.", rawText: "Error" };

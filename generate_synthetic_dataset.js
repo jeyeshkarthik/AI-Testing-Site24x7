@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const PROVIDER = process.env.LLM_PROVIDER || 'gemini';
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const NEW_AI_API_KEY = process.env.NEW_AI_API_KEY; // For future use
+const PROVIDER = process.env.LLM_PROVIDER || 'azure';
+const AZURE_API_KEY = process.env.AZURE_API_KEY;
+const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT;
 
 const DATA_FILE = path.join(__dirname, 'site24x7_api_data.json');
 const CSV_FILE = path.join(__dirname, 'site24x7_Dataset.csv');
@@ -18,50 +18,40 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
  * Switch between providers easily here
  */
 async function callLLM(prompt) {
-  if (PROVIDER === 'gemini') {
-    return await callGemini(prompt);
-  } else if (PROVIDER === 'new_ai') {
-    return await callNewAI(prompt);
+  if (PROVIDER === 'azure') {
+    return await callAzureOpenAI(prompt);
   } else {
     throw new Error(`Unknown provider: ${PROVIDER}`);
   }
 }
 
 /**
- * Gemini Implementation
+ * Azure OpenAI Implementation
  */
-async function callGemini(prompt) {
-  if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY is not set in .env");
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+async function callAzureOpenAI(prompt) {
+  if (!AZURE_API_KEY || !AZURE_ENDPOINT) throw new Error("Azure credentials not set in .env");
   
-  const response = await fetch(url, {
+  const response = await fetch(AZURE_ENDPOINT, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'api-key': AZURE_API_KEY
+    },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.7 }
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.7
     })
   });
   
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Gemini API Error (${response.status}): ${errText}`);
+    throw new Error(`Azure API Error (${response.status}): ${errText}`);
   }
   
   const data = await response.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error("Unexpected Gemini response structure.");
+  const text = data.choices?.[0]?.message?.content;
+  if (!text) throw new Error("Unexpected Azure response structure.");
   return text;
-}
-
-/**
- * Future New AI Implementation
- */
-async function callNewAI(prompt) {
-  if (!NEW_AI_API_KEY) throw new Error("NEW_AI_API_KEY is not set in .env");
-  // TODO: Implement your manager's new AI endpoint here
-  // e.g. return fetch('https://new-ai.internal/generate', ...)
-  throw new Error("New AI not implemented yet.");
 }
 
 function buildPrompt(api) {
