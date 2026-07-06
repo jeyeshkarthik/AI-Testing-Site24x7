@@ -3099,3 +3099,37 @@ How can I view the ServiceDesk Plus On-Demand integration settings in Site24x7,/
 fetch sdpod integration config,/app/api/integration/sdpod,GET,Third-Party Integrations,SDP On-Demand Integration,True,2026-07-02T06:58:31.103Z
 Show me the current SDP On-Demand cloud integration details,/app/api/integration/sdpod,GET,Third-Party Integrations,SDP On-Demand Integration,True,2026-07-02T06:58:31.103Z
 for retrieving ServiceDesk Plus On-Demand integration,/app/api/integration/sdpod,GET,Third-Party Integrations,SDP On-Demand Integration,True,2026-07-02T06:58:31.103Z
+How can I view the SLA settings for monitor number 3?,/app/api/short/sla_settings/monitors/3,GET,Reports,Report Settings,True,2026-07-06T04:46:27.148Z
+fetch SLA settings data for monitor 3 report,/app/api/short/sla_settings/monitors/3,GET,Reports,Report Settings,True,2026-07-06T04:46:27.148Z
+How can I update the details of a custom report in Site24x7?,/app/api/reports/custom_reports/%7Bid%7D,PUT,Reports,Custom Report,True,2026-07-06T04:46:29.469Z
+modify custom report data in reports module,/app/api/reports/custom_reports/%7Bid%7D,PUT,Reports,Custom Report,True,2026-07-06T04:46:29.469Z
+How can I view download trends for my reports over time?,/app/api/reports/trend,GET,Reports,Report Downloads,True,2026-07-06T04:46:31.907Z
+fetch report download history trends,/app/api/reports/trend,GET,Reports,Report Downloads,True,2026-07-06T04:46:31.907Z
+How can I view the trend report for a specific monitor group?,/app/api/reports/trend/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T04:46:34.219Z
+fetch monitor group trend data report,/app/api/reports/trend/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T04:46:34.219Z
+How can I view detailed Windows services information for a specific server?,/app/api/reports/child-details/COMPUTE/WindowsServices/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T04:46:36.886Z
+fetch child report for Windows services in Server Monitor,/app/api/reports/child-details/COMPUTE/WindowsServices/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T04:46:36.886Z
+How can I see compute performance reports?,/app/api/reports/performance/type/COMPUTE,GET,Reports,General/Unknown,True,2026-07-06T04:46:39.208Z
+fetch compute type performance report,/app/api/reports/performance/type/COMPUTE,GET,Reports,General/Unknown,True,2026-07-06T04:46:39.208Z
+How can I view performance reports for my application monitoring?,/app/api/reports/performance,GET,Reports,APM Reports,True,2026-07-06T04:46:41.573Z
+get APM performance report data from dashboard,/app/api/reports/performance,GET,Reports,APM Reports,True,2026-07-06T04:46:41.573Z
+How can I check my SLA response times in Site24x7?,/app/api/reports/sla_reports/response,GET,Reports,SLA Report,True,2026-07-06T04:46:44.186Z
+fetch SLA response report data,/app/api/reports/sla_reports/response,GET,Reports,SLA Report,True,2026-07-06T04:46:44.186Z
+How can I view SSL domain reports for my mapped FQDNs?,/app/api/reports/fqdn/ssl_domain_reports,GET,Reports,FQDN Report,True,2026-07-06T04:46:46.555Z
+fetch FQDN SSL certificate domain status report,/app/api/reports/fqdn/ssl_domain_reports,GET,Reports,FQDN Report,True,2026-07-06T04:46:46.555Z
+How can I view third party service reports in Site24x7?,/app/api/reports/thirdparty,POST,Reports,Third Party (General/Unknown),True,2026-07-06T04:46:49.029Z
+generate third party general report,/app/api/reports/thirdparty,POST,Reports,Third Party (General/Unknown),True,2026-07-06T04:46:49.029Z
+How can I see all SSL certificate security reports?,/api/reports/ssl_cert/all,GET,Reports,Security Report,True,2026-07-06T04:46:51.599Z
+fetch all SSL cert security report details,/api/reports/ssl_cert/all,GET,Reports,Security Report,True,2026-07-06T04:46:51.599Z
+How can I generate a mail delivery report and send it by email?,/app/api/reports/email,POST,Reports,Mail Delivery,True,2026-07-06T04:46:54.097Z
+send mail delivery report via email,/app/api/reports/email,POST,Reports,Mail Delivery,True,2026-07-06T04:46:54.097Z
+How can I view the overall SLO performance report in Site24x7?,/app/api/reports/slo_reports/overall,GET,Reports,SLO Reports,True,2026-07-06T04:46:56.533Z
+fetch overall SLO reports data in Reports module,/app/api/reports/slo_reports/overall,GET,Reports,SLO Reports,True,2026-07-06T04:46:56.533Z
+How can I view capacity planning forecasts for my monitored resources?,/app/api/reports/forecast/%7Bid%7D,GET,Reports,Capacity Planning,True,2026-07-06T04:46:58.896Z
+get capacity planning forecast report for resource,/app/api/reports/forecast/%7Bid%7D,GET,Reports,Capacity Planning,True,2026-07-06T04:46:58.896Z
+How can I see which Azure CDN profiles have the most requests?,/app/api/reports/top_n/AZURE-CDNPROFILE/RequestCount,GET,Reports,Advanced Analytics,True,2026-07-06T04:47:01.501Z
+fetch top Azure CDN profile request counts report,/app/api/reports/top_n/AZURE-CDNPROFILE/RequestCount,GET,Reports,Advanced Analytics,True,2026-07-06T04:47:01.501Z
+How can I view the outage report for a specific website?,/app/api/reports/outages/%7Bid%7D,GET,Reports,Website,True,2026-07-06T04:47:03.915Z
+fetch website outages report by monitor ID,/app/api/reports/outages/%7Bid%7D,GET,Reports,Website,True,2026-07-06T04:47:03.915Z
+How can I view outage reports for my API Gateway stages?,/app/api/reports/outages/type/APIGATEWAY-STAGE,GET,Reports,API Gateway Stage,True,2026-07-06T04:47:06.252Z
+get API Gateway Stage outage report,/app/api/reports/outages/type/APIGATEWAY-STAGE,GET,Reports,API Gateway Stage,True,2026-07-06T04:47:06.252Z

@@ -8,28 +8,13 @@ const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
-const DATA_FILE = path.join(__dirname, 'site24x7_api_data.json');
+const DATA_FILE = path.join(__dirname, 'site24x7_compact.json');
 const CSV_FILE = path.join(__dirname, 'site24x7_Dataset.csv');
 
 // Delay helper to avoid rate limits
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-/**
- * Modular LLM Abstraction
- * Switch between providers easily here
- */
 async function callLLM(prompt) {
-  if (PROVIDER === 'openai') {
-    return await callOpenAI(prompt);
-  } else {
-    throw new Error(`Unknown provider: ${PROVIDER}`);
-  }
-}
-
-/**
- * OpenAI Implementation
- */
-async function callOpenAI(prompt) {
   if (!OPENAI_API_KEY || !OPENAI_BASE_URL) throw new Error("OpenAI credentials not set in .env");
   
   const url = OPENAI_BASE_URL.endsWith('/') ? OPENAI_BASE_URL + 'chat/completions' : OPENAI_BASE_URL + '/chat/completions';
@@ -62,17 +47,19 @@ function buildPrompt(api) {
   return `
 You are an expert IT administrator and developer using the Site24x7 API.
 I will give you an API endpoint and its details.
-Generate exactly 4 realistic, diverse questions or commands a user might type into a search bar to find this specific endpoint.
-Make some questions formal, some casual (like slang or incomplete sentences), and some focused on the exact HTTP method (like "create", "delete", "fetch").
+Generate exactly 2 realistic, diverse questions or commands a user might type into a search bar to find this specific endpoint.
+Make one query conversational (like a question) and one keyword-heavy or action-oriented (like "fetch", "get", "list").
+
+CRITICAL RULES:
+1. NEVER include the literal endpoint URL (e.g. "/app/api/...") in the generated queries.
+2. NEVER use the words "API" or "endpoint" in the generated queries. They must sound like a human searching for a report or feature in a dashboard, not navigating a backend codebase.
 
 Endpoint: ${api.method} ${api.endpoint}
-Module: ${api.sheet}
-Feature: ${api.subFeature}
-Description: ${api.description}
-Request Fields: ${api.requestFields?.join(', ')}
-Response Fields: ${api.responseFields?.join(', ')}
+Module: ${api.module}
+Sub-Module: ${api.subModule}
+Description: ${api.description || ''}
 
-Output ONLY a JSON array of strings containing the 4 queries. Do not use markdown blocks, just raw JSON like: ["query 1", "query 2"]
+Output ONLY a JSON array of strings containing the 2 queries. Do not use markdown blocks, just raw JSON like: ["query 1", "query 2"]
 `;
 }
 
@@ -86,29 +73,45 @@ function escapeCsv(str) {
 }
 
 async function main() {
-  const args = process.argv.slice(2);
-  const limitArg = args.find(a => a.startsWith('--limit='));
-  const LIMIT = limitArg ? parseInt(limitArg.split('=')[1], 10) : 5; // Default to 5 to avoid burning quota
-  
-  console.log(`Starting synthetic data generation (Limit: ${LIMIT} endpoints, Provider: ${PROVIDER})`);
+  console.log(`Starting synthetic data generation (Provider: ${PROVIDER})`);
   
   if (!fs.existsSync(DATA_FILE)) {
-    console.error("Error: site24x7_api_data.json not found.");
+    console.error("Error: site24x7_compact.json not found.");
     process.exit(1);
   }
   
   const jsonData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   const apis = jsonData.apis || [];
   
-  // Pick a random subset of endpoints up to the LIMIT
-  const shuffled = apis.sort(() => 0.5 - Math.random());
-  const selectedApis = shuffled.slice(0, LIMIT);
+  // Filter only Reports module endpoints
+  const reportsApis = apis.filter(a => a.module === 'Reports');
+  console.log(`Found ${reportsApis.length} total endpoints in the Reports module.`);
+  
+  // Group by subModule
+  const grouped = {};
+  reportsApis.forEach(api => {
+    if (!grouped[api.subModule]) grouped[api.subModule] = [];
+    grouped[api.subModule].push(api);
+  });
+  
+  const subModules = Object.keys(grouped);
+  console.log(`Found ${subModules.length} unique Reports sub-modules.`);
+  
+  // Pick 1 random API from each subModule
+  const selectedApis = [];
+  subModules.forEach(sub => {
+    const group = grouped[sub];
+    const randomApi = group[Math.floor(Math.random() * group.length)];
+    selectedApis.push(randomApi);
+  });
+  
+  console.log(`Selected ${selectedApis.length} endpoints (1 per sub-module) for query generation.\n`);
   
   let newRowsCount = 0;
   
   for (let i = 0; i < selectedApis.length; i++) {
     const api = selectedApis[i];
-    console.log(`\n[${i+1}/${LIMIT}] Processing: ${api.method} ${api.endpoint}`);
+    console.log(`[${i+1}/${selectedApis.length}] Processing: [${api.subModule}] ${api.method} ${api.endpoint}`);
     
     try {
       const prompt = buildPrompt(api);
@@ -123,7 +126,8 @@ async function main() {
       const lines = [];
       const timestamp = new Date().toISOString();
       queries.forEach(q => {
-        lines.push(`${escapeCsv(q)},${escapeCsv(api.endpoint)},${api.method},${escapeCsv(api.sheet)},${escapeCsv(api.subFeature)},True,${timestamp}`);
+        // Schema: Query, Endpoint, Method, Module, SubModule, MarkedCorrect, Timestamp
+        lines.push(`${escapeCsv(q)},${escapeCsv(api.endpoint)},${api.method},${escapeCsv(api.module)},${escapeCsv(api.subModule)},True,${timestamp}`);
       });
       
       fs.appendFileSync(CSV_FILE, '\n' + lines.join('\n'));
@@ -134,14 +138,13 @@ async function main() {
       console.error(`  -> Failed: ${err.message}`);
     }
     
+    // Slight delay to respect Azure rate limits (e.g. 1000ms is usually safe for basic limits)
     if (i < selectedApis.length - 1) {
-      console.log(`  -> Waiting 4 seconds to respect rate limits...`);
-      await sleep(4000);
+      await sleep(1500);
     }
   }
   
   console.log(`\n✅ Done! Added ${newRowsCount} new synthetic queries to site24x7_Dataset.csv`);
-  console.log(`Run again with --limit=X to generate more without burning your quota instantly.`);
 }
 
 main();
