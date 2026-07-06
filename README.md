@@ -1,6 +1,6 @@
 # Site24x7 AI Directory: Complete Project Report
 
-An AI-powered search interface and development testing tool for exploring, executing, and testing all **2545 API endpoints** across the 15 feature modules of the [Site24x7 Admin API](https://www.site24x7.com/app/demo). 
+An AI-powered search interface and development testing tool for exploring, executing, and testing all **2,528 API endpoints** across the **Admin** and **Reports** modules of the [Site24x7 API](https://www.site24x7.com/app/demo). 
 
 This document outlines the entire development lifecycle of the Site24x7 AI Directory, broken down across distinct implementation phases. The architecture utilizes a local Node.js proxy and build pipeline coupled with a vanilla, zero-dependency (almost) client-side frontend to achieve a lightning-fast, offline-capable search engine and execution layer.
 
@@ -27,16 +27,19 @@ This builds `index.html` from the source data and serves it at **http://localhos
 ## 📁 Project Structure
 
 ```
-├── site24x7_Admin_API.xlsx           ← Source of truth: 15 sheets, 2545 API endpoints
-├── site24x7_compact.json             ← Minified JSON database of all endpoints
-├── site24x7_Dataset.csv              ← 3,100+ synthetically generated semantic queries
-├── site24x7_vector.json              ← 384-dimensional HuggingFace vector database
+├── site24x7_Admin_API.xlsx           ← Source of truth for Admin module
+├── reports_subsections_list.txt      ← Source of truth for Reports hierarchy
+├── site24x7_compact.json             ← Minified JSON database of all 2,528 endpoints
+├── site24x7_Dataset.csv              ← 7,451 synthetically generated semantic queries
+├── site24x7_vector.json              ← 78 MB HuggingFace dense vector database
 ├── generate_html.js                  ← Builds the frontend application
 ├── proxy.js                          ← Secure local CORS proxy for live API testing
 ├── build_embeddings.js               ← Generates vector embeddings for semantic search
-├── generate_synthetic_dataset.js     ← Autonomous Azure OpenAI data generator
+├── generate_synthetic_dataset.js     ← Autonomous Azure OpenAI baseline data generator
+├── generate_massive_dataset.js       ← Autonomous massive-scale dataset generator
+├── map_endpoints.js                  ← Maps raw HAR logs to modular categories
 ├── evaluate_vectors.js               ← Mathematical evaluation script for search precision
-├── Project_Report.md                 ← The complete 12-phase development lifecycle journal
+├── Project_Report.md                 ← The complete 17-phase development lifecycle journal
 ├── src/
 │   ├── template.html                 ← Application HTML structure
 │   ├── styles.css                    ← Application CSS styles
@@ -50,11 +53,12 @@ This builds `index.html` from the source data and serves it at **http://localhos
 This project was built from the ground up to be incredibly fast, offline-capable, and secure.
 
 - **Local Vector Engine**: Utilizes HuggingFace `Transformers.js` to run mathematical vector embeddings locally in the browser (via Web Workers). No third-party API calls are made for the search engine.
+- **Hybrid Intent Boosting**: Synthesizes pure Cosine Similarity with BM25 keyword matching and HTTP Verb extraction to mathematically surface perfectly aligned API endpoints instantly.
 - **Conversational AI Agent**: Connects to the OpenAI/Azure API to translate natural language into fully-formed Site24x7 JSON schemas. The agent maintains short-term conversational memory to handle multi-turn requests (e.g., "Mute all servers", then "Actually, just mute the database servers").
 - **Local CORS Proxy**: A local Node.js server (`proxy.js`) intercepts browser requests, safely injects sensitive authentication headers loaded from your `.env`, and routes them to Site24x7, completely bypassing CORS errors without exposing keys to the browser.
 - **Vanilla SPA**: The frontend is built entirely with Vanilla JS/HTML/CSS for a zero-dependency, ultra-lightweight client experience.
 
-> **Note:** For a full, detailed breakdown of the 12-phase development lifecycle of this project, please refer to the `Project_Report.md` file.
+> **Note:** For a full, detailed breakdown of the 17-phase development lifecycle of this project, please refer to the `Project_Report.md` file.
 
 ## Data Source
-All API data was extracted from `site24x7_Admin_API.xlsx`, originally recorded from the [Site24x7 Demo Environment](https://www.site24x7.com/app/demo).
+API data was extracted and reverse-engineered from `site24x7_Admin_API.xlsx` and massive `HAR` network traces recorded from the [Site24x7 Demo Environment](https://www.site24x7.com/app/demo).
