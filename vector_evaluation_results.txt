@@ -1,8 +1,0 @@
-
-Vector Search Evaluation Results
-────────────────────────────────
-Total queries:     3100
-Search Quality (Multi-Vector Embeddings):
-  Precision@1:     98%  (3038/3100 correct APIs ranked #1)
-  Precision@3:     100%  (3096/3100 correct APIs in top 3)
-  Precision@5:     100%  (3100/3100 correct APIs in top 5)
