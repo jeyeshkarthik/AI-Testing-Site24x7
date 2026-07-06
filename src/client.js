@@ -21,44 +21,19 @@
     return;
   }
   
-  var aiWorker = new Worker('src/worker.js', { type: 'module' });
-  var aiWorkerReady = false;
-  var aiWorkerCallbacks = {};
-  var aiWorkerMsgId = 0;
+  var aiWorkerReady = true;
   
-  // Cache bust to ensure the browser always loads the latest 78MB vector file
-  aiWorker.postMessage({ type: 'init', dbUrl: window.location.origin + window.location.pathname.replace('index.html', '') + 'site24x7_vector.json?v=' + new Date().getTime() });
-  
-  aiWorker.onmessage = function(e) {
-    if (e.data.type === 'status') {
-      var rc = document.getElementById('resultCount');
-      if (rc && !aiWorkerReady) rc.innerHTML = '<i>' + e.data.message + '</i>';
-    } else if (e.data.type === 'ready') {
-      aiWorkerReady = true;
-      renderResults();
-    } else if (e.data.type === 'error') {
-      var rc = document.getElementById('resultCount');
-      if (rc) rc.innerHTML = '<i style="color:#ef4444;">Worker Error: ' + e.data.error + '</i>';
-    } else if (e.data.type === 'search_result') {
-      var cb = aiWorkerCallbacks[e.data.id];
-      if (cb) {
-        cb(e.data.results);
-        delete aiWorkerCallbacks[e.data.id];
-      }
+  async function searchWorker(query) {
+    var proxyUrl = localStorage.getItem('s247_proxy_url') || (window.location.protocol + '//' + window.location.hostname + ':3334');
+    try {
+      var res = await fetch(proxyUrl + '/semantic_search?q=' + encodeURIComponent(query));
+      if (!res.ok) throw new Error('Backend vector engine unavailable');
+      return await res.json();
+    } catch (e) {
+      console.error(e);
+      showToast('Semantic search requires the Node proxy (npm run proxy).');
+      return [];
     }
-  };
-  
-  aiWorker.onerror = function(err) {
-    var rc = document.getElementById('resultCount');
-    if (rc) rc.innerHTML = '<i style="color:#ef4444;">Worker Load Error: ' + err.message + '</i>';
-  };
-  
-  function searchWorker(query) {
-    return new Promise(function(resolve) {
-      var id = ++aiWorkerMsgId;
-      aiWorkerCallbacks[id] = resolve;
-      aiWorker.postMessage({ type: 'search', id: id, query: query });
-    });
   }
 
   var modules = DB.modules;

@@ -22,6 +22,38 @@ const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'http://localhost:3333';
 let storedCookie = '';
 let storedAuthToken = '';
 
+// ─── Semantic Search Engine ───────────────────────────────────────────────────
+const fs = require('fs');
+let extractor = null;
+let vectors = {};
+
+async function initVectorEngine() {
+  try {
+    console.log('[proxy] Loading Transformers.js & Model...');
+    const { pipeline } = require('@xenova/transformers');
+    extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+    console.log('[proxy] Model loaded. Loading vector database (78MB)...');
+    vectors = JSON.parse(fs.readFileSync('site24x7_vector.json', 'utf8'));
+    console.log(`[proxy] Loaded vectors for ${Object.keys(vectors).length} APIs. Semantic Search is ready.`);
+  } catch (err) {
+    console.error('[proxy] Failed to initialize Vector Engine:', err.message);
+  }
+}
+initVectorEngine();
+
+function cos_sim(A, B) {
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+  for (let i = 0; i < A.length; i++) {
+    dotProduct += A[i] * B[i];
+    normA += A[i] * A[i];
+    normB += B[i] * B[i];
+  }
+  if (normA === 0 || normB === 0) return 0;
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+}
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function cors(res) {
@@ -98,6 +130,40 @@ const server = http.createServer(async (req, res) => {
   // ── GET /status ─────────────────────────────────────────────────────────────
   if (path === '/status' && req.method === 'GET') {
     return json(res, 200, { ok: true, hasCookie: !!storedCookie, hasAuthToken: !!storedAuthToken, port: PORT });
+  }
+
+  // ── GET /semantic_search ────────────────────────────────────────────────────
+  if (path === '/semantic_search' && req.method === 'GET') {
+    if (!extractor) {
+      return json(res, 503, { error: 'Vector engine is still loading. Please try again in a moment.' });
+    }
+    const q = reqUrl.searchParams.get('q');
+    if (!q) return json(res, 400, { error: 'Missing ?q= query parameter.' });
+    
+    try {
+      const output = await extractor(q, { pooling: 'mean', normalize: true });
+      const queryVector = Array.from(output.data);
+      
+      const results = [];
+      const apiIds = Object.keys(vectors);
+      for (let i = 0; i < apiIds.length; i++) {
+        const id = apiIds[i];
+        const vecs = vectors[id];
+        let maxScore = -1;
+        for (let j = 0; j < vecs.length; j++) {
+          const score = cos_sim(queryVector, vecs[j]);
+          if (score > maxScore) maxScore = score;
+        }
+        if (maxScore > 0.25) {
+          results.push({ id: parseInt(id, 10), score: maxScore });
+        }
+      }
+      results.sort((a, b) => b.score - a.score);
+      return json(res, 200, results.slice(0, 50));
+    } catch (err) {
+      console.error('[proxy] Semantic search error:', err);
+      return json(res, 500, { error: 'Search failed' });
+    }
   }
 
   // ── /proxy?url=<target> ─────────────────────────────────────────────────────
@@ -216,6 +282,7 @@ server.listen(PORT, () => {
   console.log('╠══════════════════════════════════════════════╣');
   console.log('║  POST /settings   → save session cookie      ║');
   console.log('║  GET  /status     → check proxy is alive     ║');
+  console.log('║  GET  /semantic_search → query vector engine ║');
   console.log('║  *    /proxy?url= → forward to site24x7.com  ║');
   console.log('╚══════════════════════════════════════════════╝');
   console.log('');
