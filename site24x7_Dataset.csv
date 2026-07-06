@@ -3663,3 +3663,617 @@ How can I view the performance trend report for my PostgreSQL databases?,/app/ap
 fetch PostgreSQL trend report data in Reports module,/app/api/reports/trend/type/POSTGRESQL,GET,Reports,PostgreSQL,True,2026-07-06T04:58:16.085Z
 How can I view performance reports for my Databricks Workspace?,/app/api/reports/performance/type/DBRICKS_WS,GET,Reports,Databricks Workspace,True,2026-07-06T04:58:19.014Z
 get Databricks Workspace performance report,/app/api/reports/performance/type/DBRICKS_WS,GET,Reports,Databricks Workspace,True,2026-07-06T04:58:19.014Z
+How can I view the available report settings for scheduled reports?,/app/api/metrics/list/METRICS,GET,Reports,Report Settings,True,2026-07-06T05:00:56.292Z
+fetch report settings lookup for scheduled reports,/app/api/metrics/list/METRICS,GET,Reports,Report Settings,True,2026-07-06T05:00:56.292Z
+How can I view the monitor groups available for scheduled reports?,/app/api/monitor_groups,GET,Reports,Report Settings,True,2026-07-06T05:00:58.883Z
+fetch report settings monitor groups list,/app/api/monitor_groups,GET,Reports,Report Settings,True,2026-07-06T05:00:58.883Z
+How can I view custom templates for plugin report settings?,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Reports,Report Settings,True,2026-07-06T05:01:01.361Z
+list plugin report settings custom templates for scheduled reports,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Reports,Report Settings,True,2026-07-06T05:01:01.361Z
+How can I see the business hours used for scheduled reports?,/app/api/short/business_hours,GET,Reports,Report Settings,True,2026-07-06T05:01:03.797Z
+fetch report settings business hours list,/app/api/short/business_hours,GET,Reports,Report Settings,True,2026-07-06T05:01:03.797Z
+How can I see which monitors are available for scheduled report forecasting?,/app/api/short/forecast/monitors,GET,Reports,Report Settings,True,2026-07-06T05:01:06.217Z
+fetch report settings data for forecast monitors lookup,/app/api/short/forecast/monitors,GET,Reports,Report Settings,True,2026-07-06T05:01:06.217Z
+How can I see the list of monitor groups for scheduled reports?,/app/api/short/monitor_groups_list,GET,Reports,Report Settings,True,2026-07-06T05:01:08.693Z
+fetch monitor groups for report settings,/app/api/short/monitor_groups_list,GET,Reports,Report Settings,True,2026-07-06T05:01:08.693Z
+How can I see which plugins are available for report scheduling?,/app/api/short/plugins,GET,Reports,Report Settings,True,2026-07-06T05:01:11.374Z
+fetch report settings plugin lookup data,/app/api/short/plugins,GET,Reports,Report Settings,True,2026-07-06T05:01:11.374Z
+How can I view or customize scheduled report settings in Site24x7?,/app/api/short/reports/custom_reports,GET,Reports,Report Settings,True,2026-07-06T05:01:13.777Z
+fetch custom report settings for scheduled reports,/app/api/short/reports/custom_reports,GET,Reports,Report Settings,True,2026-07-06T05:01:13.777Z
+How can I view available tags for scheduled report settings?,/app/api/short/tags,GET,Reports,Report Settings,True,2026-07-06T05:01:16.607Z
+list report tags for scheduled reports settings lookup,/app/api/short/tags,GET,Reports,Report Settings,True,2026-07-06T05:01:16.607Z
+How can I view the available third-party services when setting up scheduled reports?,/app/api/short/third_party_services,GET,Reports,Report Settings,True,2026-07-06T05:01:20.059Z
+list third party services for report settings lookup,/app/api/short/third_party_services,GET,Reports,Report Settings,True,2026-07-06T05:01:20.059Z
+How can I view the user groups available for scheduling reports?,/app/api/short/user_groups,GET,Reports,Report Settings,True,2026-07-06T05:01:22.586Z
+fetch user groups list for scheduled report settings,/app/api/short/user_groups,GET,Reports,Report Settings,True,2026-07-06T05:01:22.586Z
+How can I view the current SLA settings for my Slack integration?,/app/api/integration/slack/15698000442055001,GET,Reports,Report Settings,True,2026-07-06T05:01:25.433Z
+fetch SLA report settings for Slack integration,/app/api/integration/slack/15698000442055001,GET,Reports,Report Settings,True,2026-07-06T05:01:25.433Z
+How can I view the SLA settings for monitor 2?,/app/api/short/sla_settings/monitors/2,GET,Reports,Report Settings,True,2026-07-06T05:01:27.860Z
+fetch SLA report settings for monitor 2,/app/api/short/sla_settings/monitors/2,GET,Reports,Report Settings,True,2026-07-06T05:01:27.860Z
+How can I check the SLA settings for monitor 3?,/app/api/short/sla_settings/monitors/3,GET,Reports,Report Settings,True,2026-07-06T05:01:30.260Z
+fetch SLA configuration details for monitor 3 reports,/app/api/short/sla_settings/monitors/3,GET,Reports,Report Settings,True,2026-07-06T05:01:30.260Z
+How can I view my SLA settings in Site24x7?,/app/api/sla_settings,GET,Reports,Report Settings,True,2026-07-06T05:01:32.676Z
+fetch SLA report settings data,/app/api/sla_settings,GET,Reports,Report Settings,True,2026-07-06T05:01:32.676Z
+How can I set up new SLA settings for my reports?,/app/api/sla_settings,POST,Reports,Report Settings,True,2026-07-06T05:01:35.199Z
+create SLA configuration for report monitoring,/app/api/sla_settings,POST,Reports,Report Settings,True,2026-07-06T05:01:35.199Z
+How can I remove an SLA setting from my report configuration?,/app/api/sla_settings/15698000493103037,DELETE,Reports,Report Settings,True,2026-07-06T05:01:37.725Z
+delete SLA settings from report settings,/app/api/sla_settings/15698000493103037,DELETE,Reports,Report Settings,True,2026-07-06T05:01:37.725Z
+How can I update the SLA settings for my reports?,/app/api/sla_settings/15698000493103037,PUT,Reports,Report Settings,True,2026-07-06T05:01:40.275Z
+modify SLA configuration for report settings,/app/api/sla_settings/15698000493103037,PUT,Reports,Report Settings,True,2026-07-06T05:01:40.275Z
+How can I see all the scheduled reports I've set up?,/app/api/scheduled_reports,GET,Reports,Report Settings,True,2026-07-06T05:01:43.264Z
+list scheduled report details in Reports settings,/app/api/scheduled_reports,GET,Reports,Report Settings,True,2026-07-06T05:01:43.264Z
+How can I remove a scheduled report from my account?,/app/api/scheduled_reports/15698000342022005,DELETE,Reports,Report Settings,True,2026-07-06T05:01:45.747Z
+delete scheduled report data in report settings,/app/api/scheduled_reports/15698000342022005,DELETE,Reports,Report Settings,True,2026-07-06T05:01:45.747Z
+How can I change the settings for an existing scheduled report?,/app/api/scheduled_reports/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:01:48.171Z
+update scheduled report configuration settings,/app/api/scheduled_reports/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:01:48.171Z
+How can I activate a specific scheduled report in my account?,/app/api/scheduled_reports/activate/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:01:51.455Z
+update scheduled report status to active,/app/api/scheduled_reports/activate/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:01:51.455Z
+How can I set up automatic delivery for my reports?,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:01:53.854Z
+create scheduled report submission in Site24x7,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:01:53.854Z
+How can I schedule a report to be sent automatically in Site24x7?,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:01:56.420Z
+create scheduled report submission in Reports Settings,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:01:56.420Z
+How can I see all available metric types for scheduled reports configuration?,/app/api/metrics/list/METRICS,GET,Reports,Report Settings,True,2026-07-06T05:02:51.923Z
+list report settings metrics for scheduled reports lookup,/app/api/metrics/list/METRICS,GET,Reports,Report Settings,True,2026-07-06T05:02:51.923Z
+How can I see which monitor groups are available for setting up scheduled reports?,/app/api/monitor_groups,GET,Reports,Report Settings,True,2026-07-06T05:02:54.743Z
+fetch monitor group lookup for report settings,/app/api/monitor_groups,GET,Reports,Report Settings,True,2026-07-06T05:02:54.743Z
+How can I see all custom templates available for plugins in the report settings?,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Reports,Report Settings,True,2026-07-06T05:02:57.618Z
+fetch plugin custom templates for scheduled reports settings,/app/api/plugin/listCustomTemplates/PLUGIN,GET,Reports,Report Settings,True,2026-07-06T05:02:57.618Z
+How can I find the business hours used in scheduled reports?,/app/api/short/business_hours,GET,Reports,Report Settings,True,2026-07-06T05:03:00.151Z
+fetch report settings business hours lookup data,/app/api/short/business_hours,GET,Reports,Report Settings,True,2026-07-06T05:03:00.151Z
+How can I see the current report settings for scheduled reports?,/app/api/short/forecast/monitors,GET,Reports,Report Settings,True,2026-07-06T05:03:02.602Z
+fetch report settings data for scheduled report forms,/app/api/short/forecast/monitors,GET,Reports,Report Settings,True,2026-07-06T05:03:02.602Z
+How can I see all the monitor groups available for scheduling a report?,/app/api/short/monitor_groups_list,GET,Reports,Report Settings,True,2026-07-06T05:03:05.121Z
+fetch monitor group list for report settings,/app/api/short/monitor_groups_list,GET,Reports,Report Settings,True,2026-07-06T05:03:05.121Z
+How can I see which plugin options are available for scheduled report settings?,/app/api/short/plugins,GET,Reports,Report Settings,True,2026-07-06T05:03:07.758Z
+list report settings plugin data for scheduled reports,/app/api/short/plugins,GET,Reports,Report Settings,True,2026-07-06T05:03:07.758Z
+How can I view or customize report settings for scheduled reports?,/app/api/short/reports/custom_reports,GET,Reports,Report Settings,True,2026-07-06T05:03:10.250Z
+fetch custom report settings lookup data for scheduled reports,/app/api/short/reports/custom_reports,GET,Reports,Report Settings,True,2026-07-06T05:03:10.250Z
+How can I see which tags are available for scheduling reports?,/app/api/short/tags,GET,Reports,Report Settings,True,2026-07-06T05:03:13.553Z
+fetch report settings tags list for scheduled reports,/app/api/short/tags,GET,Reports,Report Settings,True,2026-07-06T05:03:13.553Z
+How do I see which third-party services are available for scheduled reports?,/app/api/short/third_party_services,GET,Reports,Report Settings,True,2026-07-06T05:03:16.972Z
+fetch report settings supporting lookup for scheduled reports,/app/api/short/third_party_services,GET,Reports,Report Settings,True,2026-07-06T05:03:16.972Z
+How can I see which user groups are available for scheduled reports?,/app/api/short/user_groups,GET,Reports,Report Settings,True,2026-07-06T05:03:19.585Z
+fetch user group list for report settings lookup,/app/api/short/user_groups,GET,Reports,Report Settings,True,2026-07-06T05:03:19.585Z
+How can I view the current SLA settings for my Slack integration?,/app/api/integration/slack/15698000442055001,GET,Reports,Report Settings,True,2026-07-06T05:03:23.075Z
+get SLA settings details for Slack integration,/app/api/integration/slack/15698000442055001,GET,Reports,Report Settings,True,2026-07-06T05:03:23.075Z
+How can I view the SLA settings for monitor 2?,/app/api/short/sla_settings/monitors/2,GET,Reports,Report Settings,True,2026-07-06T05:03:25.646Z
+fetch SLA report configuration for monitor 2,/app/api/short/sla_settings/monitors/2,GET,Reports,Report Settings,True,2026-07-06T05:03:25.646Z
+How can I check the SLA settings for monitor 3?,/app/api/short/sla_settings/monitors/3,GET,Reports,Report Settings,True,2026-07-06T05:03:28.332Z
+fetch SLA configuration details for monitor 3,/app/api/short/sla_settings/monitors/3,GET,Reports,Report Settings,True,2026-07-06T05:03:28.332Z
+How can I view the current SLA settings for my reports?,/app/api/sla_settings,GET,Reports,Report Settings,True,2026-07-06T05:03:30.985Z
+fetch SLA settings report configuration,/app/api/sla_settings,GET,Reports,Report Settings,True,2026-07-06T05:03:30.985Z
+How can I set up new SLA settings for my reports?,/app/api/sla_settings,POST,Reports,Report Settings,True,2026-07-06T05:03:33.595Z
+create SLA configuration for report monitoring,/app/api/sla_settings,POST,Reports,Report Settings,True,2026-07-06T05:03:33.595Z
+How can I remove an SLA setting from my report configuration?,/app/api/sla_settings/15698000493103037,DELETE,Reports,Report Settings,True,2026-07-06T05:03:36.146Z
+delete SLA settings in report settings,/app/api/sla_settings/15698000493103037,DELETE,Reports,Report Settings,True,2026-07-06T05:03:36.146Z
+How can I change the SLA settings for my report?,/app/api/sla_settings/15698000493103037,PUT,Reports,Report Settings,True,2026-07-06T05:03:38.671Z
+update SLA configuration for report settings,/app/api/sla_settings/15698000493103037,PUT,Reports,Report Settings,True,2026-07-06T05:03:38.671Z
+How can I see all the scheduled reports I have set up?,/app/api/scheduled_reports,GET,Reports,Report Settings,True,2026-07-06T05:03:41.041Z
+list scheduled report configurations,/app/api/scheduled_reports,GET,Reports,Report Settings,True,2026-07-06T05:03:41.041Z
+How can I remove a scheduled report from my account?,/app/api/scheduled_reports/15698000342022005,DELETE,Reports,Report Settings,True,2026-07-06T05:03:43.703Z
+delete scheduled report data,/app/api/scheduled_reports/15698000342022005,DELETE,Reports,Report Settings,True,2026-07-06T05:03:43.703Z
+How can I update the settings for an existing scheduled report?,/app/api/scheduled_reports/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:03:46.095Z
+modify scheduled report details for 15698000342022005,/app/api/scheduled_reports/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:03:46.095Z
+How can I activate a scheduled report in Site24x7?,/app/api/scheduled_reports/activate/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:03:49.075Z
+update scheduled report status activate,/app/api/scheduled_reports/activate/15698000342022005,PUT,Reports,Report Settings,True,2026-07-06T05:03:49.075Z
+How can I schedule automated reports to be sent?,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:03:51.401Z
+create scheduled reports submission in Reports Settings,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:03:51.401Z
+How do I set up automated report emails in Site24x7?,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:03:54.089Z
+create scheduled reports for monitoring data,/app/api/send_scheduled_reports,POST,Reports,Report Settings,True,2026-07-06T05:03:54.089Z
+How can I view the current account settings for my Site24x7 reports?,/app/api/account_settings,GET,Reports,Report Settings,True,2026-07-06T05:03:56.818Z
+get report settings for entire application,/app/api/account_settings,GET,Reports,Report Settings,True,2026-07-06T05:03:56.818Z
+How can I see the total number of anomalies detected across my apps?,/app/api/anomalies/counts,GET,Reports,Report Settings,True,2026-07-06T05:03:59.367Z
+get anomaly counts report for all apps,/app/api/anomalies/counts,GET,Reports,Report Settings,True,2026-07-06T05:03:59.367Z
+How can I view app-wide startup and shell data across all modules?,/app/api/apminsight/ins/hH,GET,Reports,Report Settings,True,2026-07-06T05:04:01.871Z
+get application startup shell report settings,/app/api/apminsight/ins/hH,GET,Reports,Report Settings,True,2026-07-06T05:04:01.871Z
+How can I see overall account startup details in Site24x7?,/app/api/client_data/account,GET,Reports,Report Settings,True,2026-07-06T05:04:04.716Z
+fetch client account shell data report settings,/app/api/client_data/account,GET,Reports,Report Settings,True,2026-07-06T05:04:04.716Z
+How can I view the startup data for the entire app?,/app/api/client_data/demo,GET,Reports,Report Settings,True,2026-07-06T05:04:07.178Z
+fetch demo client shell report settings,/app/api/client_data/demo,GET,Reports,Report Settings,True,2026-07-06T05:04:07.178Z
+How can I view the global startup data for my app?,/app/api/client_data/globals,GET,Reports,Report Settings,True,2026-07-06T05:04:09.731Z
+fetch app-wide shell report settings,/app/api/client_data/globals,GET,Reports,Report Settings,True,2026-07-06T05:04:09.731Z
+How can I view the startup data for users across the app?,/app/api/client_data/user,GET,Reports,Report Settings,True,2026-07-06T05:04:12.303Z
+get client user shell report settings,/app/api/client_data/user,GET,Reports,Report Settings,True,2026-07-06T05:04:12.303Z
+How can I view the startup shell information across all apps?,/app/api/cliq_chatlet,GET,Reports,Report Settings,True,2026-07-06T05:04:14.713Z
+fetch app-wide shell startup report settings,/app/api/cliq_chatlet,GET,Reports,Report Settings,True,2026-07-06T05:04:14.713Z
+How can I view the startup and shell workflow data across my application?,/app/api/genai/workflows,GET,Reports,Report Settings,True,2026-07-06T05:04:17.532Z
+fetch genai workflows report settings for app-wide overview,/app/api/genai/workflows,GET,Reports,Report Settings,True,2026-07-06T05:04:17.532Z
+How can I check overall license usage for my organization?,/app/api/license_usage,GET,Reports,Report Settings,True,2026-07-06T05:04:19.873Z
+fetch app license usage report across all modules,/app/api/license_usage,GET,Reports,Report Settings,True,2026-07-06T05:04:19.873Z
+How can I check the overall monitor status count in my account?,/app/api/monitors/status/count,GET,Reports,Report Settings,True,2026-07-06T05:04:22.339Z
+fetch monitor status summary report for all apps,/app/api/monitors/status/count,GET,Reports,Report Settings,True,2026-07-06T05:04:22.339Z
+How can I update the default table settings for reports?,/app/api/preferences/table,POST,Reports,Report Settings,True,2026-07-06T05:04:25.113Z
+set report table preferences for all users,/app/api/preferences/table,POST,Reports,Report Settings,True,2026-07-06T05:04:25.113Z
+How can I customize the default table settings for all my reports?,/app/api/preferences/table,POST,Reports,Report Settings,True,2026-07-06T05:04:27.864Z
+update report table preferences site24x7,/app/api/preferences/table,POST,Reports,Report Settings,True,2026-07-06T05:04:27.864Z
+How do I remove default table preferences for reports?,/app/api/preferences/table/19,DELETE,Reports,Report Settings,True,2026-07-06T05:04:30.321Z
+delete app-wide report table settings,/app/api/preferences/table/19,DELETE,Reports,Report Settings,True,2026-07-06T05:04:30.321Z
+How can I view the app-wide startup shell configuration in the reports section?,/app/api/preferences/table/19,GET,Reports,Report Settings,True,2026-07-06T05:04:32.813Z
+fetch global report settings for startup shell data,/app/api/preferences/table/19,GET,Reports,Report Settings,True,2026-07-06T05:04:32.813Z
+How can I view the app-wide startup data for report settings?,/app/api/preferences/table/58,GET,Reports,Report Settings,True,2026-07-06T05:04:35.481Z
+fetch shell preferences table for reports configuration,/app/api/preferences/table/58,GET,Reports,Report Settings,True,2026-07-06T05:04:35.481Z
+How can I check the current status of my app across all modules?,/app/api/short/current_status,GET,Reports,Report Settings,True,2026-07-06T05:04:37.997Z
+fetch app-wide startup shell report,/app/api/short/current_status,GET,Reports,Report Settings,True,2026-07-06T05:04:37.997Z
+How can I view my favorite dashboards when I log in?,/app/api/short/dashboards/favourites,GET,Reports,Report Settings,True,2026-07-06T05:04:42.403Z
+list all favourite dashboards for quick access,/app/api/short/dashboards/favourites,GET,Reports,Report Settings,True,2026-07-06T05:04:42.403Z
+How can I view the main startup message across my Site24x7 account?,/app/api/top_message,GET,Reports,Report Settings,True,2026-07-06T05:04:44.913Z
+fetch app-wide shell startup summary report settings,/app/api/top_message,GET,Reports,Report Settings,True,2026-07-06T05:04:44.913Z
+How can I see the location details of an IP address in Site24x7?,/tools/api/iplocation,GET,Reports,Report Settings,True,2026-07-06T05:04:47.571Z
+fetch IP geolocation report for app-wide data,/tools/api/iplocation,GET,Reports,Report Settings,True,2026-07-06T05:04:47.571Z
+How can I view the startup shell data for all apps in Site24x7?,/wmssrv/register,GET,Reports,Report Settings,True,2026-07-06T05:04:49.995Z
+fetch app-wide startup report settings,/wmssrv/register,GET,Reports,Report Settings,True,2026-07-06T05:04:49.995Z
+How can I generate a custom report for my monitors?,/app/api/customize_report,GET,Reports,Custom Report,True,2026-07-06T05:04:52.657Z
+fetch customized monitoring reports,/app/api/customize_report,GET,Reports,Custom Report,True,2026-07-06T05:04:52.657Z
+How can I view global benchmark results for my custom report?,/app/api/reports/custom/global_benchmark_report/%7Bid%7D,GET,Reports,Custom Report,True,2026-07-06T05:04:55.165Z
+fetch custom global benchmark report data,/app/api/reports/custom/global_benchmark_report/%7Bid%7D,GET,Reports,Custom Report,True,2026-07-06T05:04:55.165Z
+How can I view the sheet data for a specific custom report in Site24x7?,/app/api/reports/custom_reports/sheet_data/%7Bid%7D,GET,Reports,Custom Report,True,2026-07-06T05:04:58.709Z
+fetch custom report sheet data by ID Reports module,/app/api/reports/custom_reports/sheet_data/%7Bid%7D,GET,Reports,Custom Report,True,2026-07-06T05:04:58.709Z
+How can I view a specific custom report in Site24x7?,/app/api/reports/custom_reports/%7Bid%7D,GET,Reports,Custom Report,True,2026-07-06T05:05:01.184Z
+fetch custom report details by report ID in Reports module,/app/api/reports/custom_reports/%7Bid%7D,GET,Reports,Custom Report,True,2026-07-06T05:05:01.184Z
+How can I preview a custom report before saving it?,/app/api/reports/custom_reports/preview,POST,Reports,Custom Report,True,2026-07-06T05:05:03.671Z
+generate custom report preview in Reports module,/app/api/reports/custom_reports/preview,POST,Reports,Custom Report,True,2026-07-06T05:05:03.671Z
+How can I update the settings for a specific custom report?,/app/api/reports/custom_reports/%7Bid%7D,PUT,Reports,Custom Report,True,2026-07-06T05:05:06.127Z
+modify custom report details in reports module,/app/api/reports/custom_reports/%7Bid%7D,PUT,Reports,Custom Report,True,2026-07-06T05:05:06.127Z
+How can I remove a custom report from my account?,/app/api/reports/custom_reports/%7Bid%7D,DELETE,Reports,Custom Report,True,2026-07-06T05:05:08.723Z
+delete custom report by ID in Reports module,/app/api/reports/custom_reports/%7Bid%7D,DELETE,Reports,Custom Report,True,2026-07-06T05:05:08.723Z
+How can I download a custom report for a specific ID?,/app/api/reports/custom_reports/download/%7Bid%7D,PUT,Reports,Report Downloads,True,2026-07-06T05:05:11.167Z
+download custom report file by report ID,/app/api/reports/custom_reports/download/%7Bid%7D,PUT,Reports,Report Downloads,True,2026-07-06T05:05:11.167Z
+How can I view my custom reports in Site24x7?,/app/api/reports/custom_reports,GET,Reports,Custom Report,True,2026-07-06T05:05:13.604Z
+generate custom report data for monitoring metrics,/app/api/reports/custom_reports,GET,Reports,Custom Report,True,2026-07-06T05:05:13.604Z
+How can I create a custom report in Site24x7?,/app/api/reports/custom_reports,POST,Reports,Custom Report,True,2026-07-06T05:05:16.050Z
+generate custom reports in Site24x7 dashboard,/app/api/reports/custom_reports,POST,Reports,Custom Report,True,2026-07-06T05:05:16.050Z
+How can I view the summary report for a specific monitor group?,/app/api/reports/summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:20.036Z
+fetch monitor group summary report,/app/api/reports/summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:20.036Z
+How can I view a summary report for a specific monitor group?,/api/reports/summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:22.648Z
+get summary report for monitor group by ID,/api/reports/summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:22.648Z
+How can I check the availability summary for a specific monitor group?,/app/api/reports/availability_summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:25.299Z
+fetch availability summary report for monitor group,/app/api/reports/availability_summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:25.299Z
+How can I check the availability summary for a specific monitor group?,/api/reports/availability_summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:27.910Z
+fetch availability report for monitor group,/api/reports/availability_summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:27.910Z
+How can I view outage reports for a specific monitor group?,/app/api/reports/outages/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:30.549Z
+get outage report for monitor group by ID,/app/api/reports/outages/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:30.549Z
+How can I view a step summary report for a specific monitor group?,/app/api/reports/step_summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:32.930Z
+get step summary for monitor group report,/app/api/reports/step_summary/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:32.930Z
+How can I view the performance trends for a specific monitor group?,/app/api/reports/trend/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:40.909Z
+fetch trend report for monitor group,/app/api/reports/trend/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:40.909Z
+How can I view performance reports for a specific monitor group?,/app/api/reports/performance/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:43.657Z
+fetch monitor group performance report,/app/api/reports/performance/group/%7Bid%7D,GET,Reports,Monitor Groups,True,2026-07-06T05:05:43.657Z
+How can I view disk details for a specific server monitor?,/app/api/reports/child-details/SERVER/DiskDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:05:46.113Z
+fetch server monitor disk usage report by server ID,/app/api/reports/child-details/SERVER/DiskDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:05:46.113Z
+How can I view detailed information about a specific monitor?,/app/api/monitors/details_page/base/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:05:48.619Z
+get monitor base details by id,/app/api/monitors/details_page/base/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:05:48.619Z
+How can I view the top bandwidth details for a specific monitor?,/app/api/monitors/details_page/top_band/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:05:50.988Z
+fetch top bandwidth usage statistics for monitor id,/app/api/monitors/details_page/top_band/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:05:50.988Z
+How can I check the upgrade status for a specific server agent?,/app/api/monitors/agent/upgrade_status/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:05:53.780Z
+get server monitor agent upgrade status report,/app/api/monitors/agent/upgrade_status/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:05:53.780Z
+How can I see comments on a specific report download?,/app/api/reports/comments/%7Bid%7D,GET,Reports,Report Downloads,True,2026-07-06T05:05:56.197Z
+get report download comments by id,/app/api/reports/comments/%7Bid%7D,GET,Reports,Report Downloads,True,2026-07-06T05:05:56.197Z
+How can I view detailed widget information for a specific server monitor?,/app/api/monitors/widget_details/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:05:58.701Z
+get server monitor widget details by ID,/app/api/monitors/widget_details/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:05:58.701Z
+How can I view the outage report for a specific monitor?,/app/api/reports/outage/%7Bid%7D,GET,Reports,Report Downloads,True,2026-07-06T05:06:01.409Z
+download outage report by monitor ID,/app/api/reports/outage/%7Bid%7D,GET,Reports,Report Downloads,True,2026-07-06T05:06:01.409Z
+How can I view detailed network information for a specific server?,/app/api/reports/child-details/SERVER/NetworkDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:03.838Z
+get server monitor network details report by ID,/app/api/reports/child-details/SERVER/NetworkDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:03.838Z
+How can I view detailed process information for a specific server monitor?,/app/api/reports/child-details/SERVER/ProcessDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:06.273Z
+get server monitor process details report,/app/api/reports/child-details/SERVER/ProcessDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:06.273Z
+How can I see detailed information about Windows services running on a specific server?,/app/api/reports/child-details/SERVER/WindowsServices/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:08.732Z
+fetch child details report for Windows services in server monitor,/app/api/reports/child-details/SERVER/WindowsServices/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:08.732Z
+How can I view detailed Linux service information for a specific server?,/app/api/reports/child-details/SERVER/LinuxServiceDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:11.102Z
+fetch child details for Linux services in server monitor reports,/app/api/reports/child-details/SERVER/LinuxServiceDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:11.102Z
+How can I view user details for a specific server in my Site24x7 reports?,/app/api/reports/child-details/SERVER/UserDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:14.188Z
+fetch server monitor user details report by server ID,/app/api/reports/child-details/SERVER/UserDetails/%7Bid%7D,GET,Reports,Server Monitor,True,2026-07-06T05:06:14.188Z
+How can I view application performance reports in Site24x7?,/app/api/reports/performance,GET,Reports,APM Reports,True,2026-07-06T05:06:16.710Z
+get APM performance reports Site24x7,/app/api/reports/performance,GET,Reports,APM Reports,True,2026-07-06T05:06:16.710Z
+How can I view a summary of my downloaded reports?,/app/api/reports/summary,GET,Reports,Report Downloads,True,2026-07-06T05:06:19.274Z
+fetch report download summary details,/app/api/reports/summary,GET,Reports,Report Downloads,True,2026-07-06T05:06:19.274Z
+How can I view the availability summary report for my monitored resources?,/app/api/reports/availability_summary,GET,Reports,Report Downloads,True,2026-07-06T05:06:21.692Z
+download availability summary report Site24x7,/app/api/reports/availability_summary,GET,Reports,Report Downloads,True,2026-07-06T05:06:21.692Z
+How can I see all the recent outages in my Site24x7 reports?,/app/api/reports/outages,GET,Reports,Report Downloads,True,2026-07-06T05:06:24.612Z
+download outages report Site24x7,/app/api/reports/outages,GET,Reports,Report Downloads,True,2026-07-06T05:06:24.612Z
+How can I view the download trends for reports over time?,/app/api/reports/trend,GET,Reports,Report Downloads,True,2026-07-06T05:06:27.311Z
+fetch report download trend statistics,/app/api/reports/trend,GET,Reports,Report Downloads,True,2026-07-06T05:06:27.311Z
+How can I view the availability details in the SLA report?,/app/api/reports/sla_reports/availability,GET,Reports,SLA Report,True,2026-07-06T05:06:29.745Z
+fetch SLA report availability statistics,/app/api/reports/sla_reports/availability,GET,Reports,SLA Report,True,2026-07-06T05:06:29.745Z
+How can I view the response time SLA report for my monitors?,/app/api/reports/sla_reports/response,GET,Reports,SLA Report,True,2026-07-06T05:06:32.325Z
+fetch SLA response reports for all monitored services,/app/api/reports/sla_reports/response,GET,Reports,SLA Report,True,2026-07-06T05:06:32.325Z
+How can I view a detailed composite SLA report for my monitors?,/app/api/reports/sla_reports/composite,GET,Reports,SLA Report,True,2026-07-06T05:06:34.919Z
+fetch composite SLA reports for all monitored services,/app/api/reports/sla_reports/composite,GET,Reports,SLA Report,True,2026-07-06T05:06:34.919Z
+How can I view the executive summary for an SLA report?,/app/api/reports/sla_reports/executive_summary/%7Bid%7D,GET,Reports,SLA Report,True,2026-07-06T05:06:37.538Z
+fetch SLA executive summary report by ID,/app/api/reports/sla_reports/executive_summary/%7Bid%7D,GET,Reports,SLA Report,True,2026-07-06T05:06:37.538Z
+How can I view SSL domain reports for all mapped FQDNs?,/app/api/reports/fqdn/ssl_domain_reports,GET,Reports,FQDN Report,True,2026-07-06T05:06:40.047Z
+fetch fqdn ssl domain report data,/app/api/reports/fqdn/ssl_domain_reports,GET,Reports,FQDN Report,True,2026-07-06T05:06:40.047Z
+How can I view SSL domain reports for mapped FQDNs?,/api/reports/fqdn/ssl_domain_reports,GET,Reports,FQDN Report,True,2026-07-06T05:06:42.564Z
+fetch FQDN SSL certificate report,/api/reports/fqdn/ssl_domain_reports,GET,Reports,FQDN Report,True,2026-07-06T05:06:42.564Z
+How can I generate a third-party report for general or unknown sources?,/app/api/reports/thirdparty,POST,Reports,Third Party (General/Unknown),True,2026-07-06T05:06:45.119Z
+create third party general unknown report,/app/api/reports/thirdparty,POST,Reports,Third Party (General/Unknown),True,2026-07-06T05:06:45.119Z
+How can I view all SSL certificate security reports in Site24x7?,/api/reports/ssl_cert/all,GET,Reports,Security Report,True,2026-07-06T05:06:47.782Z
+fetch complete SSL certificate security report list,/api/reports/ssl_cert/all,GET,Reports,Security Report,True,2026-07-06T05:06:47.782Z
+How can I generate a mail delivery report in Site24x7?,/app/api/reports/email,POST,Reports,Mail Delivery,True,2026-07-06T05:06:50.724Z
+send email delivery report in Reports module,/app/api/reports/email,POST,Reports,Mail Delivery,True,2026-07-06T05:06:50.724Z
+How can I check my brand's online reputation security report?,/api/reports/brand_reputation/all,GET,Reports,Security Report,True,2026-07-06T05:06:53.911Z
+get all brand reputation security reports,/api/reports/brand_reputation/all,GET,Reports,Security Report,True,2026-07-06T05:06:53.911Z
+How can I view the overall SLO report for my services?,/app/api/reports/slo_reports/overall,GET,Reports,SLO Reports,True,2026-07-06T05:06:56.459Z
+get overall SLO performance report,/app/api/reports/slo_reports/overall,GET,Reports,SLO Reports,True,2026-07-06T05:06:56.459Z
+How can I see the overall SLO performance report?,/api/reports/slo/overall,GET,Reports,SLO Reports,True,2026-07-06T05:06:59.036Z
+get overall SLO metrics report,/api/reports/slo/overall,GET,Reports,SLO Reports,True,2026-07-06T05:06:59.036Z
+How can I see recent capacity outages in my reports?,/app/api/reports/outages/type/CAPACITY,GET,Reports,Capacity Planning,True,2026-07-06T05:07:01.497Z
+get capacity planning outage report,/app/api/reports/outages/type/CAPACITY,GET,Reports,Capacity Planning,True,2026-07-06T05:07:01.497Z
+How can I view the busiest hours for my monitored resources?,/app/api/reports/busy_hours,GET,Reports,Advanced Analytics,True,2026-07-06T05:07:04.039Z
+fetch advanced analytics busy hours report,/app/api/reports/busy_hours,GET,Reports,Advanced Analytics,True,2026-07-06T05:07:04.039Z
+How can I see the capacity planning trends for my resources?,/app/api/reports/trend/type/CAPACITY,GET,Reports,Capacity Planning,True,2026-07-06T05:07:06.663Z
+fetch capacity planning trend report,/app/api/reports/trend/type/CAPACITY,GET,Reports,Capacity Planning,True,2026-07-06T05:07:06.663Z
+How can I view capacity planning trends for a specific tag?,/app/api/reports/trend/tag/CAPACITY/%7Bid%7D,GET,Reports,Capacity Planning,True,2026-07-06T05:07:09.155Z
+fetch capacity planning trend report by tag ID,/app/api/reports/trend/tag/CAPACITY/%7Bid%7D,GET,Reports,Capacity Planning,True,2026-07-06T05:07:09.155Z
+How can I view a summary report for my website URLs?,/app/api/reports/summary/type/URL,GET,Reports,Website,True,2026-07-06T05:07:11.744Z
+get website summary report for all URLs,/app/api/reports/summary/type/URL,GET,Reports,Website,True,2026-07-06T05:07:11.744Z
+How can I see the availability summary for my websites?,/app/api/reports/availability_summary/type/URL,GET,Reports,Website,True,2026-07-06T05:07:14.085Z
+fetch website availability summary report,/app/api/reports/availability_summary/type/URL,GET,Reports,Website,True,2026-07-06T05:07:14.085Z
+How can I view outage reports for specific website URLs?,/app/api/reports/outages/type/URL,GET,Reports,Website,True,2026-07-06T05:07:16.719Z
+get website outage report by URL,/app/api/reports/outages/type/URL,GET,Reports,Website,True,2026-07-06T05:07:16.719Z
+How can I see website performance trends over time?,/app/api/reports/trend/type/URL,GET,Reports,Website,True,2026-07-06T05:07:19.304Z
+fetch website URL trend report,/app/api/reports/trend/type/URL,GET,Reports,Website,True,2026-07-06T05:07:19.304Z
+How can I view the performance report for my website URLs?,/app/api/reports/performance/type/URL,GET,Reports,Website,True,2026-07-06T05:07:21.936Z
+fetch website performance statistics by URL type,/app/api/reports/performance/type/URL,GET,Reports,Website,True,2026-07-06T05:07:21.936Z
+How can I see the outage history for a specific website?,/app/api/reports/outages/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:07:24.507Z
+fetch website outage report by monitor ID,/app/api/reports/outages/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:07:24.507Z
+How can I view outage reports for my API Gateway stage?,/app/api/reports/outages/type/APIGATEWAY-STAGE,GET,Reports,API Gateway Stage,True,2026-07-06T05:07:27.120Z
+get API Gateway stage outage report,/app/api/reports/outages/type/APIGATEWAY-STAGE,GET,Reports,API Gateway Stage,True,2026-07-06T05:07:27.120Z
+How can I view outage reports for my API Gateway routes?,/app/api/reports/outages/type/APIGATEWAY-ROUTE,GET,Reports,API Gateway Route,True,2026-07-06T05:07:29.747Z
+get outage details for API Gateway Route mapped endpoints,/app/api/reports/outages/type/APIGATEWAY-ROUTE,GET,Reports,API Gateway Route,True,2026-07-06T05:07:29.747Z
+How can I see outage reports for my ECS Cluster?,/app/api/reports/outages/type/ECSCLUSTER,GET,Reports,ECS Cluster,True,2026-07-06T05:07:32.187Z
+fetch ECS Cluster outage report data,/app/api/reports/outages/type/ECSCLUSTER,GET,Reports,ECS Cluster,True,2026-07-06T05:07:32.187Z
+How can I check outage reports for Elastic File System?,/app/api/reports/outages/type/EFS,GET,Reports,Elastic File System,True,2026-07-06T05:07:34.556Z
+fetch EFS outage report details,/app/api/reports/outages/type/EFS,GET,Reports,Elastic File System,True,2026-07-06T05:07:34.556Z
+How can I see outage reports for Simple Email Service?,/app/api/reports/outages/type/SES,GET,Reports,Simple Email Service,True,2026-07-06T05:07:37.217Z
+fetch SES outage report in Site24x7,/app/api/reports/outages/type/SES,GET,Reports,Simple Email Service,True,2026-07-06T05:07:37.217Z
+How can I view outage reports for my AWS Step Function state machines?,/app/api/reports/outages/type/STEPFUNCTION,GET,Reports,Step Function - State Machine,True,2026-07-06T05:07:39.656Z
+fetch step function state machine outage report,/app/api/reports/outages/type/STEPFUNCTION,GET,Reports,Step Function - State Machine,True,2026-07-06T05:07:39.656Z
+How can I see the trend report for a specific website?,/app/api/reports/trend/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:07:42.598Z
+fetch website trend report by ID,/app/api/reports/trend/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:07:42.598Z
+How can I check the performance stats for a specific website?,/app/api/reports/performance/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:07:45.163Z
+get website performance report by ID,/app/api/reports/performance/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:07:45.163Z
+How can I see which requests were blocked most often by the Web Application Firewall?,/app/api/reports/top_n/WAF/blocked_requests,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:47.629Z
+list top blocked WAF requests report,/app/api/reports/top_n/WAF/blocked_requests,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:47.629Z
+How can I see which requests passed through the web application firewall?,/app/api/reports/top_n/WAF/passed_requests,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:50.188Z
+get top N passed WAF requests report,/app/api/reports/top_n/WAF/passed_requests,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:50.188Z
+How can I see which web applications are getting the most WAF requests?,/app/api/reports/top_n/WAF/counted_requests,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:52.828Z
+get top counted WAF requests report,/app/api/reports/top_n/WAF/counted_requests,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:52.828Z
+How can I view the summary report for my Web Application Firewall?,/app/api/reports/summary/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:55.481Z
+fetch WAF summary report data,/app/api/reports/summary/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:55.481Z
+How can I check the availability summary for my web application firewall?,/app/api/reports/availability_summary/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:59.128Z
+fetch WAF availability summary report,/app/api/reports/availability_summary/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:07:59.128Z
+How can I view outage reports specifically for the Web Application Firewall?,/app/api/reports/outages/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:01.789Z
+fetch WAF outage report details,/app/api/reports/outages/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:01.789Z
+How can I view the trend report for my Web Application Firewall?,/app/api/reports/trend/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:04.175Z
+get WAF trend reports for security analysis,/app/api/reports/trend/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:04.175Z
+How can I view the performance report for my web application firewall?,/app/api/reports/performance/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:06.625Z
+fetch WAF performance report,/app/api/reports/performance/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:06.625Z
+How can I view forecast reports for my web application firewall?,/app/api/reports/forecast/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:08.995Z
+get WAF forecast report data,/app/api/reports/forecast/type/WAF,GET,Reports,Web Application Firewall,True,2026-07-06T05:08:08.995Z
+How can I view outage reports for Key Management Service?,/app/api/reports/outages/type/KMS,GET,Reports,Key Management Service,True,2026-07-06T05:08:11.455Z
+fetch mapped KMS outage report data,/app/api/reports/outages/type/KMS,GET,Reports,Key Management Service,True,2026-07-06T05:08:11.455Z
+How do I view the Route 53 health check summary report?,/app/api/reports/summary/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:14.087Z
+get Route 53 Health Check summary report details,/app/api/reports/summary/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:14.087Z
+How can I see the current status for my top Route 53 health checks?,/app/api/reports/top_n/R53_HEALTHCHECK/status,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:16.583Z
+get top N Route 53 health check statuses report,/app/api/reports/top_n/R53_HEALTHCHECK/status,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:16.583Z
+How do I view the top Route 53 health check percentages?,/app/api/reports/top_n/R53_HEALTHCHECK/health_percent,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:19.199Z
+list Route 53 health check health percent report,/app/api/reports/top_n/R53_HEALTHCHECK/health_percent,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:19.199Z
+How can I see which Route 53 health checks have the lowest health percentages?,/app/api/reports/bottom_n/R53_HEALTHCHECK/health_percent,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:22.289Z
+list bottom Route 53 health check health percent report,/app/api/reports/bottom_n/R53_HEALTHCHECK/health_percent,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:22.289Z
+How can I view the top Route 53 health checks by connection time?,/app/api/reports/top_n/R53_HEALTHCHECK/connection_time,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:24.959Z
+list Route 53 health check reports ranked by connection time,/app/api/reports/top_n/R53_HEALTHCHECK/connection_time,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:24.959Z
+How can I view the availability summary for Route 53 health checks?,/app/api/reports/availability_summary/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:27.477Z
+fetch Route 53 health check availability summary report,/app/api/reports/availability_summary/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:27.477Z
+How can I see outage reports for Route 53 health checks?,/app/api/reports/outages/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:29.996Z
+fetch Route 53 Health Check outage details,/app/api/reports/outages/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:29.996Z
+How can I view the health check trends for my Route 53 monitors?,/app/api/reports/trend/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:32.475Z
+fetch Route 53 Health Check trend report,/app/api/reports/trend/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:32.475Z
+How do I see the performance report for Route 53 health checks?,/app/api/reports/performance/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:35.018Z
+fetch Route 53 health check performance statistics,/app/api/reports/performance/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:35.018Z
+How can I view the health check forecast report for Route 53?,/app/api/reports/forecast/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:37.745Z
+get Route 53 health check forecast report,/app/api/reports/forecast/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T05:08:37.745Z
+How can I view the summary report for a specific monitor?,/app/api/reports/summary/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:08:40.281Z
+get general report summary by monitor ID,/app/api/reports/summary/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:08:40.281Z
+How can I view the busiest hours for a specific monitor in Site24x7?,/app/api/reports/busy_hours/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:08:42.697Z
+fetch busy hours report for monitor,/app/api/reports/busy_hours/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:08:42.697Z
+How can I view a summary report for my Real Browser web transactions?,/app/api/reports/summary/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:45.420Z
+fetch Real Browser web transaction summary report,/app/api/reports/summary/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:45.420Z
+How can I view the availability summary for my Real Browser web transactions?,/app/api/reports/availability_summary/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:48.046Z
+get availability summary report for Real Browser web transaction monitors,/app/api/reports/availability_summary/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:48.046Z
+How can I view outage reports for Real Browser web transactions?,/app/api/reports/outages/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:50.487Z
+fetch Real Browser web transaction outage report,/app/api/reports/outages/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:50.487Z
+How can I view browser-based web transaction trends over time?,/app/api/reports/trend/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:53.079Z
+fetch real browser web transaction trend report,/app/api/reports/trend/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:53.079Z
+How can I view browser performance reports for my web transactions?,/app/api/reports/performance/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:55.594Z
+fetch real browser web transaction performance report,/app/api/reports/performance/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T05:08:55.594Z
+How can I view detailed information about a specific monitor?,/app/api/monitors/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:08:57.983Z
+fetch general report for monitor by ID,/app/api/monitors/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:08:57.983Z
+How can I check the availability summary for a specific monitor?,/app/api/reports/availability_summary/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:09:00.614Z
+fetch general availability summary report by monitor ID,/app/api/reports/availability_summary/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:09:00.614Z
+How can I view the step summary report for a specific monitor?,/app/api/reports/step_summary/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:09:03.820Z
+fetch general step summary report by monitor ID,/app/api/reports/step_summary/%7Bid%7D,GET,Reports,General/Unknown,True,2026-07-06T05:09:03.820Z
+How can I view the top mobile synthetic transactions by response time?,/app/api/reports/top_n/MOBILE_RBM/transaction_time,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:06.624Z
+fetch top N transaction times for synthetic mobile application reports,/app/api/reports/top_n/MOBILE_RBM/transaction_time,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:06.624Z
+How can I view the synthetic mobile app summary report?,/app/api/reports/summary/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:09.445Z
+fetch synthetic mobile application performance summary report,/app/api/reports/summary/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:09.445Z
+How can I view the availability summary for synthetic mobile applications?,/app/api/reports/availability_summary/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:11.976Z
+fetch synthetic mobile application availability summary report,/app/api/reports/availability_summary/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:11.976Z
+How can I view outage reports for synthetic mobile applications?,/app/api/reports/outages/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:14.518Z
+fetch synthetic mobile app outage details MOBILE_RBM,/app/api/reports/outages/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:14.518Z
+How can I see trend reports for synthetic mobile applications?,/app/api/reports/trend/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:17.113Z
+fetch mobile RBM synthetic application trend report,/app/api/reports/trend/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:17.113Z
+How can I view performance reports for synthetic mobile applications?,/app/api/reports/performance/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:19.583Z
+fetch synthetic mobile app performance report,/app/api/reports/performance/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T05:09:19.583Z
+How can I view outage reports for REST APIs?,/app/api/reports/outages/type/RESTAPI,GET,Reports,REST API,True,2026-07-06T05:09:22.277Z
+fetch REST API outage report details,/app/api/reports/outages/type/RESTAPI,GET,Reports,REST API,True,2026-07-06T05:09:22.277Z
+How can I see the top performing SOAP web services in my reports?,/app/api/reports/top_n/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:25.099Z
+fetch top N SOAP web service report,/app/api/reports/top_n/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:25.099Z
+How can I view the availability summary for my SOAP web services?,/app/api/reports/availability_summary/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:27.502Z
+fetch SOAP web service availability summary report,/app/api/reports/availability_summary/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:27.502Z
+How can I view outage reports for SOAP web services?,/app/api/reports/outages/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:30.049Z
+fetch SOAP web service outage report,/app/api/reports/outages/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:30.049Z
+How can I view the usage trends for my SOAP web services?,/app/api/reports/trend/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:32.655Z
+fetch SOAP web service trend report,/app/api/reports/trend/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:32.655Z
+How can I view the performance report for my SOAP web services?,/app/api/reports/performance/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:35.169Z
+fetch SOAP Web Service performance metrics report,/app/api/reports/performance/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T05:09:35.169Z
+How can I view the top performing gRPC endpoints in my reports?,/app/api/reports/top_n/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:37.722Z
+fetch top N gRPC report data,/app/api/reports/top_n/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:37.722Z
+How can I view a summary report for my gRPC services?,/app/api/reports/summary/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:40.214Z
+fetch gRPC summary report details,/app/api/reports/summary/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:40.214Z
+How can I view the availability summary for my gRPC services?,/app/api/reports/availability_summary/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:42.719Z
+fetch gRPC availability summary report,/app/api/reports/availability_summary/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:42.719Z
+How can I view outage reports for my gRPC services?,/app/api/reports/outages/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:45.068Z
+fetch gRPC outage report autonomously mapped,/app/api/reports/outages/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:45.068Z
+How can I check the performance trend for my gRPC services?,/app/api/reports/trend/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:47.503Z
+get gRPC trend report data,/app/api/reports/trend/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:47.503Z
+How can I view performance reports for my gRPC services?,/app/api/reports/performance/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:50.000Z
+fetch gRPC performance report details,/app/api/reports/performance/type/GRPC,GET,Reports,gRPC,True,2026-07-06T05:09:50.000Z
+How can I view outage reports for REST API transactions?,/app/api/reports/outages/type/RESTAPISEQ,GET,Reports,REST API Transaction,True,2026-07-06T05:09:52.450Z
+fetch REST API transaction outage report,/app/api/reports/outages/type/RESTAPISEQ,GET,Reports,REST API Transaction,True,2026-07-06T05:09:52.450Z
+How can I view the summary report for my web application clusters?,/app/api/reports/summary/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:09:55.004Z
+get application cluster summary report for web clusters,/app/api/reports/summary/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:09:55.004Z
+How can I view the availability summary for my web application clusters?,/app/api/reports/availability_summary/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:09:57.470Z
+fetch availability summary report for web clusters,/app/api/reports/availability_summary/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:09:57.470Z
+How can I view outage reports for my web application clusters?,/app/api/reports/outages/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:10:00.025Z
+get outage report for web clusters in application monitoring,/app/api/reports/outages/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:10:00.025Z
+How can I view the trend report for my web application clusters?,/app/api/reports/trend/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:10:02.937Z
+get application cluster trend report for web clusters,/app/api/reports/trend/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:10:02.937Z
+How can I view performance reports for my web application clusters?,/app/api/reports/performance/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:10:05.388Z
+fetch application cluster performance report web cluster,/app/api/reports/performance/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T05:10:05.388Z
+How can I view the top SaaS application transactions by response time?,/app/api/reports/top_n/SAAS_APPLICATION/transaction_time,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:07.997Z
+get top n SaaS synthetics browser transaction times report,/app/api/reports/top_n/SAAS_APPLICATION/transaction_time,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:07.997Z
+How can I view the summary report for SaaS synthetic browser tests?,/app/api/reports/summary/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:10.900Z
+fetch SaaS synthetics browser summary report,/app/api/reports/summary/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:10.900Z
+How can I check the availability summary for my SaaS browser monitors?,/app/api/reports/availability_summary/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:13.500Z
+fetch SaaS synthetics browser availability summary report,/app/api/reports/availability_summary/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:13.500Z
+How can I view outage reports for SaaS applications monitored with browser synthetics?,/app/api/reports/outages/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:16.239Z
+fetch SaaS synthetics browser outages report,/app/api/reports/outages/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:16.239Z
+How can I view browser synthetic trend reports for SaaS applications?,/app/api/reports/trend/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:18.808Z
+get SaaS synthetics browser trend report,/app/api/reports/trend/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:18.808Z
+How can I view the performance report for my SaaS synthetic browser monitors?,/app/api/reports/performance/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:21.302Z
+fetch SaaS synthetics browser performance report,/app/api/reports/performance/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T05:10:21.302Z
+How can I view the top WebSocket connections in my reports?,/app/api/reports/top_n/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:24.212Z
+get top n WebSocket usage statistics report,/app/api/reports/top_n/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:24.212Z
+How can I view the summary report for WebSocket connections?,/app/api/reports/summary/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:26.646Z
+fetch WebSocket summary report in Site24x7,/app/api/reports/summary/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:26.646Z
+How can I view the availability summary for my WebSocket connections?,/app/api/reports/availability_summary/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:29.119Z
+fetch WebSocket availability summary report,/app/api/reports/availability_summary/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:29.119Z
+How can I see outage reports for my WebSocket connections?,/app/api/reports/outages/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:31.638Z
+fetch WebSocket outage report autonomously mapped,/app/api/reports/outages/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:31.638Z
+How can I view the WebSocket trend report for my monitored servers?,/app/api/reports/trend/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:34.673Z
+get WebSocket trend statistics report,/app/api/reports/trend/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:34.673Z
+How can I view the performance report for WebSocket connections?,/app/api/reports/performance/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:37.031Z
+fetch WebSocket performance metrics report,/app/api/reports/performance/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T05:10:37.031Z
+How can I see which websites have the highest response times?,/app/api/reports/top_n/HOMEPAGE/response_time,GET,Reports,Website,True,2026-07-06T05:10:39.465Z
+fetch top N homepage response time report for websites,/app/api/reports/top_n/HOMEPAGE/response_time,GET,Reports,Website,True,2026-07-06T05:10:39.465Z
+How can I view the homepage summary report for my website?,/app/api/reports/summary/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:42.137Z
+fetch website homepage summary report,/app/api/reports/summary/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:42.137Z
+How can I check the homepage availability report for my website?,/app/api/reports/availability_summary/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:44.762Z
+fetch website homepage availability summary report,/app/api/reports/availability_summary/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:44.762Z
+How can I view homepage outage reports for my website?,/app/api/reports/outages/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:47.138Z
+fetch website homepage outage history report,/app/api/reports/outages/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:47.138Z
+How can I view homepage performance trends for my website?,/app/api/reports/trend/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:49.570Z
+fetch homepage trend report for website monitoring,/app/api/reports/trend/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:49.570Z
+How can I view the homepage performance report for my website?,/app/api/reports/performance/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:52.088Z
+get website homepage performance statistics,/app/api/reports/performance/type/HOMEPAGE,GET,Reports,Website,True,2026-07-06T05:10:52.088Z
+How can I see which SMTP servers have the highest response times?,/app/api/reports/top_n/SMTP/response_time,GET,Reports,SMTP Server,True,2026-07-06T05:10:54.600Z
+fetch top SMTP server response time report,/app/api/reports/top_n/SMTP/response_time,GET,Reports,SMTP Server,True,2026-07-06T05:10:54.600Z
+How can I view the summary report for my SMTP servers?,/app/api/reports/summary/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:10:57.316Z
+fetch SMTP server summary report,/app/api/reports/summary/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:10:57.316Z
+How can I view the availability summary for my SMTP servers?,/app/api/reports/availability_summary/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:10:59.870Z
+get SMTP server availability report,/app/api/reports/availability_summary/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:10:59.870Z
+How can I view outage reports for my SMTP servers?,/app/api/reports/outages/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:02.479Z
+get SMTP server outage report,/app/api/reports/outages/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:02.479Z
+How can I view SMTP server trend reports?,/app/api/reports/trend/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:06.135Z
+fetch SMTP server performance trends report,/app/api/reports/trend/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:06.135Z
+How can I view the performance stats for my SMTP servers?,/app/api/reports/performance/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:08.767Z
+fetch SMTP server performance report,/app/api/reports/performance/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:08.767Z
+How can I see which custom protocol ports have the highest response times?,/app/api/reports/top_n/PORT/response_time,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:11.282Z
+fetch top N port response time report for custom protocol,/app/api/reports/top_n/PORT/response_time,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:11.282Z
+How can I view a summary report for custom protocol ports?,/app/api/reports/summary/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:13.904Z
+get port custom protocol summary report,/app/api/reports/summary/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:13.904Z
+How can I check the availability summary for custom port protocols?,/app/api/reports/availability_summary/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:16.554Z
+fetch port custom protocol availability summary report,/app/api/reports/availability_summary/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:16.554Z
+How can I view outage reports for custom port protocols?,/app/api/reports/outages/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:19.071Z
+list port protocol outage history report,/app/api/reports/outages/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:19.071Z
+How can I view port protocol trends over time?,/app/api/reports/trend/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:21.648Z
+fetch port custom protocol trend report,/app/api/reports/trend/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:21.648Z
+How can I check the performance report for custom protocol ports?,/app/api/reports/performance/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:24.287Z
+get port custom protocol performance report,/app/api/reports/performance/type/PORT,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:24.287Z
+How can I see which UDP ports have the highest response times?,/app/api/reports/top_n/UDP/response_time,GET,Reports,UDP Port,True,2026-07-06T05:11:26.642Z
+fetch top N UDP port response time report,/app/api/reports/top_n/UDP/response_time,GET,Reports,UDP Port,True,2026-07-06T05:11:26.642Z
+How can I view the summary report for all monitored UDP ports?,/app/api/reports/summary/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:29.060Z
+fetch mapped UDP port summary report,/app/api/reports/summary/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:29.060Z
+How can I check the availability summary for UDP ports?,/app/api/reports/availability_summary/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:31.575Z
+fetch UDP port availability report,/app/api/reports/availability_summary/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:31.575Z
+How can I view outage reports for UDP ports?,/app/api/reports/outages/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:34.011Z
+get UDP port outage statistics report,/app/api/reports/outages/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:34.011Z
+How can I see the trend report for UDP ports?,/app/api/reports/trend/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:36.383Z
+get UDP port trend report,/app/api/reports/trend/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:36.383Z
+How can I check the performance report for UDP ports?,/app/api/reports/performance/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:38.712Z
+fetch UDP port performance statistics report,/app/api/reports/performance/type/UDP,GET,Reports,UDP Port,True,2026-07-06T05:11:38.712Z
+How can I see which custom protocol ports had the highest response times?,/app/api/reports/top_n/PORT-POP/response_time,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:41.244Z
+fetch top N port custom protocol response time report,/app/api/reports/top_n/PORT-POP/response_time,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:41.244Z
+How can I view the summary report for custom protocol port monitoring?,/app/api/reports/summary/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:43.734Z
+fetch port custom protocol summary report,/app/api/reports/summary/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:43.734Z
+How can I see the availability summary for custom protocol ports?,/app/api/reports/availability_summary/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:46.182Z
+fetch port custom protocol availability summary report,/app/api/reports/availability_summary/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:46.182Z
+How can I view outage reports for custom protocol ports?,/app/api/reports/outages/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:48.795Z
+get mapped port outage report for custom protocols,/app/api/reports/outages/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:48.795Z
+How can I see port protocol trends over time in my reports?,/app/api/reports/trend/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:51.417Z
+fetch custom protocol port trend report,/app/api/reports/trend/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:51.417Z
+How can I view port performance statistics for custom protocols?,/app/api/reports/performance/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:54.077Z
+fetch autonomously mapped port custom protocol performance reports,/app/api/reports/performance/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T05:11:54.077Z
+How can I see which SMTP servers have the slowest response times?,/app/api/reports/top_n/PORT-SMTP/response_time,GET,Reports,SMTP Server,True,2026-07-06T05:11:56.617Z
+fetch top SMTP server response time report,/app/api/reports/top_n/PORT-SMTP/response_time,GET,Reports,SMTP Server,True,2026-07-06T05:11:56.617Z
+How can I view the summary report for my SMTP servers?,/app/api/reports/summary/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:59.038Z
+fetch SMTP server summary report PORT-SMTP,/app/api/reports/summary/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:11:59.038Z
+How can I see the availability summary for my SMTP servers?,/app/api/reports/availability_summary/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:01.588Z
+fetch SMTP server port availability summary report,/app/api/reports/availability_summary/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:01.588Z
+How can I check recent SMTP port outages on my mail server?,/app/api/reports/outages/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:04.021Z
+fetch outage report for SMTP server port,/app/api/reports/outages/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:04.021Z
+How can I view SMTP server trend reports?,/app/api/reports/trend/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:06.403Z
+fetch SMTP server performance trend report,/app/api/reports/trend/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:06.403Z
+How can I see performance stats for my SMTP server?,/app/api/reports/performance/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:08.998Z
+fetch SMTP server performance report,/app/api/reports/performance/type/PORT-SMTP,GET,Reports,SMTP Server,True,2026-07-06T05:12:08.998Z
+How can I find the servers with the fastest ping response times?,/app/api/reports/top_n/PING/response_time,GET,Reports,Ping,True,2026-07-06T05:12:11.864Z
+fetch top N ping response time report,/app/api/reports/top_n/PING/response_time,GET,Reports,Ping,True,2026-07-06T05:12:11.864Z
+How can I view a summary report of ping monitors?,/app/api/reports/summary/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:14.430Z
+fetch ping monitor summary report,/app/api/reports/summary/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:14.430Z
+How can I check the availability summary for my ping monitors?,/app/api/reports/availability_summary/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:16.886Z
+fetch ping monitor availability report,/app/api/reports/availability_summary/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:16.886Z
+How can I view recent ping outage reports?,/app/api/reports/outages/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:19.421Z
+get ping outage history report,/app/api/reports/outages/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:19.421Z
+How can I view the ping trend report for my devices?,/app/api/reports/trend/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:22.073Z
+fetch ping trend statistics report,/app/api/reports/trend/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:22.073Z
+How do I check the performance report for ping monitors?,/app/api/reports/performance/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:24.520Z
+fetch ping performance report data,/app/api/reports/performance/type/PING,GET,Reports,Ping,True,2026-07-06T05:12:24.520Z
+How can I see which FTP transfers had the slowest response times?,/app/api/reports/top_n/FTP/response_time,GET,Reports,FTP Transfer,True,2026-07-06T05:12:26.917Z
+fetch top FTP transfer response time report,/app/api/reports/top_n/FTP/response_time,GET,Reports,FTP Transfer,True,2026-07-06T05:12:26.917Z
+How can I view a summary report for FTP transfers?,/app/api/reports/summary/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:29.591Z
+fetch FTP transfer summary report,/app/api/reports/summary/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:29.591Z
+How can I check the availability summary for FTP transfers?,/app/api/reports/availability_summary/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:31.944Z
+fetch FTP transfer availability report,/app/api/reports/availability_summary/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:31.944Z
+How can I see detailed outage reports for FTP transfers?,/app/api/reports/outages/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:34.335Z
+fetch FTP transfer outage report,/app/api/reports/outages/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:34.335Z
+How can I view FTP transfer trends over time?,/app/api/reports/trend/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:36.792Z
+fetch FTP transfer trend report,/app/api/reports/trend/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:36.792Z
+How can I view FTP transfer performance reports?,/app/api/reports/performance/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:39.383Z
+get FTP transfer performance statistics,/app/api/reports/performance/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T05:12:39.383Z
+How can I view the summary report for my NTP servers?,/app/api/reports/summary/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:41.870Z
+fetch NTP server summary report,/app/api/reports/summary/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:41.870Z
+How can I check the availability summary for my NTP servers?,/app/api/reports/availability_summary/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:44.217Z
+fetch NTP server availability summary report,/app/api/reports/availability_summary/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:44.217Z
+How can I view outage reports for my NTP servers?,/app/api/reports/outages/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:46.697Z
+fetch NTP server outage history report,/app/api/reports/outages/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:46.697Z
+How can I view the trend report for my NTP servers?,/app/api/reports/trend/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:49.138Z
+fetch NTP server trend report data,/app/api/reports/trend/type/NTP,GET,Reports,NTP Server,True,2026-07-06T05:12:49.138Z
+How can I see the DNS server outage report for my monitors?,/app/api/reports/outages/type/DNS,GET,Reports,DNS Server,True,2026-07-06T05:12:51.715Z
+fetch DNS server outage details report,/app/api/reports/outages/type/DNS,GET,Reports,DNS Server,True,2026-07-06T05:12:51.715Z
+How can I view performance reports for my DNS servers?,/app/api/reports/performance/type/DNS,GET,Reports,DNS Server,True,2026-07-06T05:12:54.431Z
+get DNS server performance report,/app/api/reports/performance/type/DNS,GET,Reports,DNS Server,True,2026-07-06T05:12:54.431Z
+How can I check latency summary for different ISPs?,/app/api/reports/summary/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:12:57.187Z
+get ISP latency report summary,/app/api/reports/summary/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:12:57.187Z
+How can I view the latency summary for different ISPs?,/app/api/reports/availability_summary/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:12:59.827Z
+fetch ISP latency availability summary report,/app/api/reports/availability_summary/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:12:59.827Z
+How can I check ISP latency reports for outages?,/app/api/reports/outages/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:13:02.238Z
+fetch ISP outage latency statistics report,/app/api/reports/outages/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:13:02.238Z
+How can I check latency trends by ISP over time?,/app/api/reports/trend/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:13:04.748Z
+get ISP latency trend report,/app/api/reports/trend/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:13:04.748Z
+How can I check latency statistics by ISP for my network?,/app/api/reports/performance/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:13:07.497Z
+fetch ISP performance latency report,/app/api/reports/performance/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T05:13:07.497Z
+How can I view a summary report for my Entra ID Application Monitor?,/app/api/reports/summary/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:10.010Z
+get Entra ID Application Monitor summary report,/app/api/reports/summary/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:10.010Z
+How can I check the availability summary for my Entra ID application monitors?,/app/api/reports/availability_summary/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:12.546Z
+get Entra ID application monitor availability summary report,/app/api/reports/availability_summary/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:12.546Z
+How can I view the trend report for Entra ID Application Monitor?,/app/api/reports/trend/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:15.182Z
+get Entra ID Application Monitor trend report,/app/api/reports/trend/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:15.182Z
+How can I see performance stats for my Entra ID Application Monitor?,/app/api/reports/performance/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:17.684Z
+get performance report for Entra ID Application Monitor,/app/api/reports/performance/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T05:13:17.684Z
+How can I view performance reports for my APM Insight applications?,/app/api/reports/performance/type/APM-Insight-Application,GET,Reports,APM Reports,True,2026-07-06T05:13:20.080Z
+get performance report for APM Insight Application,/app/api/reports/performance/type/APM-Insight-Application,GET,Reports,APM Reports,True,2026-07-06T05:13:20.080Z
+How can I view platform details for a specific mobile application in APM?,/app/api/reports/child-details/APM-Mobile/platformDetails/%7Bid%7D,GET,Reports,Mobile APM,True,2026-07-06T05:13:22.865Z
+get mobile apm platform details report by id,/app/api/reports/child-details/APM-Mobile/platformDetails/%7Bid%7D,GET,Reports,Mobile APM,True,2026-07-06T05:13:22.865Z
+How can I view the performance report for my OpenTelemetry services?,/app/api/reports/performance/type/APM-OTEL-SERVICEAPM-OTEL-SERVICE,GET,Reports,OpenTelemetry Service,True,2026-07-06T05:13:25.441Z
+fetch OpenTelemetry Service performance report,/app/api/reports/performance/type/APM-OTEL-SERVICEAPM-OTEL-SERVICE,GET,Reports,OpenTelemetry Service,True,2026-07-06T05:13:25.441Z
+How can I view performance reports for Real User Monitoring applications?,/app/api/reports/performance/type/RUM-Application,GET,Reports,Real User Monitor,True,2026-07-06T05:13:28.069Z
+get RUM application performance report,/app/api/reports/performance/type/RUM-Application,GET,Reports,Real User Monitor,True,2026-07-06T05:13:28.069Z
+How can I view mapped custom attributes for template monitors?,/app/api/custom_attributes/template_monitors,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:30.454Z
+list custom attribute mappings for template monitors report,/app/api/custom_attributes/template_monitors,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:30.454Z
+How can I view detailed attribute reports for a specific website?,/app/api/reports/attribute/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:13:32.963Z
+get website attribute report by ID,/app/api/reports/attribute/%7Bid%7D,GET,Reports,Website,True,2026-07-06T05:13:32.963Z
+How can I view all custom attribute templates in the reports section?,/app/api/custom_attributes/list_custom_templates,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:35.576Z
+list custom attribute templates mapped under reports,/app/api/custom_attributes/list_custom_templates,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:35.576Z
+How can I see the average DNS time for a specific custom attribute?,/app/api/reports/top_n/Custom-Attributes/%7Bid%7D/avg%20of%20dns%20time,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:38.001Z
+fetch top N average dns time report for custom attributes,/app/api/reports/top_n/Custom-Attributes/%7Bid%7D/avg%20of%20dns%20time,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:38.001Z
+How can I view a summary report of custom attributes in Site24x7?,/app/api/reports/summary/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:40.549Z
+fetch custom attributes summary report,/app/api/reports/summary/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:40.549Z
+How can I view the availability summary for custom attributes?,/app/api/reports/availability_summary/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:42.878Z
+fetch custom attributes availability summary report,/app/api/reports/availability_summary/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:42.878Z
+How can I view outage reports based on custom attributes in Site24x7?,/app/api/reports/outages/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:45.382Z
+fetch mapped custom attribute outage report,/app/api/reports/outages/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:45.382Z
+How can I view the trend report for custom attributes?,/app/api/reports/trend/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:47.764Z
+fetch custom attributes trend report,/app/api/reports/trend/type/Custom-Attributes,GET,Reports,Custom Attributes BETA,True,2026-07-06T05:13:47.764Z
+How can I check the availability summary for a specific network device?,/app/api/reports/child/availability_summary/NETWORK/%7Bid%7D,GET,Reports,Network Device,True,2026-07-06T05:13:50.354Z
+fetch network device availability summary report,/app/api/reports/child/availability_summary/NETWORK/%7Bid%7D,GET,Reports,Network Device,True,2026-07-06T05:13:50.354Z
+How can I see the capacity planning forecast for my servers?,/app/api/reports/forecast/%7Bid%7D,GET,Reports,Capacity Planning,True,2026-07-06T05:13:52.810Z
+get capacity planning forecast report by ID,/app/api/reports/forecast/%7Bid%7D,GET,Reports,Capacity Planning,True,2026-07-06T05:13:52.810Z
+How can I see which servers have the highest CPU usage?,/app/api/reports/top_n/SERVER/server_cpu,GET,Reports,Server Monitor,True,2026-07-06T05:13:55.423Z
+fetch top server CPU usage report,/app/api/reports/top_n/SERVER/server_cpu,GET,Reports,Server Monitor,True,2026-07-06T05:13:55.423Z
+How can I see which servers are using the most memory?,/app/api/reports/top_n/SERVER/server_memory,GET,Reports,Server Monitor,True,2026-07-06T05:13:57.904Z
+fetch top N servers by memory usage report,/app/api/reports/top_n/SERVER/server_memory,GET,Reports,Server Monitor,True,2026-07-06T05:13:57.904Z
+How can I see which servers have the highest disk usage?,/app/api/reports/top_n/SERVER/server_disk,GET,Reports,Server Monitor,True,2026-07-06T05:14:00.366Z
+get top N server disk usage report,/app/api/reports/top_n/SERVER/server_disk,GET,Reports,Server Monitor,True,2026-07-06T05:14:00.366Z
+How can I see which servers have the highest CPU idle percentage?,/app/api/reports/top_n/SERVER/cpu_idleper,GET,Reports,Server Monitor,True,2026-07-06T05:14:02.801Z
+fetch top servers with most CPU idle time report,/app/api/reports/top_n/SERVER/cpu_idleper,GET,Reports,Server Monitor,True,2026-07-06T05:14:02.801Z
+How can I see the top servers with highest 15-minute system load?,/app/api/reports/top_n/SERVER/system_load_15min,GET,Reports,Server Monitor,True,2026-07-06T05:14:05.248Z
+fetch server monitor report top N system load 15min,/app/api/reports/top_n/SERVER/system_load_15min,GET,Reports,Server Monitor,True,2026-07-06T05:14:05.248Z
+How can I see the servers with the highest processor queue length?,/app/api/reports/top_n/SERVER/processor_queue_length,GET,Reports,Server Monitor,True,2026-07-06T05:14:07.845Z
+fetch top server processor queue length report,/app/api/reports/top_n/SERVER/processor_queue_length,GET,Reports,Server Monitor,True,2026-07-06T05:14:07.845Z
+How can I see the servers with the highest CPU usage?,/app/api/reports/top_n/SERVER/processor_utility,GET,Reports,Server Monitor,True,2026-07-06T05:14:10.355Z
+fetch top N processor utility report for server monitors,/app/api/reports/top_n/SERVER/processor_utility,GET,Reports,Server Monitor,True,2026-07-06T05:14:10.355Z
+How can I view the top CPU-consuming processes on my servers?,/app/api/reports/top_n/SERVER/process_cpu,GET,Reports,Server Monitor,True,2026-07-06T05:14:12.775Z
+fetch server process CPU usage report,/app/api/reports/top_n/SERVER/process_cpu,GET,Reports,Server Monitor,True,2026-07-06T05:14:12.775Z
+How can I see which server processes are using the most memory?,/app/api/reports/top_n/SERVER/process_memory,GET,Reports,Server Monitor,True,2026-07-06T05:14:15.310Z
+get top N processes by memory usage in server monitor reports,/app/api/reports/top_n/SERVER/process_memory,GET,Reports,Server Monitor,True,2026-07-06T05:14:15.310Z
+How can I see which servers have the highest visible memory usage?,/app/api/reports/top_n/SERVER/used_visible_memory,GET,Reports,Server Monitor,True,2026-07-06T05:14:17.863Z
+list top servers by used visible memory report,/app/api/reports/top_n/SERVER/used_visible_memory,GET,Reports,Server Monitor,True,2026-07-06T05:14:17.863Z
+How can I see which servers have the most free memory?,/app/api/reports/top_n/SERVER/free_visible_memory,GET,Reports,Server Monitor,True,2026-07-06T05:14:20.296Z
+list top servers by free visible memory report,/app/api/reports/top_n/SERVER/free_visible_memory,GET,Reports,Server Monitor,True,2026-07-06T05:14:20.296Z
+How can I view the servers with the highest disk idle percentage?,/app/api/reports/top_n/SERVER/disk_idleper,GET,Reports,Server Monitor,True,2026-07-06T05:14:22.713Z
+get top disk idle servers report in server monitor,/app/api/reports/top_n/SERVER/disk_idleper,GET,Reports,Server Monitor,True,2026-07-06T05:14:22.713Z
+How can I see which servers have the busiest disk usage right now?,/app/api/reports/top_n/SERVER/disk_busyper,GET,Reports,Server Monitor,True,2026-07-06T05:14:25.499Z
+fetch top N servers with high disk busy percentage in server monitoring reports,/app/api/reports/top_n/SERVER/disk_busyper,GET,Reports,Server Monitor,True,2026-07-06T05:14:25.499Z
+How can I see which servers have the highest disk usage?,/app/api/reports/top_n/SERVER/part_disk_used,GET,Reports,Server Monitor,True,2026-07-06T05:14:28.156Z
+get top servers by partition disk used in server monitor reports,/app/api/reports/top_n/SERVER/part_disk_used,GET,Reports,Server Monitor,True,2026-07-06T05:14:28.156Z
+How can I see which servers are using the most network bandwidth?,/app/api/reports/top_n/SERVER/nw_bandwidth,GET,Reports,Server Monitor,True,2026-07-06T05:14:30.586Z
+get top servers by network bandwidth usage report,/app/api/reports/top_n/SERVER/nw_bandwidth,GET,Reports,Server Monitor,True,2026-07-06T05:14:30.586Z
+How can I view the summary report for all monitored servers?,/app/api/reports/summary/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:33.035Z
+fetch server monitor summary report,/app/api/reports/summary/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:33.035Z
+How can I view the availability summary for my monitored servers?,/app/api/reports/availability_summary/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:35.475Z
+fetch server monitor availability summary report,/app/api/reports/availability_summary/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:35.475Z
+How can I view server outage reports in Site24x7?,/app/api/reports/outages/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:38.020Z
+get detailed server downtime report from Server Monitor,/app/api/reports/outages/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:38.020Z
+How can I view server performance trends over time?,/app/api/reports/trend/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:40.378Z
+get server monitoring trend report,/app/api/reports/trend/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:40.378Z
+How can I view performance reports for my monitored servers?,/app/api/reports/performance/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:42.929Z
+get server performance report from Site24x7,/app/api/reports/performance/type/SERVER,GET,Reports,Server Monitor,True,2026-07-06T05:14:42.929Z
+How can I view server capacity planning forecasts?,/app/api/reports/forecast/type/SERVER,GET,Reports,Capacity Planning,True,2026-07-06T05:14:45.695Z
+fetch server forecast report for capacity planning,/app/api/reports/forecast/type/SERVER,GET,Reports,Capacity Planning,True,2026-07-06T05:14:45.695Z
+How can I view network details for an agentless server?,/app/api/reports/child-details/AGENTLESSSERVER/NetworkDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:48.318Z
+fetch agentless server network report by monitor id,/app/api/reports/child-details/AGENTLESSSERVER/NetworkDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:48.318Z
+How can I view process details for my agentless server?,/app/api/reports/child-details/AGENTLESSSERVER/ProcessDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:51.018Z
+get child process details for agentless server report,/app/api/reports/child-details/AGENTLESSSERVER/ProcessDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:51.018Z
+How can I view Windows services details for an agentless server?,/app/api/reports/child-details/AGENTLESSSERVER/WindowsServices/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:53.463Z
+fetch child report for Windows services on agentless servers,/app/api/reports/child-details/AGENTLESSSERVER/WindowsServices/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:53.463Z
+How can I view detailed Linux service information for my agentless servers?,/app/api/reports/child-details/AGENTLESSSERVER/LinuxServiceDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:56.023Z
+fetch agentless server Linux service details report,/app/api/reports/child-details/AGENTLESSSERVER/LinuxServiceDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:56.023Z
+How can I view disk details for my agentless server?,/app/api/reports/child-details/AGENTLESSSERVER/DiskDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:58.764Z
+get agentless server disk details report,/app/api/reports/child-details/AGENTLESSSERVER/DiskDetails/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:14:58.764Z
+How can I view detailed interface information for my agentless server?,/app/api/reports/child-details/AGENTLESSSERVER/INTERFACE/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:15:01.390Z
+fetch agentless server interface child details report,/app/api/reports/child-details/AGENTLESSSERVER/INTERFACE/%7Bid%7D,GET,Reports,Server - Agentless,True,2026-07-06T05:15:01.390Z
+How can I view the top agentless servers by response time?,/app/api/reports/top_n/AGENTLESSSERVER/response_time,GET,Reports,Server - Agentless,True,2026-07-06T05:15:03.819Z
+list agentless server response time rankings,/app/api/reports/top_n/AGENTLESSSERVER/response_time,GET,Reports,Server - Agentless,True,2026-07-06T05:15:03.819Z
+How can I check the top agentless servers with the highest packet loss?,/app/api/reports/top_n/AGENTLESSSERVER/packet_loss,GET,Reports,Server - Agentless,True,2026-07-06T05:15:06.347Z
+list packet loss statistics for agentless servers report,/app/api/reports/top_n/AGENTLESSSERVER/packet_loss,GET,Reports,Server - Agentless,True,2026-07-06T05:15:06.347Z
+How can I see the servers with the highest CPU usage in agentless monitoring?,/app/api/reports/top_n/AGENTLESSSERVER/cpu_used_percent,GET,Reports,Server - Agentless,True,2026-07-06T05:15:08.762Z
+fetch top agentless server CPU used percent report,/app/api/reports/top_n/AGENTLESSSERVER/cpu_used_percent,GET,Reports,Server - Agentless,True,2026-07-06T05:15:08.762Z
