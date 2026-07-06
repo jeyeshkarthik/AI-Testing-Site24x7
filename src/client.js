@@ -672,6 +672,15 @@
 
     html += '<div class="try-input-group">';
     html += '<label>Query String (Optional)</label>';
+    
+    // Intelligent Tip for Reports
+    if (api.module === 'Reports' || rawEp.indexOf('/reports/') > -1) {
+      html += '<p style="font-size:11px; color:#6b7280; margin:0 0 6px 0; line-height:1.4;">' +
+              '<strong>💡 Tip:</strong> Reports APIs usually require a <code>period</code> parameter.<br>' +
+              'Type <code>period=1</code> (Today), <code>period=9</code> (Last 24 Hrs), or <code>period=10</code> (Last 7 Days).' +
+              '</p>';
+    }
+    
     html += '<input type="text" id="query-' + apiId + '" placeholder="?period=1&status=up" />';
     html += '</div>';
 
