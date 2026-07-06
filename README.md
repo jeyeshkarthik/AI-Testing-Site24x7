@@ -4,13 +4,13 @@
 
 An AI-powered search interface and development testing tool for exploring, executing, and testing all **2,528 API endpoints** across the **Admin** and **Reports** modules of the [Site24x7 API](https://www.site24x7.com/app/demo). 
 
-### 🤖 Generative AI Agent
-The embedded AI Chat Agent uses conversational memory to understand vague queries and instantly generate executable API JSON payloads right in the browser.
-![AI Agent](assets/ai_agent.png)
-
 ### 🔌 Live API Execution
 The secure Node.js proxy server tunnels requests to Site24x7, completely bypassing CORS and allowing you to perform live REST mutations seamlessly from the UI.
 ![Live API Testing](assets/live_testing.png) 
+
+### 🤖 Generative AI Agent
+The embedded AI Chat Agent uses conversational memory to understand vague queries and instantly generate executable API JSON payloads right in the browser.
+![AI Agent](assets/ai_agent.png)
 
 This document outlines the entire development lifecycle of the Site24x7 AI Directory, broken down across distinct implementation phases. The architecture utilizes a local Node.js proxy and build pipeline coupled with a vanilla, zero-dependency (almost) client-side frontend to achieve a lightning-fast, offline-capable search engine and execution layer.
 
@@ -37,7 +37,6 @@ This builds `index.html` from the source data and serves it at **http://localhos
 ## 📁 Project Structure
 
 ```
-├── site24x7_Admin_API.xlsx           ← Source of truth for Admin module
 ├── reports_subsections_list.txt      ← Source of truth for Reports hierarchy
 ├── site24x7_compact.json             ← Minified JSON database of all 2,528 endpoints
 ├── site24x7_Dataset.csv              ← 7,148 synthetically generated semantic queries
