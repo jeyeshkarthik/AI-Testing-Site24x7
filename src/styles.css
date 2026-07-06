@@ -1221,73 +1221,36 @@
   body.dark-mode .ai-act-payload { background: #0f172a; color: #e2e8f0; }
   body.dark-mode .ai-act-desc { color: #e2e8f0; }
   body.dark-mode .ai-act-footer { background: #1e293b; border-top-color: #475569; }
+  /* New Accordion Sidebar Styles */
+  .sidebar-submodule {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px 8px 30px;
+    font-size: 13px;
+    color: #4b5563;
+    cursor: pointer;
+    background: #f8fafc;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .sidebar-submodule:hover { background: #e2e8f0; color: #1e293b; }
+  .sidebar-submodule.active { background: #eff6ff; color: #1d4ed8; font-weight: 500; border-left-color: #3b82f6; }
+  
+  .ssm-name { flex: 1; }
+  .ssm-count {
+    background: #cbd5e1;
+    color: #334155;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .sidebar-submodule.active .ssm-count { background: #bfdbfe; color: #1d4ed8; }
 
-     / *   N e w   A c c o r d i o n   S i d e b a r   S t y l e s   * / 
-     . s i d e b a r - m o d u l e   { 
-         d i s p l a y :   f l e x ; 
-         a l i g n - i t e m s :   c e n t e r ; 
-         p a d d i n g :   8 p x   1 5 p x   8 p x   1 2 p x ; 
-         f o n t - s i z e :   1 3 p x ; 
-         c o l o r :   # 4 b 5 5 6 3 ; 
-         c u r s o r :   p o i n t e r ; 
-         b o r d e r - l e f t :   3 p x   s o l i d   t r a n s p a r e n t ; 
-         b o r d e r - b o t t o m :   1 p x   s o l i d   # f 3 f 4 f 6 ; 
-         t r a n s i t i o n :   b a c k g r o u n d   0 . 1 5 s ; 
-         u s e r - s e l e c t :   n o n e ; 
-         f o n t - w e i g h t :   5 0 0 ; 
-     } 
-     . s i d e b a r - m o d u l e : h o v e r   {   b a c k g r o u n d :   # f 3 f 4 f 6 ;   } 
-     . s i d e b a r - m o d u l e . a c t i v e   {   b a c k g r o u n d :   # e f f 6 f f ;   b o r d e r - l e f t - c o l o r :   # 1 d 4 e d 8 ;   c o l o r :   # 1 d 4 e d 8 ;   } 
-     . s m - n a m e   {   f l e x :   1 ;   } 
-     . s m - c o u n t   { 
-         b a c k g r o u n d :   # e 5 e 7 e b ; 
-         c o l o r :   # 4 b 5 5 6 3 ; 
-         f o n t - s i z e :   1 0 p x ; 
-         p a d d i n g :   2 p x   6 p x ; 
-         b o r d e r - r a d i u s :   1 0 p x ; 
-         m a r g i n - r i g h t :   8 p x ; 
-     } 
-     . s i d e b a r - m o d u l e . a c t i v e   . s m - c o u n t   {   b a c k g r o u n d :   # d b e a f e ;   c o l o r :   # 1 d 4 e d 8 ;   } 
-     . s m - c a r e t   { 
-         f o n t - s i z e :   1 0 p x ; 
-         c o l o r :   # 9 c a 3 a f ; 
-         t r a n s i t i o n :   t r a n s f o r m   0 . 2 s ; 
-     } 
-     . s i d e b a r - m o d u l e . a c t i v e   . s m - c a r e t   {   c o l o r :   # 1 d 4 e d 8 ;   } 
- 
-     . s i d e b a r - s u b m o d u l e   { 
-         d i s p l a y :   f l e x ; 
-         a l i g n - i t e m s :   c e n t e r ; 
-         p a d d i n g :   6 p x   1 5 p x   6 p x   3 0 p x ; 
-         f o n t - s i z e :   1 2 p x ; 
-         c o l o r :   # 6 b 7 2 8 0 ; 
-         c u r s o r :   p o i n t e r ; 
-         b a c k g r o u n d :   # f 9 f a f b ; 
-         b o r d e r - l e f t :   3 p x   s o l i d   t r a n s p a r e n t ; 
-         t r a n s i t i o n :   b a c k g r o u n d   0 . 1 5 s ; 
-         u s e r - s e l e c t :   n o n e ; 
-     } 
-     . s i d e b a r - s u b m o d u l e : h o v e r   {   b a c k g r o u n d :   # f 3 f 4 f 6 ;   c o l o r :   # 3 7 4 1 5 1 ;   } 
-     . s i d e b a r - s u b m o d u l e . a c t i v e   {   b a c k g r o u n d :   # e f f 6 f f ;   c o l o r :   # 1 d 4 e d 8 ;   f o n t - w e i g h t :   5 0 0 ;   b o r d e r - l e f t - c o l o r :   # 9 3 c 5 f d ;   } 
-     . s s m - n a m e   {   f l e x :   1 ;   } 
-     . s s m - c o u n t   { 
-         b a c k g r o u n d :   # e 5 e 7 e b ; 
-         c o l o r :   # 6 b 7 2 8 0 ; 
-         f o n t - s i z e :   9 p x ; 
-         p a d d i n g :   1 p x   5 p x ; 
-         b o r d e r - r a d i u s :   1 0 p x ; 
-     } 
-     . s i d e b a r - s u b m o d u l e . a c t i v e   . s s m - c o u n t   {   b a c k g r o u n d :   # b f d b f e ;   c o l o r :   # 1 d 4 e d 8 ;   } 
- 
-     b o d y . d a r k - m o d e   . s i d e b a r - m o d u l e   {   b o r d e r - b o t t o m - c o l o r :   # 1 e 2 9 3 b ;   c o l o r :   # c b d 5 e 1 ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - m o d u l e : h o v e r   {   b a c k g r o u n d :   # 3 3 4 1 5 5 ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - m o d u l e . a c t i v e   {   b a c k g r o u n d :   # 1 e 3 a 8 a ;   b o r d e r - l e f t - c o l o r :   # 3 b 8 2 f 6 ;   c o l o r :   # b f d b f e ;   } 
-     b o d y . d a r k - m o d e   . s m - c o u n t   {   b a c k g r o u n d :   # 3 3 4 1 5 5 ;   c o l o r :   # 9 4 a 3 b 8 ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - m o d u l e . a c t i v e   . s m - c o u n t   {   b a c k g r o u n d :   # 1 e 4 0 a f ;   c o l o r :   # b f d b f e ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - s u b m o d u l e   {   b a c k g r o u n d :   # 0 f 1 7 2 a ;   c o l o r :   # 9 4 a 3 b 8 ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - s u b m o d u l e : h o v e r   {   b a c k g r o u n d :   # 1 e 2 9 3 b ;   c o l o r :   # c b d 5 e 1 ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - s u b m o d u l e . a c t i v e   {   b a c k g r o u n d :   # 1 7 2 5 5 4 ;   c o l o r :   # 9 3 c 5 f d ;   b o r d e r - l e f t - c o l o r :   # 2 5 6 3 e b ;   } 
-     b o d y . d a r k - m o d e   . s s m - c o u n t   {   b a c k g r o u n d :   # 1 e 2 9 3 b ;   c o l o r :   # 9 4 a 3 b 8 ;   } 
-     b o d y . d a r k - m o d e   . s i d e b a r - s u b m o d u l e . a c t i v e   . s s m - c o u n t   {   b a c k g r o u n d :   # 1 e 4 0 a f ;   c o l o r :   # 9 3 c 5 f d ;   } 
-  
- 
+  body.dark-mode .sidebar-submodule { background: #0f172a; color: #94a3b8; border-bottom-color: #1e293b; }
+  body.dark-mode .sidebar-submodule:hover { background: #1e293b; color: #e2e8f0; }
+  body.dark-mode .sidebar-submodule.active { background: #172554; color: #93c5fd; border-left-color: #2563eb; }
+  body.dark-mode .ssm-count { background: #334155; color: #cbd5e1; }
+  body.dark-mode .sidebar-submodule.active .ssm-count { background: #1e40af; color: #93c5fd; }

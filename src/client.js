@@ -125,8 +125,8 @@
         apiId: apiId,
         endpoint: api.endpoint,
         method: api.method,
-        sheet: api.sheet,
-        subFeature: api.subFeature,
+        module: api.module,
+        subModule: api.subModule,
         description: api.description,
         markedCorrect: !!markedCorrect,
         addedAt: new Date().toISOString()
@@ -172,7 +172,7 @@
   if (TFIDF_DB) {
     apis.forEach(function(api) {
       var allText = [
-        api.endpoint, api.subFeature, api.sheet, api.description, api.summaryText, api.searchText,
+        api.endpoint, api.subModule, api.module, api.description, api.summaryText, api.searchText,
         (api.responseFields||[]).join(' '), (api.requestFields||[]).join(' ')
       ].join(' ');
       api._tokens = tokenize(allText);
@@ -208,18 +208,18 @@
     }
 
     tokens.forEach(function(tok) {
-      if (api.endpoint.toLowerCase().indexOf(tok) >= 0) s += 12;
-      if (api.subFeature.toLowerCase().indexOf(tok) >= 0) s += 10;
-      if (api.sheet.toLowerCase().indexOf(tok) >= 0) s += 8;
-      if (api.description.toLowerCase().indexOf(tok) >= 0) s += 6;
+      if (api.endpoint && api.endpoint.toLowerCase().indexOf(tok) >= 0) s += 12;
+      if (api.subModule && api.subModule.toLowerCase().indexOf(tok) >= 0) s += 10;
+      if (api.module && api.module.toLowerCase().indexOf(tok) >= 0) s += 8;
+      if (api.description && api.description.toLowerCase().indexOf(tok) >= 0) s += 6;
       if (api.responseFields && api.responseFields.some(function(f){ return f.toLowerCase().indexOf(tok)>=0; })) s += 7;
       if (api.requestFields && api.requestFields.some(function(f){ return f.toLowerCase().indexOf(tok)>=0; })) s += 5;
       if (api.summaryText && api.summaryText.toLowerCase().indexOf(tok)>=0) s += 4;
       if (api.searchText && api.searchText.indexOf(tok)>=0) s += 1;
     });
-    if (api.subFeature.toLowerCase().indexOf(q)>=0) s += 20;
-    if (api.description.toLowerCase().indexOf(q)>=0) s += 15;
-    if (api.endpoint.toLowerCase().indexOf(q)>=0) s += 18;
+    if (api.subModule && api.subModule.toLowerCase().indexOf(q)>=0) s += 20;
+    if (api.description && api.description.toLowerCase().indexOf(q)>=0) s += 15;
+    if (api.endpoint && api.endpoint.toLowerCase().indexOf(q)>=0) s += 18;
     return s;
   }
 
@@ -244,16 +244,16 @@
     var el = document.getElementById('sidebarSheets');
     el.innerHTML = '';
     var allDiv = document.createElement('div');
-    allDiv.className = 'sidebar-module' + (activeModule==='ALL'?' active':'');
-    allDiv.innerHTML = '<span class="sm-name">All Modules</span><span class="sm-count">'+apis.length+'</span><span class="sm-caret" style="visibility:hidden;">▶</span>';
+    allDiv.className = 'sidebar-item' + (activeModule==='ALL'?' active':'');
+    allDiv.innerHTML = '<span class="si-name">All Modules</span><span class="si-count">'+apis.length+'</span><span class="si-caret" style="visibility:hidden;font-size:10px;margin-left:8px;">▶</span>';
     allDiv.addEventListener('click', function(){ setModule('ALL', 'ALL'); });
     el.appendChild(allDiv);
 
     Object.keys(modules).forEach(function(mod) {
       var d = document.createElement('div');
       var isModActive = activeModule === mod;
-      d.className = 'sidebar-module' + (isModActive ? ' active' : '');
-      d.innerHTML = '<span class="sm-name">'+esc(mod)+'</span><span class="sm-count">'+(moduleCounts[mod]||0)+'</span><span class="sm-caret">' + (isModActive ? '▼' : '▶') + '</span>';
+      d.className = 'sidebar-item' + (isModActive ? ' active' : '');
+      d.innerHTML = '<span class="si-name">'+esc(mod)+'</span><span class="si-count">'+(moduleCounts[mod]||0)+'</span><span class="si-caret" style="font-size:10px;margin-left:8px;color:#9ca3af;transition:transform 0.2s;' + (isModActive ? 'color:#1d4ed8;' : '') + '">' + (isModActive ? '▼' : '▶') + '</span>';
       d.addEventListener('click', function(){ 
           setModule(isModActive && activeSubModule === 'ALL' ? 'ALL' : mod, 'ALL'); 
       });
@@ -489,7 +489,7 @@
             '<span class="rc-endpoint">'+highlight(api.endpoint, tokens)+'</span>' +
             '<button class="copy-endpoint-btn" onclick="event.stopPropagation(); navigator.clipboard.writeText(\''+esc(api.endpoint)+'\'); this.innerHTML=\'&#10004;\'; setTimeout(()=>this.innerHTML=\'&#128203;\', 2000)" title="Copy Endpoint">&#128203;</button>' +
             '<span class="rc-client-tag">Client</span>' +
-            '<span class="rc-module-tag">'+esc(api.sheet.toUpperCase().replace(/ /g,'_'))+'</span>' +
+            '<span class="rc-module-tag">'+esc(api.module.toUpperCase().replace(/ /g,'_'))+'</span>' +
             (score > 0 ? '<span style="margin-left:auto; font-size:11px; color:#9ca3af; font-family:monospace;">' + (score <= 1.05 ? Math.round(score * 100) + '% Match' : 'Score: ' + Math.round(score)) + '</span>' : '') +
           '</div>' +
           '<div class="rc-desc">'+highlight(api.description, tokens)+'</div>' +
@@ -536,22 +536,22 @@
     var countEl = document.getElementById('resultCount');
     if (!window.aiExtractorLoading) {
       var stype = document.getElementById('searchType').value;
-      if (!query && activeSheet === 'ALL') {
+      if (!query && activeModule === 'ALL') {
         countEl.textContent = total + ' endpoint(s) — browse all modules';
       } else if (query) {
         countEl.textContent = total + ' result(s) — ' + (stype === 'semantic' ? 'semantic search' : 'keyword search');
       } else {
-        countEl.textContent = total + ' endpoint(s) in ' + activeSheet;
+        countEl.textContent = total + ' endpoint(s) in ' + activeModule + (activeSubModule !== 'ALL' ? ' / ' + activeSubModule : '');
       }
     }
 
-    if (!query && activeSheet === 'ALL') {
+    if (!query && activeModule === 'ALL') {
       // Module overview cards
       html = '<div class="module-grid">';
-      sheets.forEach(function(sheet) {
-        html += '<div class="module-card" onclick="setSheet(this.dataset.s)" data-s="'+esc(sheet)+'">' +
-          '<div class="mc-top"><span class="mc-name">'+esc(sheet)+'</span><span class="mc-count">'+(sheetCounts[sheet]||0)+'</span></div>' +
-          '<p class="mc-desc">'+esc((sheetDesc[sheet]||'').substring(0,140))+'</p>' +
+      Object.keys(modules).forEach(function(mod) {
+        html += '<div class="module-card" onclick="setModule(this.dataset.m, \'ALL\')" data-m="'+esc(mod)+'">' +
+          '<div class="mc-top"><span class="mc-name">'+esc(mod)+'</span><span class="mc-count">'+(moduleCounts[mod]||0)+'</span></div>' +
+          '<p class="mc-desc">Click to browse ' + esc(mod) + ' endpoints.</p>' +
         '</div>';
       });
       html += '</div>';
