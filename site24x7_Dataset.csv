@@ -3133,3 +3133,533 @@ How can I view the outage report for a specific website?,/app/api/reports/outage
 fetch website outages report by monitor ID,/app/api/reports/outages/%7Bid%7D,GET,Reports,Website,True,2026-07-06T04:47:03.915Z
 How can I view outage reports for my API Gateway stages?,/app/api/reports/outages/type/APIGATEWAY-STAGE,GET,Reports,API Gateway Stage,True,2026-07-06T04:47:06.252Z
 get API Gateway Stage outage report,/app/api/reports/outages/type/APIGATEWAY-STAGE,GET,Reports,API Gateway Stage,True,2026-07-06T04:47:06.252Z
+How can I view outage reports for my API Gateway routes?,/app/api/reports/outages/type/APIGATEWAY-ROUTE,GET,Reports,API Gateway Route,True,2026-07-06T04:47:08.900Z
+get outage report for API Gateway Route type,/app/api/reports/outages/type/APIGATEWAY-ROUTE,GET,Reports,API Gateway Route,True,2026-07-06T04:47:08.900Z
+How can I view outage reports for my ECS clusters?,/app/api/reports/outages/type/ECSCLUSTER,GET,Reports,ECS Cluster,True,2026-07-06T04:47:11.505Z
+fetch ECS cluster outage report details,/app/api/reports/outages/type/ECSCLUSTER,GET,Reports,ECS Cluster,True,2026-07-06T04:47:11.505Z
+How can I view outage reports for Elastic File System?,/app/api/reports/outages/type/EFS,GET,Reports,Elastic File System,True,2026-07-06T04:47:13.981Z
+fetch mapped EFS outages report,/app/api/reports/outages/type/EFS,GET,Reports,Elastic File System,True,2026-07-06T04:47:13.981Z
+How can I view outage reports for Simple Email Service?,/app/api/reports/outages/type/SES,GET,Reports,Simple Email Service,True,2026-07-06T04:47:16.445Z
+fetch Simple Email Service outage report SES,/app/api/reports/outages/type/SES,GET,Reports,Simple Email Service,True,2026-07-06T04:47:16.445Z
+How can I view outage reports for my Step Function state machines?,/app/api/reports/outages/type/STEPFUNCTION,GET,Reports,Step Function - State Machine,True,2026-07-06T04:47:18.887Z
+get mapped step function state machine outage report,/app/api/reports/outages/type/STEPFUNCTION,GET,Reports,Step Function - State Machine,True,2026-07-06T04:47:18.887Z
+How can I see which requests were blocked most often by my Web Application Firewall?,/app/api/reports/top_n/WAF/blocked_requests,GET,Reports,Web Application Firewall,True,2026-07-06T04:47:21.634Z
+get top blocked WAF requests report,/app/api/reports/top_n/WAF/blocked_requests,GET,Reports,Web Application Firewall,True,2026-07-06T04:47:21.634Z
+How can I view outage reports for Key Management Service?,/app/api/reports/outages/type/KMS,GET,Reports,Key Management Service,True,2026-07-06T04:47:24.200Z
+fetch KMS outage report details,/app/api/reports/outages/type/KMS,GET,Reports,Key Management Service,True,2026-07-06T04:47:24.200Z
+How can I view the availability summary for my Route 53 Health Checks?,/app/api/reports/availability_summary/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T04:47:26.661Z
+fetch Route 53 Health Check availability summary report,/app/api/reports/availability_summary/type/R53_HEALTHCHECK,GET,Reports,Route 53 Health Check,True,2026-07-06T04:47:26.661Z
+How can I view the summary report for real browser web transactions?,/app/api/reports/summary/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T04:47:28.987Z
+fetch real browser web transaction summary report,/app/api/reports/summary/type/REALBROWSER,GET,Reports,Web Transaction (Browser),True,2026-07-06T04:47:28.987Z
+How can I view the performance trends for synthetic mobile applications?,/app/api/reports/trend/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T04:47:31.366Z
+get mobile rbm trend report synthetic monitoring,/app/api/reports/trend/type/MOBILE_RBM,GET,Reports,Synthetic Mobile Application,True,2026-07-06T04:47:31.366Z
+How can I view outage reports for my REST APIs?,/app/api/reports/outages/type/RESTAPI,GET,Reports,REST API,True,2026-07-06T04:47:33.796Z
+get REST API outage report details,/app/api/reports/outages/type/RESTAPI,GET,Reports,REST API,True,2026-07-06T04:47:33.796Z
+How can I view outage reports for SOAP web services?,/app/api/reports/outages/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T04:47:36.406Z
+get SOAP web service outage report,/app/api/reports/outages/type/SOAP,GET,Reports,SOAP Web Service,True,2026-07-06T04:47:36.406Z
+How can I check the availability summary for my gRPC services?,/app/api/reports/availability_summary/type/GRPC,GET,Reports,gRPC,True,2026-07-06T04:47:38.916Z
+get gRPC availability summary report,/app/api/reports/availability_summary/type/GRPC,GET,Reports,gRPC,True,2026-07-06T04:47:38.916Z
+How can I see outage reports for REST API transactions?,/app/api/reports/outages/type/RESTAPISEQ,GET,Reports,REST API Transaction,True,2026-07-06T04:47:41.447Z
+fetch REST API transaction outage report,/app/api/reports/outages/type/RESTAPISEQ,GET,Reports,REST API Transaction,True,2026-07-06T04:47:41.447Z
+How can I view performance reports for my web application clusters?,/app/api/reports/performance/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T04:47:43.843Z
+fetch application cluster performance metrics reports,/app/api/reports/performance/type/WEB_CLUSTER,GET,Reports,Application Cluster,True,2026-07-06T04:47:43.843Z
+How can I view performance reports for my SaaS browser synthetic tests?,/app/api/reports/performance/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T04:47:46.315Z
+fetch SaaS synthetics browser performance report,/app/api/reports/performance/type/SAAS_APPLICATION,GET,Reports,SaaS Synthetics (Browser),True,2026-07-06T04:47:46.315Z
+How can I view WebSocket traffic trends over time?,/app/api/reports/trend/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T04:47:48.738Z
+get WebSocket trend report for monitored endpoints,/app/api/reports/trend/type/WEBSOCKET,GET,Reports,WebSocket,True,2026-07-06T04:47:48.738Z
+How can I check the availability summary for my SMTP server?,/app/api/reports/availability_summary/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T04:47:51.516Z
+fetch SMTP server availability report,/app/api/reports/availability_summary/type/SMTP,GET,Reports,SMTP Server,True,2026-07-06T04:47:51.516Z
+How can I view the summary report for custom protocol ports?,/app/api/reports/summary/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T04:47:53.950Z
+fetch port custom protocol summary report,/app/api/reports/summary/type/PORT-POP,GET,Reports,Port (Custom Protocol),True,2026-07-06T04:47:53.950Z
+How can I view the performance report for UDP ports?,/app/api/reports/performance/type/UDP,GET,Reports,UDP Port,True,2026-07-06T04:47:56.445Z
+fetch UDP port performance statistics report,/app/api/reports/performance/type/UDP,GET,Reports,UDP Port,True,2026-07-06T04:47:56.445Z
+How can I see all outage reports caused by failed ping checks?,/app/api/reports/outages/type/PING,GET,Reports,Ping,True,2026-07-06T04:47:59.047Z
+fetch ping outage report data,/app/api/reports/outages/type/PING,GET,Reports,Ping,True,2026-07-06T04:47:59.047Z
+How can I view outage reports for FTP transfers?,/app/api/reports/outages/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T04:48:01.904Z
+fetch FTP transfer outage report,/app/api/reports/outages/type/FTP,GET,Reports,FTP Transfer,True,2026-07-06T04:48:01.904Z
+How can I check the time synchronization trends for my NTP servers?,/app/api/reports/trend/type/NTP,GET,Reports,NTP Server,True,2026-07-06T04:48:04.303Z
+get NTP server trend report,/app/api/reports/trend/type/NTP,GET,Reports,NTP Server,True,2026-07-06T04:48:04.303Z
+How can I see DNS server outage reports for my monitors?,/app/api/reports/outages/type/DNS,GET,Reports,DNS Server,True,2026-07-06T04:48:06.675Z
+fetch DNS server outage report details,/app/api/reports/outages/type/DNS,GET,Reports,DNS Server,True,2026-07-06T04:48:06.675Z
+How can I view latency trends for different ISPs?,/app/api/reports/trend/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T04:48:09.309Z
+fetch ISP latency trend report,/app/api/reports/trend/type/ISP,GET,Reports,ISP Latency,True,2026-07-06T04:48:09.309Z
+How can I view the availability summary for Entra ID Application monitors?,/app/api/reports/availability_summary/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T04:48:11.857Z
+get availability summary report for Entra ID Application Monitor,/app/api/reports/availability_summary/type/ENTRAID-APPLICATION,GET,Reports,Entra ID Application Monitor,True,2026-07-06T04:48:11.857Z
+How can I view platform details for a specific mobile app in the APM reports?,/app/api/reports/child-details/APM-Mobile/platformDetails/%7Bid%7D,GET,Reports,Mobile APM,True,2026-07-06T04:48:14.412Z
+fetch mobile APM platform details report for child applications,/app/api/reports/child-details/APM-Mobile/platformDetails/%7Bid%7D,GET,Reports,Mobile APM,True,2026-07-06T04:48:14.412Z
+How can I see the performance report for my OpenTelemetry services?,/app/api/reports/performance/type/APM-OTEL-SERVICEAPM-OTEL-SERVICE,GET,Reports,OpenTelemetry Service,True,2026-07-06T04:48:16.742Z
+fetch mapped OpenTelemetry service performance report,/app/api/reports/performance/type/APM-OTEL-SERVICEAPM-OTEL-SERVICE,GET,Reports,OpenTelemetry Service,True,2026-07-06T04:48:16.742Z
+How can I view performance reports for my real user monitoring applications?,/app/api/reports/performance/type/RUM-Application,GET,Reports,Real User Monitor,True,2026-07-06T04:48:19.269Z
+get real user monitor application performance report,/app/api/reports/performance/type/RUM-Application,GET,Reports,Real User Monitor,True,2026-07-06T04:48:19.269Z
+How can I see the average DNS time for a specific custom attribute?,/app/api/reports/top_n/Custom-Attributes/%7Bid%7D/avg%20of%20dns%20time,GET,Reports,Custom Attributes BETA,True,2026-07-06T04:48:22.633Z
+fetch top N custom attributes by avg DNS time report,/app/api/reports/top_n/Custom-Attributes/%7Bid%7D/avg%20of%20dns%20time,GET,Reports,Custom Attributes BETA,True,2026-07-06T04:48:22.633Z
+How can I see which network devices have the highest data volume?,/app/api/reports/top_n/NETWORKDEVICE/total_volume,GET,Reports,Network Device,True,2026-07-06T04:48:25.076Z
+fetch top network devices by total traffic volume report,/app/api/reports/top_n/NETWORKDEVICE/total_volume,GET,Reports,Network Device,True,2026-07-06T04:48:25.076Z
+How can I see which agentless servers are getting the most incoming traffic?,/app/api/reports/top_n/AGENTLESSSERVER/in_traffic,GET,Reports,Server - Agentless,True,2026-07-06T04:48:27.650Z
+list top agentless server in traffic report,/app/api/reports/top_n/AGENTLESSSERVER/in_traffic,GET,Reports,Server - Agentless,True,2026-07-06T04:48:27.650Z
+How can I check the heartbeat trend report for my monitored devices?,/app/api/reports/trend/type/HEARTBEAT,GET,Reports,Heartbeat Monitoring,True,2026-07-06T04:48:30.784Z
+get heartbeat monitoring trend report,/app/api/reports/trend/type/HEARTBEAT,GET,Reports,Heartbeat Monitoring,True,2026-07-06T04:48:30.784Z
+How can I view the availability summary for my cron jobs?,/app/api/reports/availability_summary/type/CRON,GET,Reports,Cron Monitoring,True,2026-07-06T04:48:33.162Z
+fetch cron monitoring availability summary report,/app/api/reports/availability_summary/type/CRON,GET,Reports,Cron Monitoring,True,2026-07-06T04:48:33.162Z
+How can I see which Exchange Server pages were fulfilled by cache?,/app/api/reports/top_n/MSEXCHANGE/page_requests_fullfilled_by_cache,GET,Reports,Microsoft Exchange Server,True,2026-07-06T04:48:35.706Z
+get top Exchange Server page requests handled by cache report,/app/api/reports/top_n/MSEXCHANGE/page_requests_fullfilled_by_cache,GET,Reports,Microsoft Exchange Server,True,2026-07-06T04:48:35.706Z
+How can I view detailed IIS server application reports for a specific server?,/app/api/reports/child-details/IISSERVER/APPSDETAILREPORT/%7Bid%7D,GET,Reports,Microsoft IIS Server,True,2026-07-06T04:48:38.192Z
+fetch Microsoft IIS Server child application details report,/app/api/reports/child-details/IISSERVER/APPSDETAILREPORT/%7Bid%7D,GET,Reports,Microsoft IIS Server,True,2026-07-06T04:48:38.192Z
+How can I view outage reports for Windows Server Backup?,/app/api/reports/outages/type/WINBACKUP,GET,Reports,Windows Server Backup,True,2026-07-06T04:48:40.517Z
+list Windows Server Backup outage history,/app/api/reports/outages/type/WINBACKUP,GET,Reports,Windows Server Backup,True,2026-07-06T04:48:40.517Z
+How can I view the availability summary for my Microsoft Active Directory servers?,/app/api/reports/availability_summary/type/ADSERVER,GET,Reports,Microsoft Active Directory,True,2026-07-06T04:48:43.056Z
+fetch Active Directory availability summary report,/app/api/reports/availability_summary/type/ADSERVER,GET,Reports,Microsoft Active Directory,True,2026-07-06T04:48:43.056Z
+How can I view the performance trends for my Hadoop clusters?,/app/api/reports/trend/type/HADOOP,GET,Reports,Hadoop Monitoring,True,2026-07-06T04:48:45.439Z
+fetch Hadoop monitoring trend report,/app/api/reports/trend/type/HADOOP,GET,Reports,Hadoop Monitoring,True,2026-07-06T04:48:45.439Z
+How can I view the availability summary report for my SharePoint servers?,/app/api/reports/availability_summary/type/SHAREPOINT,GET,Reports,Microsoft SharePoint Server,True,2026-07-06T04:48:48.258Z
+fetch SharePoint server availability summary report,/app/api/reports/availability_summary/type/SHAREPOINT,GET,Reports,Microsoft SharePoint Server,True,2026-07-06T04:48:48.258Z
+How can I view the availability summary report for my BizTalk Server?,/app/api/reports/availability_summary/type/BIZTALKSERVER,GET,Reports,Microsoft BizTalk Server,True,2026-07-06T04:48:50.643Z
+fetch Microsoft BizTalk Server availability summary report,/app/api/reports/availability_summary/type/BIZTALKSERVER,GET,Reports,Microsoft BizTalk Server,True,2026-07-06T04:48:50.643Z
+How can I view performance reports for my Office 365 services?,/app/api/reports/performance/type/OFFICE365,GET,Reports,Microsoft 365,True,2026-07-06T04:48:53.133Z
+fetch Microsoft 365 performance report OFFICE365,/app/api/reports/performance/type/OFFICE365,GET,Reports,Microsoft 365,True,2026-07-06T04:48:53.133Z
+How can I view the trend report for my Windows Failover Cluster?,/app/api/reports/trend/type/WINDOWSCLUSTER,GET,Reports,Microsoft Failover Cluster,True,2026-07-06T04:48:55.660Z
+fetch Microsoft Failover Cluster trend report data,/app/api/reports/trend/type/WINDOWSCLUSTER,GET,Reports,Microsoft Failover Cluster,True,2026-07-06T04:48:55.660Z
+How can I view Microsoft Entra ID monitor trends over time?,/app/api/reports/trend/type/ENTRAID,GET,Reports,Microsoft Entra ID Monitor,True,2026-07-06T04:48:58.125Z
+fetch Entra ID monitor trend report,/app/api/reports/trend/type/ENTRAID,GET,Reports,Microsoft Entra ID Monitor,True,2026-07-06T04:48:58.125Z
+How can I view a summary report for all plugin integrations?,/app/api/reports/summary/type/PLUGIN,GET,Reports,Plugin Integrations,True,2026-07-06T04:49:00.532Z
+fetch plugin integration summary report,/app/api/reports/summary/type/PLUGIN,GET,Reports,Plugin Integrations,True,2026-07-06T04:49:00.532Z
+How can I view the summary report for my Hadoop NameNode?,/app/api/reports/summary/type/HADOOP_NAMENODE,GET,Reports,Hadoop NameNode,True,2026-07-06T04:49:03.214Z
+fetch Hadoop NameNode summary report,/app/api/reports/summary/type/HADOOP_NAMENODE,GET,Reports,Hadoop NameNode,True,2026-07-06T04:49:03.214Z
+How can I view performance reports for my Hadoop DataNode?,/app/api/reports/performance/type/HADOOP_DATANODE,GET,Reports,Hadoop DataNode,True,2026-07-06T04:49:05.848Z
+fetch Hadoop DataNode performance report,/app/api/reports/performance/type/HADOOP_DATANODE,GET,Reports,Hadoop DataNode,True,2026-07-06T04:49:05.848Z
+How can I view the summary report for server containers?,/app/api/reports/summary/type/SERVER_CONTAINER,GET,Reports,Container,True,2026-07-06T04:49:08.587Z
+fetch container summary report in Site24x7,/app/api/reports/summary/type/SERVER_CONTAINER,GET,Reports,Container,True,2026-07-06T04:49:08.587Z
+How can I view performance reports for Kubernetes nodes?,/app/api/reports/performance/type/KUBERNETES_NODE,GET,Reports,Kubernetes Node,True,2026-07-06T04:49:11.238Z
+get Kubernetes node performance report,/app/api/reports/performance/type/KUBERNETES_NODE,GET,Reports,Kubernetes Node,True,2026-07-06T04:49:11.238Z
+How can I view the trend report for my Kubernetes pods?,/app/api/reports/trend/type/KUBERNETES_POD,GET,Reports,Kubernetes Pod,True,2026-07-06T04:49:13.796Z
+fetch Kubernetes pod performance trends report,/app/api/reports/trend/type/KUBERNETES_POD,GET,Reports,Kubernetes Pod,True,2026-07-06T04:49:13.796Z
+How can I view the trend report for my Kubernetes services?,/app/api/reports/trend/type/KUBERNETES_SERVICES,GET,Reports,Kubernetes Services,True,2026-07-06T04:49:16.425Z
+fetch Kubernetes services trend report,/app/api/reports/trend/type/KUBERNETES_SERVICES,GET,Reports,Kubernetes Services,True,2026-07-06T04:49:16.425Z
+How can I view outage reports for my Kubernetes DaemonSets?,/app/api/reports/outages/type/KUBERNETES_DAEMONSETS,GET,Reports,Kubernetes DaemonSets,True,2026-07-06T04:49:18.997Z
+fetch mapped Kubernetes DaemonSets outages report,/app/api/reports/outages/type/KUBERNETES_DAEMONSETS,GET,Reports,Kubernetes DaemonSets,True,2026-07-06T04:49:18.997Z
+How can I see outage reports for my Kubernetes deployments?,/app/api/reports/outages/type/KUBERNETES_DEPLOYMENTS,GET,Reports,Kubernetes Deployment,True,2026-07-06T04:49:21.810Z
+fetch Kubernetes deployment outage report,/app/api/reports/outages/type/KUBERNETES_DEPLOYMENTS,GET,Reports,Kubernetes Deployment,True,2026-07-06T04:49:21.810Z
+How can I view the availability summary report for my Kubernetes Jobs?,/app/api/reports/availability_summary/type/KUBERNETES_JOB,GET,Reports,Kubernetes Jobs,True,2026-07-06T04:49:24.246Z
+fetch Kubernetes Jobs availability summary report,/app/api/reports/availability_summary/type/KUBERNETES_JOB,GET,Reports,Kubernetes Jobs,True,2026-07-06T04:49:24.246Z
+How can I view the trend reports for Kubernetes Horizontal Pod Autoscaler?,/app/api/reports/trend/type/KUBERNETES_HPA,GET,Reports,Kubernetes Horizontal Pod Autoscaler,True,2026-07-06T04:49:26.679Z
+fetch Kubernetes HPA trend report,/app/api/reports/trend/type/KUBERNETES_HPA,GET,Reports,Kubernetes Horizontal Pod Autoscaler,True,2026-07-06T04:49:26.679Z
+How can I check outage reports for Kubernetes persistent volume claims?,/app/api/reports/outages/type/KUBERNETES_PVC,GET,Reports,Kubernetes Persistent Volume Claim,True,2026-07-06T04:49:29.182Z
+fetch Kubernetes PVC outage history report,/app/api/reports/outages/type/KUBERNETES_PVC,GET,Reports,Kubernetes Persistent Volume Claim,True,2026-07-06T04:49:29.182Z
+How can I check the availability summary for my Kubernetes Persistent Volumes?,/app/api/reports/availability_summary/type/KUBERNETES_PV,GET,Reports,Kubernetes Persistent Volume,True,2026-07-06T04:49:31.653Z
+fetch availability report for Kubernetes PV,/app/api/reports/availability_summary/type/KUBERNETES_PV,GET,Reports,Kubernetes Persistent Volume,True,2026-07-06T04:49:31.653Z
+How can I view outage reports for Kubernetes Ingress resources?,/app/api/reports/outages/type/KUBERNETES_INGRESS,GET,Reports,Kubernetes Ingress,True,2026-07-06T04:49:34.129Z
+fetch mapped Kubernetes Ingress outage report,/app/api/reports/outages/type/KUBERNETES_INGRESS,GET,Reports,Kubernetes Ingress,True,2026-07-06T04:49:34.129Z
+How can I see the trend report for my Kubernetes namespaces?,/app/api/reports/trend/type/KUBERNETES_NAMESPACE,GET,Reports,Kubernetes Namespace,True,2026-07-06T04:49:36.599Z
+fetch Kubernetes namespace performance trends report,/app/api/reports/trend/type/KUBERNETES_NAMESPACE,GET,Reports,Kubernetes Namespace,True,2026-07-06T04:49:36.599Z
+How can I view outage reports for Kubernetes Kube-Proxy?,/app/api/reports/outages/type/KUBERNETES_KUBE_PROXY,GET,Reports,Kube-Proxy,True,2026-07-06T04:49:39.367Z
+fetch kube-proxy outage report details in Site24x7,/app/api/reports/outages/type/KUBERNETES_KUBE_PROXY,GET,Reports,Kube-Proxy,True,2026-07-06T04:49:39.367Z
+How can I view the top CoreDNS health request failures in my Kubernetes cluster?,/app/api/reports/top_n/KUBERNETES_COREDNS/coredns_health_request_failures,GET,Reports,CoreDNS,True,2026-07-06T04:49:42.203Z
+list Kubernetes CoreDNS health request failure reports,/app/api/reports/top_n/KUBERNETES_COREDNS/coredns_health_request_failures,GET,Reports,CoreDNS,True,2026-07-06T04:49:42.203Z
+How can I view the top N Kubernetes kubelet PLEG discard events report?,/app/api/reports/top_n/KUBERNETES_KUBELET/pleg_discard_events,GET,Reports,Kubelet,True,2026-07-06T04:49:44.806Z
+fetch top kubelet PLEG discard events statistics,/app/api/reports/top_n/KUBERNETES_KUBELET/pleg_discard_events,GET,Reports,Kubelet,True,2026-07-06T04:49:44.806Z
+How can I view network adapter details for my Hyper-V server?,/app/api/reports/child-details/HYPERV/HYPERVNETWORKADAPTERDETAILS/%7Bid%7D,GET,Reports,Microsoft Hyper-V Server,True,2026-07-06T04:49:47.580Z
+fetch Hyper-V network adapter child details report,/app/api/reports/child-details/HYPERV/HYPERVNETWORKADAPTERDETAILS/%7Bid%7D,GET,Reports,Microsoft Hyper-V Server,True,2026-07-06T04:49:47.580Z
+How can I view detailed network reports for a specific VMware ESX server?,/app/api/reports/child-details/VMWAREESX/NETWORK/%7Bid%7D,GET,Reports,VMware ESX/ESXi Server,True,2026-07-06T04:49:50.240Z
+fetch VMware ESX server network child details report,/app/api/reports/child-details/VMWAREESX/NETWORK/%7Bid%7D,GET,Reports,VMware ESX/ESXi Server,True,2026-07-06T04:49:50.240Z
+How can I view the availability summary for my VMware ESX hardware?,/app/api/reports/availability_summary/type/VMWAREESX_HARDWARE,GET,Reports,VMware ESX Hardware,True,2026-07-06T04:49:52.705Z
+fetch VMware ESX hardware availability summary report,/app/api/reports/availability_summary/type/VMWAREESX_HARDWARE,GET,Reports,VMware ESX Hardware,True,2026-07-06T04:49:52.705Z
+How can I view disk details for a specific VMware virtual machine?,/app/api/reports/child-details/VMWAREVM/DiskDetails/%7Bid%7D,GET,Reports,VMware VM,True,2026-07-06T04:49:55.118Z
+fetch VMware VM disk usage report by ID,/app/api/reports/child-details/VMWAREVM/DiskDetails/%7Bid%7D,GET,Reports,VMware VM,True,2026-07-06T04:49:55.118Z
+How can I view the top datastore disk usage report?,/app/api/reports/top_n/DATASTORE/ds_disk,GET,Reports,Datastore,True,2026-07-06T04:49:57.928Z
+fetch top N datastore disk statistics report,/app/api/reports/top_n/DATASTORE/ds_disk,GET,Reports,Datastore,True,2026-07-06T04:49:57.928Z
+How can I view the trend report for datastore snapshots?,/app/api/reports/trend/type/DATASTORE_SNAPSHOTS,GET,Reports,Datastore Snapshots,True,2026-07-06T04:50:00.717Z
+list datastore snapshot trends report,/app/api/reports/trend/type/DATASTORE_SNAPSHOTS,GET,Reports,Datastore Snapshots,True,2026-07-06T04:50:00.717Z
+How can I view the summary report for my VMware clusters?,/app/api/reports/summary/type/VMWARECLUSTER,GET,Reports,VMware Cluster,True,2026-07-06T04:50:03.326Z
+fetch VMware cluster summary report,/app/api/reports/summary/type/VMWARECLUSTER,GET,Reports,VMware Cluster,True,2026-07-06T04:50:03.326Z
+How can I view the availability summary for my VMware resource pool?,/app/api/reports/availability_summary/type/VMWARE_RESOURCEPOOL,GET,Reports,VMware Resource Pool,True,2026-07-06T04:50:05.881Z
+fetch VMware resource pool availability summary report,/app/api/reports/availability_summary/type/VMWARE_RESOURCEPOOL,GET,Reports,VMware Resource Pool,True,2026-07-06T04:50:05.881Z
+How can I view the summary report for my Nutanix Cluster?,/app/api/reports/summary/type/NUTANIX_CLUSTER,GET,Reports,Nutanix Cluster,True,2026-07-06T04:50:08.476Z
+fetch Nutanix Cluster summary report details,/app/api/reports/summary/type/NUTANIX_CLUSTER,GET,Reports,Nutanix Cluster,True,2026-07-06T04:50:08.476Z
+How can I see which vCenter sessions have the highest total activity?,/app/api/reports/top_n/VCENTER_SESSIONS/total_sessions,GET,Reports,vCenter Sessions BETA,True,2026-07-06T04:50:11.039Z
+list top vCenter sessions by total number of sessions,/app/api/reports/top_n/VCENTER_SESSIONS/total_sessions,GET,Reports,vCenter Sessions BETA,True,2026-07-06T04:50:11.039Z
+How can I view the availability summary for my Kubernetes cluster?,/app/api/reports/availability_summary/type/KUBERNETES,GET,Reports,Kubernetes,True,2026-07-06T04:50:13.469Z
+fetch Kubernetes availability report summary,/app/api/reports/availability_summary/type/KUBERNETES,GET,Reports,Kubernetes,True,2026-07-06T04:50:13.469Z
+How can I see which Nutanix hosts have the highest disk usage?,/app/api/reports/top_n/NUTANIX_HOST/disk_usage,GET,Reports,Nutanix Host,True,2026-07-06T04:50:15.933Z
+get top nutanix host disk usage report,/app/api/reports/top_n/NUTANIX_HOST/disk_usage,GET,Reports,Nutanix Host,True,2026-07-06T04:50:15.933Z
+How can I view the summary report for Nutanix virtual machines?,/app/api/reports/summary/type/NUTANIX_VM,GET,Reports,Nutanix Virtual Machine,True,2026-07-06T04:50:18.465Z
+fetch Nutanix VM summary report data,/app/api/reports/summary/type/NUTANIX_VM,GET,Reports,Nutanix Virtual Machine,True,2026-07-06T04:50:18.465Z
+How can I see which EC2 instances have sent the most packets?,/app/api/reports/top_n/EC2INSTANCE/packets_sent,GET,Reports,EC2 Instance,True,2026-07-06T04:50:21.057Z
+list top N EC2 instances by packets sent report,/app/api/reports/top_n/EC2INSTANCE/packets_sent,GET,Reports,EC2 Instance,True,2026-07-06T04:50:21.057Z
+How can I view outage reports for my RDS instances?,/app/api/reports/outages/type/RDSINSTANCE,GET,Reports,RDS Instance,True,2026-07-06T04:50:23.418Z
+fetch outage history for RDS Instance reports,/app/api/reports/outages/type/RDSINSTANCE,GET,Reports,RDS Instance,True,2026-07-06T04:50:23.418Z
+How can I view outage reports for my SNS Topics?,/app/api/reports/outages/type/SNSTOPIC,GET,Reports,SNS Topic,True,2026-07-06T04:50:25.812Z
+fetch SNS Topic outage report,/app/api/reports/outages/type/SNSTOPIC,GET,Reports,SNS Topic,True,2026-07-06T04:50:25.812Z
+How can I view outage reports for my classic load balancers?,/app/api/reports/outages/type/LOADBALANCER,GET,Reports,Classic Load Balancer,True,2026-07-06T04:50:28.347Z
+fetch classic load balancer outage history report,/app/api/reports/outages/type/LOADBALANCER,GET,Reports,Classic Load Balancer,True,2026-07-06T04:50:28.347Z
+How can I see the top Application Load Balancers by total hosts?,/app/api/reports/top_n/APPLICATIONLB/totalHosts,GET,Reports,Application Load Balancer,True,2026-07-06T04:50:30.853Z
+fetch top n Application Load Balancer total hosts report,/app/api/reports/top_n/APPLICATIONLB/totalHosts,GET,Reports,Application Load Balancer,True,2026-07-06T04:50:30.853Z
+How can I view the performance trends for my DynamoDB tables?,/app/api/reports/trend/type/DYNAMODB,GET,Reports,DynamoDB Table,True,2026-07-06T04:50:33.436Z
+fetch DynamoDB table trend report,/app/api/reports/trend/type/DYNAMODB,GET,Reports,DynamoDB Table,True,2026-07-06T04:50:33.436Z
+How can I view the top S3 buckets with the highest first byte latency?,/app/api/reports/top_n/S3BUCKET/first_byte_latency,GET,Reports,S3 Bucket,True,2026-07-06T04:50:36.000Z
+fetch top N S3 bucket first byte latency report,/app/api/reports/top_n/S3BUCKET/first_byte_latency,GET,Reports,S3 Bucket,True,2026-07-06T04:50:36.000Z
+How can I see the availability summary for my Lambda functions?,/app/api/reports/availability_summary/type/LAMBDAFUNCTION,GET,Reports,Lambda Function,True,2026-07-06T04:50:38.727Z
+fetch lambda function availability summary report,/app/api/reports/availability_summary/type/LAMBDAFUNCTION,GET,Reports,Lambda Function,True,2026-07-06T04:50:38.727Z
+How can I view outage reports specifically for network load balancers?,/app/api/reports/outages/type/NETWORK-LOADBALANCER,GET,Reports,Network Load Balancer,True,2026-07-06T04:50:41.314Z
+fetch mapped network load balancer outage report,/app/api/reports/outages/type/NETWORK-LOADBALANCER,GET,Reports,Network Load Balancer,True,2026-07-06T04:50:41.314Z
+How can I view outage reports for my SQS queues?,/app/api/reports/outages/type/SQS,GET,Reports,SQS Queue,True,2026-07-06T04:50:43.669Z
+fetch SQS queue outage history report,/app/api/reports/outages/type/SQS,GET,Reports,SQS Queue,True,2026-07-06T04:50:43.669Z
+How can I see outage reports for my S3 Object endpoints?,/app/api/reports/outages/type/S3ENDPOINT,GET,Reports,S3 Object,True,2026-07-06T04:50:46.246Z
+fetch S3 Object outage type report,/app/api/reports/outages/type/S3ENDPOINT,GET,Reports,S3 Object,True,2026-07-06T04:50:46.246Z
+How can I check outage reports for my Elastic Beanstalk environments?,/app/api/reports/outages/type/EBSENVIRONMENT,GET,Reports,Elastic Beanstalk Environment,True,2026-07-06T04:50:48.613Z
+fetch Elastic Beanstalk Environment outage history report,/app/api/reports/outages/type/EBSENVIRONMENT,GET,Reports,Elastic Beanstalk Environment,True,2026-07-06T04:50:48.613Z
+How can I see outage reports for my CloudFront distributions?,/app/api/reports/outages/type/CLOUDFRONT,GET,Reports,CloudFront Distribution,True,2026-07-06T04:50:51.193Z
+fetch CloudFront distribution outage report,/app/api/reports/outages/type/CLOUDFRONT,GET,Reports,CloudFront Distribution,True,2026-07-06T04:50:51.193Z
+How can I view outage reports for my Kinesis Firehose Delivery Streams?,/app/api/reports/outages/type/KINESIS-FIREHOSE,GET,Reports,Kinesis Firehose Delivery Stream,True,2026-07-06T04:50:53.815Z
+fetch Kinesis Firehose outage report data,/app/api/reports/outages/type/KINESIS-FIREHOSE,GET,Reports,Kinesis Firehose Delivery Stream,True,2026-07-06T04:50:53.815Z
+How can I view outage reports for my Kinesis Video Streams?,/app/api/reports/outages/type/KINESIS-VIDEO,GET,Reports,Kinesis Video Stream,True,2026-07-06T04:50:56.268Z
+fetch Kinesis Video Stream outage history report,/app/api/reports/outages/type/KINESIS-VIDEO,GET,Reports,Kinesis Video Stream,True,2026-07-06T04:50:56.268Z
+How can I view the summary report for my Route 53 Hosted Zones?,/app/api/reports/summary/type/R53_HOSTEDZONE,GET,Reports,Route 53 Hosted Zone,True,2026-07-06T04:50:58.790Z
+get Route 53 Hosted Zone summary report,/app/api/reports/summary/type/R53_HOSTEDZONE,GET,Reports,Route 53 Hosted Zone,True,2026-07-06T04:50:58.790Z
+How can I view a summary report of Route 53 hosted zone record sets?,/app/api/reports/summary/type/R53_RECORDSET,GET,Reports,Route 53 Hosted Zone Record Set,True,2026-07-06T04:51:01.369Z
+fetch Route 53 hosted zone record set summary report,/app/api/reports/summary/type/R53_RECORDSET,GET,Reports,Route 53 Hosted Zone Record Set,True,2026-07-06T04:51:01.369Z
+How can I view the VPCs with the highest transmitted packets?,/app/api/reports/top_n/VPC/max_tx_packet,GET,Reports,VPC,True,2026-07-06T04:51:03.843Z
+get top N VPCs by max transmitted packet count report,/app/api/reports/top_n/VPC/max_tx_packet,GET,Reports,VPC,True,2026-07-06T04:51:03.843Z
+How can I see which NAT gateways have the lowest connection attempts in my VPC?,/app/api/reports/bottom_n/VPC_NATGATEWAY/conn_attempt_count,GET,Reports,VPC NAT Gateway,True,2026-07-06T04:51:06.321Z
+list bottom n VPC NAT Gateway connection attempt counts report,/app/api/reports/bottom_n/VPC_NATGATEWAY/conn_attempt_count,GET,Reports,VPC NAT Gateway,True,2026-07-06T04:51:06.321Z
+How can I view performance statistics for my VPC NAT gateway?,/app/api/reports/performance/type/VPC_NATGATEWAY,GET,Reports,VPC NAT gateway,True,2026-07-06T04:51:08.847Z
+fetch VPC NAT gateway performance report,/app/api/reports/performance/type/VPC_NATGATEWAY,GET,Reports,VPC NAT gateway,True,2026-07-06T04:51:08.847Z
+How can I see the top EC2 Auto Scaling Groups by disk read operations?,/app/api/reports/top_n/EC2AUTOSCALING/disk_read_operations,GET,Reports,EC2 Auto Scaling Group,True,2026-07-06T04:51:11.357Z
+list EC2 Auto Scaling disk read operations report,/app/api/reports/top_n/EC2AUTOSCALING/disk_read_operations,GET,Reports,EC2 Auto Scaling Group,True,2026-07-06T04:51:11.357Z
+How can I view the trend report for Certificate Manager certificates?,/app/api/reports/trend/type/ACM,GET,Reports,Certificate Manager Certificate,True,2026-07-06T04:51:13.914Z
+fetch ACM certificate trend reports in Site24x7,/app/api/reports/trend/type/ACM,GET,Reports,Certificate Manager Certificate,True,2026-07-06T04:51:13.914Z
+How can I see which nodes in my EKS cluster have the highest CPU usage?,/app/api/reports/bottom_n/EKSCLUSTER/node_cpu_utilized,GET,Reports,EKS Cluster,True,2026-07-06T04:51:16.371Z
+fetch bottom N node CPU utilization report for EKS cluster,/app/api/reports/bottom_n/EKSCLUSTER/node_cpu_utilized,GET,Reports,EKS Cluster,True,2026-07-06T04:51:16.371Z
+How can I see the top Amazon MQ Network Connector dequeue counts?,/app/api/reports/top_n/AMQNC/dequeue_count,GET,Reports,Amazon MQ Network Connector,True,2026-07-06T04:51:18.768Z
+get Amazon MQ Network Connector top N dequeue count report,/app/api/reports/top_n/AMQNC/dequeue_count,GET,Reports,Amazon MQ Network Connector,True,2026-07-06T04:51:18.768Z
+How can I see which Transit Gateways are sending the most data out?,/app/api/reports/bottom_n/TRANSITGATEWAY/tg_bytes_out,GET,Reports,Transit Gateway,True,2026-07-06T04:51:21.130Z
+fetch bottom n Transit Gateway bytes out report,/app/api/reports/bottom_n/TRANSITGATEWAY/tg_bytes_out,GET,Reports,Transit Gateway,True,2026-07-06T04:51:21.130Z
+How can I see which EC2 capacity reservations are least utilized?,/app/api/reports/bottom_n/EC2CAPACITYRESERVATION/instance_utilization,GET,Reports,EC2 Capacity Reservation,True,2026-07-06T04:51:23.735Z
+get bottom N EC2 capacity reservation instance utilization report,/app/api/reports/bottom_n/EC2CAPACITYRESERVATION/instance_utilization,GET,Reports,EC2 Capacity Reservation,True,2026-07-06T04:51:23.735Z
+How can I check which Lambda@Edge functions are being throttled the most?,/app/api/reports/bottom_n/LAMBDA-EDGE/throttles_lambda,GET,Reports,Lambda@Edge Function,True,2026-07-06T04:51:26.225Z
+get bottom throttled Lambda@Edge functions report,/app/api/reports/bottom_n/LAMBDA-EDGE/throttles_lambda,GET,Reports,Lambda@Edge Function,True,2026-07-06T04:51:26.225Z
+How can I see which transit gateway attachments have the lowest bytes in?,/app/api/reports/bottom_n/TGWATTACHMENT/tg_bytes_in,GET,Reports,Transit Gateway Attachment,True,2026-07-06T04:51:29.035Z
+fetch bottom N transit gateway attachments by bytes in report,/app/api/reports/bottom_n/TGWATTACHMENT/tg_bytes_in,GET,Reports,Transit Gateway Attachment,True,2026-07-06T04:51:29.035Z
+How can I see which S3 folders have the most objects modified recently?,/app/api/reports/top_n/S3FOLDER/num_of_objects_modified,GET,Reports,S3 Folder,True,2026-07-06T04:51:31.688Z
+fetch top modified object counts in S3 folder report,/app/api/reports/top_n/S3FOLDER/num_of_objects_modified,GET,Reports,S3 Folder,True,2026-07-06T04:51:31.688Z
+How can I see which AppSync connections were most successful?,/app/api/reports/top_n/APPSYNC/connect_success,GET,Reports,AppSync,True,2026-07-06T04:51:34.083Z
+fetch top AppSync connect success report,/app/api/reports/top_n/APPSYNC/connect_success,GET,Reports,AppSync,True,2026-07-06T04:51:34.083Z
+How can I see the top VPC regions by total received packets?,/app/api/reports/top_n/VPC_REGIONAL/tot_rx_packet,GET,Reports,VPC Region,True,2026-07-06T04:51:36.569Z
+list top VPC regional total RX packet statistics,/app/api/reports/top_n/VPC_REGIONAL/tot_rx_packet,GET,Reports,VPC Region,True,2026-07-06T04:51:36.569Z
+How can I see which VPC availability zones have missing data in my reports?,/app/api/reports/top_n/VPC_AZ/nodata_records,GET,Reports,VPC Availability Zone,True,2026-07-06T04:51:39.061Z
+list top VPC AZ nodata records report,/app/api/reports/top_n/VPC_AZ/nodata_records,GET,Reports,VPC Availability Zone,True,2026-07-06T04:51:39.061Z
+How can I view outage reports for my VPC subnets?,/app/api/reports/outages/type/VPC_SUBNET,GET,Reports,VPC Subnet,True,2026-07-06T04:51:41.487Z
+fetch mapped VPC subnet outage report,/app/api/reports/outages/type/VPC_SUBNET,GET,Reports,VPC Subnet,True,2026-07-06T04:51:41.487Z
+How can I see which VPC network interfaces had skipped records in the top N report?,/app/api/reports/top_n/VPC_NI/skipped_records,GET,Reports,VPC Network Interface,True,2026-07-06T04:51:44.000Z
+fetch skipped records for VPC network interface top N report,/app/api/reports/top_n/VPC_NI/skipped_records,GET,Reports,VPC Network Interface,True,2026-07-06T04:51:44.000Z
+How can I view outage reports for my VPC route tables?,/app/api/reports/outages/type/VPC_RT,GET,Reports,VPC Route Table,True,2026-07-06T04:51:46.365Z
+get mapped VPC route table outage report,/app/api/reports/outages/type/VPC_RT,GET,Reports,VPC Route Table,True,2026-07-06T04:51:46.365Z
+How can I view the top RDS Proxy instances by query response latency?,/app/api/reports/top_n/RDS-PROXY/query_Response_Latency,GET,Reports,RDS Proxy,True,2026-07-06T04:51:48.676Z
+fetch top N RDS Proxy query response latency report,/app/api/reports/top_n/RDS-PROXY/query_Response_Latency,GET,Reports,RDS Proxy,True,2026-07-06T04:51:48.676Z
+How can I see which Glue Jobs are using the most CPU?,/app/api/reports/top_n/GLUE-JOB/cpu_load_used,GET,Reports,Glue Job,True,2026-07-06T04:51:51.040Z
+fetch top Glue Job CPU usage report,/app/api/reports/top_n/GLUE-JOB/cpu_load_used,GET,Reports,Glue Job,True,2026-07-06T04:51:51.040Z
+How can I see which tables were created most recently by my Glue Crawler?,/app/api/reports/top_n/GLUE-CRAWLER/tables_created,GET,Reports,Glue Crawler,True,2026-07-06T04:51:53.638Z
+list top tables created by Glue Crawler report,/app/api/reports/top_n/GLUE-CRAWLER/tables_created,GET,Reports,Glue Crawler,True,2026-07-06T04:51:53.638Z
+How can I see the top external provider counts for my Cognito user pools?,/app/api/reports/top_n/COGNITO-USER-POOL/total_external_provider_count,GET,Reports,Cognito User Pool,True,2026-07-06T04:51:56.207Z
+fetch total external provider statistics Cognito User Pool report,/app/api/reports/top_n/COGNITO-USER-POOL/total_external_provider_count,GET,Reports,Cognito User Pool,True,2026-07-06T04:51:56.207Z
+How can I see the top EMF parsing errors in my Cloudwatch Log Groups?,/app/api/reports/top_n/CLOUDWATCH-LOG-GROUP/emf_parsing_errors,GET,Reports,Cloudwatch Log Group,True,2026-07-06T04:51:58.704Z
+fetch Cloudwatch Log Group EMF parsing error report,/app/api/reports/top_n/CLOUDWATCH-LOG-GROUP/emf_parsing_errors,GET,Reports,Cloudwatch Log Group,True,2026-07-06T04:51:58.704Z
+How can I see the VPC endpoint with the highest number of RST packets received?,/app/api/reports/top_n/PRIVATE_LINK_ENDPOINT/rst_packets_received,GET,Reports,VPC Endpoint,True,2026-07-06T04:52:01.128Z
+list top VPC endpoints by RST packets received report,/app/api/reports/top_n/PRIVATE_LINK_ENDPOINT/rst_packets_received,GET,Reports,VPC Endpoint,True,2026-07-06T04:52:01.128Z
+How can I see which Valkey Cluster databases are using the most memory and evicting data?,/app/api/reports/top_n/VALKEY-CLUSTER/db_mem_usage_evict_pc,GET,Reports,Elasticache Valkey Cluster,True,2026-07-06T04:52:03.954Z
+list top Elasticache Valkey Cluster database memory usage and eviction percentage report,/app/api/reports/top_n/VALKEY-CLUSTER/db_mem_usage_evict_pc,GET,Reports,Elasticache Valkey Cluster,True,2026-07-06T04:52:03.954Z
+How can I view the swap usage for my Valkey cluster nodes?,/app/api/reports/top_n/VALKEY-CLUSTER-NODE/node_swap_usage,GET,Reports,Elasticache Valkey Cluster Node,True,2026-07-06T04:52:06.643Z
+fetch top swap usage report for Elasticache Valkey cluster node,/app/api/reports/top_n/VALKEY-CLUSTER-NODE/node_swap_usage,GET,Reports,Elasticache Valkey Cluster Node,True,2026-07-06T04:52:06.643Z
+How can I see which DLM-EBS snapshots had post-script failures?,/app/api/reports/top_n/DLM-EBS-SNAPSHOT/post_script_failed,GET,Reports,DLM-EBS Snapshot,True,2026-07-06T04:52:09.274Z
+list top DLM-EBS Snapshot post script failed reports,/app/api/reports/top_n/DLM-EBS-SNAPSHOT/post_script_failed,GET,Reports,DLM-EBS Snapshot,True,2026-07-06T04:52:09.274Z
+Why are some AMI images failing to copy across regions in my DLM-EBS reports?,/app/api/reports/top_n/DLM-EBS-AMI/images_copied_region_failed,GET,Reports,DLM-EBS backed AMI,True,2026-07-06T04:52:11.743Z
+list failed region copies for DLM-EBS backed AMI images,/app/api/reports/top_n/DLM-EBS-AMI/images_copied_region_failed,GET,Reports,DLM-EBS backed AMI,True,2026-07-06T04:52:11.743Z
+How can I see which private ECR repositories have the most push activity?,/app/api/reports/top_n/ECR-PRIVATE-REPO/ecr_prvt_repo_push_count,GET,Reports,ECR Private Repository,True,2026-07-06T04:52:14.324Z
+list top ECR private repository push counts report,/app/api/reports/top_n/ECR-PRIVATE-REPO/ecr_prvt_repo_push_count,GET,Reports,ECR Private Repository,True,2026-07-06T04:52:14.324Z
+How can I see which ECR public repositories have the most images?,/app/api/reports/top_n/ECR-PUBLIC-REPO/ecr_pub_repo_image_count,GET,Reports,ECR Public Repository,True,2026-07-06T04:52:16.825Z
+list ECR public repository image count report,/app/api/reports/top_n/ECR-PUBLIC-REPO/ecr_pub_repo_image_count,GET,Reports,ECR Public Repository,True,2026-07-06T04:52:16.825Z
+How can I view the global database data transfer report for my RDS clusters?,/app/api/reports/top_n/RDS-CLUSTER/global_db_data_transfer,GET,Reports,RDS Cluster,True,2026-07-06T04:52:19.530Z
+get top N global DB data transfer statistics for RDS cluster,/app/api/reports/top_n/RDS-CLUSTER/global_db_data_transfer,GET,Reports,RDS Cluster,True,2026-07-06T04:52:19.530Z
+How can I view a summary report for my GCP organization monitors?,/app/api/reports/summary/type/GCP_ORG,GET,Reports,GCP Organization Monitor,True,2026-07-06T04:52:22.112Z
+get GCP organization monitor summary report,/app/api/reports/summary/type/GCP_ORG,GET,Reports,GCP Organization Monitor,True,2026-07-06T04:52:22.112Z
+How can I see the top message input clusters for Alibaba ApsaraMQ Kafka?,/app/api/reports/top_n/ALIBABACLOUD_APSARAMQ_KAFKA/ClusterMessageInputV3,GET,Reports,Alibaba - ApsaraMQ Kafka,True,2026-07-06T04:52:24.676Z
+fetch ClusterMessageInputV3 report for Alibaba Kafka,/app/api/reports/top_n/ALIBABACLOUD_APSARAMQ_KAFKA/ClusterMessageInputV3,GET,Reports,Alibaba - ApsaraMQ Kafka,True,2026-07-06T04:52:24.676Z
+How can I see the top Alibaba Function Compute functions ranked by P99 duration?,/app/api/reports/top_n/ALIBABACLOUD_FC/FunctionP99Duration,GET,Reports,Alibaba - Function Compute,True,2026-07-06T04:52:27.299Z
+list Alibaba Function Compute function P99 duration report,/app/api/reports/top_n/ALIBABACLOUD_FC/FunctionP99Duration,GET,Reports,Alibaba - Function Compute,True,2026-07-06T04:52:27.299Z
+How can I see the latest new resources added in my Alibaba Cloud account?,/app/api/reports/top_n/ALIBABACLOUD/new_resources_count,GET,Reports,Alibaba Cloud,True,2026-07-06T04:52:29.656Z
+fetch top N new Alibaba Cloud resources count report,/app/api/reports/top_n/ALIBABACLOUD/new_resources_count,GET,Reports,Alibaba Cloud,True,2026-07-06T04:52:29.656Z
+How can I see the latest resources added to Tencent Cloud?,/app/api/reports/top_n/TENCENTCLOUD/new_resources_count,GET,Reports,Tencent Cloud,True,2026-07-06T04:52:32.110Z
+get top new Tencent Cloud resources count report,/app/api/reports/top_n/TENCENTCLOUD/new_resources_count,GET,Reports,Tencent Cloud,True,2026-07-06T04:52:32.110Z
+How can I view the top Tencent Cloud CVM instances by CPU usage?,/app/api/reports/top_n/TENCENTCLOUD_CVM/BaseCpuUsage,GET,Reports,Tencent Cloud CVM,True,2026-07-06T04:52:34.561Z
+fetch Tencent Cloud CVM base CPU usage report,/app/api/reports/top_n/TENCENTCLOUD_CVM/BaseCpuUsage,GET,Reports,Tencent Cloud CVM,True,2026-07-06T04:52:34.561Z
+How can I see which Tencent Cloud Lighthouse disks are using the most space?,/app/api/reports/top_n/TENCENTCLOUD_LIGHTHOUSE/DiskUsage,GET,Reports,Tencent Cloud Lighthouse,True,2026-07-06T04:52:37.061Z
+fetch top disk usage report for Tencent Cloud Lighthouse,/app/api/reports/top_n/TENCENTCLOUD_LIGHTHOUSE/DiskUsage,GET,Reports,Tencent Cloud Lighthouse,True,2026-07-06T04:52:37.061Z
+How can I check the real capacity for my top Tencent Cloud MySQL databases?,/app/api/reports/top_n/TENCENTCLOUD_MYSQL/RealCapacity,GET,Reports,Tencent Cloud MySQL,True,2026-07-06T04:52:39.733Z
+fetch top N Tencent Cloud MySQL real capacity report,/app/api/reports/top_n/TENCENTCLOUD_MYSQL/RealCapacity,GET,Reports,Tencent Cloud MySQL,True,2026-07-06T04:52:39.733Z
+How can I see which Tencent Cloud Redis instances are using the most memory?,/app/api/reports/top_n/TENCENTCLOUD_REDIS/MemUsed,GET,Reports,Tencent Cloud Redis,True,2026-07-06T04:52:42.119Z
+fetch top memory usage report for Tencent Cloud Redis,/app/api/reports/top_n/TENCENTCLOUD_REDIS/MemUsed,GET,Reports,Tencent Cloud Redis,True,2026-07-06T04:52:42.119Z
+How can I view the top VIP outbound package usage for Tencent Cloud EIP?,/app/api/reports/top_n/TENCENTCLOUD_EIP/VipOutpkg,GET,Reports,Tencent Cloud EIP,True,2026-07-06T04:52:44.737Z
+fetch Tencent Cloud EIP VIP outbound package top N report,/app/api/reports/top_n/TENCENTCLOUD_EIP/VipOutpkg,GET,Reports,Tencent Cloud EIP,True,2026-07-06T04:52:44.737Z
+How can I see the most-invoked Tencent Cloud SCF functions in my reports?,/app/api/reports/top_n/TENCENTCLOUD_SCF/Invocation,GET,Reports,Tencent Cloud-SCF,True,2026-07-06T04:52:47.168Z
+fetch top N Tencent Cloud SCF invocation statistics report,/app/api/reports/top_n/TENCENTCLOUD_SCF/Invocation,GET,Reports,Tencent Cloud-SCF,True,2026-07-06T04:52:47.168Z
+How can I view the top read requests for my Tencent Cloud PostgreSQL databases?,/app/api/reports/top_n/TENCENTCLOUD_POSTGRES/ReadRequests,GET,Reports,Tencent Cloud -PostgreSQL,True,2026-07-06T04:52:49.841Z
+list top N read request statistics Tencent Cloud PostgreSQL report,/app/api/reports/top_n/TENCENTCLOUD_POSTGRES/ReadRequests,GET,Reports,Tencent Cloud -PostgreSQL,True,2026-07-06T04:52:49.841Z
+How can I view the top disks by read IOPS for Tencent Cloud CBS?,/app/api/reports/top_n/TENCENTCLOUD_CBS/DiskReadIops,GET,Reports,Tencent Cloud-CBS,True,2026-07-06T04:52:52.450Z
+fetch Tencent Cloud CBS report for disk read IOPS,/app/api/reports/top_n/TENCENTCLOUD_CBS/DiskReadIops,GET,Reports,Tencent Cloud-CBS,True,2026-07-06T04:52:52.450Z
+How can I view the top upstream usage for Huawei Cloud EIP?,/app/api/reports/top_n/HUAWEICLOUD_EIP/up_stream,GET,Reports,Huawei Cloud -EIP,True,2026-07-06T04:52:55.053Z
+fetch Huawei Cloud EIP top N upstream report,/app/api/reports/top_n/HUAWEICLOUD_EIP/up_stream,GET,Reports,Huawei Cloud -EIP,True,2026-07-06T04:52:55.053Z
+How can I see the top Huawei Cloud EVS disks by write bytes rate?,/app/api/reports/top_n/HUAWEICLOUD_EVS/disk_device_write_bytes_rate,GET,Reports,Huawei Cloud - EVS,True,2026-07-06T04:52:57.454Z
+list Huawei Cloud EVS disk device write bytes rate report,/app/api/reports/top_n/HUAWEICLOUD_EVS/disk_device_write_bytes_rate,GET,Reports,Huawei Cloud - EVS,True,2026-07-06T04:52:57.454Z
+How can I see the newest resources added in Huawei Cloud?,/app/api/reports/top_n/HUAWEICLOUD/new_resources_count,GET,Reports,Huawei Cloud,True,2026-07-06T04:52:59.895Z
+get Huawei Cloud top new resources count report,/app/api/reports/top_n/HUAWEICLOUD/new_resources_count,GET,Reports,Huawei Cloud,True,2026-07-06T04:52:59.895Z
+How can I see the latest new resources added in DigitalOcean?,/app/api/reports/top_n/DIGITALOCEAN/new_resources_count,GET,Reports,DigitalOcean,True,2026-07-06T04:53:02.348Z
+fetch DigitalOcean top new resources count report,/app/api/reports/top_n/DIGITALOCEAN/new_resources_count,GET,Reports,DigitalOcean,True,2026-07-06T04:53:02.348Z
+How can I see the top DigitalOcean Droplets by 1-minute load?,/app/api/reports/top_n/DIGITALOCEAN_DROPLET/load_1,GET,Reports,DigitalOcean-Droplets,True,2026-07-06T04:53:04.786Z
+fetch top_n DigitalOcean Droplet load 1 report,/app/api/reports/top_n/DIGITALOCEAN_DROPLET/load_1,GET,Reports,DigitalOcean-Droplets,True,2026-07-06T04:53:04.786Z
+How can I see which DigitalOcean App Platform apps are using the most memory?,/app/api/reports/top_n/DIGITALOCEAN_APP/memory_percentage,GET,Reports,DigitalOcean - App Platform,True,2026-07-06T04:53:07.209Z
+list top memory usage for DigitalOcean App Platform applications,/app/api/reports/top_n/DIGITALOCEAN_APP/memory_percentage,GET,Reports,DigitalOcean - App Platform,True,2026-07-06T04:53:07.209Z
+How can I see which DigitalOcean load balancers are handling the most frontend HTTP requests per second?,/app/api/reports/top_n/DIGITALOCEAN_LOAD_BALANCER/frontend_http_requests_per_second,GET,Reports,DigitalOcean-Load Balancers,True,2026-07-06T04:53:09.921Z
+list DigitalOcean load balancer frontend HTTP requests per second report,/app/api/reports/top_n/DIGITALOCEAN_LOAD_BALANCER/frontend_http_requests_per_second,GET,Reports,DigitalOcean-Load Balancers,True,2026-07-06T04:53:09.921Z
+How can I see the current memory usage for my DigitalOcean autoscale pool?,/app/api/reports/top_n/DIGITALOCEAN_AUTOSCALE_POOL/current_memory_utilization,GET,Reports,DigitalOcean - Autoscale Pool,True,2026-07-06T04:53:12.481Z
+get top n current memory utilization report for DigitalOcean autoscale pool,/app/api/reports/top_n/DIGITALOCEAN_AUTOSCALE_POOL/current_memory_utilization,GET,Reports,DigitalOcean - Autoscale Pool,True,2026-07-06T04:53:12.481Z
+How can I see the number of new resources detected in Akamai Cloud?,/app/api/reports/top_n/AKAMAI_CLOUD/new_resources_count,GET,Reports,Akamai Cloud,True,2026-07-06T04:53:14.901Z
+fetch top N Akamai Cloud new resources count report,/app/api/reports/top_n/AKAMAI_CLOUD/new_resources_count,GET,Reports,Akamai Cloud,True,2026-07-06T04:53:14.901Z
+How can I see which Akamai NodeBalancers have the highest outbound traffic?,/app/api/reports/top_n/AKAMAI_CLOUD_NODE_BALANCER/traffic_out,GET,Reports,Akamai -NodeBalancers,True,2026-07-06T04:53:17.620Z
+get top Akamai NodeBalancer traffic out report,/app/api/reports/top_n/AKAMAI_CLOUD_NODE_BALANCER/traffic_out,GET,Reports,Akamai -NodeBalancers,True,2026-07-06T04:53:17.620Z
+How can I see which Databricks jobs have the most failed tasks?,/app/api/reports/top_n/DBRICKS_WS_JOB/number_of_tasks_failed,GET,Reports,Databricks Job,True,2026-07-06T04:53:20.394Z
+fetch top failed task counts for Databricks jobs report,/app/api/reports/top_n/DBRICKS_WS_JOB/number_of_tasks_failed,GET,Reports,Databricks Job,True,2026-07-06T04:53:20.394Z
+How can I view trend reports for my Azure App Service Plans?,/app/api/reports/trend/type/SERVERFARMS,GET,Reports,Azure App Service Plan,True,2026-07-06T04:53:22.864Z
+fetch server farm utilization trends in reports,/app/api/reports/trend/type/SERVERFARMS,GET,Reports,Azure App Service Plan,True,2026-07-06T04:53:22.864Z
+How can I view outage reports for Azure App Service?,/app/api/reports/outages/type/AZURE-CLOUDSERVICE,GET,Reports,Azure App Service,True,2026-07-06T04:53:25.277Z
+get Azure Cloud Service outage details report,/app/api/reports/outages/type/AZURE-CLOUDSERVICE,GET,Reports,Azure App Service,True,2026-07-06T04:53:25.277Z
+How can I view the usage trends for my Azure Event Hubs Namespace?,/app/api/reports/trend/type/AZURE-EVENTHUB,GET,Reports,Azure Event Hubs Namespace,True,2026-07-06T04:53:27.842Z
+get Azure Event Hub Namespace trend report,/app/api/reports/trend/type/AZURE-EVENTHUB,GET,Reports,Azure Event Hubs Namespace,True,2026-07-06T04:53:27.842Z
+How can I view the trend report for my Azure Network Interface?,/app/api/reports/trend/type/AZURE-NWINTERFACE,GET,Reports,Azure Network Interface,True,2026-07-06T04:53:30.384Z
+fetch Azure Network Interface trend report,/app/api/reports/trend/type/AZURE-NWINTERFACE,GET,Reports,Azure Network Interface,True,2026-07-06T04:53:30.384Z
+How can I see detailed Linux service information for a specific Azure VM?,/app/api/reports/child-details/AZURE-VM/LinuxServiceDetails/%7Bid%7D,GET,Reports,Azure Virtual Machine,True,2026-07-06T04:53:32.742Z
+fetch child details report for Azure Virtual Machine Linux services,/app/api/reports/child-details/AZURE-VM/LinuxServiceDetails/%7Bid%7D,GET,Reports,Azure Virtual Machine,True,2026-07-06T04:53:32.742Z
+How can I view the trend report for my Azure Public IP addresses?,/app/api/reports/trend/type/AZURE-PUBLICIP,GET,Reports,Azure Public IP Address,True,2026-07-06T04:53:35.290Z
+get Azure Public IP address usage trends report,/app/api/reports/trend/type/AZURE-PUBLICIP,GET,Reports,Azure Public IP Address,True,2026-07-06T04:53:35.290Z
+How can I view the trend report for my Azure Virtual Network?,/app/api/reports/trend/type/AZURE-VNET,GET,Reports,Azure Virtual Network,True,2026-07-06T04:53:37.836Z
+fetch autonomously mapped Azure VNET trend reports,/app/api/reports/trend/type/AZURE-VNET,GET,Reports,Azure Virtual Network,True,2026-07-06T04:53:37.836Z
+How can I view the trend report for my Azure Storage Accounts?,/app/api/reports/trend/type/AZURE-STORAGE,GET,Reports,Azure Storage Account,True,2026-07-06T04:53:40.307Z
+fetch Azure Storage Account trend reports,/app/api/reports/trend/type/AZURE-STORAGE,GET,Reports,Azure Storage Account,True,2026-07-06T04:53:40.307Z
+How can I see the top Azure disks by paid burst IOPS?,/app/api/reports/top_n/AZURE-DISKS/disk_paid_burst_iops,GET,Reports,Azure Disk,True,2026-07-06T04:53:42.993Z
+fetch Azure Disk report for top paid burst IOPS,/app/api/reports/top_n/AZURE-DISKS/disk_paid_burst_iops,GET,Reports,Azure Disk,True,2026-07-06T04:53:42.993Z
+How can I see the top query failures in my Azure Log Analytics Workspace?,/app/api/reports/top_n/AZURE-LOGANALYTICS/query_failure_count,GET,Reports,Azure Log Analytics Workspace,True,2026-07-06T04:53:45.472Z
+fetch Azure Log Analytics Workspace query failure count report,/app/api/reports/top_n/AZURE-LOGANALYTICS/query_failure_count,GET,Reports,Azure Log Analytics Workspace,True,2026-07-06T04:53:45.472Z
+How can I view the performance trends for my Azure VM Scale Sets?,/app/api/reports/trend/type/AZURE-VMSCALESET,GET,Reports,Azure Virtual Machine Scale Set,True,2026-07-06T04:53:48.071Z
+get Azure Virtual Machine Scale Set trend report,/app/api/reports/trend/type/AZURE-VMSCALESET,GET,Reports,Azure Virtual Machine Scale Set,True,2026-07-06T04:53:48.071Z
+How can I view Azure Data Factory trend reports?,/app/api/reports/trend/type/AZURE-DATAFACTORY,GET,Reports,Azure Data Factory,True,2026-07-06T04:53:50.566Z
+fetch trend data for Azure Data Factory in reports,/app/api/reports/trend/type/AZURE-DATAFACTORY,GET,Reports,Azure Data Factory,True,2026-07-06T04:53:50.566Z
+How can I see the performance trends for my Azure App Service Slots?,/app/api/reports/trend/type/AZURE-SLOTS,GET,Reports,Azure App Service Slots,True,2026-07-06T04:53:53.109Z
+fetch Azure App Service Slots trend report,/app/api/reports/trend/type/AZURE-SLOTS,GET,Reports,Azure App Service Slots,True,2026-07-06T04:53:53.109Z
+How can I view the trend report for Azure Autoscale settings?,/app/api/reports/trend/type/AZURE-AUTOSCALESET,GET,Reports,Azure Autoscale Setting,True,2026-07-06T04:53:55.552Z
+get Azure Autoscale Setting trend report,/app/api/reports/trend/type/AZURE-AUTOSCALESET,GET,Reports,Azure Autoscale Setting,True,2026-07-06T04:53:55.552Z
+How can I view the summary report for my Azure Redis Cache?,/app/api/reports/summary/type/AZURE-REDIS,GET,Reports,Azure Redis Cache,True,2026-07-06T04:53:57.924Z
+get Azure Redis Cache performance summary report,/app/api/reports/summary/type/AZURE-REDIS,GET,Reports,Azure Redis Cache,True,2026-07-06T04:53:57.924Z
+How can I see a summary report of my Azure SQL Databases?,/app/api/reports/summary/type/AZURE-SQLDATABASE,GET,Reports,Azure SQL Database,True,2026-07-06T04:54:00.460Z
+get Azure SQL Database summary report,/app/api/reports/summary/type/AZURE-SQLDATABASE,GET,Reports,Azure SQL Database,True,2026-07-06T04:54:00.460Z
+How can I view the summary report for my Azure DNS services?,/app/api/reports/summary/type/AZURE-DNS,GET,Reports,Azure DNS,True,2026-07-06T04:54:02.961Z
+get Azure DNS summary report details,/app/api/reports/summary/type/AZURE-DNS,GET,Reports,Azure DNS,True,2026-07-06T04:54:02.961Z
+How can I view the trend report for my Azure Automation Accounts?,/app/api/reports/trend/type/AZURE-AUTOMATION,GET,Reports,Azure Automation Account,True,2026-07-06T04:54:05.572Z
+get Azure Automation Account trend report,/app/api/reports/trend/type/AZURE-AUTOMATION,GET,Reports,Azure Automation Account,True,2026-07-06T04:54:05.572Z
+How can I see the top saturated Azure Key Vaults in my reports?,/app/api/reports/top_n/AZURE-VAULT/saturation_shoebox,GET,Reports,Azure Key Vault,True,2026-07-06T04:54:08.162Z
+get Azure Key Vault saturation shoebox report,/app/api/reports/top_n/AZURE-VAULT/saturation_shoebox,GET,Reports,Azure Key Vault,True,2026-07-06T04:54:08.162Z
+How can I view a summary report for my Azure Virtual Network Gateway?,/app/api/reports/summary/type/AZURE-VNETGATEWAY,GET,Reports,Azure Virtual Network Gateway,True,2026-07-06T04:54:10.480Z
+fetch Azure Virtual Network Gateway summary report,/app/api/reports/summary/type/AZURE-VNETGATEWAY,GET,Reports,Azure Virtual Network Gateway,True,2026-07-06T04:54:10.480Z
+How can I view the performance report for my Azure Service Bus Queue?,/app/api/reports/performance/type/AZURE-SBQUEUE,GET,Reports,Azure Service Bus Queue,True,2026-07-06T04:54:12.847Z
+fetch performance metrics for Azure SBQueue in reports,/app/api/reports/performance/type/AZURE-SBQUEUE,GET,Reports,Azure Service Bus Queue,True,2026-07-06T04:54:12.847Z
+How can I view the trend report for Azure Application Insight components?,/app/api/reports/trend/type/AZURE-INSIGHTCOMPONENTS,GET,Reports,Azure Application Insight,True,2026-07-06T04:54:15.220Z
+fetch Azure Application Insight components trend report,/app/api/reports/trend/type/AZURE-INSIGHTCOMPONENTS,GET,Reports,Azure Application Insight,True,2026-07-06T04:54:15.220Z
+How can I see usage trends for my Azure Container Registry?,/app/api/reports/trend/type/AZURE-REGISTRY,GET,Reports,Azure Container Registry,True,2026-07-06T04:54:17.708Z
+get Azure Container Registry trend report,/app/api/reports/trend/type/AZURE-REGISTRY,GET,Reports,Azure Container Registry,True,2026-07-06T04:54:17.708Z
+How can I view a summary report for my Azure SQL Managed Instances?,/app/api/reports/summary/type/AZURE-MANAGEINSTANCE,GET,Reports,Azure SQL Managed Instance,True,2026-07-06T04:54:20.061Z
+fetch Azure SQL Managed Instance summary report,/app/api/reports/summary/type/AZURE-MANAGEINSTANCE,GET,Reports,Azure SQL Managed Instance,True,2026-07-06T04:54:20.061Z
+How can I view the performance trends for my Azure Kubernetes clusters?,/app/api/reports/trend/type/AZURE-MANAGEDCLUSTERS,GET,Reports,Azure Kubernetes Service,True,2026-07-06T04:54:22.544Z
+fetch trend report for Azure Managed Clusters,/app/api/reports/trend/type/AZURE-MANAGEDCLUSTERS,GET,Reports,Azure Kubernetes Service,True,2026-07-06T04:54:22.544Z
+How can I view the usage trends for a specific Azure Cognitive Service account?,/app/api/reports/trend/tag/AZURE-COGNITIVESERVICEACCOUNTS/%7Bid%7D,GET,Reports,Azure Cognitive Service,True,2026-07-06T04:54:24.899Z
+fetch Azure Cognitive Service tag trend report for account ID,/app/api/reports/trend/tag/AZURE-COGNITIVESERVICEACCOUNTS/%7Bid%7D,GET,Reports,Azure Cognitive Service,True,2026-07-06T04:54:24.899Z
+How can I check outage reports for Azure VPN Gateway?,/app/api/reports/outages/type/AZURE-VPNGATEWAY,GET,Reports,Azure VPN Gateway,True,2026-07-06T04:54:27.390Z
+get detailed Azure VPN Gateway outage report,/app/api/reports/outages/type/AZURE-VPNGATEWAY,GET,Reports,Azure VPN Gateway,True,2026-07-06T04:54:27.390Z
+How can I view outage reports for Azure ExpressRoute Circuits?,/app/api/reports/outages/type/AZURE-EXPRESSROUTECIRCUITS,GET,Reports,Azure ExpressRoute Circuit,True,2026-07-06T04:54:30.035Z
+fetch Azure ExpressRoute Circuit outage details report,/app/api/reports/outages/type/AZURE-EXPRESSROUTECIRCUITS,GET,Reports,Azure ExpressRoute Circuit,True,2026-07-06T04:54:30.035Z
+How can I view usage trends for my Azure Machine Learning workspaces?,/app/api/reports/trend/type/AZURE-MACHINELEARNINGWORKSPACES,GET,Reports,Azure Machine Learning,True,2026-07-06T04:54:32.380Z
+fetch trend report for Azure Machine Learning workspace,/app/api/reports/trend/type/AZURE-MACHINELEARNINGWORKSPACES,GET,Reports,Azure Machine Learning,True,2026-07-06T04:54:32.380Z
+How can I view performance reports for my Azure Continuous WebJobs?,/app/api/reports/performance/type/AZURE-CONTINUOUSWEBJOB,GET,Reports,Azure Continuous WebJob,True,2026-07-06T04:54:34.917Z
+get Azure Continuous WebJob performance report,/app/api/reports/performance/type/AZURE-CONTINUOUSWEBJOB,GET,Reports,Azure Continuous WebJob,True,2026-07-06T04:54:34.917Z
+How can I view the performance trends for my Azure Triggered WebJobs?,/app/api/reports/trend/type/AZURE-TRIGGEREDWEBJOB,GET,Reports,Azure Triggered WebJob,True,2026-07-06T04:54:37.329Z
+fetch trend report for Azure Triggered WebJob,/app/api/reports/trend/type/AZURE-TRIGGEREDWEBJOB,GET,Reports,Azure Triggered WebJob,True,2026-07-06T04:54:37.329Z
+How can I view outage reports for my Azure Function Apps?,/app/api/reports/outages/type/AZURE-FUNCTIONAPP,GET,Reports,Azure Function App,True,2026-07-06T04:54:39.951Z
+get Azure Function App outage history report,/app/api/reports/outages/type/AZURE-FUNCTIONAPP,GET,Reports,Azure Function App,True,2026-07-06T04:54:39.951Z
+How can I view outage reports for Azure Load Balancer?,/app/api/reports/outages/type/AZURE-LOADBALANCER,GET,Reports,Azure Load Balancer,True,2026-07-06T04:54:42.508Z
+fetch Azure Load Balancer outage report details,/app/api/reports/outages/type/AZURE-LOADBALANCER,GET,Reports,Azure Load Balancer,True,2026-07-06T04:54:42.508Z
+How can I view the summary report for my Azure SQL Server?,/app/api/reports/summary/type/AZURE-SQLSERVER,GET,Reports,Azure SQL Server,True,2026-07-06T04:54:45.174Z
+fetch Azure SQL Server summary report data,/app/api/reports/summary/type/AZURE-SQLSERVER,GET,Reports,Azure SQL Server,True,2026-07-06T04:54:45.174Z
+How can I view the trend report for Azure Recovery Services Vault?,/app/api/reports/trend/type/AZURE-RECOVERY-SERVICES-VAULT,GET,Reports,Azure Recovery Services Vault,True,2026-07-06T04:54:47.733Z
+get Azure Recovery Services Vault trend report,/app/api/reports/trend/type/AZURE-RECOVERY-SERVICES-VAULT,GET,Reports,Azure Recovery Services Vault,True,2026-07-06T04:54:47.733Z
+How can I view outage reports for Azure Blob Storage?,/app/api/reports/outages/type/AZURE-STORAGE-BLOB,GET,Reports,Azure Blob Storage,True,2026-07-06T04:54:50.226Z
+get Azure Blob Storage outage report,/app/api/reports/outages/type/AZURE-STORAGE-BLOB,GET,Reports,Azure Blob Storage,True,2026-07-06T04:54:50.226Z
+How can I view a summary report for my Azure CDN profiles and Front Door?,/app/api/reports/summary/type/AZURE-CDNPROFILE,GET,Reports,Azure Front Door and CDN profile,True,2026-07-06T04:54:52.689Z
+fetch Azure CDN profile summary report,/app/api/reports/summary/type/AZURE-CDNPROFILE,GET,Reports,Azure Front Door and CDN profile,True,2026-07-06T04:54:52.689Z
+How can I see outage reports for Azure Private DNS zones?,/app/api/reports/outages/type/AZURE-PRIVATEDNS,GET,Reports,Azure Private DNS zone,True,2026-07-06T04:54:55.874Z
+get Azure Private DNS zone outage report,/app/api/reports/outages/type/AZURE-PRIVATEDNS,GET,Reports,Azure Private DNS zone,True,2026-07-06T04:54:55.874Z
+How can I view the availability summary for my Azure Private endpoints?,/app/api/reports/availability_summary/type/AZURE-PRIVATEENDPOINT,GET,Reports,Azure Private endpoint,True,2026-07-06T04:54:58.205Z
+fetch availability summary report for Azure Private endpoint,/app/api/reports/availability_summary/type/AZURE-PRIVATEENDPOINT,GET,Reports,Azure Private endpoint,True,2026-07-06T04:54:58.205Z
+How can I view usage trends for my Azure NAT gateways?,/app/api/reports/trend/type/AZURE-NATGATEWAY,GET,Reports,Azure NAT gateway,True,2026-07-06T04:55:00.773Z
+get Azure NAT gateway trend report,/app/api/reports/trend/type/AZURE-NATGATEWAY,GET,Reports,Azure NAT gateway,True,2026-07-06T04:55:00.773Z
+How can I view the summary report for Azure Bastion instances?,/app/api/reports/summary/type/AZURE-BASTION,GET,Reports,Azure Bastion,True,2026-07-06T04:55:03.198Z
+fetch Azure Bastion summary report data,/app/api/reports/summary/type/AZURE-BASTION,GET,Reports,Azure Bastion,True,2026-07-06T04:55:03.198Z
+How can I view performance reports for my Azure Managed Grafana instances?,/app/api/reports/performance/type/AZURE-GRAFANA,GET,Reports,Azure Managed Grafana,True,2026-07-06T04:55:05.838Z
+get Azure Managed Grafana performance report,/app/api/reports/performance/type/AZURE-GRAFANA,GET,Reports,Azure Managed Grafana,True,2026-07-06T04:55:05.838Z
+How can I view the trend report for my Azure Route Server?,/app/api/reports/trend/type/AZURE-ROUTESERVER,GET,Reports,Azure Route Server,True,2026-07-06T04:55:08.351Z
+get Azure Route Server trend report data,/app/api/reports/trend/type/AZURE-ROUTESERVER,GET,Reports,Azure Route Server,True,2026-07-06T04:55:08.351Z
+How can I view performance trends for my Azure Cosmos DB for MongoDB vCore?,/app/api/reports/trend/type/AZURE-COSMOS-MONGODB,GET,Reports,Azure Cosmos DB for MongoDB(vCore),True,2026-07-06T04:55:11.113Z
+get trend report for Azure Cosmos MongoDB vCore,/app/api/reports/trend/type/AZURE-COSMOS-MONGODB,GET,Reports,Azure Cosmos DB for MongoDB(vCore),True,2026-07-06T04:55:11.113Z
+How can I view the summary report for my Azure Route Tables?,/app/api/reports/summary/type/AZURE-ROUTE-TABLE,GET,Reports,Azure Route Table,True,2026-07-06T04:55:13.733Z
+fetch Azure Route Table summary report,/app/api/reports/summary/type/AZURE-ROUTE-TABLE,GET,Reports,Azure Route Table,True,2026-07-06T04:55:13.733Z
+How can I view the trend report for my Azure Network Security Groups?,/app/api/reports/trend/type/AZURE-NSG,GET,Reports,Azure Network Security Group,True,2026-07-06T04:55:16.496Z
+fetch Azure Network Security Group trend report,/app/api/reports/trend/type/AZURE-NSG,GET,Reports,Azure Network Security Group,True,2026-07-06T04:55:16.496Z
+How can I see Azure Peering trends over time?,/app/api/reports/trend/type/AZURE-PEERING,GET,Reports,Azure Peering,True,2026-07-06T04:55:20.080Z
+fetch Azure Peering trend report,/app/api/reports/trend/type/AZURE-PEERING,GET,Reports,Azure Peering,True,2026-07-06T04:55:20.080Z
+How can I view the availability summary for my Azure RSV Backup Items?,/app/api/reports/availability_summary/type/AZURE-RSV-BACKUPITEM,GET,Reports,Azure RSV Backup Item,True,2026-07-06T04:55:22.886Z
+fetch Azure RSV Backup Item availability summary report,/app/api/reports/availability_summary/type/AZURE-RSV-BACKUPITEM,GET,Reports,Azure RSV Backup Item,True,2026-07-06T04:55:22.886Z
+How can I view performance reports for my Google Cloud Functions?,/app/api/reports/performance/type/CLOUDFUNCTIONS,GET,Reports,GCP Cloud Functions,True,2026-07-06T04:55:25.864Z
+fetch GCP Cloud Functions performance data report,/app/api/reports/performance/type/CLOUDFUNCTIONS,GET,Reports,GCP Cloud Functions,True,2026-07-06T04:55:25.864Z
+How can I check the availability summary for my Google Cloud Storage?,/app/api/reports/availability_summary/type/STORAGE,GET,Reports,GCP Storage,True,2026-07-06T04:55:28.477Z
+fetch GCP Storage availability summary report,/app/api/reports/availability_summary/type/STORAGE,GET,Reports,GCP Storage,True,2026-07-06T04:55:28.477Z
+How can I view the availability summary for my GCP Pub/Sub topics?,/app/api/reports/availability_summary/type/PUBSUB,GET,Reports,GCP Pub/Sub Topic,True,2026-07-06T04:55:31.085Z
+fetch Pub/Sub topic availability summary report in Site24x7,/app/api/reports/availability_summary/type/PUBSUB,GET,Reports,GCP Pub/Sub Topic,True,2026-07-06T04:55:31.085Z
+How can I view performance reports for my GCP Cloud Routers?,/app/api/reports/performance/type/ROUTER,GET,Reports,GCP Cloud Routers,True,2026-07-06T04:55:33.609Z
+get performance statistics for GCP Cloud Routers,/app/api/reports/performance/type/ROUTER,GET,Reports,GCP Cloud Routers,True,2026-07-06T04:55:33.609Z
+How can I view performance reports for my GCP Spanner databases?,/app/api/reports/performance/type/SPANNER,GET,Reports,GCP Spanner,True,2026-07-06T04:55:36.425Z
+fetch GCP Spanner performance report data,/app/api/reports/performance/type/SPANNER,GET,Reports,GCP Spanner,True,2026-07-06T04:55:36.425Z
+How can I view GCP App Engine usage trends over time?,/app/api/reports/trend/type/APPENGINE,GET,Reports,GCP App Engine,True,2026-07-06T04:55:38.881Z
+fetch autonomous mapping report for Google App Engine performance,/app/api/reports/trend/type/APPENGINE,GET,Reports,GCP App Engine,True,2026-07-06T04:55:38.881Z
+How can I view the usage trends for my GCP Cloud SQL databases?,/app/api/reports/trend/type/CLOUDSQL,GET,Reports,GCP Cloud SQL,True,2026-07-06T04:55:41.517Z
+fetch cloud sql trend report gcp site24x7,/app/api/reports/trend/type/CLOUDSQL,GET,Reports,GCP Cloud SQL,True,2026-07-06T04:55:41.517Z
+How can I view outage reports for my GCP disks?,/app/api/reports/outages/type/COMPUTEDISK,GET,Reports,GCP Disk,True,2026-07-06T04:55:44.436Z
+fetch computedisk outage details in reports,/app/api/reports/outages/type/COMPUTEDISK,GET,Reports,GCP Disk,True,2026-07-06T04:55:44.436Z
+How can I view outage reports for my GCP VPN Tunnel connections?,/app/api/reports/outages/type/GCPVPNTUNNEL,GET,Reports,GCP VPN Tunnel,True,2026-07-06T04:55:47.040Z
+fetch GCP VPN Tunnel outage report data,/app/api/reports/outages/type/GCPVPNTUNNEL,GET,Reports,GCP VPN Tunnel,True,2026-07-06T04:55:47.040Z
+How can I view the summary report for Google Cloud Dataflow jobs?,/app/api/reports/summary/type/GCPDATAFLOW,GET,Reports,GCP Cloud Dataflow,True,2026-07-06T04:55:49.442Z
+fetch GCP Cloud Dataflow summary report,/app/api/reports/summary/type/GCPDATAFLOW,GET,Reports,GCP Cloud Dataflow,True,2026-07-06T04:55:49.442Z
+How can I view a summary report for Cloud Run services?,/app/api/reports/summary/type/CLOUDRUN,GET,Reports,Cloud Run,True,2026-07-06T04:55:52.056Z
+fetch Cloud Run summary report,/app/api/reports/summary/type/CLOUDRUN,GET,Reports,Cloud Run,True,2026-07-06T04:55:52.056Z
+How can I view outage reports for GCP Filestore?,/app/api/reports/outages/type/FILESTORE,GET,Reports,GCP Filestore,True,2026-07-06T04:55:54.413Z
+get GCP Filestore outage history report,/app/api/reports/outages/type/FILESTORE,GET,Reports,GCP Filestore,True,2026-07-06T04:55:54.413Z
+How can I view outage reports for my GCP Cloud DNS services?,/app/api/reports/outages/type/CLOUDDNS,GET,Reports,GCP Cloud DNS,True,2026-07-06T04:55:56.926Z
+get outage report for GCP Cloud DNS,/app/api/reports/outages/type/CLOUDDNS,GET,Reports,GCP Cloud DNS,True,2026-07-06T04:55:56.926Z
+How can I view outage reports for GCP Cloud KMS?,/app/api/reports/outages/type/CLOUDKMS,GET,Reports,GCP Cloud KMS,True,2026-07-06T04:55:59.223Z
+fetch mapped GCP Cloud KMS outage details report,/app/api/reports/outages/type/CLOUDKMS,GET,Reports,GCP Cloud KMS,True,2026-07-06T04:55:59.223Z
+How can I view outage reports for my GCP Certificate Authority Service?,/app/api/reports/outages/type/PRIVATECA,GET,Reports,GCP Certificate Authority Service,True,2026-07-06T04:56:01.761Z
+get PRIVATECA outages report for GCP Certificate Authority Service,/app/api/reports/outages/type/PRIVATECA,GET,Reports,GCP Certificate Authority Service,True,2026-07-06T04:56:01.761Z
+How can I view outage reports for GCP Cloud Interconnect connections?,/app/api/reports/outages/type/INTERCONNECT,GET,Reports,GCP Cloud Interconnect,True,2026-07-06T04:56:04.300Z
+fetch GCP Cloud Interconnect mapped outage report,/app/api/reports/outages/type/INTERCONNECT,GET,Reports,GCP Cloud Interconnect,True,2026-07-06T04:56:04.300Z
+How can I view the top new connection counts for GCP Cloud Armor?,/app/api/reports/top_n/CLOUDARMOR/new_connection_count,GET,Reports,GCP Cloud Armor,True,2026-07-06T04:56:06.865Z
+list GCP Cloud Armor top N new connection count report,/app/api/reports/top_n/CLOUDARMOR/new_connection_count,GET,Reports,GCP Cloud Armor,True,2026-07-06T04:56:06.865Z
+How can I see the availability summary for my GCP Secure Web Proxy?,/app/api/reports/availability_summary/type/SECUREWEBPROXY,GET,Reports,GCP Secure Web Proxy,True,2026-07-06T04:56:09.291Z
+fetch availability report for GCP Secure Web Proxy,/app/api/reports/availability_summary/type/SECUREWEBPROXY,GET,Reports,GCP Secure Web Proxy,True,2026-07-06T04:56:09.291Z
+How can I view outage reports for GCP Cloud Tasks?,/app/api/reports/outages/type/CLOUDTASKS,GET,Reports,GCP Cloud Tasks,True,2026-07-06T04:56:11.671Z
+fetch GCP Cloud Tasks outages report,/app/api/reports/outages/type/CLOUDTASKS,GET,Reports,GCP Cloud Tasks,True,2026-07-06T04:56:11.671Z
+How can I see outage reports for GCP Serverless VPC Access?,/app/api/reports/outages/type/VPCACCESS,GET,Reports,GCP Serverless VPC Access,True,2026-07-06T04:56:14.278Z
+get VPC Access outage history report for GCP serverless,/app/api/reports/outages/type/VPCACCESS,GET,Reports,GCP Serverless VPC Access,True,2026-07-06T04:56:14.278Z
+How can I check the performance stats for my GCP Network Loadbalancer?,/app/api/reports/performance/type/GCP_NETWORKLOADBALANCER,GET,Reports,GCP Network Loadbalancer,True,2026-07-06T04:56:16.684Z
+fetch GCP Network Loadbalancer performance report,/app/api/reports/performance/type/GCP_NETWORKLOADBALANCER,GET,Reports,GCP Network Loadbalancer,True,2026-07-06T04:56:16.684Z
+How can I view outage reports for network interfaces?,/app/api/reports/outages/type/NETWORKINTERFACE,GET,Reports,Network Interface,True,2026-07-06T04:56:19.135Z
+fetch network interface outage report,/app/api/reports/outages/type/NETWORKINTERFACE,GET,Reports,Network Interface,True,2026-07-06T04:56:19.135Z
+How can I see the top WAN endpoints with the highest packet drop rates?,/app/api/reports/top_n/WANRTT/pack_drop,GET,Reports,WAN,True,2026-07-06T04:56:21.659Z
+fetch WAN RTT packet drop report for top endpoints,/app/api/reports/top_n/WANRTT/pack_drop,GET,Reports,WAN,True,2026-07-06T04:56:21.659Z
+How can I view outage reports for NCM devices?,/app/api/reports/outages/type/NCM,GET,Reports,NCM Device,True,2026-07-06T04:56:24.034Z
+fetch mapped NCM device outage report,/app/api/reports/outages/type/NCM,GET,Reports,NCM Device,True,2026-07-06T04:56:24.034Z
+How can I see the top VoIP latency standard deviation report?,/app/api/reports/top_n/VOIP/latency_sd,GET,Reports,VolP,True,2026-07-06T04:56:26.376Z
+fetch VoIP top latency SD statistics report,/app/api/reports/top_n/VOIP/latency_sd,GET,Reports,VolP,True,2026-07-06T04:56:26.376Z
+How can I view the top IP utilization details for my subnets?,/app/api/reports/top_n/IPAM/ip_utilisation,GET,Reports,IPAM Subnet,True,2026-07-06T04:56:28.885Z
+get IPAM subnet utilization report top N,/app/api/reports/top_n/IPAM/ip_utilisation,GET,Reports,IPAM Subnet,True,2026-07-06T04:56:28.885Z
+How can I view a summary report for my NetApp storage monitors?,/app/api/reports/summary/type/NW_NETAPPSTORAGE,GET,Reports,NetApp Monitor BETA,True,2026-07-06T04:56:31.327Z
+fetch NetApp Monitor BETA summary report,/app/api/reports/summary/type/NW_NETAPPSTORAGE,GET,Reports,NetApp Monitor BETA,True,2026-07-06T04:56:31.327Z
+How can I view the trend report for my wireless LAN controllers?,/app/api/reports/trend/type/WLC,GET,Reports,Wireless LAN Controller,True,2026-07-06T04:56:33.919Z
+fetch wireless lan controller trend report,/app/api/reports/trend/type/WLC,GET,Reports,Wireless LAN Controller,True,2026-07-06T04:56:33.919Z
+How can I view outage reports for access points?,/app/api/reports/outages/type/ACCESSPOINT,GET,Reports,Access Point,True,2026-07-06T04:56:36.481Z
+fetch access point outage details report,/app/api/reports/outages/type/ACCESSPOINT,GET,Reports,Access Point,True,2026-07-06T04:56:36.481Z
+How can I view performance reports for my NetFlow devices?,/app/api/reports/performance/type/NETFLOWDEVICE,GET,Reports,NetFlow Device,True,2026-07-06T04:56:38.945Z
+fetch NetFlow device performance report,/app/api/reports/performance/type/NETFLOWDEVICE,GET,Reports,NetFlow Device,True,2026-07-06T04:56:38.945Z
+How can I view outage reports for my Meraki Organization?,/app/api/reports/outages/type/MERAKIORG,GET,Reports,Meraki Organization,True,2026-07-06T04:56:41.327Z
+fetch Meraki Organization outage report,/app/api/reports/outages/type/MERAKIORG,GET,Reports,Meraki Organization,True,2026-07-06T04:56:41.327Z
+How can I view historical performance trends for my Meraki Switch devices?,/app/api/reports/trend/type/MERAKISWITCH,GET,Reports,Meraki Switch,True,2026-07-06T04:56:43.688Z
+get Meraki Switch trend report in Site24x7,/app/api/reports/trend/type/MERAKISWITCH,GET,Reports,Meraki Switch,True,2026-07-06T04:56:43.688Z
+How can I view the security trends for my Meraki appliances?,/app/api/reports/trend/type/MERAKISECURITY,GET,Reports,Meraki Security Appliance,True,2026-07-06T04:56:46.077Z
+fetch Meraki Security Appliance trend report,/app/api/reports/trend/type/MERAKISECURITY,GET,Reports,Meraki Security Appliance,True,2026-07-06T04:56:46.077Z
+How can I view the trend report for Meraki wireless radios?,/app/api/reports/trend/type/MERAKIRADIO,GET,Reports,Meraki Wireless,True,2026-07-06T04:56:48.411Z
+fetch Meraki radio trend report data,/app/api/reports/trend/type/MERAKIRADIO,GET,Reports,Meraki Wireless,True,2026-07-06T04:56:48.411Z
+How can I see the availability summary for Meraki cellular gateways?,/app/api/reports/availability_summary/type/MERAKIGATEWAY,GET,Reports,Meraki Cellular Gateway,True,2026-07-06T04:56:50.725Z
+fetch Meraki gateway availability summary report,/app/api/reports/availability_summary/type/MERAKIGATEWAY,GET,Reports,Meraki Cellular Gateway,True,2026-07-06T04:56:50.725Z
+How can I view the trend report for my Meraki virtual appliances?,/app/api/reports/trend/type/MERAKIVMX,GET,Reports,Meraki Virtual Appliance,True,2026-07-06T04:56:53.181Z
+fetch Meraki VMX trend report data,/app/api/reports/trend/type/MERAKIVMX,GET,Reports,Meraki Virtual Appliance,True,2026-07-06T04:56:53.181Z
+How can I view tenant details for Cisco ACI in my reports?,/app/api/reports/child-details/CISCOACI/TENANTS/%7Bid%7D,GET,Reports,Cisco ACI,True,2026-07-06T04:56:55.639Z
+fetch Cisco ACI tenant child details report,/app/api/reports/child-details/CISCOACI/TENANTS/%7Bid%7D,GET,Reports,Cisco ACI,True,2026-07-06T04:56:55.639Z
+How can I see outage reports for my VeloCloud SD-WAN devices?,/app/api/reports/outages/type/VELOCLOUD-ENTERPRISE,GET,Reports,VeloCloud SD-WAN,True,2026-07-06T04:56:58.047Z
+list VeloCloud SD-WAN mapped outages report,/app/api/reports/outages/type/VELOCLOUD-ENTERPRISE,GET,Reports,VeloCloud SD-WAN,True,2026-07-06T04:56:58.047Z
+How can I see the top downstream bandwidth usage for VeloCloud Edge devices?,/app/api/reports/top_n/VELOCLOUD-EDGE/bandwidth_downstream,GET,Reports,VeloCloud Edge,True,2026-07-06T04:57:00.517Z
+fetch VeloCloud Edge top N downstream bandwidth report,/app/api/reports/top_n/VELOCLOUD-EDGE/bandwidth_downstream,GET,Reports,VeloCloud Edge,True,2026-07-06T04:57:00.517Z
+How can I view the summary report for Aruba Central SDN?,/app/api/reports/summary/type/ARUBACENTRAL-SDN,GET,Reports,Aruba Central BETA,True,2026-07-06T04:57:02.896Z
+fetch Aruba Central BETA summary report data,/app/api/reports/summary/type/ARUBACENTRAL-SDN,GET,Reports,Aruba Central BETA,True,2026-07-06T04:57:02.896Z
+How can I view the performance stats for my Aruba access points?,/app/api/reports/performance/type/ARUBACENTRAL-AP,GET,Reports,Aruba Access Point BETA,True,2026-07-06T04:57:05.255Z
+fetch ArubaCentral access point performance report,/app/api/reports/performance/type/ARUBACENTRAL-AP,GET,Reports,Aruba Access Point BETA,True,2026-07-06T04:57:05.255Z
+How can I see the top Aruba switch CPU utilization stats?,/app/api/reports/top_n/ARUBACENTRAL-SWITCH/cpu_util,GET,Reports,Aruba Switch BETA,True,2026-07-06T04:57:07.973Z
+get top N CPU usage report for ArubaCentral switch,/app/api/reports/top_n/ARUBACENTRAL-SWITCH/cpu_util,GET,Reports,Aruba Switch BETA,True,2026-07-06T04:57:07.973Z
+How can I view the top Aruba Gateway devices by memory usage?,/app/api/reports/top_n/ARUBACENTRAL-GATEWAY/memory_util,GET,Reports,Aruba Gateway BETA,True,2026-07-06T04:57:10.506Z
+fetch Aruba Gateway BETA memory utilization report,/app/api/reports/top_n/ARUBACENTRAL-GATEWAY/memory_util,GET,Reports,Aruba Gateway BETA,True,2026-07-06T04:57:10.506Z
+How can I view the FortiManager SD-WAN summary report?,/app/api/reports/summary/type/FORTIMANAGER-SDWAN,GET,Reports,FortiManager BETA,True,2026-07-06T04:57:13.054Z
+get FortiManager SDWAN summary report details,/app/api/reports/summary/type/FORTIMANAGER-SDWAN,GET,Reports,FortiManager BETA,True,2026-07-06T04:57:13.054Z
+How can I see which FortiGate devices were checked most recently?,/app/api/reports/top_n/FORTIGATE/device_last_checked,GET,Reports,FortiGate Device BETA,True,2026-07-06T04:57:15.637Z
+list top FortiGate devices last checked report,/app/api/reports/top_n/FORTIGATE/device_last_checked,GET,Reports,FortiGate Device BETA,True,2026-07-06T04:57:15.637Z
+How can I view outage reports for FortiAP access points?,/app/api/reports/outages/type/FORTIAP,GET,Reports,FortiAP Access Point BETA,True,2026-07-06T04:57:18.117Z
+fetch FortiAP access point outage summary report,/app/api/reports/outages/type/FORTIAP,GET,Reports,FortiAP Access Point BETA,True,2026-07-06T04:57:18.117Z
+How can I view the performance report for my FortiSwitch devices?,/app/api/reports/performance/type/FORTISWITCH,GET,Reports,FortiSwitch Device BETA,True,2026-07-06T04:57:20.517Z
+get FortiSwitch device performance metrics report,/app/api/reports/performance/type/FORTISWITCH,GET,Reports,FortiSwitch Device BETA,True,2026-07-06T04:57:20.517Z
+How can I view outage reports for FortiExtender devices?,/app/api/reports/outages/type/FORTIEXTENDER,GET,Reports,FortiExtender Device BETA,True,2026-07-06T04:57:23.074Z
+list FortiExtender device outage history report,/app/api/reports/outages/type/FORTIEXTENDER,GET,Reports,FortiExtender Device BETA,True,2026-07-06T04:57:23.074Z
+How can I view the trending reports for Juniper MIST devices?,/app/api/reports/trend/type/JUNIPER-MIST,GET,Reports,Juniper MIST BETA,True,2026-07-06T04:57:25.498Z
+get Juniper MIST BETA trend report,/app/api/reports/trend/type/JUNIPER-MIST,GET,Reports,Juniper MIST BETA,True,2026-07-06T04:57:25.498Z
+How can I view the availability summary for my Juniper MIST Organization?,/app/api/reports/availability_summary/type/JUNIPER-MIST-ORG,GET,Reports,Juniper MIST Organization BETA,True,2026-07-06T04:57:27.793Z
+get Juniper MIST Organization availability summary report,/app/api/reports/availability_summary/type/JUNIPER-MIST-ORG,GET,Reports,Juniper MIST Organization BETA,True,2026-07-06T04:57:27.793Z
+How can I see the top throughput stats for my Juniper Mist access points?,/app/api/reports/top_n/JUNIPER-MIST-AP/sle_throughput,GET,Reports,Juniper AP BETA,True,2026-07-06T04:57:30.429Z
+get sle throughput report for Juniper AP BETA devices,/app/api/reports/top_n/JUNIPER-MIST-AP/sle_throughput,GET,Reports,Juniper AP BETA,True,2026-07-06T04:57:30.429Z
+How can I see the top Juniper Mist switches with the highest total routes?,/app/api/reports/top_n/JUNIPER-MIST-SWITCH/total_routes,GET,Reports,Juniper Switch BETA,True,2026-07-06T04:57:33.009Z
+list top N Juniper Mist switch total routes report,/app/api/reports/top_n/JUNIPER-MIST-SWITCH/total_routes,GET,Reports,Juniper Switch BETA,True,2026-07-06T04:57:33.009Z
+How can I view the top Juniper WAN Edge devices by memory utilization?,/app/api/reports/top_n/JUNIPER-MIST-WAN-EDGE/memory2_util,GET,Reports,Juniper WAN Edge,True,2026-07-06T04:57:35.725Z
+get Juniper WAN Edge memory utilization ranking report,/app/api/reports/top_n/JUNIPER-MIST-WAN-EDGE/memory2_util,GET,Reports,Juniper WAN Edge,True,2026-07-06T04:57:35.725Z
+How can I view Cambium cnMaestro BETA trend reports?,/app/api/reports/trend/type/CAMBIUM-CNMAESTRO,GET,Reports,Cambium cnMaestro BETA,True,2026-07-06T04:57:38.368Z
+get Cambium cnMaestro BETA trend report data,/app/api/reports/trend/type/CAMBIUM-CNMAESTRO,GET,Reports,Cambium cnMaestro BETA,True,2026-07-06T04:57:38.368Z
+How can I view the top N response times for my Cambium Managed Account?,/app/api/reports/top_n/CAMBIUM-ACCOUNT/response_time,GET,Reports,Cambium Managed Account BETA,True,2026-07-06T04:57:40.799Z
+fetch Cambium Managed Account BETA top N response time report,/app/api/reports/top_n/CAMBIUM-ACCOUNT/response_time,GET,Reports,Cambium Managed Account BETA,True,2026-07-06T04:57:40.799Z
+How can I view the top Cambium APs with highest memory usage?,/app/api/reports/top_n/CAMBIUM-AP/memory_util,GET,Reports,Cambium AP BETA,True,2026-07-06T04:57:43.213Z
+fetch Cambium AP BETA top N memory utilization report,/app/api/reports/top_n/CAMBIUM-AP/memory_util,GET,Reports,Cambium AP BETA,True,2026-07-06T04:57:43.213Z
+How can I view the summary report for Cambium Switch devices?,/app/api/reports/summary/type/CAMBIUM-SWITCH,GET,Reports,Cambium Switch BETA,True,2026-07-06T04:57:45.732Z
+get Cambium Switch summary report from Reports module,/app/api/reports/summary/type/CAMBIUM-SWITCH,GET,Reports,Cambium Switch BETA,True,2026-07-06T04:57:45.732Z
+How can I view the availability summary for Cambium Edge BETA devices?,/app/api/reports/availability_summary/type/CAMBIUM-EDGE,GET,Reports,Cambium Edge BETA,True,2026-07-06T04:57:48.140Z
+fetch Cambium Edge BETA availability summary report,/app/api/reports/availability_summary/type/CAMBIUM-EDGE,GET,Reports,Cambium Edge BETA,True,2026-07-06T04:57:48.140Z
+How can I see the availability summary report for Cambium Wireless devices?,/app/api/reports/availability_summary/type/CAMBIUM-WIRELESS,GET,Reports,Cambium Wireless BETA,True,2026-07-06T04:57:51.435Z
+get Cambium Wireless BETA availability summary report,/app/api/reports/availability_summary/type/CAMBIUM-WIRELESS,GET,Reports,Cambium Wireless BETA,True,2026-07-06T04:57:51.435Z
+How can I check the availability summary for Cambium PON BETA devices?,/app/api/reports/availability_summary/type/CAMBIUM-PON,GET,Reports,Cambium PON BETA,True,2026-07-06T04:57:53.787Z
+fetch Cambium PON BETA availability summary report,/app/api/reports/availability_summary/type/CAMBIUM-PON,GET,Reports,Cambium PON BETA,True,2026-07-06T04:57:53.787Z
+How can I view performance reports for Celona SD-WAN BETA devices?,/app/api/reports/performance/type/CELONA-SDWAN,GET,Reports,Celona SD-WAN BETA,True,2026-07-06T04:57:56.341Z
+fetch Celona SD-WAN BETA performance metrics report,/app/api/reports/performance/type/CELONA-SDWAN,GET,Reports,Celona SD-WAN BETA,True,2026-07-06T04:57:56.341Z
+How can I see the top sites for my Celona Organization?,/app/api/reports/top_n/CELONA-ORG/site_count,GET,Reports,Celona Organization BETA,True,2026-07-06T04:57:58.788Z
+list Celona Organization site count report,/app/api/reports/top_n/CELONA-ORG/site_count,GET,Reports,Celona Organization BETA,True,2026-07-06T04:57:58.788Z
+How can I see the availability summary for Celona Edge Node BETA?,/app/api/reports/availability_summary/type/CELONA-EDGE,GET,Reports,Celona Edge Node BETA,True,2026-07-06T04:58:01.209Z
+fetch Celona Edge Node BETA availability summary report,/app/api/reports/availability_summary/type/CELONA-EDGE,GET,Reports,Celona Edge Node BETA,True,2026-07-06T04:58:01.209Z
+How can I view the summary report for Celona Access Points beta?,/app/api/reports/summary/type/CELONA-AP,GET,Reports,Celona AP BETA,True,2026-07-06T04:58:03.633Z
+fetch Celona AP BETA mapped summary report,/app/api/reports/summary/type/CELONA-AP,GET,Reports,Celona AP BETA,True,2026-07-06T04:58:03.633Z
+How can I view the status of child metrics for a specific report?,/app/api/reports/child_status/%7Bid%7D,GET,Reports,Metrics,True,2026-07-06T04:58:06.117Z
+get child metric status report by ID,/app/api/reports/child_status/%7Bid%7D,GET,Reports,Metrics,True,2026-07-06T04:58:06.117Z
+How can I view the summary report for my Microsoft SQL Server databases?,/app/api/reports/summary/type/MSSQL_DATABASE,GET,Reports,Microsoft SQL Server Database,True,2026-07-06T04:58:08.478Z
+get MSSQL database summary report,/app/api/reports/summary/type/MSSQL_DATABASE,GET,Reports,Microsoft SQL Server Database,True,2026-07-06T04:58:08.478Z
+How can I view SQL Server performance trends over time?,/app/api/reports/trend/type/SQLSERVER,GET,Reports,Microsoft SQL Server,True,2026-07-06T04:58:11.148Z
+fetch SQL Server trend report in Site24x7,/app/api/reports/trend/type/SQLSERVER,GET,Reports,Microsoft SQL Server,True,2026-07-06T04:58:11.148Z
+How can I see the top blocked SQL Server sessions in my reports?,/app/api/reports/top_n/DBINSIGHT/blocked_sessions,GET,Reports,Microsoft SQL Server Insight,True,2026-07-06T04:58:13.739Z
+list top N blocked sessions for Microsoft SQL Server Insight,/app/api/reports/top_n/DBINSIGHT/blocked_sessions,GET,Reports,Microsoft SQL Server Insight,True,2026-07-06T04:58:13.739Z
+How can I view the performance trend report for my PostgreSQL databases?,/app/api/reports/trend/type/POSTGRESQL,GET,Reports,PostgreSQL,True,2026-07-06T04:58:16.085Z
+fetch PostgreSQL trend report data in Reports module,/app/api/reports/trend/type/POSTGRESQL,GET,Reports,PostgreSQL,True,2026-07-06T04:58:16.085Z
+How can I view performance reports for my Databricks Workspace?,/app/api/reports/performance/type/DBRICKS_WS,GET,Reports,Databricks Workspace,True,2026-07-06T04:58:19.014Z
+get Databricks Workspace performance report,/app/api/reports/performance/type/DBRICKS_WS,GET,Reports,Databricks Workspace,True,2026-07-06T04:58:19.014Z

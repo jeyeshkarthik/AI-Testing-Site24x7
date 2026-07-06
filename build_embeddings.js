@@ -19,7 +19,7 @@ async function buildEmbeddings() {
     vectors[api.id] = [];
     
     // Embed the original description as well
-    const textToEmbed = `${api.subFeature} - ${api.description}. Endpoint: ${api.method} ${api.endpoint}. Fields: ${(api.requestFields || []).join(' ')}`;
+    const textToEmbed = `${api.subModule} - ${api.description}. Endpoint: ${api.method} ${api.endpoint}. Fields: ${(api.requestFields || []).join(' ')}`;
     const output = await extractor(textToEmbed, { pooling: 'mean', normalize: true });
     vectors[api.id].push(Array.from(output.data));
   }
