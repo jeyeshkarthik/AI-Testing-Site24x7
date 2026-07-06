@@ -73,8 +73,7 @@ Output JSON format exactly like this:
                         { role: 'system', content: 'You are a helpful assistant that outputs only valid JSON.' },
                         { role: 'user', content: prompt }
                     ],
-                    temperature: 0.1,
-                    response_format: { type: "json_object" }
+                    temperature: 0.1
                 })
             });
 
@@ -84,8 +83,8 @@ Output JSON format exactly like this:
             }
 
             const data = await response.json();
-            const content = data.choices[0].message.content;
-            
+            let content = data.choices[0].message.content;
+            content = content.replace(/^```json/im, '').replace(/```$/im, '').trim();
             const parsed = JSON.parse(content);
             parsed.mappings.forEach(m => {
                 const endpoint = batch[m.endpoint_index];
