@@ -60,15 +60,20 @@
     });
   }
 
-  var sheets = DB.sheets;
+  var modules = DB.modules;
   var sheetDesc = DB.sheetDescriptions;
   var apis = DB.apis;
 
-  var sheetCounts = {};
-  apis.forEach(function(a) { sheetCounts[a.sheet] = (sheetCounts[a.sheet] || 0) + 1; });
+  var moduleCounts = {};
+  var subModuleCounts = {};
+  apis.forEach(function(a) { 
+      moduleCounts[a.module] = (moduleCounts[a.module] || 0) + 1; 
+      subModuleCounts[a.subModule] = (subModuleCounts[a.subModule] || 0) + 1; 
+  });
 
   var query = '';
-  var activeSheet = 'ALL';
+  var activeModule = 'ALL';
+  var activeSubModule = 'ALL';
   var activeMethods = new Set(['GET','POST','PUT','DELETE','PATCH']);
   var currentPage = 1;
   var PAGE_SIZE = 20;
@@ -235,53 +240,77 @@
     return 'status-warn';
   }
 
-  // Sidebar
   function buildSidebar() {
     var el = document.getElementById('sidebarSheets');
     el.innerHTML = '';
     var allDiv = document.createElement('div');
-    allDiv.className = 'sidebar-item' + (activeSheet==='ALL'?' active':'');
-    allDiv.innerHTML = '<span class="si-name">All Modules</span><span class="si-count">'+apis.length+'</span>';
-    allDiv.addEventListener('click', function(){ setSheet('ALL'); });
+    allDiv.className = 'sidebar-module' + (activeModule==='ALL'?' active':'');
+    allDiv.innerHTML = '<span class="sm-name">All Modules</span><span class="sm-count">'+apis.length+'</span><span class="sm-caret" style="visibility:hidden;">▶</span>';
+    allDiv.addEventListener('click', function(){ setModule('ALL', 'ALL'); });
     el.appendChild(allDiv);
-    sheets.forEach(function(sheet) {
+
+    Object.keys(modules).forEach(function(mod) {
       var d = document.createElement('div');
-      d.className = 'sidebar-item' + (activeSheet===sheet?' active':'');
-      d.innerHTML = '<span class="si-name">'+esc(sheet)+'</span><span class="si-count">'+(sheetCounts[sheet]||0)+'</span>';
-      d.addEventListener('click', function(){ setSheet(sheet); });
+      var isModActive = activeModule === mod;
+      d.className = 'sidebar-module' + (isModActive ? ' active' : '');
+      d.innerHTML = '<span class="sm-name">'+esc(mod)+'</span><span class="sm-count">'+(moduleCounts[mod]||0)+'</span><span class="sm-caret">' + (isModActive ? '▼' : '▶') + '</span>';
+      d.addEventListener('click', function(){ 
+          setModule(isModActive && activeSubModule === 'ALL' ? 'ALL' : mod, 'ALL'); 
+      });
       el.appendChild(d);
+
+      if (isModActive) {
+          modules[mod].forEach(function(sub) {
+              var sd = document.createElement('div');
+              sd.className = 'sidebar-submodule' + (activeSubModule === sub ? ' active' : '');
+              sd.innerHTML = '<span class="ssm-name">'+esc(sub)+'</span><span class="ssm-count">'+(subModuleCounts[sub]||0)+'</span>';
+              sd.addEventListener('click', function(e){ e.stopPropagation(); setModule(mod, sub); });
+              el.appendChild(sd);
+          });
+      }
     });
   }
 
-  function setSheet(sheet) {
-    activeSheet = sheet;
+  function setModule(mod, sub) {
+    activeModule = mod;
+    activeSubModule = sub;
     currentPage = 1;
     buildSidebar();
-    document.querySelectorAll('#moduleChips .mchip').forEach(function(c){
-      c.classList.toggle('active', c.dataset.sheet === sheet);
-    });
+    var chipsEl = document.getElementById('moduleChips');
+    if (chipsEl) {
+        chipsEl.querySelectorAll('.mchip').forEach(function(c){
+            c.classList.toggle('active', c.dataset.module === mod && c.dataset.sub === sub);
+        });
+    }
     renderResults();
   }
-  window.setSheet = setSheet;
+  window.setModule = setModule;
 
   function buildModuleChips() {
     var el = document.getElementById('moduleChips');
+    if (!el) return;
+    el.innerHTML = '';
     var all = document.createElement('span');
     all.className = 'mchip active';
-    all.dataset.sheet = 'ALL';
+    all.dataset.module = 'ALL';
+    all.dataset.sub = 'ALL';
     all.textContent = 'All';
     el.appendChild(all);
-    sheets.forEach(function(s) {
-      var c = document.createElement('span');
-      c.className = 'mchip';
-      c.dataset.sheet = s;
-      c.textContent = s;
-      el.appendChild(c);
+    Object.keys(modules).forEach(function(mod) {
+      modules[mod].forEach(function(sub) {
+          var c = document.createElement('span');
+          c.className = 'mchip';
+          c.dataset.module = mod;
+          c.dataset.sub = sub;
+          c.textContent = sub;
+          el.appendChild(c);
+      });
     });
+    
     el.addEventListener('click', function(e){
       var c = e.target.closest('.mchip');
       if (!c) return;
-      setSheet(c.dataset.sheet);
+      setModule(c.dataset.module, c.dataset.sub);
     });
   }
 
@@ -299,7 +328,8 @@
   async function getResults() {
     var filtered = apis.filter(function(api) {
       if (!activeMethods.has(api.method)) return false;
-      if (activeSheet !== 'ALL' && api.sheet !== activeSheet) return false;
+      if (activeModule !== 'ALL' && api.module !== activeModule) return false;
+      if (activeSubModule !== 'ALL' && api.subModule !== activeSubModule) return false;
       return true;
     });
     if (!query) return filtered.map(function(api){ return {api:api, score:0}; });
