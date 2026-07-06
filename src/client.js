@@ -681,7 +681,7 @@
               '</p>';
     }
     
-    html += '<input type="text" id="query-' + apiId + '" placeholder="?period=1&status=up" />';
+    html += '<input type="text" autocomplete="off" id="query-' + apiId + '" placeholder="?period=1&status=up" />';
     html += '</div>';
 
     if (hasBody) {
@@ -1173,8 +1173,27 @@
 
     try {
       var tokens = tokenize(txt);
-      var allApisScored = apis.map(function(api){ return {api:api, score:scoreResult(api,tokens)}; })
-        .filter(function(r){ return r.score > 0; })
+      var allApisScored = [];
+      if (aiWorkerReady) {
+        var workerRes = await searchWorker(txt);
+        var scoreMap = {};
+        workerRes.forEach(function(r) { scoreMap[r.id] = r.score; });
+        var qLower = txt.toLowerCase();
+        allApisScored = apis.map(function(api) {
+          var score = scoreMap[api.id] || 0;
+          if ((qLower.indexOf('create')>-1 || qLower.indexOf('add')>-1 || qLower.indexOf('new')>-1 || qLower.indexOf('set up')>-1) && api.method === 'POST') score += 0.20;
+          if ((qLower.indexOf('update')>-1 || qLower.indexOf('modify')>-1 || qLower.indexOf('change')>-1) && api.method === 'PUT') score += 0.20;
+          if ((qLower.indexOf('delete')>-1 || qLower.indexOf('remove')>-1) && api.method === 'DELETE') score += 0.20;
+          if ((qLower.indexOf('get')>-1 || qLower.indexOf('list')>-1 || qLower.indexOf('show')>-1) && api.method === 'GET') score += 0.20;
+          score += (scoreResult(api, tokens) * 0.003);
+          return {api:api, score:score};
+        });
+      } else {
+        allApisScored = apis.map(function(api){ return {api:api, score:scoreResult(api,tokens)}; });
+      }
+      
+      allApisScored = allApisScored
+        .filter(function(r){ return r.score > 0.25; })
         .sort(function(a,b){ return b.score - a.score; })
         .slice(0, 5);
         
@@ -1261,8 +1280,9 @@
                 window.aiExecActions.push({ method: act.method, endpoint: act.endpoint, payload: payloadStr, index: loadingIndex });
                 
                 var btnClick = "executeAiAction(" + actionId + ")";
-                actHtml += '<div class="ai-act-footer">';
-                actHtml += '<button class="ai-chat-btn" onclick="' + btnClick + '">Execute Request &#9654;</button>';
+                actHtml += '<div class="ai-act-footer" style="display:flex; flex-direction:column; gap:8px;">';
+                actHtml += '<input type="text" autocomplete="off" id="ai-query-' + actionId + '" placeholder="Query String (Optional, e.g. period=1)" style="padding:6px 10px; border:1px solid #cbd5e1; border-radius:4px; font-size:12px; font-family:monospace;" />';
+                actHtml += '<button class="ai-chat-btn" style="align-self:flex-start;" onclick="' + btnClick + '">Execute Request &#9654;</button>';
                 actHtml += '</div>';
                 actHtml += '<div id="ai-exec-result-' + actionId + '"></div>';
                 actHtml += '</div>';
@@ -1316,6 +1336,13 @@
     }
     var payloadStr = action.payload;
     var loadingIndex = action.index;
+    
+    var aiQueryInput = document.getElementById('ai-query-' + actionId);
+    if (aiQueryInput && aiQueryInput.value.trim()) {
+      var qs = aiQueryInput.value.trim();
+      if (!qs.startsWith('?')) qs = '?' + qs;
+      endpoint += qs;
+    }
     
     var fullUrl = (endpoint.startsWith('http://') || endpoint.startsWith('https://')) ? endpoint : 'https://www.site24x7.com' + endpoint;
     var proxyTarget = PROXY_URL + '/proxy?url=' + encodeURIComponent(fullUrl);
