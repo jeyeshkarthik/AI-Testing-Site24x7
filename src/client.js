@@ -26,7 +26,8 @@
   var aiWorkerCallbacks = {};
   var aiWorkerMsgId = 0;
   
-  aiWorker.postMessage({ type: 'init', dbUrl: window.location.origin + window.location.pathname.replace('index.html', '') + 'site24x7_vector.json' });
+  // Cache bust to ensure the browser always loads the latest 78MB vector file
+  aiWorker.postMessage({ type: 'init', dbUrl: window.location.origin + window.location.pathname.replace('index.html', '') + 'site24x7_vector.json?v=' + new Date().getTime() });
   
   aiWorker.onmessage = function(e) {
     if (e.data.type === 'status') {
