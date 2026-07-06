@@ -1,6 +1,6 @@
 # Site24x7 AI Directory: Complete Project Report
 
-An AI-powered search interface and development testing tool for exploring, executing, and testing all **720 API endpoints** across the 15 feature modules of the [Site24x7 Admin API](https://www.site24x7.com/app/demo). 
+An AI-powered search interface and development testing tool for exploring, executing, and testing all **2545 API endpoints** across the 15 feature modules of the [Site24x7 Admin API](https://www.site24x7.com/app/demo). 
 
 This document outlines the entire development lifecycle of the Site24x7 AI Directory, broken down across distinct implementation phases. The architecture utilizes a local Node.js proxy and build pipeline coupled with a vanilla, zero-dependency (almost) client-side frontend to achieve a lightning-fast, offline-capable search engine and execution layer.
 
@@ -27,7 +27,7 @@ This builds `index.html` from the source data and serves it at **http://localhos
 ## 📁 Project Structure
 
 ```
-├── site24x7_Admin_API.xlsx           ← Source of truth: 15 sheets, 720 API endpoints
+├── site24x7_Admin_API.xlsx           ← Source of truth: 15 sheets, 2545 API endpoints
 ├── site24x7_compact.json             ← Minified JSON database of all endpoints
 ├── site24x7_Dataset.csv              ← 3,100+ synthetically generated semantic queries
 ├── site24x7_vector.json              ← 384-dimensional HuggingFace vector database
