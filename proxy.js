@@ -23,36 +23,66 @@ let storedCookie = '';
 let storedAuthToken = '';
 
 // ─── Semantic Search Engine ───────────────────────────────────────────────────
+const { createClient } = require('redis');
 const fs = require('fs');
 let extractor = null;
-let vectors = {};
+let redisClient = null;
+let vectorDB = null; // fallback in-memory if Redis KNN fails
 
 async function initVectorEngine() {
   try {
     console.log('[proxy] Loading Transformers.js & Model...');
-    const { pipeline } = require('@xenova/transformers');
+    const transformers = await import('@xenova/transformers');
+    const pipeline = transformers.pipeline;
     extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-    console.log('[proxy] Model loaded. Loading vector database (78MB)...');
-    vectors = JSON.parse(fs.readFileSync('site24x7_vector.json', 'utf8'));
-    console.log(`[proxy] Loaded vectors for ${Object.keys(vectors).length} APIs. Semantic Search is ready.`);
+    console.log('[proxy] Model loaded. Connecting to Redis...');
+    redisClient = createClient({ url: process.env.REDIS_URL || 'redis://localhost:6379' });
+    redisClient.on('error', err => console.error('[proxy] Redis Client Error', err));
+    await redisClient.connect();
+    console.log('[proxy] Connected to Redis.');
+    
+    // Check if the HASH-based index exists (correct binary format)
+    try {
+      const info = await redisClient.ft.info('idx:api_vectors');
+      // Check if it is HASH type (correct) vs JSON type (old broken format)
+      if (info.indexDefinition && info.indexDefinition.keyType === 'HASH') {
+        console.log('[proxy] Redis HASH index detected. Semantic Search via Redis is READY.');
+      } else {
+        console.warn('[proxy] Redis index is JSON-type (legacy). Falling back to in-memory search.');
+        console.warn('[proxy] Run: docker-compose exec proxy node migrate_to_redis.js  to fix this.');
+        loadInMemoryFallback();
+      }
+    } catch(e) {
+      console.warn('[proxy] No Redis index found. Falling back to in-memory search.');
+      console.warn('[proxy] Run: docker-compose exec proxy node migrate_to_redis.js  to build it.');
+      loadInMemoryFallback();
+    }
   } catch (err) {
     console.error('[proxy] Failed to initialize Vector Engine:', err.message);
+    loadInMemoryFallback();
   }
 }
-initVectorEngine();
 
-function cos_sim(A, B) {
-  let dotProduct = 0;
-  let normA = 0;
-  let normB = 0;
-  for (let i = 0; i < A.length; i++) {
-    dotProduct += A[i] * B[i];
-    normA += A[i] * A[i];
-    normB += B[i] * B[i];
+function loadInMemoryFallback() {
+  try {
+    vectorDB = JSON.parse(fs.readFileSync('site24x7_vector.json', 'utf8'));
+    console.log(`[proxy] In-memory fallback loaded: ${Object.keys(vectorDB).length} APIs.`);
+  } catch(e) {
+    console.error('[proxy] Could not load in-memory fallback either:', e.message);
+  }
+}
+
+function cosineSimilarity(vecA, vecB) {
+  let dotProduct = 0.0, normA = 0.0, normB = 0.0;
+  for (let i = 0; i < vecA.length; i++) {
+    dotProduct += vecA[i] * vecB[i];
+    normA += vecA[i] * vecA[i];
+    normB += vecB[i] * vecB[i];
   }
   if (normA === 0 || normB === 0) return 0;
   return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
 }
+initVectorEngine();
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -134,29 +164,26 @@ const server = http.createServer(async (req, res) => {
 
   // ── GET /semantic_search ────────────────────────────────────────────────────
   if (path === '/semantic_search' && req.method === 'GET') {
-    if (!extractor) {
+    if (!extractor || !vectorDB) {
       return json(res, 503, { error: 'Vector engine is still loading. Please try again in a moment.' });
     }
     const q = reqUrl.searchParams.get('q');
     if (!q) return json(res, 400, { error: 'Missing ?q= query parameter.' });
+    
+    console.log(`[proxy] /semantic_search query: "${q}"`);
     
     try {
       const output = await extractor(q, { pooling: 'mean', normalize: true });
       const queryVector = Array.from(output.data);
       
       const results = [];
-      const apiIds = Object.keys(vectors);
-      for (let i = 0; i < apiIds.length; i++) {
-        const id = apiIds[i];
-        const vecs = vectors[id];
-        let maxScore = -1;
-        for (let j = 0; j < vecs.length; j++) {
-          const score = cos_sim(queryVector, vecs[j]);
-          if (score > maxScore) maxScore = score;
+      for (const apiId in vectorDB) {
+        let best = -1;
+        for (const vec of vectorDB[apiId]) {
+          const s = cosineSimilarity(queryVector, vec);
+          if (s > best) best = s;
         }
-        if (maxScore > 0.25) {
-          results.push({ id: parseInt(id, 10), score: maxScore });
-        }
+        if (best > 0.15) results.push({ id: parseInt(apiId, 10), score: best });
       }
       results.sort((a, b) => b.score - a.score);
       return json(res, 200, results.slice(0, 50));
@@ -275,7 +302,7 @@ const server = http.createServer(async (req, res) => {
   json(res, 404, { error: 'Unknown endpoint.' });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log('');
   console.log('╔══════════════════════════════════════════════╗');
   console.log('║   Site24x7 Local Proxy — http://localhost:' + PORT + '  ║');
