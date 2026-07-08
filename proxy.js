@@ -23,7 +23,7 @@ let storedCookie = '';
 let storedAuthToken = '';
 
 // ─── Semantic Search Engine ───────────────────────────────────────────────────
-const { createClient } = require('redis');
+const Redis = require('ioredis');
 const fs = require('fs');
 let extractor = null;
 let redisClient = null;
@@ -36,25 +36,16 @@ async function initVectorEngine() {
     const pipeline = transformers.pipeline;
     extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
     console.log('[proxy] Model loaded. Connecting to Redis...');
-    redisClient = createClient({ url: process.env.REDIS_URL || 'redis://localhost:6379' });
-    redisClient.on('error', err => console.error('[proxy] Redis Client Error', err));
-    await redisClient.connect();
-    console.log('[proxy] Connected to Redis.');
+    
+    redisClient = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
+    redisClient.on('error', err => console.error('[proxy] Redis Client Error', err.message));
     
     // Check if the HASH-based index exists (correct binary format)
     try {
-      const info = await redisClient.ft.info('idx:api_vectors');
-      // Check if it is HASH type (correct) vs JSON type (old broken format)
-      if (info.indexDefinition && info.indexDefinition.keyType === 'HASH') {
-        console.log('[proxy] Redis HASH index detected. Semantic Search via Redis is READY.');
-      } else {
-        console.warn('[proxy] Redis index is JSON-type (legacy). Falling back to in-memory search.');
-        console.warn('[proxy] Run: docker-compose exec proxy node migrate_to_redis.js  to fix this.');
-        loadInMemoryFallback();
-      }
+      const info = await redisClient.call('FT.INFO', 'idx:api_vectors');
+      console.log('[proxy] Redis HASH index detected. Semantic Search via Redis is READY.');
     } catch(e) {
-      console.warn('[proxy] No Redis index found. Falling back to in-memory search.');
-      console.warn('[proxy] Run: docker-compose exec proxy node migrate_to_redis.js  to build it.');
+      console.warn('[proxy] No Redis index found or error. Falling back to in-memory search.', e.message);
       loadInMemoryFallback();
     }
   } catch (err) {
@@ -86,8 +77,9 @@ initVectorEngine();
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-function cors(res) {
-  res.setHeader('Access-Control-Allow-Origin',  ALLOWED_ORIGIN);
+function cors(req, res) {
+  const origin = req.headers.origin || ALLOWED_ORIGIN;
+  res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
@@ -115,7 +107,7 @@ function resolveTarget(rawUrl) {
 // ─── Server ───────────────────────────────────────────────────────────────────
 
 const server = http.createServer(async (req, res) => {
-  cors(res);
+  cors(req, res);
 
   // Pre-flight
   if (req.method === 'OPTIONS') {
@@ -164,7 +156,7 @@ const server = http.createServer(async (req, res) => {
 
   // ── GET /semantic_search ────────────────────────────────────────────────────
   if (path === '/semantic_search' && req.method === 'GET') {
-    if (!extractor || !vectorDB) {
+    if (!extractor) {
       return json(res, 503, { error: 'Vector engine is still loading. Please try again in a moment.' });
     }
     const q = reqUrl.searchParams.get('q');
@@ -175,6 +167,52 @@ const server = http.createServer(async (req, res) => {
     try {
       const output = await extractor(q, { pooling: 'mean', normalize: true });
       const queryVector = Array.from(output.data);
+      
+      if (redisClient) {
+        try {
+          const float32 = new Float32Array(queryVector);
+          const blob = Buffer.from(float32.buffer);
+          
+          const raw = await redisClient.call(
+            'FT.SEARCH', 'idx:api_vectors',
+            '*=>[KNN 50 @embedding $BLOB AS score]',
+            'PARAMS', '2', 'BLOB', blob,
+            'DIALECT', '2',
+            'RETURN', '2', 'api_id', 'score',
+            'SORTBY', 'score',
+            'LIMIT', '0', '50'
+          );
+          
+          const total = raw[0];
+          console.log(`[proxy] Redis KNN returned ${total} results.`);
+          const results = [];
+          const seen = new Set();
+          
+          for (let i = 1; i < raw.length; i += 2) {
+            const fields = raw[i + 1];
+            let apiId = null, score = null;
+            for (let j = 0; j < fields.length; j += 2) {
+              if (fields[j] === 'api_id') apiId = fields[j + 1];
+              if (fields[j] === 'score') score = fields[j + 1];
+            }
+            if (apiId !== null && !seen.has(apiId)) {
+              seen.add(apiId);
+              const similarity = 1 - parseFloat(score); // COSINE distance → similarity
+              results.push({ id: parseInt(apiId, 10), score: similarity });
+            }
+          }
+          
+          results.sort((a, b) => b.score - a.score);
+          return json(res, 200, results);
+        } catch (redisErr) {
+          console.warn('[proxy] Redis KNN failed, falling back to in-memory:', redisErr.message);
+        }
+      }
+      
+      // Fallback
+      if (!vectorDB) {
+        return json(res, 503, { error: 'No vector DB available. Run migrate_to_redis.js' });
+      }
       
       const results = [];
       for (const apiId in vectorDB) {
